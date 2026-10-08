@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright__*",
+      "mcp__context7__*",
+      "Bash(npm run *)",
+      "Bash(npm install)",
+      "Bash(npm ls *)",
+      "Bash(npx vite *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  }
+}
