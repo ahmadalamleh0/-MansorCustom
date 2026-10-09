@@ -165,7 +165,7 @@ not shipped):
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
 | Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
-| Location map | Framer OpenFreeMap 3D component (Liberty) | Implemented: natural-colour 3D map at the verified address |
+| Location map | Creative director's aerial reference image | Implemented: aerial preview → live Google Maps satellite |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
 
 Screenshots shared only in chat should also be saved to `references/` so
@@ -280,32 +280,24 @@ Introduce radius only when a reference explicitly uses it.
   SunTek, HEXIS, Gtechniq, Ceramic Pro) with faded edges; static and
   wrapped with reduced motion. The angled 3D image panels that used to
   follow it were removed at the creative director's request (2026-10-09).
-- **Location** (`components/sections/LocationMap.tsx` + `lib/locationMap.ts`):
-  the "Visit Mansor Customs" heading (Outfit 500, tracked caps), then the
-  address and "Get Directions" (Google Maps directions to the exact address)
-  on the black page, then an edge-to-edge 3D map (`clamp(17.5rem, 14.5rem +
-  9vw, 22rem)`), directly before the footer. It is the "Contact" nav target.
-  **Map style: OpenFreeMap Liberty, loaded unmodified** (as in the Framer
-  component in `references/`): natural colours, labels and native
-  `building-3d` extrusions. Creative-director rule: **no custom map colours,
-  CSS filters, fades or overlays on the map.** The contrast between the
-  black site and the light map is intentional. Camera (chosen from
-  Playwright contact sheets, 48 combinations): looking south-west (bearing
-  225) so the Garfield Park buildings fill the foreground and the river
-  recedes. Desktop zoom 17.2 / pitch 62; phones zoom 17 / pitch 70
-  (maxPitch 70). Attribution:
-  MapLibre's compact control, starting in its own minimised state (the (i)
-  button expands the full credits). Marker: a dark point with a white ring, plus a charcoal
-  tracked "MANSOR CUSTOMS" label with a white halo, at 40.864118, −74.100951.
-  **Behaviour:** a lazy chunk loaded within 600px of the section; no
-  scroll-wheel zoom; touch: one finger scrolls the page, two move the map;
-  no zoom controls; `setWorkerUrl` for the bundled v6 worker; a transparent
-  stand-in for POI icons missing from OpenFreeMap's sprite
-  (`setMissingStyleImageResolver`). Known harmless console warnings come
-  from Liberty's three highway-shield filters. Fallback (no WebGL, style
-  failure, 15s timeout): the heading, address and directions remain.
-  `map.remove()` runs on unmount. MapLibre CSS overrides must be un-layered
-  (end of index.css).
+- **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
+  heading, then the address and "Get Directions" (Google Maps directions to
+  the exact address) on the black page, then a compact full-bleed band
+  (`clamp(18.75rem, 15rem + 10vw, 26rem)`, about 300px on phones and 384px
+  on desktop) directly before the footer. It is the "Contact" nav target.
+  **Preview → live:** the creative director's aerial image
+  (`assets/images/location-aerial.jpg`, pin at the centre, so the cover crop
+  keeps it in view) with an "Explore Location" control. Activating it loads
+  the live **Google Maps satellite** embed (zoom 17, top-down) and fades it
+  in over the preview. Google is contacted only on demand.
+  **Embed:** with `VITE_GOOGLE_MAPS_EMBED_KEY` (in `.env.local`, never
+  committed; see `.env.example`) it uses the official Maps Embed API (place
+  mode, satellite); otherwise Google's keyless "Share → Embed" iframe.
+  **Query the address only.** Adding the business name made Google match a
+  different "Customs" shop; the address alone resolves to the Mansor
+  Customs listing (verified in Google's place data). Google's marker, place
+  card and attribution stay unmodified. No filters or overlays on the live
+  map.
 - **Footer** (`components/layout/Footer.tsx`, MANSORY reference): one
   centred column. Wordmark (`wordmark-footer`), a full-width hairline,
   two symmetric columns of services (`footer-link`, 68% white, hover to

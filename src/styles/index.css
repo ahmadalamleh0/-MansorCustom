@@ -472,9 +472,9 @@
   }
 
   /*
-   * Location: heading, address and directions on the black page, then the
-   * edge-to-edge 3D map in its original natural Liberty colours. Nothing sits
-   * over the map: no filters, fades or overlays (creative director).
+   * Location: heading, address and directions on the black page, then an
+   * edge-to-edge Google Maps satellite view. Nothing sits over the map: no
+   * filters, fades or overlays (creative director).
    */
   .location {
     padding-top: clamp(1.5rem, 1rem + 2vw, 3rem);
@@ -543,50 +543,68 @@
 
   .location-map {
     position: relative;
-    height: clamp(17.5rem, 14.5rem + 9vw, 22rem); /* ~280px phones, ~352px desktop */
+    height: clamp(18.75rem, 15rem + 10vw, 26rem); /* ~300px phones, ~384px desktop */
     margin-top: clamp(1rem, 0.8rem + 1vw, 1.5rem);
     overflow: hidden;
-    background: var(--color-ink);
+    background: #1a1a1a; /* while the imagery loads */
   }
 
-  .location-map__canvas {
+  /* Aerial preview: the pin sits at the image centre, so a centred cover
+     crop keeps it in view at every width */
+  .location-map__preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  /* Live Google map fades in over the preview once it has loaded */
+  .location-map__frame {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
     opacity: 0;
-    transition: opacity 900ms ease;
+    transition: opacity 700ms ease;
   }
 
-  .location-map[data-status='ready'] .location-map__canvas {
+  .location-map[data-loaded] .location-map__frame {
     opacity: 1;
   }
 
-  /* Marker on the light Liberty map: a dark point with a white ring and a
-     charcoal tracked label with a white halo */
-  .map-marker {
-    position: relative;
-    width: 10px;
-    height: 10px;
-  }
-
-  .map-marker__dot {
+  /* Editorial "Explore Location" control, same language as Book Appointment,
+     on a soft dark plate so it stays legible over bright imagery */
+  .location-map__explore {
     position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: var(--color-ink);
-    box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgb(11 11 12 / 0.18);
-  }
-
-  .map-marker__label {
-    position: absolute;
-    left: 19px;
-    top: 50%;
-    translate: 0 -50%;
+    left: 50%;
+    bottom: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+    translate: -50% 0;
+    min-height: 3rem;
+    padding: 0.875rem 1.5rem;
+    border: 1px solid rgb(242 241 238 / 0.35);
+    background: rgb(11 11 12 / 0.62);
+    backdrop-filter: blur(6px);
     font-family: var(--font-editorial);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     white-space: nowrap;
-    color: var(--color-ink);
-    text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 10px #fff;
+    color: var(--color-paper);
+    transition:
+      background-color 240ms ease,
+      border-color 240ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .location-map__explore:hover {
+      background: rgb(11 11 12 / 0.82);
+      border-color: rgb(242 241 238 / 0.7);
+    }
   }
 
   /*
@@ -922,18 +940,4 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/*
- * MapLibre overrides. Deliberately UN-LAYERED: MapLibre's stylesheet is
- * un-layered, and un-layered rules beat anything inside @layer whatever the
- * specificity, so these must live outside the layers to apply.
- */
-
-/* MapLibre sets .maplibregl-map { position: relative }; keep the map filling the band */
-.location-map .location-map__canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
 }
