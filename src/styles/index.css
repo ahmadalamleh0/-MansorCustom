@@ -164,6 +164,15 @@
     display: block;
   }
 
+  /* Redrawn A: Michroma's advance width (2176/2048em) and cap height, sitting
+     on the text baseline like the real glyphs around it */
+  .wordmark__glyph {
+    display: inline-block;
+    width: 1.0625em;
+    height: 0.75em;
+    vertical-align: baseline;
+  }
+
   /* Offset by half a pixel so the 1px stroke lands on whole pixels */
   .wordmark__frame {
     position: absolute;
