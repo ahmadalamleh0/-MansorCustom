@@ -120,7 +120,7 @@ export const editorial = {
     },
     {
       id: 'performance-steering',
-      title: 'Performance Steering',
+      title: 'Performance Steerings',
       media: {
         type: 'image',
         src: steeringWheels,
