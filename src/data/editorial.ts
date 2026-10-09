@@ -4,10 +4,11 @@ import starlight from '@/assets/images/services/starlight.jpg'
 import steeringWheels from '@/assets/images/services/steering-wheels.jpg'
 import tuning from '@/assets/images/services/tuning.jpg'
 import wheelsSuspension from '@/assets/images/services/wheels-suspension.jpg'
+import wraps from '@/assets/images/services/wraps.jpg'
 import type { MediaAsset } from './media'
 
 /**
- * Editorial services showcase after the hero:
+ * Services showcase directly after the hero:
  *   4 service cards → statement → 4 service cards
  * Slot order within each group: top-left, top-right, bottom-left, bottom-right.
  *
@@ -22,7 +23,18 @@ export type EditorialGroup = [EditorialCard, EditorialCard, EditorialCard, Edito
 
 export const editorial = {
   upper: [
-    { id: 'wraps', title: 'Wraps' },
+    {
+      id: 'wraps',
+      title: 'Wraps',
+      media: {
+        type: 'image',
+        src: wraps,
+        alt: 'McLaren 720S in a colour-shift wrap, doors raised, under hexagonal lighting in the Mansor Customs studio',
+        width: 1000,
+        height: 1333,
+        position: '50% 70%', // hex ceiling, wall logo and the whole car
+      },
+    },
     { id: 'bespoke-interiors', title: 'Bespoke Interiors' },
     {
       id: 'wheels-suspension',

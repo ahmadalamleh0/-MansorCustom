@@ -1,15 +1,13 @@
 import { useRef } from 'react'
 import { showcaseMotion } from '@/animations/showcaseMotion'
-import { Media } from '@/components/ui/Media'
 import { banner, type BrandLogo } from '@/data/banner'
 import { useGSAP } from '@/lib/gsap'
 
 /**
- * Showcase banner, directly after the hero (IR Customs reference): a
- * monochrome brand-logo row, then a full-bleed strip of tall image panels on
- * one plane receding in perspective, with both sides fading into the dark.
- * Animation hooks: [data-logo-track] (marquee), [data-banner-track]
- * (scroll-linked drift along the plane).
+ * Brand banner directly after the hero: a monochrome, slowly scrolling row
+ * of product-brand logos with faded edges. (The angled image panels that
+ * used to follow it were removed at the creative director's request.)
+ * Animation hook: [data-logo-track] (marquee).
  */
 export function Showcase() {
   const scope = useRef<HTMLElement>(null)
@@ -17,7 +15,7 @@ export function Showcase() {
   useGSAP(() => showcaseMotion(), { scope })
 
   return (
-    <section ref={scope} id="showcase" aria-label="Featured builds" className="showcase">
+    <section ref={scope} id="showcase" aria-label="Brands" className="showcase">
       <div className="showcase__logos">
         <div data-logo-track className="showcase__logo-track">
           <LogoList logos={banner.logos} />
@@ -26,24 +24,6 @@ export function Showcase() {
         </div>
       </div>
 
-      <div className="showcase__stage">
-        <div className="showcase__plane">
-          <div data-banner-track className="showcase__track">
-            {banner.panels.map((panel, i) => (
-              <figure key={panel.id} className="showcase__panel">
-                <Media
-                  media={panel.media}
-                  fallback={
-                    <span aria-hidden="true" className="showcase__panel-index">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                  }
-                />
-              </figure>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   )
 }

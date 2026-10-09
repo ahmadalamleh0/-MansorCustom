@@ -411,11 +411,7 @@
   }
 
   /*
-   * Showcase banner (IR Customs reference). One plane of tall panels,
-   * rotated in 3D so it recedes to the right: near panels are tall and wide,
-   * far ones shorter and narrower, with top edges falling and bottom edges
-   * rising. Both sides fade into the background through a mask.
-   * Geometry is driven by the variables on .showcase__stage.
+   * Brand banner: a scrolling row of monochrome product-brand logos.
    */
   .showcase {
     padding-block: clamp(0.5rem, 0.25rem + 1.5vw, 2rem) clamp(0.5rem, 0.25rem + 1.5vw, 2rem);
@@ -473,61 +469,6 @@
       row-gap: 1.5rem;
       padding-inline: var(--gutter);
     }
-  }
-
-  .showcase__stage {
-    /* Fitted to the reference with a parameter search (408px viewport):
-       left-edge height 0.734W (ref 0.735), far/near ratio 0.655 (0.65),
-       top slope 0.189 (0.19), bottom slope -0.064 (-0.066), front panel
-       at 0.141W and 0.462W wide (0.142 / 0.456). Perspective scales with
-       --panel-w, so the same angles hold at every width. */
-    --panel-w: min(60vw, 28rem);
-    --panel-ratio: 0.82; /* width / height */
-    --panel-gap: calc(var(--panel-w) * 0.045);
-    --plane-rot-y: 32deg;
-    --plane-rot-z: 5deg;
-    --plane-lead: calc(var(--panel-w) * -0.75); /* first panel partly off-screen */
-    margin-top: clamp(2rem, 1.25rem + 3vw, 3.5rem);
-    height: calc(var(--panel-w) / var(--panel-ratio) * 1.12);
-    perspective: calc(var(--panel-w) * 2.5);
-    perspective-origin: 50% 42%;
-    mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
-  }
-
-  .showcase__plane {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    transform: rotateY(var(--plane-rot-y)) rotateZ(var(--plane-rot-z));
-    transform-origin: 0% 50%;
-  }
-
-  .showcase__track {
-    display: flex;
-    gap: var(--panel-gap);
-    margin-left: var(--plane-lead);
-    will-change: transform;
-  }
-
-  .showcase__panel {
-    position: relative;
-    flex: none;
-    width: var(--panel-w);
-    aspect-ratio: var(--panel-ratio);
-    overflow: hidden;
-    background: var(--color-surface-raised);
-  }
-
-  .showcase__panel-index {
-    position: absolute;
-    left: 7%;
-    bottom: 5%;
-    font-family: var(--font-display);
-    font-size: calc(var(--panel-w) * 0.28);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: rgb(255 255 255 / 0.05);
   }
 
   /*
