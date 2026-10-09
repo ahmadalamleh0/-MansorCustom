@@ -95,8 +95,8 @@ export const editorial = {
       },
     },
     {
-      id: 'steering-wheels',
-      title: 'Steering Wheels',
+      id: 'performance-steering',
+      title: 'Performance Steering',
       media: {
         type: 'image',
         src: steeringWheels,
