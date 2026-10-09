@@ -183,21 +183,25 @@
   }
 
   /*
-   * Editorial collage: an offset 2×2 of near-square cards. Measured from the
-   * reference in units of the large card S:
-   *   top-left  S × S        top-right     S × 0.954S
-   *   bottom-l  0.954S sq,   bottom-right  S × S
-   *             inner-aligned
-   *   gap 0.092S both ways → both columns have equal height
-   * Two columns of S plus one gap = collage width, so S = 47.8% and gap = 4.4%.
-   * Container query units keep the vertical gaps proportional too.
+   * Service card grid: two columns of identical portrait cards (Motorcarlease
+   * reference). Cards are ~18% taller than the original square tiles (~20% on
+   * phones) so the photographs have room to breathe. Container query units
+   * keep the gaps proportional at every width.
    */
   .collage {
-    --collage-gap: 4.4cqi;
+    --collage-gap: 3.6cqi;
+    --tile-ratio: 1 / 1.2; /* width / height */
     container-type: inline-size;
     width: 100%;
     max-width: 50rem;
     margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .collage {
+      --collage-gap: 3cqi;
+      --tile-ratio: 1 / 1.18;
+    }
   }
 
   .collage__grid {
@@ -214,24 +218,10 @@
 
   .collage__card {
     position: relative;
+    width: 100%;
+    aspect-ratio: var(--tile-ratio);
     overflow: hidden;
     background: var(--color-surface-raised);
-  }
-
-  .collage__card--lg {
-    width: 100%;
-    aspect-ratio: 1;
-  }
-
-  .collage__card--short {
-    width: 100%;
-    aspect-ratio: 1 / 0.954;
-  }
-
-  .collage__card--sm {
-    width: 95.4%;
-    aspect-ratio: 1;
-    align-self: flex-end;
   }
 
   /*
@@ -746,7 +736,7 @@
 
   /*
    * Service tile (Motorcarlease reference): photo first, a functional bottom
-   * scrim for legibility, and a centred white title with a small arrow. The
+   * scrim for legibility, and a centred white title with a small chevron. The
    * button is stretched over the whole card. Hover: a slow, slight zoom.
    * Type scales with the collage width (cqi), so titles stay on one line.
    */
@@ -771,27 +761,29 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 0 0.5rem 9%;
+    padding: 0 0.5rem 8%;
     outline: none;
   }
 
   .service-tile__title {
     display: inline-flex;
     align-items: center;
-    gap: 0.4em;
+    gap: 0.32em;
     font-family: var(--font-editorial);
-    font-size: clamp(0.75rem, 0.45rem + 1.7cqi, 1.25rem);
+    font-size: clamp(0.8125rem, 0.5rem + 1.75cqi, 1.3125rem);
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.015em;
     white-space: nowrap;
     color: #fff;
     text-shadow: 0 1px 12px rgb(0 0 0 / 0.35);
   }
 
-  .service-tile__arrow {
-    width: 0.8em;
-    height: 0.8em;
+  /* Small chevron tip (no shaft), optically centred on the cap height */
+  .service-tile__chevron {
+    width: 0.62em;
+    height: 0.62em;
     flex: none;
+    translate: 0 0.04em;
     transition: transform 400ms var(--ease-out-expo);
   }
 
@@ -805,8 +797,8 @@
       transform: scale(1.035);
     }
 
-    .service-tile:hover .service-tile__arrow {
-      transform: translateX(3px);
+    .service-tile:hover .service-tile__chevron {
+      transform: translateX(2px);
     }
   }
 

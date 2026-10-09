@@ -1,6 +1,7 @@
 import bodyKits from '@/assets/images/services/body-kits.jpg'
 import protectionFinish from '@/assets/images/services/protection-finish.jpg'
 import starlight from '@/assets/images/services/starlight.jpg'
+import steeringWheels from '@/assets/images/services/steering-wheels.jpg'
 import tuning from '@/assets/images/services/tuning.jpg'
 import wheelsSuspension from '@/assets/images/services/wheels-suspension.jpg'
 import type { MediaAsset } from './media'
@@ -93,6 +94,17 @@ export const editorial = {
         position: '50% 40%', // wing, light bar and flame all in the square crop
       },
     },
-    { id: 'steering-wheels', title: 'Steering Wheels' },
+    {
+      id: 'steering-wheels',
+      title: 'Steering Wheels',
+      media: {
+        type: 'image',
+        src: steeringWheels,
+        alt: 'Carbon-fibre BMW M steering wheel with Alcantara grips, LED shift lights and red paddles',
+        width: 1000,
+        height: 1250,
+        position: '50% 45%',
+      },
+    },
   ] satisfies EditorialGroup,
 }

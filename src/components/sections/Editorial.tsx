@@ -2,14 +2,14 @@ import { useRef, useState } from 'react'
 import { editorialReveal } from '@/animations/editorialReveal'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { Media } from '@/components/ui/Media'
-import { ArrowIcon } from '@/components/ui/icons'
+import { ChevronIcon } from '@/components/ui/icons'
 import { editorial, type EditorialCard, type EditorialGroup } from '@/data/editorial'
 import { useGSAP } from '@/lib/gsap'
 
 /**
  * Services showcase after the hero: 4 service cards (offset collage) →
  * centred statement → 4 service cards. Each card is a client photo with a
- * centred title and arrow (Motorcarlease reference) that opens the Coming
+ * centred title and chevron (Motorcarlease reference) that opens the Coming
  * Soon dialog until service pages exist. Content: data/editorial.ts.
  * Animation hooks: [data-editorial-card], [data-editorial-statement].
  */
@@ -68,29 +68,29 @@ function Collage({ group, onOpen }: { group: EditorialGroup; onOpen: OpenService
     <div className="collage">
       <div className="collage__grid">
         <div className="collage__col">
-          <Card card={topLeft} variant="lg" onOpen={onOpen} />
-          <Card card={bottomLeft} variant="sm" onOpen={onOpen} />
+          <Card card={topLeft} onOpen={onOpen} />
+          <Card card={bottomLeft} onOpen={onOpen} />
         </div>
         <div className="collage__col">
-          <Card card={topRight} variant="short" onOpen={onOpen} />
-          <Card card={bottomRight} variant="lg" onOpen={onOpen} />
+          <Card card={topRight} onOpen={onOpen} />
+          <Card card={bottomRight} onOpen={onOpen} />
         </div>
       </div>
     </div>
   )
 }
 
-/** Photo + centred title with an arrow; the whole card is one button */
-function Card({ card, variant, onOpen }: { card: EditorialCard; variant: 'lg' | 'short' | 'sm'; onOpen: OpenService }) {
+/** Photo + centred title with a small chevron; the whole card is one button */
+function Card({ card, onOpen }: { card: EditorialCard; onOpen: OpenService }) {
   return (
-    <figure data-editorial-card className={`collage__card collage__card--${variant} service-tile`}>
+    <figure data-editorial-card className="collage__card service-tile">
       <div className="service-tile__media">
         <Media media={card.media} />
       </div>
       <button type="button" aria-haspopup="dialog" onClick={() => onOpen(card.title)} className="service-tile__link">
         <span className="service-tile__title">
           {card.title}
-          <ArrowIcon className="service-tile__arrow" />
+          <ChevronIcon className="service-tile__chevron" />
         </span>
       </button>
     </figure>
