@@ -59,9 +59,10 @@ export const site = {
   //   US Census Bureau: 19 SADDLE RIVER AVE, SOUTH HACKENSACK, NJ 07606
   //     (40.863874, -74.100056; interpolated along the street)
   //   OpenStreetMap: house #19 as a mapped building (40.864118, -74.100951)
-  // The marker uses the OSM building point (house-level). NOTE: official
-  // records list the municipality as South Hackensack 07606; "Garfield
-  // 07026" is presumably the postal name in use. Confirm with the client.
+  // The marker uses the OSM building point (house-level). Official records
+  // list the municipality as South Hackensack 07606. "Garfield, NJ 07026" is
+  // the address the business uses, confirmed correct by the creative
+  // director on 2026-10-09.
   location: {
     name: 'Mansor Customs',
     address: '19 Saddle River Ave, Garfield, NJ 07026',

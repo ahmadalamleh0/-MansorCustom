@@ -49,7 +49,11 @@ Confirmed services:
   listed in the hero's service categories by the creative director on
   2026-10-09
 
-Undecided (don't invent): shop location, service area, contact details,
+Shop address (confirmed 2026-10-09): 19 Saddle River Ave, Garfield, NJ 07026
+(municipal records say South Hackensack 07606; the Garfield address is the
+one the business uses and is correct).
+
+Undecided (don't invent): service area, contact details,
 social URLs, pricing, hours, booking method, final service names and
 descriptions, and whether individual service pages will exist (the demo
 shows "Coming Soon").
