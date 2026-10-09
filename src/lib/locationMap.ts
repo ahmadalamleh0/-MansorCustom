@@ -34,15 +34,18 @@ export type LocationMapOptions = {
 }
 
 /**
- * Camera, chosen from Playwright contact sheets of zoom × pitch × bearing
- * against the Framer reference. The wide desktop band and the narrow phone
- * band need different framing: each keeps the shop centred, the Saddle River
- * as a leading line and the surrounding buildings readable in 3D.
+ * Camera, chosen from Playwright contact sheets (48 zoom × pitch × bearing
+ * combinations) against the Framer reference. The shop sits on the Saddle
+ * River with the Garfield Park buildings inland, so the camera looks
+ * south-west (bearing 225): the extruded buildings fill the foreground along
+ * the CR 38 diagonal, and the river recedes to the side instead of
+ * dominating. The shop stays the exact centre. Heights are OSM data, not
+ * exaggerated.
  */
 function camera() {
   return window.matchMedia('(max-width: 767px)').matches
-    ? { zoom: 15.5, pitch: 68, bearing: 24 }
-    : { zoom: 16, pitch: 62, bearing: 14 }
+    ? { zoom: 17, pitch: 70, bearing: 225 }
+    : { zoom: 17.2, pitch: 62, bearing: 225 }
 }
 
 export function createLocationMap(o: LocationMapOptions) {

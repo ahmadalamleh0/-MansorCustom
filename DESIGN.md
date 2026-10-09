@@ -292,8 +292,10 @@ Introduce radius only when a reference explicitly uses it.
   `building-3d` extrusions. Creative-director rule: **no custom map colours,
   CSS filters, fades or overlays on the map.** The contrast between the
   black site and the light map is intentional. Camera (chosen from
-  Playwright contact sheets): desktop zoom 16 / pitch 62 / bearing 14;
-  phones zoom 15.5 / pitch 68 / bearing 24 (maxPitch 70). Attribution:
+  Playwright contact sheets, 48 combinations): looking south-west (bearing
+  225) so the Garfield Park buildings fill the foreground and the river
+  recedes. Desktop zoom 17.2 / pitch 62; phones zoom 17 / pitch 70
+  (maxPitch 70). Attribution:
   MapLibre's compact control, starting in its own minimised state (the (i)
   button expands the full credits). Marker: a dark point with a white ring, plus a charcoal
   tracked "MANSOR CUSTOMS" label with a white halo, at 40.864118, −74.100951.
