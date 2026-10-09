@@ -13,6 +13,12 @@ export type SocialLink = { platform: string; url: string | null }
 export const site = {
   name: 'Mansour Customs',
 
+  // Logo lockup, one entry per stacked line. The spelling "Mansor" was
+  // confirmed by the creative director on 2026-10-09. TODO: align `name`,
+  // the hero heading, footer and index.html once the site-wide spelling
+  // change is approved.
+  wordmark: ['Mansor', 'Customs'],
+
   // PLACEHOLDER copy — final hero copy comes with the creative direction.
   hero: {
     eyebrow: 'Vehicle wrapping & customization',

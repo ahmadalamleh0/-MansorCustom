@@ -35,8 +35,7 @@
   --color-paper: #f2f1ee;
   --color-muted: #9b9a97;
   --color-faint: #6b6a68;
-  --color-film-white: rgb(246 247 248 / 0.95); /* Film Cut, top stroke */
-  --color-film-silver: rgb(168 172 178 / 0.9); /* Film Cut, bottom stroke */
+  --color-signature: rgb(246 247 248 / 0.9); /* intro signature rules */
   --color-scrim: rgb(0 0 0 / 0.72); /* modal backdrop */
 
   /* Type — system stacks until brand fonts are supplied (drop files in src/assets/fonts) */
@@ -123,22 +122,22 @@
   }
 
   /*
-   * Wordmark lockup: spaced uppercase letters inside a hairline frame.
+   * Wordmark lockup: MANSOR / CUSTOMS stacked, centred, inside a hairline frame.
    * Proportions come from the Urban reference, measured in cap heights (c):
    * tracking ≈ 1.5c, frame padding ≈ 1.58c × 0.84c, 1px stroke.
    * Michroma cap height = 0.75em, so 1c = 0.75em.
-   * The base values are the compact tier (nav + phones); the intro widens to
-   * the full reference tracking where the viewport allows it.
+   * The base values are the compact nav tier; the intro uses full tracking.
    */
   .wordmark {
-    --wm-track: 0.5em;
-    --wm-space: 0.55em;
+    --wm-track: 0.5em; /* between letters */
+    --wm-leading: 0.9em; /* between the two lines */
     --wm-pad-x: 1em;
     --wm-pad-y: 0.63em;
     position: relative;
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--wm-track);
+    gap: var(--wm-leading);
     padding: var(--wm-pad-y) var(--wm-pad-x);
     font-family: var(--font-brand);
     font-weight: 400;
@@ -148,12 +147,13 @@
     white-space: nowrap;
   }
 
-  .wordmark__letter {
-    display: block;
+  .wordmark__line {
+    display: flex;
+    gap: var(--wm-track);
   }
 
-  .wordmark__space {
-    width: var(--wm-space);
+  .wordmark__letter {
+    display: block;
   }
 
   /* Offset by half a pixel so the 1px stroke lands on whole pixels */
@@ -176,26 +176,24 @@
   }
 
   .wordmark--nav {
-    font-size: 9px;
+    font-size: 8px;
   }
 
+  /*
+   * Intro: full reference tracking. The lockup is 16.63em wide (CUSTOMS
+   * advance 7.53em + 6 × 1.12em tracking + 2 × 1.19em padding). Width-bound
+   * on phones (~84vw), height-bound like the reference elsewhere (cap ≈ 2.2vh).
+   */
   .wordmark--intro {
-    /* Width-bound on phones (~84vw); otherwise height-bound like the reference (cap ≈ 2.2vh) */
-    font-size: min(2.95vh, calc(84vw / 24.2));
-  }
-
-  @media (min-width: 640px) {
-    .wordmark--intro {
-      --wm-track: 1.12em;
-      --wm-space: 1.1em;
-      --wm-pad-x: 1.19em;
-      font-size: min(2.95vh, calc(80vw / 33.6));
-    }
+    --wm-track: 1.12em;
+    --wm-leading: 1.05em;
+    --wm-pad-x: 1.19em;
+    font-size: min(2.95vh, calc(84vw / 16.63));
   }
 
   @media (min-width: 768px) {
     .wordmark--nav {
-      font-size: 10px;
+      font-size: 9px;
     }
   }
 
@@ -285,48 +283,31 @@
   }
 
   /*
-   * The Film Cut: two hairlines offset like overlapping film layers.
-   * In em units, so it scales with the wordmark it sits above.
+   * Intro lockup: signature rules (1px lines) above and below the framed
+   * wordmark. They sit outside the flow, so the wordmark stays exactly
+   * centred in the viewport. In em units, so they scale with the wordmark.
    */
-  .film-cut {
-    --fc-length: 4.6em;
-    --fc-gap: 4px; /* whole pixels keep both 1px strokes crisp */
-    --fc-offset: 0.7em; /* horizontal shift between them */
-    position: relative;
-    display: block;
-    width: var(--fc-length);
-    height: calc(var(--fc-gap) + 2px);
-  }
-
-  .film-cut__line {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-  }
-
-  .film-cut__line--a {
-    top: 0;
-    left: calc(var(--fc-offset) / -2);
-    background: var(--color-film-white);
-  }
-
-  .film-cut__line--b {
-    top: calc(var(--fc-gap) + 1px);
-    left: calc(var(--fc-offset) / 2);
-    background: var(--color-film-silver);
-  }
-
-  /* Intro lockup: Film Cut above the framed wordmark. The cut sits outside
-     the flow, so the wordmark stays exactly centred in the viewport. */
   .intro__lockup {
+    --rule-length: 2.6em;
+    --rule-distance: 1.15em;
     position: relative;
   }
 
-  .intro__lockup .film-cut {
+  .intro__rule {
     position: absolute;
-    bottom: calc(100% + 1.15em);
     left: 50%;
-    translate: -50% 0;
+    width: var(--rule-length);
+    height: 1px;
+    margin-left: calc(var(--rule-length) / -2);
+    background: var(--color-signature);
+  }
+
+  .intro__rule--top {
+    bottom: calc(100% + var(--rule-distance));
+  }
+
+  .intro__rule--bottom {
+    top: calc(100% + var(--rule-distance));
   }
 
   /* Intro overlay */
@@ -361,7 +342,7 @@
     stroke-dashoffset: 1000;
   }
 
-  .intro [data-film-line] {
+  .intro [data-intro-rule] {
     opacity: 0;
   }
 

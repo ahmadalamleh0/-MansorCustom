@@ -53,8 +53,10 @@ shows "Coming Soon").
 
 ## Brand Commitments
 
-- Name: **Mansour Customs** (the folder is spelled "Mansor"; the brand is
-  "Mansour").
+- Name: **Mansor Customs**. The spelling "Mansor" was confirmed by the
+  creative director on 2026-10-09, and the logo is stacked MANSOR / CUSTOMS.
+  Older copy still saying "Mansour" (hero heading, footer, page title) is
+  awaiting a site-wide update.
 - Final logo and brand identity aren't supplied yet; the current text
   wordmark is temporary.
 - References the creative director made binding are tracked in DESIGN.md

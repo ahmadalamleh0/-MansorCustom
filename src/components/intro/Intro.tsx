@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { introTimeline, introTimelineReduced } from '@/animations/intro'
-import { FilmCut } from '@/components/brand/FilmCut'
 import { Wordmark } from '@/components/brand/Wordmark'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { gsap, mq, useGSAP } from '@/lib/gsap'
@@ -8,7 +7,7 @@ import { gsap, mq, useGSAP } from '@/lib/gsap'
 const FONT_WAIT_MS = 1200
 
 /**
- * Opening intro: black screen → Film Cut signature → letter-by-letter
+ * Opening intro: black screen → signature rules → letter-by-letter stacked
  * wordmark → hairline frame trace → black curtain lifts to reveal the hero,
  * which is already rendered underneath. One GSAP timeline drives the whole sequence, including the hero
  * copy and header entrance. It never waits on hero media. The overlay unmounts
@@ -39,22 +38,23 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
       if (!fontReady || !root.current) return
       const q = gsap.utils.selector(root)
       const targets = {
-        filmA: root.current.querySelector('[data-film-line="a"]'),
-        filmB: root.current.querySelector('[data-film-line="b"]'),
+        rules: q('[data-intro-rule]'),
         letters: q('[data-wm-letter]'),
         frame: root.current.querySelector('[data-wm-frame]'),
         curtain: root.current.querySelector('[data-intro-curtain]'),
         mark: root.current.querySelector('[data-intro-mark]'),
         header: document.querySelector('[data-site-header]'),
       }
-      // Snap the Film Cut to whole device pixels: 1px strokes on a fractional
-      // position anti-alias into soft grey 2px lines.
-      const cut = root.current.querySelector<HTMLElement>('.film-cut')
-      if (cut) {
-        const dpr = window.devicePixelRatio || 1
-        const top = cut.getBoundingClientRect().top
-        gsap.set(cut, { y: Math.round(top * dpr) / dpr - top })
+      // Snap the lockup, then each rule, to whole device pixels: 1px strokes
+      // on a fractional position anti-alias into soft grey 2px lines.
+      const dpr = window.devicePixelRatio || 1
+      const snap = (el: Element | null) => {
+        if (!el) return
+        const top = el.getBoundingClientRect().top
+        gsap.set(el, { y: Math.round(top * dpr) / dpr - top })
       }
+      snap(root.current.querySelector('.intro__lockup'))
+      targets.rules.forEach(snap)
 
       const finish = () => {
         document.documentElement.classList.remove('intro-active')
@@ -76,10 +76,11 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
     <div ref={root} className="intro" aria-hidden="true">
       <div data-intro-curtain className="intro__curtain" />
       <div data-intro-mark className="intro__mark">
-        {/* Same font-size as the wordmark, so the Film Cut's em sizing tracks it */}
+        {/* Same font-size as the wordmark, so the rules' em sizing tracks it */}
         <div className="intro__lockup wordmark--intro">
-          <FilmCut />
+          <span data-intro-rule className="intro__rule intro__rule--top" />
           <Wordmark framed className="wordmark--intro" />
+          <span data-intro-rule className="intro__rule intro__rule--bottom" />
         </div>
       </div>
     </div>

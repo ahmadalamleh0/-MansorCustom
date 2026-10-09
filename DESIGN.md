@@ -11,25 +11,24 @@ colors:
   muted: "#9b9a97"
   faint: "#6b6a68"
   wordmark-white: "#ffffff"
-  film-white: "rgb(246 247 248 / 0.95)"
-  film-silver: "rgb(168 172 178 / 0.9)"
+  signature: "rgb(246 247 248 / 0.9)"
   scrim: "rgb(0 0 0 / 0.72)"
 typography:
   wordmark:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "min(2.95vh, calc(84vw / 24.2))"
+    fontSize: "min(2.95vh, calc(84vw / 16.63))"
     fontWeight: 400
     lineHeight: 0.75
-    letterSpacing: "0.5em"
+    letterSpacing: "1.12em"
   wordmark-nav:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "9px"
+    fontSize: "8px"
     fontWeight: 400
     lineHeight: 0.75
     letterSpacing: "0.5em"
   wordmark-nav-md:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "10px"
+    fontSize: "9px"
     fontWeight: 400
     lineHeight: 0.75
     letterSpacing: "0.5em"
@@ -146,8 +145,8 @@ stays quiet.
   captions and placeholder notes.
 - `line` and `line-strong` are hairline dividers and borders.
 
-- `film-white` and `film-silver` are reserved for the Film Cut signature,
-  and `scrim` is reserved for modal backdrops.
+- `signature` is reserved for the intro's signature rules, and `scrim` is
+  reserved for modal backdrops.
 
 ### Named Rules
 - **No decorative gradients or glows.** A gradient is allowed only as a
@@ -160,8 +159,9 @@ stays quiet.
 ## Typography
 
 Three voices, each with one job:
-- **Wordmark:** Michroma, wide-tracked uppercase. Brand lockup only (intro
-  and header). Temporary until the client's logo arrives.
+- **Wordmark:** Michroma, wide-tracked uppercase, stacked MANSOR / CUSTOMS.
+  Brand lockup only (intro and header). Temporary until the client's logo
+  files arrive.
 - **Editorial display:** Outfit 600. Large centred statements.
 - **Interface and body:** system sans. Temporary; replace when the brand face
   is chosen.
@@ -211,14 +211,14 @@ Introduce radius only when a reference explicitly uses it.
 - **Wordmark** (`components/brand/Wordmark.tsx`): letters as separate spans
   for reveals, with an SVG frame (`pathLength` 1000) that traces clockwise
   from the top-left.
-- **Film Cut** (`components/brand/FilmCut.tsx`): the Mansour signature. Two
-  1px hairlines (`film-white` over `film-silver`) with a 4px gap, offset
-  0.7em, like overlapping vinyl film layers. Sized in em, so it scales with
-  the wordmark; it sits 1.15em above the intro frame. In the intro the top
-  stroke draws left to right, then the silver stroke glides past beneath it
-  (power3.inOut) into its offset, before the letters reveal. Keep it small
-  and understated: never enlarge it into a logo. It is snapped to whole
-  device pixels so the strokes stay crisp.
+- **Logo lockup:** MANSOR / CUSTOMS, stacked and centred (the client's logo
+  structure; the spelling "Mansor" was confirmed 2026-10-09). The lines come
+  from `site.wordmark`. Intro: full reference tracking (1.12em), leading
+  1.05em, about 16.6em wide. Nav: compact tier (0.5em tracking, 8/9px).
+- **Signature rules** (intro only): a 1px `signature` rule 2.6em long,
+  1.15em above and below the framed lockup, drawn outward from the centre
+  (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
+  they support the type, never compete with it.
 - **Media** (`components/ui/Media.tsx`): every image or video slot. Lazy by
   default; videos are muted and inline, play only on screen, and never
   autoplay with reduced motion. An empty slot renders an honest neutral
