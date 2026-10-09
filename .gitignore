@@ -12,3 +12,7 @@ Thumbs.db
 
 # Third-party reference material (not shipped, not versioned)
 references/
+
+# Impeccable: machine-local config and caches
+.impeccable/config.local.json
+.impeccable/*.cache.json

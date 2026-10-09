@@ -3,7 +3,9 @@
 Client: **Mansour Customs**, a US vehicle wrapping and customization brand (270k+ Instagram followers).
 Studio: **theDiablo**. Deliverable: a premium, cinematic, working presentation site. Deadline: ~5–6 days from 2026-10-08.
 
-**Status:** environment ready. No design concept or code yet. Wait for the creative director's concept, references and section briefs before you design or build anything.
+**Status:** homepage in progress: intro, hero (pending its banner redesign), editorial section, services and footer. The creative director supplies references and section briefs. Follow them rather than inventing new visual directions.
+
+**Design system and process:** [DESIGN.md](DESIGN.md) holds the tokens, the visual rules, the motion principles, the approved-reference register and the mandatory design-verification workflow. Read it before visually significant work.
 
 ## Design standards
 - The creative director owns the concept. Implement their direction precisely. Where the brief is silent, make deliberate choices that fit the Mansour Customs brand, and say what you chose.
@@ -12,6 +14,7 @@ Studio: **theDiablo**. Deliverable: a premium, cinematic, working presentation s
 - Every section needs a clear compositional idea: deliberate typography, scale contrast, spacing rhythm and hierarchy.
 - Cinematic but usable. Motion supports the content; navigation, legibility and CTAs always work.
 - Use the `frontend-design` skill for new visual work and `web-design-guidelines` for UI/UX/accessibility reviews.
+- Design-craft tools (see DESIGN.md → Workflow for when to use each): `/impeccable critique|audit|polish` (project-scoped plugin; its detector hook runs in quiet mode), `emil-design-eng` for motion and interaction craft, `/review-animations` for motion reviews, and `ui-ux-pro-max` for research only, never over approved references.
 
 ## Motion (GSAP)
 - Use the `gsap-*` skills, and check APIs with Context7 when you're unsure.
@@ -33,7 +36,8 @@ Studio: **theDiablo**. Deliverable: a premium, cinematic, working presentation s
 4. Change only what was requested.
 5. Run build/lint checks.
 6. Verify in the browser with Playwright at 1440 / 834 / 390: layout, overflow (`scrollWidth > innerWidth`), animation start and end states, console errors.
-7. Briefly say what changed.
+7. For visually significant work, also run the reference comparison and critique steps in DESIGN.md → Workflow.
+8. Briefly say what changed.
 
 ## Git
 - This folder is its own git repo, separate from the home-directory repo. Commit at stable milestones.
