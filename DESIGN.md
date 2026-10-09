@@ -11,9 +11,25 @@ colors:
   muted: "#9b9a97"
   faint: "#6b6a68"
   wordmark-white: "#ffffff"
+  film-white: "rgb(246 247 248 / 0.95)"
+  film-silver: "rgb(168 172 178 / 0.9)"
+  scrim: "rgb(0 0 0 / 0.72)"
 typography:
   wordmark:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "min(2.95vh, calc(84vw / 24.2))"
+    fontWeight: 400
+    lineHeight: 0.75
+    letterSpacing: "0.5em"
+  wordmark-nav:
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "9px"
+    fontWeight: 400
+    lineHeight: 0.75
+    letterSpacing: "0.5em"
+  wordmark-nav-md:
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "10px"
     fontWeight: 400
     lineHeight: 0.75
     letterSpacing: "0.5em"
@@ -130,6 +146,9 @@ stays quiet.
   captions and placeholder notes.
 - `line` and `line-strong` are hairline dividers and borders.
 
+- `film-white` and `film-silver` are reserved for the Film Cut signature,
+  and `scrim` is reserved for modal backdrops.
+
 ### Named Rules
 - **No decorative gradients or glows.** A gradient is allowed only as a
   functional scrim for legibility over imagery, or as an edge fade that
@@ -192,6 +211,14 @@ Introduce radius only when a reference explicitly uses it.
 - **Wordmark** (`components/brand/Wordmark.tsx`): letters as separate spans
   for reveals, with an SVG frame (`pathLength` 1000) that traces clockwise
   from the top-left.
+- **Film Cut** (`components/brand/FilmCut.tsx`): the Mansour signature. Two
+  1px hairlines (`film-white` over `film-silver`) with a 4px gap, offset
+  0.7em, like overlapping vinyl film layers. Sized in em, so it scales with
+  the wordmark; it sits 1.15em above the intro frame. In the intro the top
+  stroke draws left to right, then the silver stroke glides past beneath it
+  (power3.inOut) into its offset, before the letters reveal. Keep it small
+  and understated: never enlarge it into a logo. It is snapped to whole
+  device pixels so the strokes stay crisp.
 - **Media** (`components/ui/Media.tsx`): every image or video slot. Lazy by
   default; videos are muted and inline, play only on screen, and never
   autoplay with reduced motion. An empty slot renders an honest neutral
