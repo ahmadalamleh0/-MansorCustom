@@ -1,0 +1,155 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens — TEMPORARY foundation.
+ * Neutral, restrained values until the creative direction defines the brand
+ * palette and typefaces. Change tokens here; components consume them through
+ * Tailwind utilities (bg-ink, text-muted, font-display, text-display…).
+ */
+@theme {
+  /* Colour */
+  --color-ink: #0b0b0c;
+  --color-surface: #141416;
+  --color-surface-raised: #1b1b1e;
+  --color-line: rgb(255 255 255 / 0.1);
+  --color-line-strong: rgb(255 255 255 / 0.22);
+  --color-paper: #f2f1ee;
+  --color-muted: #9b9a97;
+  --color-faint: #6b6a68;
+
+  /* Type — system stacks until brand fonts are supplied (drop files in src/assets/fonts) */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* Fluid type scale */
+  --text-display: clamp(3rem, 1.6rem + 7.2vw, 9.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.035em;
+  --text-headline: clamp(2rem, 1.4rem + 2.8vw, 4rem);
+  --text-headline--line-height: 1;
+  --text-headline--letter-spacing: -0.025em;
+  --text-lede: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  --text-lede--line-height: 1.55;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.18em;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+:root {
+  /* Layout tokens used outside Tailwind utilities */
+  --header-h: 4.5rem;
+  --gutter: clamp(1.25rem, 0.6rem + 3vw, 3.5rem);
+  --section-y: clamp(5rem, 3rem + 8vw, 10rem);
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-h);
+  }
+
+  body {
+    @apply bg-ink text-paper font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Overflow guard at the root; sections must still not rely on it */
+  body {
+    overflow-x: clip;
+  }
+
+  html.is-scroll-locked {
+    overflow: hidden;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .eyebrow {
+    @apply text-eyebrow text-muted font-medium uppercase;
+  }
+
+  /* Coming Soon dialog: enter/exit transitions (degrades to instant where unsupported) */
+  .coming-soon {
+    opacity: 0;
+    translate: 0 1.5rem;
+    transition:
+      opacity 0.45s var(--ease-out-expo),
+      translate 0.6s var(--ease-out-expo),
+      overlay 0.45s allow-discrete,
+      display 0.45s allow-discrete;
+  }
+
+  .coming-soon[open] {
+    opacity: 1;
+    translate: 0 0;
+
+    @starting-style {
+      opacity: 0;
+      translate: 0 1.5rem;
+    }
+  }
+
+  .coming-soon::backdrop {
+    background: rgb(0 0 0 / 0);
+    backdrop-filter: blur(0);
+    transition:
+      background 0.45s var(--ease-out-expo),
+      backdrop-filter 0.45s var(--ease-out-expo),
+      overlay 0.45s allow-discrete,
+      display 0.45s allow-discrete;
+  }
+
+  .coming-soon[open]::backdrop {
+    background: rgb(0 0 0 / 0.72);
+    backdrop-filter: blur(6px);
+
+    @starting-style {
+      background: rgb(0 0 0 / 0);
+      backdrop-filter: blur(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
