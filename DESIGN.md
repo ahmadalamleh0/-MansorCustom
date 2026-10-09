@@ -252,9 +252,11 @@ Introduce radius only when a reference explicitly uses it.
   for the letter-by-letter reveal. Type only, with no frame.
 - **Logo lockup:** MANSOR over CUSTOMS (the client's logo structure; the
   spelling "Mansor" was confirmed 2026-10-09). MANSOR is primary; CUSTOMS is
-  smaller (60%) and justified to MANSOR's exact width (`space-between`), forming
-  one block, with no frame. The lines come from `site.wordmark`.
-  CUSTOMS is 60% of MANSOR's letter height everywhere (intro and nav).
+  a small tracked subtitle (42% of MANSOR's size, about 60% of its width),
+  centred beneath it, as in the client's logo. No frame. The lines come from `site.wordmark`.
+  The same proportions everywhere (intro, nav, footer): CUSTOMS 0.42em with
+  1.08em tracking, line gap 0.38em. Nav 15/16px and footer 18/21px, so the
+  subtitle stays legible.
   Intro: MANSOR tracking 0.62em, leading 0.55em, about 11.7em wide. Nav:
   12/13px.
 - **Signature rules** (intro only): a 1px `signature` rule (55% white) 2.2em

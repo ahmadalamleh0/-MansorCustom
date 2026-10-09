@@ -122,19 +122,21 @@
   }
 
   /*
-   * Wordmark lockup: MANSOR (primary) over CUSTOMS (secondary), no frame.
-   * CUSTOMS is justified to MANSOR's width with
-   * space-between, so the two lines form one precise block at any size.
-   * Michroma cap height = 0.75em. Variables are in em of the primary line.
+   * Wordmark lockup, after the client's logo: MANSOR is the identity, and
+   * CUSTOMS is a small tracked subtitle centred beneath it, 42% of MANSOR's
+   * size and about 60% of its width. MANSOR = 6.68em advance + 5 × 0.62em
+   * tracking = 9.78em. CUSTOMS = 0.42 × (7.53em + 6 × 1.08em) = 5.88em,
+   * so 60% of MANSOR. Michroma cap height = 0.75em.
    */
   .wordmark {
     --wm-track: 0.62em; /* MANSOR letter spacing */
-    --wm-secondary: 0.6; /* CUSTOMS letter height relative to MANSOR (brief: 55–65%) */
-    --wm-leading: 0.55em; /* space between the two lines */
+    --wm-secondary: 0.42; /* CUSTOMS size relative to MANSOR */
+    --wm-sub-track: 1.08em; /* CUSTOMS letter spacing, in CUSTOMS' own em */
+    --wm-leading: 0.38em; /* space between the two lines (~half of MANSOR's cap height, as in the logo) */
     position: relative;
     display: inline-flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: var(--wm-leading);
     font-family: var(--font-brand);
     font-weight: 400;
@@ -153,7 +155,7 @@
   }
 
   .wordmark__line--secondary {
-    justify-content: space-between;
+    gap: var(--wm-sub-track);
     font-size: calc(var(--wm-secondary) * 1em);
   }
 
@@ -162,7 +164,7 @@
   }
 
   .wordmark--nav {
-    font-size: 12px; /* same 0.6 proportion as the intro */
+    font-size: 15px; /* sized up so the 42% CUSTOMS subtitle stays legible */
   }
 
   /*
@@ -176,7 +178,7 @@
 
   @media (min-width: 768px) {
     .wordmark--nav {
-      font-size: 13px;
+      font-size: 16px;
     }
   }
 
@@ -585,7 +587,7 @@
   }
 
   .wordmark--footer {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .footer__rule {
@@ -651,7 +653,7 @@
 
   @media (min-width: 768px) {
     .wordmark--footer {
-      font-size: 17px;
+      font-size: 21px;
     }
   }
 
