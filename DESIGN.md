@@ -253,7 +253,7 @@ Introduce radius only when a reference explicitly uses it.
 - **Logo lockup:** MANSOR over CUSTOMS (the client's logo structure; the
   spelling "Mansor" was confirmed 2026-10-09). MANSOR is primary; CUSTOMS is
   smaller (60%) and justified to MANSOR's exact width (`space-between`), forming
-  one block inside the hairline frame. The lines come from `site.wordmark`.
+  one block, with no frame. The lines come from `site.wordmark`.
   CUSTOMS is 60% of MANSOR's letter height everywhere (intro and nav).
   Intro: MANSOR tracking 0.62em, leading 0.55em, about 11.7em wide. Nav:
   12/13px.
