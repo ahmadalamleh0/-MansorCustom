@@ -11,11 +11,12 @@ const BOOKING_PENDING = {
 
 /**
  * Full-viewport hero (DAS Tuning-inspired composition): vehicle media fills
- * the frame, and a centred headline, short line and single CTA sit low in it.
+ * the frame, and a centred headline, service categories and a single CTA
+ * sit low in it.
  *   [data-hero-media]    media layer (image / video)
  *   [data-hero-overlay]  legibility scrim; fades into the page background
  *   [data-hero-line]     masked headline parts, revealed by the intro timeline
- *   [data-hero-fade]     supporting line + CTA
+ *   [data-hero-fade]     service categories + CTA
  */
 export function Hero() {
   const { hero } = site
@@ -44,8 +45,20 @@ export function Hero() {
           ))}
         </h1>
 
-        <p data-hero-fade className="hero__lede">
-          {hero.lede}
+        <p data-hero-fade className="hero__services">
+          {hero.services.map((row, r) => (
+            <span key={r} className="hero__services-row">
+              {r > 0 && <span aria-hidden="true" className="hero__dot hero__dot--join" />}
+              {row.map((item, i) => (
+                <span key={item}>
+                  {i > 0 && <span aria-hidden="true" className="hero__dot" />}
+                  {item}
+                  {/* Separator for screen readers, which ignore the visual dots */}
+                  {(i < row.length - 1 || r < hero.services.length - 1) && <span className="sr-only">, </span>}
+                </span>
+              ))}
+            </span>
+          ))}
         </p>
 
         <div data-hero-fade className="hero__actions">

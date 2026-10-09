@@ -45,6 +45,9 @@ Confirmed services:
 - PPF (paint protection film)
 - Ceramic coating
 - Window tint
+- Tuning, performance, starlight (headliner), ambient lighting and screens:
+  listed in the hero's service categories by the creative director on
+  2026-10-09
 
 Undecided (don't invent): shop location, service area, contact details,
 social URLs, pricing, hours, booking method, final service names and

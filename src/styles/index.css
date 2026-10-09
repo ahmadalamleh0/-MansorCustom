@@ -37,6 +37,9 @@
   --color-faint: #6b6a68;
   --color-signature: rgb(246 247 248 / 0.55); /* intro signature rules: subtle */
   --color-scrim: rgb(0 0 0 / 0.72); /* modal backdrop */
+  --color-ivory: #ece7dd; /* hero CTA */
+  --color-ivory-hover: #f4f0e8;
+  --color-charcoal: #1c1c1e;
 
   /* Type — system stacks until brand fonts are supplied (drop files in src/assets/fonts) */
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -291,13 +294,13 @@
     align-items: center;
     margin-top: auto;
     padding-top: calc(var(--header-h) + 2rem);
-    padding-bottom: clamp(3.5rem, 2rem + 7vh, 8rem);
+    padding-bottom: clamp(2.75rem, 1rem + 5.5vh, 6rem);
     text-align: center;
   }
 
   .hero__headline {
     font-family: var(--font-editorial);
-    font-size: clamp(2.5rem, 1.1rem + 6.2vw, 6.25rem);
+    font-size: clamp(2.05rem, 0.9rem + 5.1vw, 5.125rem); /* ~18% below the first pass */
     font-weight: 500;
     line-height: 1.04;
     letter-spacing: -0.015em;
@@ -327,56 +330,89 @@
     }
   }
 
-  .hero__lede {
-    max-width: 34ch;
-    margin-top: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  /* Service categories: small tracked uppercase with round dot separators */
+  .hero__services {
+    margin-top: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
     font-family: var(--font-editorial);
-    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
-    line-height: 1.55;
-    color: rgb(242 241 238 / 0.78);
+    font-size: clamp(0.65625rem, 0.6rem + 0.25vw, 0.78125rem);
+    font-weight: 500;
+    line-height: 2;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgb(242 241 238 / 0.72);
+  }
+
+  .hero__services-row {
+    display: block;
+  }
+
+  /* Break only between categories, never inside "Ambient Lighting" */
+  .hero__services-row > span {
+    white-space: nowrap;
+  }
+
+  .hero__dot {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    /* Each word already ends with 0.2em of trailing tracking, so the left
+       margin is 0.2em shorter: the dot sits optically centred */
+    margin-inline: 0.55em 0.75em;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+    vertical-align: middle;
+  }
+
+  .hero__dot--join {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero__services-row {
+      display: inline;
+    }
+
+    .hero__dot--join {
+      display: inline-block;
+    }
   }
 
   .hero__actions {
     display: flex;
     justify-content: center;
-    width: 100%;
-    margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+    margin-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
   }
 
+  /* Compact ivory pill: sized to its label, quiet but unmistakable */
   .hero__cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: min(100%, 20rem);
-    height: 3.5rem;
-    padding-inline: 2.75rem;
+    height: 2.875rem;
+    padding-inline: 1.75rem;
     border-radius: 999px;
-    background: var(--color-paper);
+    background: var(--color-ivory);
     font-family: var(--font-editorial);
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.01em;
-    color: var(--color-ink);
+    letter-spacing: 0.02em;
+    color: var(--color-charcoal);
     transition:
-      background-color 220ms ease,
-      transform 160ms var(--ease-out-expo);
-  }
-
-  @media (min-width: 640px) {
-    .hero__cta {
-      width: auto;
-      min-width: 15.5rem;
-    }
+      background-color 240ms ease,
+      transform 240ms var(--ease-out-expo);
   }
 
   @media (hover: hover) and (pointer: fine) {
     .hero__cta:hover {
-      background: #fff;
+      background: var(--color-ivory-hover);
+      transform: translateY(-1px);
     }
   }
 
   .hero__cta:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
+    transition-duration: 120ms;
   }
 
   /*
@@ -529,7 +565,7 @@
     max-width: 31em;
     margin: calc(var(--statement-size) * 0.95) auto 0;
     font-family: var(--font-editorial);
-    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    font-size: clamp(1rem, 0.94rem + 0.3vw, 1.25rem);
     font-weight: 400;
     line-height: 1.65;
     letter-spacing: 0.005em;

@@ -25,8 +25,12 @@ export const site = {
   //   md+:    "Experience Your" / "Car's Full Potential"
   hero: {
     headline: [['Experience Your'], ['Car’s', 'Full Potential']],
-    // Lists only the client-confirmed services (PRODUCT.md)
-    lede: 'Vinyl wraps, paint protection film, ceramic coating and window tint.',
+    // Service categories supplied by the creative director (2026-10-09).
+    // Two rows so phones wrap into two balanced lines; one line on md+.
+    services: [
+      ['PPF', 'Wraps', 'Tuning', 'Performance'],
+      ['Starlight', 'Ambient Lighting', 'Screens'],
+    ],
     cta: {
       label: 'Book Appointment',
       // UNCONFIRMED: no booking method yet, so the CTA opens a Coming Soon

@@ -13,6 +13,9 @@ colors:
   wordmark-white: "#ffffff"
   signature: "rgb(246 247 248 / 0.9)"
   scrim: "rgb(0 0 0 / 0.72)"
+  ivory: "#ece7dd"
+  ivory-hover: "#f4f0e8"
+  charcoal: "#1c1c1e"
 typography:
   wordmark:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
@@ -34,21 +37,22 @@ typography:
     letterSpacing: "0.62em"
   hero-headline:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.5rem, 1.1rem + 6.2vw, 6.25rem)"
+    fontSize: "clamp(2.05rem, 0.9rem + 5.1vw, 5.125rem)"
     fontWeight: 500
     lineHeight: 1.04
     letterSpacing: "-0.015em"
-  hero-lede:
+  hero-services:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1rem, 0.95rem + 0.3vw, 1.1875rem)"
-    fontWeight: 400
-    lineHeight: 1.55
+    fontSize: "clamp(0.65625rem, 0.6rem + 0.25vw, 0.78125rem)"
+    fontWeight: 500
+    lineHeight: 2
+    letterSpacing: "0.2em"
   button-label:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.9375rem"
+    fontSize: "0.875rem"
     fontWeight: 500
     lineHeight: 1
-    letterSpacing: "0.01em"
+    letterSpacing: "0.02em"
   display:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
     fontSize: "clamp(3rem, 1.6rem + 7.2vw, 9.5rem)"
@@ -69,7 +73,7 @@ typography:
     letterSpacing: "-0.015em"
   statement-body:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)"
+    fontSize: "clamp(1rem, 0.94rem + 0.3vw, 1.25rem)"
     fontWeight: 400
     lineHeight: 1.65
     letterSpacing: "0.005em"
@@ -93,14 +97,14 @@ spacing:
   header-h: "4.5rem"
 components:
   button-primary:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.ivory}"
+    textColor: "{colors.charcoal}"
     typography: "{typography.button-label}"
     rounded: "{rounded.pill}"
-    padding: "0 44px"
-    height: "56px"
+    padding: "0 28px"
+    height: "46px"
   button-primary-hover:
-    backgroundColor: "#ffffff"
+    backgroundColor: "{colors.ivory-hover}"
   button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.paper}"
@@ -245,9 +249,13 @@ Introduce radius only when a reference explicitly uses it.
   long, 1em above and below the framed lockup, drawn outward from the centre
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
   they support the type, never compete with it.
-- **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition. A
-  centred `hero-headline` (Outfit 500; 3 rows on phones, 2 on md+), a single
-  line of confirmed services, and one white pill CTA, "Book Appointment".
+- **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition, set
+  low in the frame so the vehicle leads. A centred `hero-headline` (Outfit
+  500; 3 rows on phones, 2 on md+), the service categories in tracked
+  uppercase with round 3px dot separators (two fixed rows on phones, one
+  line on md+, never breaking inside a category), and one compact ivory
+  pill CTA, "Book Appointment" (hover: slight lighten and 1px lift, on
+  hover-capable devices only).
   With no booking method confirmed, the CTA opens the Coming Soon dialog
   (`site.hero.cta.bookingUrl` switches it to a link). A functional scrim
   fades the hero into `ink`.
