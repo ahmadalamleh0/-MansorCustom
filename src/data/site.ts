@@ -45,6 +45,19 @@ export const site = {
     { label: 'Contact', href: '#contact' },
   ] as NavItem[],
 
+  // Footer service directory (creative director, 2026-10-09). Two balanced
+  // columns; each opens the Coming Soon dialog until service pages exist.
+  footerServices: [
+    ['Wraps', 'PPF', 'Ceramic Coating', 'Upholstery', 'Wheels'],
+    ['Interior Upgrades', 'Ambient Lighting', 'Screens', 'Tuning', 'Body Kits'],
+  ],
+
+  copyright: '© Mansor Customs',
+
+  // UNCONFIRMED: no verified address. The map section shows a placeholder
+  // until `location` and the Google Maps env vars are set (see LocationMap).
+  location: null as { label: string; lat: number; lng: number } | null,
+
   footerNav: [
     { label: 'Home', href: '#top' },
     { label: 'Services', href: '#services' },

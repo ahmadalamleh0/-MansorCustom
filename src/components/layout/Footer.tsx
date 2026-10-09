@@ -1,114 +1,72 @@
-import type { ReactNode } from 'react'
+import { useState } from 'react'
+import { Wordmark } from '@/components/brand/Wordmark'
+import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { site } from '@/data/site'
-import { handleAnchorClick } from '@/lib/scroll'
 
-const YEAR = new Date().getFullYear()
-
-/** Honest stand-in for business details the client hasn't confirmed yet */
-function Pending({ children = 'To be confirmed' }: { children?: ReactNode }) {
-  return (
-    <span data-placeholder className="text-faint">
-      {children}
-    </span>
-  )
-}
-
-function Column({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div>
-      <h2 className="eyebrow">{title}</h2>
-      <div className="mt-5 text-sm">{children}</div>
-    </div>
-  )
-}
-
+/**
+ * Footer (after the MANSORY reference): centred wordmark, a hairline, two
+ * balanced centred columns of services, verified social links (only when a
+ * URL exists), a short hairline and the copyright line. Services open the
+ * Coming Soon dialog until their pages exist.
+ */
 export function Footer() {
-  const { contact, socials } = site
-  const liveSocials = socials.filter((s) => s.url)
-  const hasContact = contact.email || contact.phone || contact.location
+  const [active, setActive] = useState<string | null>(null)
+  const socials = site.socials.filter((s) => s.url)
 
   return (
-    <footer id="contact" className="border-t border-line bg-surface">
-      <div className="container-site grid gap-12 py-16 sm:py-20 md:grid-cols-12 md:gap-8">
-        <div className="md:col-span-5">
-          <a
-            href="#top"
-            onClick={handleAnchorClick}
-            className="text-sm font-semibold tracking-[0.2em] text-paper uppercase"
-          >
-            {site.name}
-          </a>
-        </div>
+    <footer className="footer">
+      <div className="container-site footer__inner">
+        <Wordmark framed className="wordmark--footer" />
 
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-7">
-          <Column title="Navigate">
-            <ul className="space-y-3">
-              {site.footerNav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    onClick={handleAnchorClick}
-                    className="text-muted transition-colors hover:text-paper"
+        <hr className="footer__rule" />
+
+        <nav aria-label="Services" className="footer__services">
+          {site.footerServices.map((column, c) => (
+            <ul key={c} className="footer__column">
+              {column.map((service) => (
+                <li key={service}>
+                  <button
+                    type="button"
+                    aria-haspopup="dialog"
+                    onClick={() => setActive(service)}
+                    className="footer__link"
                   >
-                    {item.label}
-                  </a>
+                    {service}
+                  </button>
                 </li>
               ))}
             </ul>
-          </Column>
+          ))}
+        </nav>
 
-          <Column title="Contact">
-            {hasContact ? (
-              <ul className="space-y-3 text-muted">
-                {contact.email && (
-                  <li>
-                    <a href={`mailto:${contact.email}`} className="transition-colors hover:text-paper">
-                      {contact.email}
-                    </a>
-                  </li>
-                )}
-                {contact.phone && (
-                  <li>
-                    <a href={`tel:${contact.phone.replace(/[^\d+]/g, '')}`} className="transition-colors hover:text-paper">
-                      {contact.phone}
-                    </a>
-                  </li>
-                )}
-                {contact.location && <li>{contact.location}</li>}
-              </ul>
-            ) : (
-              <Pending>Contact details to be confirmed</Pending>
-            )}
-          </Column>
+        {socials.length > 0 && (
+          <ul aria-label="Social" className="footer__socials">
+            {socials.map((s) => (
+              <li key={s.platform}>
+                <a href={s.url ?? undefined} target="_blank" rel="noopener noreferrer" className="footer__social">
+                  {s.platform}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
 
-          <Column title="Social">
-            {liveSocials.length ? (
-              <ul className="space-y-3">
-                {liveSocials.map((s) => (
-                  <li key={s.platform}>
-                    <a
-                      href={s.url ?? undefined}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted transition-colors hover:text-paper"
-                    >
-                      {s.platform}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <Pending>Social links to be confirmed</Pending>
-            )}
-          </Column>
-        </div>
+        <hr className="footer__rule footer__rule--short" />
+        <p className="footer__copyright">{site.copyright}</p>
       </div>
 
-      <div className="container-site flex flex-col gap-2 border-t border-line py-6 text-xs text-faint sm:flex-row sm:justify-between">
-        <p>
-          © {YEAR} {site.name}. All rights reserved.
-        </p>
-      </div>
+      <ComingSoonModal
+        content={
+          active === null
+            ? null
+            : {
+                label: active,
+                message: 'This service page is being developed. Check back soon to explore it in detail.',
+                dismissLabel: 'Close',
+              }
+        }
+        onClose={() => setActive(null)}
+      />
     </footer>
   )
 }

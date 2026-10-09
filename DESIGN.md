@@ -32,6 +32,22 @@ typography:
     fontWeight: 400
     lineHeight: 0.75
     letterSpacing: "0.62em"
+  wordmark-footer:
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 0.75
+    letterSpacing: "0.62em"
+  footer-link:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem)"
+    fontWeight: 400
+    lineHeight: 2.3
+  footer-social:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.5
   hero-headline:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(2.05rem, 0.9rem + 5.1vw, 5.125rem)"
@@ -148,6 +164,8 @@ not shipped):
 | Editorial section (cards → statement → cards) | Motorcarlease mobile screenshots | Implemented; images pending |
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
 | Showcase banner after the hero (angled panels) | IR Customs mobile banner screenshot | Implemented; geometry fitted to measurements, photos pending |
+| Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
+| Location map | Black Star Studio map screenshot | Placeholder; needs a verified location and Maps API configuration |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
 
 Screenshots shared only in chat should also be saved to `references/` so
@@ -262,6 +280,19 @@ Introduce radius only when a reference explicitly uses it.
   IR Customs reference (edge heights, slopes and panel spans within ~1%).
   Both sides fade through a mask, and the strip drifts slightly with scroll
   (scrub). Panels take portrait photos from `data/banner.ts`.
+- **Location map** (`components/sections/LocationMap.tsx`): a compact dark
+  band (`clamp(15rem, 12rem + 8vw, 21rem)`, about 240px on phones and 315px
+  on desktop) between the content and the footer, fading in and out through
+  a mask. It is the "Contact" nav target. **Placeholder until activated:** an
+  abstract dark street-grid texture and a "Location to be confirmed" note,
+  with no address and no marker. To activate it, set a verified
+  `site.location`, plus `VITE_GOOGLE_MAPS_API_KEY` and a dark-styled
+  `VITE_GOOGLE_MAPS_MAP_ID` in `.env.local` (see the component header).
+- **Footer** (`components/layout/Footer.tsx`, MANSORY reference): one
+  centred column. Framed wordmark (`wordmark-footer`), a full-width hairline,
+  two symmetric columns of services (`footer-link`, 68% white, hover to
+  paper) that open the Coming Soon dialog, socials only when a verified URL
+  exists, a 10rem hairline and "© Mansor Customs".
 - **Media** (`components/ui/Media.tsx`): every image or video slot. Lazy by
   default; videos are muted and inline, play only on screen, and never
   autoplay with reduced motion. An empty slot renders an honest neutral

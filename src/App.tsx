@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { Editorial } from '@/components/sections/Editorial'
 import { Hero } from '@/components/sections/Hero'
+import { LocationMap } from '@/components/sections/LocationMap'
 import { Services } from '@/components/sections/Services'
 import { Showcase } from '@/components/sections/Showcase'
 
@@ -27,6 +28,7 @@ export default function App() {
           <Showcase />
           <Editorial />
           <Services />
+          <LocationMap />
         </main>
         <Footer />
       </div>
