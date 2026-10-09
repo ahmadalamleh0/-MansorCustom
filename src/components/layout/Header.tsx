@@ -68,9 +68,9 @@ export function Header() {
       {/* Phones: wordmark centred, menu right (as in the reference). md+: wordmark left, links right */}
       <div className="relative container-site grid h-(--header-h) grid-cols-[1fr_auto_1fr] items-center md:flex md:justify-between">
         <span aria-hidden="true" className="md:hidden" />
-        {/* Temporary framed wordmark until the client's logo is supplied */}
+        {/* Temporary typographic wordmark until the client's logo is supplied */}
         <a href="#top" onClick={onNavClick} className="flex">
-          <Wordmark framed className="wordmark--nav" />
+          <Wordmark className="wordmark--nav" />
         </a>
 
         <nav aria-label="Primary" className="hidden md:block">

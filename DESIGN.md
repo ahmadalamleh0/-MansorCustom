@@ -241,15 +241,15 @@ scrims), not from shadows. No drop shadows on cards or text.
 ## Shapes
 
 Square corners (`rounded.none`) across cards, buttons and media. The hero
-CTA has no container at all: it's an editorial text link. Hairline
-1px frames, as in the wordmark lockup, are the signature line language.
+CTA has no container at all: it's an editorial text link. Thin 1px rules
+(the intro's signature rules, footer dividers) are the signature line
+language. The logo has no frame.
 Introduce radius only when a reference explicitly uses it.
 
 ## Components
 
 - **Wordmark** (`components/brand/Wordmark.tsx`): letters as separate spans
-  for reveals, with an SVG frame (`pathLength` 1000) that traces clockwise
-  from the top-left.
+  for the letter-by-letter reveal. Type only, with no frame.
 - **Logo lockup:** MANSOR over CUSTOMS (the client's logo structure; the
   spelling "Mansor" was confirmed 2026-10-09). MANSOR is primary; CUSTOMS is
   smaller (60%) and justified to MANSOR's exact width (`space-between`), forming
@@ -258,7 +258,7 @@ Introduce radius only when a reference explicitly uses it.
   Intro: MANSOR tracking 0.62em, leading 0.55em, about 11.7em wide. Nav:
   12/13px.
 - **Signature rules** (intro only): a 1px `signature` rule (55% white) 2.2em
-  long, 1em above and below the framed lockup, drawn outward from the centre
+  long, 1.5em above and below the lockup, drawn outward from the centre
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
   they support the type, never compete with it.
 - **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition, set
@@ -289,7 +289,7 @@ Introduce radius only when a reference explicitly uses it.
   `site.location`, plus `VITE_GOOGLE_MAPS_API_KEY` and a dark-styled
   `VITE_GOOGLE_MAPS_MAP_ID` in `.env.local` (see the component header).
 - **Footer** (`components/layout/Footer.tsx`, MANSORY reference): one
-  centred column. Framed wordmark (`wordmark-footer`), a full-width hairline,
+  centred column. Wordmark (`wordmark-footer`), a full-width hairline,
   two symmetric columns of services (`footer-link`, 68% white, hover to
   paper) that open the Coming Soon dialog, socials only when a verified URL
   exists, a 10rem hairline and "© Mansor Customs".

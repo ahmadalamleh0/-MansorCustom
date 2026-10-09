@@ -8,7 +8,7 @@ const FONT_WAIT_MS = 1200
 
 /**
  * Opening intro: black screen → signature rules → letter-by-letter stacked
- * wordmark → hairline frame trace → black curtain lifts to reveal the hero,
+ * wordmark → a brief hold → black curtain lifts to reveal the hero,
  * which is already rendered underneath. One GSAP timeline drives the whole sequence, including the hero
  * copy and header entrance. It never waits on hero media. The overlay unmounts
  * when the timeline completes, and a CSS failsafe clears it if script stalls.
@@ -40,7 +40,6 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
       const targets = {
         rules: q('[data-intro-rule]'),
         letters: q('[data-wm-letter]'),
-        frame: root.current.querySelector('[data-wm-frame]'),
         curtain: root.current.querySelector('[data-intro-curtain]'),
         mark: root.current.querySelector('[data-intro-mark]'),
         header: document.querySelector('[data-site-header]'),
@@ -79,7 +78,7 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
         {/* Same font-size as the wordmark, so the rules' em sizing tracks it */}
         <div className="intro__lockup wordmark--intro">
           <span data-intro-rule className="intro__rule intro__rule--top" />
-          <Wordmark framed className="wordmark--intro" />
+          <Wordmark className="wordmark--intro" />
           <span data-intro-rule className="intro__rule intro__rule--bottom" />
         </div>
       </div>

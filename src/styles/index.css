@@ -122,8 +122,8 @@
   }
 
   /*
-   * Wordmark lockup: MANSOR (primary) over CUSTOMS (secondary, half size),
-   * inside a hairline frame. CUSTOMS is justified to MANSOR's width with
+   * Wordmark lockup: MANSOR (primary) over CUSTOMS (secondary), no frame.
+   * CUSTOMS is justified to MANSOR's width with
    * space-between, so the two lines form one precise block at any size.
    * Michroma cap height = 0.75em. Variables are in em of the primary line.
    */
@@ -131,14 +131,11 @@
     --wm-track: 0.62em; /* MANSOR letter spacing */
     --wm-secondary: 0.6; /* CUSTOMS letter height relative to MANSOR (brief: 55–65%) */
     --wm-leading: 0.55em; /* space between the two lines */
-    --wm-pad-x: 0.95em;
-    --wm-pad-y: 0.72em;
     position: relative;
     display: inline-flex;
     flex-direction: column;
     align-items: stretch;
     gap: var(--wm-leading);
-    padding: var(--wm-pad-y) var(--wm-pad-x);
     font-family: var(--font-brand);
     font-weight: 400;
     line-height: 0.75;
@@ -164,32 +161,13 @@
     display: block;
   }
 
-  /* Offset by half a pixel so the 1px stroke lands on whole pixels */
-  .wordmark__frame {
-    position: absolute;
-    top: -0.5px;
-    left: -0.5px;
-    width: calc(100% + 1px);
-    height: calc(100% + 1px);
-    overflow: visible;
-    pointer-events: none;
-  }
-
-  .wordmark__frame rect {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1px;
-    stroke-linecap: square;
-    stroke-dasharray: 1000 1000; /* pathLength=1000 → dashoffset 1000 hidden, 0 complete */
-  }
-
   .wordmark--nav {
     font-size: 12px; /* same 0.6 proportion as the intro */
   }
 
   /*
    * Intro: lockup width = MANSOR advance 6.68em + 5 × 0.62em tracking
-   * + 2 × 0.95em padding = 11.68em. Width-bound on phones (~84vw);
+   * = 9.78em (sized as before, so the letters keep their scale). Width-bound on phones (~84vw);
    * height-bound elsewhere (MANSOR cap ≈ 3vh).
    */
   .wordmark--intro {
@@ -721,13 +699,14 @@
   }
 
   /*
-   * Intro lockup: signature rules (1px lines) above and below the framed
+   * Intro lockup: signature rules (1px lines) above and below the
    * wordmark. They sit outside the flow, so the wordmark stays exactly
    * centred in the viewport. In em units, so they scale with the wordmark.
    */
   .intro__lockup {
+    display: flex; /* no line box: the lockup is exactly the wordmark's height */
     --rule-length: 2.2em;
-    --rule-distance: 1em;
+    --rule-distance: 1.5em; /* from the letters themselves now there's no frame */
     position: relative;
   }
 
@@ -774,10 +753,6 @@
   /* Pre-animation state, applied from first paint */
   .intro [data-wm-letter] {
     opacity: 0;
-  }
-
-  .intro [data-wm-frame] {
-    stroke-dashoffset: 1000;
   }
 
   .intro [data-intro-rule] {

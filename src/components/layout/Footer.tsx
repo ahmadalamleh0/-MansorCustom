@@ -16,7 +16,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container-site footer__inner">
-        <Wordmark framed className="wordmark--footer" />
+        <Wordmark className="wordmark--footer" />
 
         <hr className="footer__rule" />
 
