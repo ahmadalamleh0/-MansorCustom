@@ -48,7 +48,7 @@ export const site = {
   // Footer service directory (creative director, 2026-10-09). Two balanced
   // columns; each opens the Coming Soon dialog until service pages exist.
   footerServices: [
-    ['Wraps', 'PPF', 'Ceramic Coating', 'Upholstery', 'Wheels'],
+    ['Wraps', 'PPF', 'Ceramic Coating', 'Bespoke Interiors', 'Wheels'],
     ['Interior Upgrades', 'Ambient Lighting', 'Screens', 'Tuning', 'Body Kits'],
   ],
 

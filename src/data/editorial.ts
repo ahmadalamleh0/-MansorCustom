@@ -23,7 +23,7 @@ export type EditorialGroup = [EditorialCard, EditorialCard, EditorialCard, Edito
 export const editorial = {
   upper: [
     { id: 'wraps', title: 'Wraps' },
-    { id: 'upholstery', title: 'Upholstery' },
+    { id: 'bespoke-interiors', title: 'Bespoke Interiors' },
     {
       id: 'wheels-suspension',
       title: 'Wheels & Suspension',

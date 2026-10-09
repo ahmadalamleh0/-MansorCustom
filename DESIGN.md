@@ -291,8 +291,11 @@ Introduce radius only when a reference explicitly uses it.
   component in `references/`): natural colours, labels and native
   `building-3d` extrusions. Creative-director rule: **no custom map colours,
   CSS filters, fades or overlays on the map.** The contrast between the
-  black site and the light map is intentional. Camera: zoom 16.4, pitch 60,
-  bearing −28. Marker: a dark point with a white ring, plus a charcoal
+  black site and the light map is intentional. Camera (chosen from
+  Playwright contact sheets): desktop zoom 16 / pitch 62 / bearing 14;
+  phones zoom 15.5 / pitch 68 / bearing 24 (maxPitch 70). Attribution:
+  MapLibre's compact control, starting in its own minimised state (the (i)
+  button expands the full credits). Marker: a dark point with a white ring, plus a charcoal
   tracked "MANSOR CUSTOMS" label with a white halo, at 40.864118, −74.100951.
   **Behaviour:** a lazy chunk loaded within 600px of the section; no
   scroll-wheel zoom; touch: one finger scrolls the page, two move the map;

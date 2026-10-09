@@ -33,6 +33,18 @@ export type LocationMapOptions = {
   onError: (reason: string) => void
 }
 
+/**
+ * Camera, chosen from Playwright contact sheets of zoom × pitch × bearing
+ * against the Framer reference. The wide desktop band and the narrow phone
+ * band need different framing: each keeps the shop centred, the Saddle River
+ * as a leading line and the surrounding buildings readable in 3D.
+ */
+function camera() {
+  return window.matchMedia('(max-width: 767px)').matches
+    ? { zoom: 15.5, pitch: 68, bearing: 24 }
+    : { zoom: 16, pitch: 62, bearing: 14 }
+}
+
 export function createLocationMap(o: LocationMapOptions) {
   let settled = false
   const fail = (reason: string) => {
@@ -47,9 +59,8 @@ export function createLocationMap(o: LocationMapOptions) {
     container: o.container,
     style: STYLE_URL,
     center: [o.lng, o.lat],
-    zoom: 16.4,
-    pitch: 60,
-    bearing: -28,
+    ...camera(),
+    maxPitch: 70,
     attributionControl: false,
     scrollZoom: false, // never hijack page scrolling
     dragPan: !o.touch, // touch: one finger scrolls the page
@@ -60,7 +71,8 @@ export function createLocationMap(o: LocationMapOptions) {
   // (highway-shield-non-us, highway-shield-us-interstate, road_shield_us)
   // log "Expected value to be of type number, but found null" for features
   // without a route number. Harmless, and the style stays unmodified.
-  map.addControl(new AttributionControl({ compact: true }), 'bottom-right')
+  const attribution = new AttributionControl({ compact: true })
+  map.addControl(attribution, 'bottom-right')
 
   // Liberty references a few POI icons (swimming_pool, gate, bollard, ...)
   // that OpenFreeMap's sprite doesn't contain. MapLibre already skips them;
@@ -76,6 +88,11 @@ export function createLocationMap(o: LocationMapOptions) {
   map.on('load', () => {
     window.clearTimeout(timeout)
     addMarker(map, o)
+    // Start the compact attribution in MapLibre's own minimised state (the
+    // same state it switches to after the first drag): just the (i) button,
+    // which expands the full credits. Nothing is hidden with CSS.
+    o.container.querySelector('.maplibregl-ctrl-attrib.maplibregl-compact')?.classList.remove('maplibregl-compact-show')
+    if (import.meta.env.DEV) (window as unknown as { __locationMap?: MapLibreMap }).__locationMap = map // camera tuning in dev only
     if (!settled) {
       settled = true
       o.onReady()
