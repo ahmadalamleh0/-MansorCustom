@@ -22,10 +22,11 @@ const slots = (prefix: string): EditorialGroup => [
 
 export const editorial = {
   upper: slots('upper'),
-  // PLACEHOLDER copy — generic on purpose; replace with approved client copy.
+  // Approved copy (2026-10-09). Headline: one sentence per line.
+  // Body: wrap a word in *asterisks* to italicise it.
   statement: {
-    headline: 'Crafted with precision, finished without compromise',
-    body: 'Temporary supporting copy. A short editorial paragraph about the studio’s approach will sit here once the final messaging is approved.',
+    headline: ['Crafted With Precision.', 'Without Compromise.'],
+    body: 'Built upon our passion for everything *Automotive*, Mansor is a full service boutique designed to provide the best experience available for your automotive needs.',
   },
   lower: slots('lower'),
 }

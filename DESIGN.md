@@ -63,16 +63,16 @@ typography:
     letterSpacing: "-0.025em"
   statement:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2rem, 0.85rem + 5.6vw, 5.25rem)"
+    fontSize: "clamp(1.875rem, 0.6rem + 5.6vw, 5.25rem)"
     fontWeight: 600
-    lineHeight: 1.12
-    letterSpacing: "-0.012em"
+    lineHeight: 1.1
+    letterSpacing: "-0.015em"
   statement-body:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.0625rem, 0.95rem + 0.55vw, 1.375rem)"
+    fontSize: "clamp(1.0625rem, 1rem + 0.3vw, 1.25rem)"
     fontWeight: 400
-    lineHeight: 1.5
-    letterSpacing: "0.01em"
+    lineHeight: 1.65
+    letterSpacing: "0.005em"
   lede:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
     fontSize: "clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem)"

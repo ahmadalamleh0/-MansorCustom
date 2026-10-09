@@ -22,15 +22,24 @@ export function Editorial() {
 
         <div data-editorial-statement className="statement">
           <h2 id="editorial-title" className="statement__headline">
-            {statement.headline}
+            {statement.headline.map((sentence) => (
+              <span key={sentence} className="statement__line">
+                {sentence}
+              </span>
+            ))}
           </h2>
-          <p className="statement__body">{statement.body}</p>
+          <p className="statement__body">{withEmphasis(statement.body)}</p>
         </div>
 
         <Collage group={lower} />
       </div>
     </section>
   )
+}
+
+/** Renders *word* segments as <em>; everything else stays plain text. */
+function withEmphasis(text: string) {
+  return text.split(/\*(.+?)\*/).map((part, i) => (i % 2 ? <em key={i}>{part}</em> : part))
 }
 
 function Collage({ group }: { group: EditorialGroup }) {

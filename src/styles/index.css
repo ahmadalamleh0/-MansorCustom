@@ -503,33 +503,43 @@
      Spacing scales with the headline size, matching the reference ratios:
      cards → headline ≈ 2.3×, headline → paragraph ≈ 1.25×. */
   .statement {
-    --statement-size: clamp(2rem, 0.85rem + 5.6vw, 5.25rem);
+    --statement-size: clamp(1.875rem, 0.6rem + 5.6vw, 5.25rem);
     padding-block: calc(var(--statement-size) * 2.3);
     text-align: center;
   }
 
   .statement__headline {
-    max-width: 10.5em;
+    max-width: 14em;
     margin-inline: auto;
     font-family: var(--font-editorial);
     font-size: var(--statement-size);
     font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -0.012em;
-    text-wrap: balance;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
     color: var(--color-paper);
   }
 
+  /* One sentence per line; a sentence that can't fit balances its own break */
+  .statement__line {
+    display: block;
+    text-wrap: balance;
+  }
+
   .statement__body {
-    max-width: 26em;
-    margin: calc(var(--statement-size) * 1.25) auto 0;
+    max-width: 31em;
+    margin: calc(var(--statement-size) * 0.95) auto 0;
     font-family: var(--font-editorial);
-    font-size: clamp(1.0625rem, 0.95rem + 0.55vw, 1.375rem);
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
     font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
+    line-height: 1.65;
+    letter-spacing: 0.005em;
     text-wrap: pretty;
-    color: var(--color-muted);
+    color: rgb(242 241 238 / 0.72);
+  }
+
+  .statement__body em {
+    font-style: italic;
+    color: var(--color-paper);
   }
 
   /*
