@@ -13,7 +13,9 @@ function supportsWebGL() {
 }
 
 /**
- * Compact, full-bleed dark 3D map between the page content and the footer
+ * "Visit Mansor Customs": heading, address and directions on the black page,
+ * then a compact, full-bleed 3D map (OpenFreeMap Liberty, natural colours),
+ * between the page content and the footer
  * (the "Contact" nav target). MapLibre is loaded only when the section
  * approaches the viewport (lib/locationMap.ts). Without WebGL, or if the
  * map fails to load, a dark panel with the address and directions link
@@ -71,18 +73,24 @@ export function LocationMap() {
     : null
 
   return (
-    <section ref={sectionRef} id="contact" aria-label="Location" className="location-map" data-status={status}>
-      <div ref={canvasRef} className="location-map__canvas" aria-hidden="true" />
+    <section ref={sectionRef} id="contact" aria-labelledby="location-title" className="location">
+      <h2 id="location-title" className="location__title">
+        Visit Mansor Customs
+      </h2>
 
       {location && (
-        <div className="location-map__info">
-          <p className="location-map__address">{location.address}</p>
-          <a href={directions!} target="_blank" rel="noopener noreferrer" className="location-map__directions">
+        <div className="location__info">
+          <p className="location__address">{location.address}</p>
+          <a href={directions!} target="_blank" rel="noopener noreferrer" className="location__directions">
             Get Directions
             <span className="sr-only"> to {location.name} (opens Google Maps)</span>
           </a>
         </div>
       )}
+
+      <div className="location-map" data-status={status}>
+        <div ref={canvasRef} className="location-map__canvas" aria-hidden="true" />
+      </div>
     </section>
   )
 }

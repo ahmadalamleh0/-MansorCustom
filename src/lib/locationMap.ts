@@ -1,17 +1,17 @@
 /**
- * Dark 3D location map (MapLibre GL + OpenFreeMap). Adapted from the Framer
+ * 3D location map (MapLibre GL + OpenFreeMap), adapted from the Framer
  * "OpenFreeMap 3D" component: Framer-only code removed, and the camera,
  * interaction toggles, marker and cleanup kept.
  *
+ * Style: OpenFreeMap **Liberty**, loaded unmodified, exactly as in the Framer
+ * component. Its natural colours, labels and native `building-3d`
+ * extrusions are the visual authority (creative director, 2026-10-09). The
+ * black site frames a light, detailed map on purpose. Don't restyle it.
+ *
  * Loaded lazily (dynamic import) by LocationMap, so MapLibre and its CSS
  * ship as a separate chunk that is fetched only near the map section.
- *
- * 3D: OpenFreeMap's Dark style has no building extrusions, so a
- * `fill-extrusion` layer is added from the same `openmaptiles` vector source
- * (`building` source layer, `render_height` / `render_min_height`, the
- * fields OpenFreeMap's Liberty style uses for its own 3D buildings).
  */
-import { AttributionControl, Map as MapLibreMap, Marker, setWorkerUrl, type LayerSpecification, type StyleSpecification } from 'maplibre-gl'
+import { AttributionControl, Map as MapLibreMap, Marker, setWorkerUrl } from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 // MapLibre v6 starts a module worker from a file next to its own module,
 // which doesn't exist once it's bundled. Point it at the worker Vite actually
@@ -20,17 +20,7 @@ import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url'
 
 setWorkerUrl(workerUrl)
 
-const STYLE_URL = 'https://tiles.openfreemap.org/styles/dark'
-
-// Palette: near-black ground, charcoal roads, architectural greys
-const PALETTE = {
-  ground: '#0b0b0c',
-  minorRoad: '#1d1d20',
-  wood: '#161618',
-  buildingLow: '#141416',
-  buildingMid: '#1c1c1f',
-  buildingTall: '#26262a',
-}
+const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty'
 
 export type LocationMapOptions = {
   container: HTMLElement
@@ -45,110 +35,60 @@ export type LocationMapOptions = {
 
 export function createLocationMap(o: LocationMapOptions) {
   let settled = false
-  let destroyed = false
-  let map: MapLibreMap | null = null
   const fail = (reason: string) => {
-    if (settled || destroyed) return
+    if (settled) return
     settled = true
     o.onError(reason)
   }
   // A style or tiles that never arrive (network, blocked) fall back cleanly
   const timeout = window.setTimeout(() => fail('timeout'), 15000)
 
-  // Fetch the Dark style and apply every change before the first frame:
-  // no flash of the untuned style, and no reference to the missing sprite.
-  fetch(STYLE_URL)
-    .then((res) => {
-      if (!res.ok) throw new Error(`style ${res.status}`)
-      return res.json() as Promise<StyleSpecification>
-    })
-    .then((style) => {
-      if (destroyed) return
-      map = new MapLibreMap({
-        container: o.container,
-        style: tuneStyle(style),
-        center: [o.lng, o.lat],
-        zoom: 16.4,
-        pitch: 60,
-        bearing: -28,
-        attributionControl: false,
-        scrollZoom: false, // never hijack page scrolling
-        dragPan: !o.touch, // touch: one finger scrolls the page
-        touchPitch: false,
-        keyboard: false,
-        fadeDuration: 0,
-      })
-      map.addControl(new AttributionControl({ compact: true }), 'bottom-right')
-      map.on('error', (e) => {
-        if (map && !map.isStyleLoaded()) fail(e.error?.message ?? 'style error')
-      })
-      map.on('load', () => {
-        window.clearTimeout(timeout)
-        if (map) addMarker(map, o)
-        if (!settled && !destroyed) {
-          settled = true
-          o.onReady()
-        }
-      })
-    })
-    .catch((err: Error) => fail(err.message))
+  const map = new MapLibreMap({
+    container: o.container,
+    style: STYLE_URL,
+    center: [o.lng, o.lat],
+    zoom: 16.4,
+    pitch: 60,
+    bearing: -28,
+    attributionControl: false,
+    scrollZoom: false, // never hijack page scrolling
+    dragPan: !o.touch, // touch: one finger scrolls the page
+    touchPitch: false,
+    keyboard: false,
+  })
+  // Known upstream warnings: Liberty's three highway-shield layers
+  // (highway-shield-non-us, highway-shield-us-interstate, road_shield_us)
+  // log "Expected value to be of type number, but found null" for features
+  // without a route number. Harmless, and the style stays unmodified.
+  map.addControl(new AttributionControl({ compact: true }), 'bottom-right')
+
+  // Liberty references a few POI icons (swimming_pool, gate, bollard, ...)
+  // that OpenFreeMap's sprite doesn't contain. MapLibre already skips them;
+  // registering a transparent 1px stand-in keeps the console clean without
+  // changing the style or anything rendered.
+  map.setMissingStyleImageResolver((id) => {
+    if (!map.hasImage(id)) map.addImage(id, { width: 1, height: 1, data: new Uint8Array(4) })
+  })
+
+  map.on('error', (e) => {
+    if (!map.isStyleLoaded()) fail(e.error?.message ?? 'style error')
+  })
+  map.on('load', () => {
+    window.clearTimeout(timeout)
+    addMarker(map, o)
+    if (!settled) {
+      settled = true
+      o.onReady()
+    }
+  })
 
   return {
     destroy() {
-      destroyed = true
+      settled = true
       window.clearTimeout(timeout)
-      map?.remove() // releases the WebGL context, workers, listeners and markers
-      map = null
+      map.remove() // releases the WebGL context, workers, listeners and markers
     },
   }
-}
-
-/** Dark palette, quieter details, a soft light and 3D buildings, applied to the style JSON */
-function tuneStyle(style: StyleSpecification): StyleSpecification {
-  const layers = style.layers.flatMap((layer): LayerSpecification[] => {
-    // One-way arrows are visual noise at this scale
-    if (layer.id === 'road_oneway' || layer.id === 'road_oneway_opposite') return []
-    if (layer.type === 'background') {
-      return [{ ...layer, paint: { ...layer.paint, 'background-color': PALETTE.ground } }]
-    }
-    if (layer.type === 'fill' && layer.paint && 'fill-pattern' in layer.paint) {
-      // Upstream bug: OpenFreeMap's Dark style references a "wood-pattern"
-      // image its sprite doesn't contain. Use a solid dark fill instead.
-      const { 'fill-pattern': _pattern, ...paint } = layer.paint
-      return [{ ...layer, paint: { ...paint, 'fill-color': PALETTE.wood } }]
-    }
-    if (layer.id === 'highway_minor' && layer.type === 'line') {
-      return [{ ...layer, paint: { ...layer.paint, 'line-color': PALETTE.minorRoad } }]
-    }
-    return [layer]
-  })
-
-  // 3D buildings, drawn under the labels so names stay legible
-  const at = layers.findIndex((l) => l.id === 'highway_name_other')
-  layers.splice(at === -1 ? layers.length : at, 0, BUILDINGS_3D)
-
-  // Soft directional light so extruded facades read as architecture
-  return { ...style, layers, light: { anchor: 'viewport', color: '#ffffff', intensity: 0.42, position: [1.15, 210, 30] } }
-}
-
-const BUILDINGS_3D: LayerSpecification = {
-  id: 'building-3d',
-  type: 'fill-extrusion',
-  source: 'openmaptiles',
-  'source-layer': 'building',
-  minzoom: 14,
-  paint: {
-    'fill-extrusion-color': [
-      'interpolate', ['linear'], ['get', 'render_height'],
-      0, PALETTE.buildingLow,
-      20, PALETTE.buildingMid,
-      60, PALETTE.buildingTall,
-    ],
-    'fill-extrusion-height': ['get', 'render_height'],
-    'fill-extrusion-base': ['get', 'render_min_height'],
-    'fill-extrusion-opacity': 0.94,
-    'fill-extrusion-vertical-gradient': true,
-  },
 }
 
 function addMarker(map: MapLibreMap, o: LocationMapOptions) {

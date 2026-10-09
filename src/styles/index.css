@@ -541,15 +541,81 @@
   }
 
   /*
-   * Location map: compact, edge-to-edge dark 3D map. It fades in once
-   * MapLibre is ready, and fades into the section above and the footer below.
+   * Location: heading, address and directions on the black page, then the
+   * edge-to-edge 3D map in its original natural Liberty colours. Nothing sits
+   * over the map: no filters, fades or overlays (creative director).
    */
+  .location {
+    padding-top: clamp(1.5rem, 1rem + 2vw, 3rem);
+  }
+
+  .location__title {
+    padding-inline: var(--gutter);
+    font-family: var(--font-editorial);
+    font-size: clamp(1.125rem, 0.95rem + 0.8vw, 1.625rem);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-paper);
+  }
+
+  .location__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: clamp(0.75rem, 0.6rem + 0.6vw, 1.125rem);
+    padding-inline: var(--gutter);
+    text-align: center;
+  }
+
+  .location__address {
+    font-family: var(--font-editorial);
+    font-size: 0.875rem;
+    color: rgb(242 241 238 / 0.68);
+  }
+
+  .location__directions {
+    position: relative;
+    padding: 0.625rem 0.25rem;
+    font-family: var(--font-editorial);
+    font-size: 0.71875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgb(242 241 238 / 0.9);
+    transition: color 200ms ease;
+  }
+
+  .location__directions::after {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    right: calc(0.25rem + 0.2em);
+    bottom: 0.45rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+    transition: opacity 300ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .location__directions:hover {
+      color: var(--color-paper);
+    }
+
+    .location__directions:hover::after {
+      opacity: 1;
+    }
+  }
+
   .location-map {
     position: relative;
-    height: clamp(17.5rem, 14.5rem + 9vw, 22rem); /* ~280px phones, ~350px desktop */
+    height: clamp(17.5rem, 14.5rem + 9vw, 22rem); /* ~280px phones, ~352px desktop */
+    margin-top: clamp(1rem, 0.8rem + 1vw, 1.5rem);
     overflow: hidden;
     background: var(--color-ink);
-    mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 88%, transparent);
   }
 
   .location-map__canvas {
@@ -561,95 +627,35 @@
     opacity: 1;
   }
 
-  /* Discreet address + directions, clear of the bottom fade */
-  .location-map__info {
-    position: absolute;
-    left: var(--gutter);
-    bottom: 17%;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    pointer-events: none;
-  }
-
-  .location-map[data-status='fallback'] .location-map__info,
-  .location-map[data-status='idle'] .location-map__info {
-    bottom: 50%;
-    translate: 0 50%;
-  }
-
-  .location-map__address {
-    font-family: var(--font-editorial);
-    font-size: 0.8125rem;
-    color: rgb(242 241 238 / 0.62);
-    text-shadow: 0 0 12px var(--color-ink);
-  }
-
-  .location-map__directions {
-    position: relative;
-    align-self: flex-start;
-    padding: 0.625rem 0;
-    pointer-events: auto;
-    font-family: var(--font-editorial);
-    font-size: 0.71875rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgb(242 241 238 / 0.9);
-    transition: color 200ms ease;
-  }
-
-  .location-map__directions::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0.2em;
-    bottom: 0.45rem;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.35;
-    transition: opacity 300ms ease;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .location-map__directions:hover {
-      color: var(--color-paper);
-    }
-
-    .location-map__directions:hover::after {
-      opacity: 1;
-    }
-  }
-
-  /* Marker: a small light point with a hairline halo, plus a tracked label */
+  /* Marker on the light Liberty map: a dark point with a white ring and a
+     charcoal tracked label with a white halo */
   .map-marker {
     position: relative;
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
   }
 
   .map-marker__dot {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: var(--color-paper);
-    box-shadow: 0 0 0 5px rgb(242 241 238 / 0.12);
+    background: var(--color-ink);
+    box-shadow: 0 0 0 2px #fff, 0 0 0 6px rgb(11 11 12 / 0.18);
   }
 
   .map-marker__label {
     position: absolute;
-    left: 18px;
+    left: 19px;
     top: 50%;
     translate: 0 -50%;
     font-family: var(--font-editorial);
     font-size: 0.6875rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     white-space: nowrap;
-    color: var(--color-paper);
-    text-shadow: 0 0 10px var(--color-ink), 0 0 2px var(--color-ink);
+    color: var(--color-ink);
+    text-shadow: 0 0 3px #fff, 0 0 6px #fff, 0 0 10px #fff;
   }
 
   /*
@@ -664,7 +670,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-block: clamp(4rem, 3rem + 4vw, 6.5rem) clamp(2.5rem, 2rem + 2vw, 3.5rem);
+    padding-block: clamp(3rem, 2.5rem + 3vw, 5rem) clamp(2.5rem, 2rem + 2vw, 3.5rem);
   }
 
   .wordmark--footer {
@@ -932,34 +938,3 @@
   width: 100%;
   height: 100%;
 }
-
-/* Attribution (required by OpenFreeMap / OpenMapTiles / OSM): kept visible,
-   restyled as a small, quiet label on the dark map */
-.location-map .maplibregl-ctrl.maplibregl-ctrl-attrib,
-.location-map .maplibregl-ctrl.maplibregl-ctrl-attrib.maplibregl-compact {
-  margin: 0 var(--gutter) 0.75rem 0;
-  min-height: 0;
-  padding: 0.2rem 1.75rem 0.2rem 0.6rem;
-  border-radius: 0;
-  background-color: rgb(11 11 12 / 0.72);
-  font-family: var(--font-editorial);
-  font-size: 0.625rem;
-  line-height: 1.6;
-  color: var(--color-faint);
-}
-
-.location-map .maplibregl-ctrl-attrib a {
-  color: var(--color-muted);
-}
-
-.location-map .maplibregl-ctrl-attrib .maplibregl-ctrl-attrib-button,
-.location-map .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button {
-  top: 50%;
-  right: 0.2rem;
-  width: 1.1rem;
-  height: 1.1rem;
-  translate: 0 -50%;
-  background-color: rgb(242 241 238 / 0.18);
-  background-size: 0.8rem;
-}
-
