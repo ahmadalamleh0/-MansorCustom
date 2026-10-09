@@ -6,9 +6,9 @@
  * are needed. Set `placeholder: false` once an entry is approved.
  */
 
-export type ServiceMedia =
-  | { type: 'image'; src: string; alt: string; width: number; height: number }
-  | { type: 'video'; src: string; poster: string; mobileSrc?: string }
+import type { MediaAsset } from './media'
+
+export type ServiceMedia = MediaAsset
 
 export type Service = {
   /** Stable id — reused later as the service page slug (/services/:slug) */

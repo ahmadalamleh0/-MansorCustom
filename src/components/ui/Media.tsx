@@ -1,9 +1,9 @@
 import { useEffect, useRef, type ReactNode } from 'react'
-import type { ServiceMedia } from '@/data/services'
+import type { MediaAsset } from '@/data/media'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 type MediaProps = {
-  media?: ServiceMedia
+  media?: MediaAsset
   /** Above-the-fold media: load eagerly with high priority */
   priority?: boolean
   className?: string
@@ -50,7 +50,7 @@ function InViewVideo({
   priority,
   className,
 }: {
-  media: Extract<ServiceMedia, { type: 'video' }>
+  media: Extract<MediaAsset, { type: 'video' }>
   priority: boolean
   className: string
 }) {

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Intro } from '@/components/intro/Intro'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
+import { Editorial } from '@/components/sections/Editorial'
 import { Hero } from '@/components/sections/Hero'
 import { Services } from '@/components/sections/Services'
 
@@ -22,6 +23,7 @@ export default function App() {
       <div id="page">
         <main id="main">
           <Hero />
+          <Editorial />
           <Services />
         </main>
         <Footer />
