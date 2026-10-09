@@ -1,21 +1,29 @@
-import { useEffect, useRef } from 'react'
-import type { Service } from '@/data/services'
+import { useEffect, useId, useRef } from 'react'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { CloseIcon } from './icons'
 
+export type ComingSoonContent = {
+  /** Small label above the title, e.g. the service name */
+  label: string
+  message: string
+  dismissLabel: string
+}
+
 type ComingSoonModalProps = {
-  service: Service | null
+  content: ComingSoonContent | null
   onClose: () => void
 }
 
 /**
- * Demo stand-in for the dedicated service pages. Built on the native <dialog>,
- * which provides the focus trap, Escape-to-close, top-layer stacking and an
- * inert background. Focus goes back to the triggering card on close.
+ * Demo stand-in for features that aren't live yet (service pages, booking).
+ * Built on the native <dialog>, which provides the focus trap, Escape-to-close,
+ * top-layer stacking and an inert background. Focus returns to the trigger
+ * on close.
  */
-export function ComingSoonModal({ service, onClose }: ComingSoonModalProps) {
+export function ComingSoonModal({ content, onClose }: ComingSoonModalProps) {
   const ref = useRef<HTMLDialogElement>(null)
-  const open = service !== null
+  const id = useId()
+  const open = content !== null
   useScrollLock(open)
 
   useEffect(() => {
@@ -28,8 +36,8 @@ export function ComingSoonModal({ service, onClose }: ComingSoonModalProps) {
   return (
     <dialog
       ref={ref}
-      aria-labelledby="coming-soon-title"
-      aria-describedby="coming-soon-desc"
+      aria-labelledby={`${id}-title`}
+      aria-describedby={`${id}-desc`}
       onClose={onClose}
       // Clicks on the backdrop land on the <dialog> itself; the panel absorbs the rest
       onClick={(e) => e.target === e.currentTarget && ref.current?.close()}
@@ -45,12 +53,12 @@ export function ComingSoonModal({ service, onClose }: ComingSoonModalProps) {
           <CloseIcon className="size-4" />
         </button>
 
-        <p className="eyebrow">{service?.title}</p>
-        <h2 id="coming-soon-title" className="mt-6 text-headline font-medium">
+        <p className="eyebrow">{content?.label}</p>
+        <h2 id={`${id}-title`} className="mt-6 text-headline font-medium">
           Coming Soon
         </h2>
-        <p id="coming-soon-desc" className="mt-5 max-w-[40ch] text-base leading-relaxed text-muted">
-          The full service experience is being developed. Check back soon to explore it in detail.
+        <p id={`${id}-desc`} className="mt-5 max-w-[40ch] text-base leading-relaxed text-muted">
+          {content?.message}
         </p>
 
         <button
@@ -58,7 +66,7 @@ export function ComingSoonModal({ service, onClose }: ComingSoonModalProps) {
           onClick={() => ref.current?.close()}
           className="mt-10 inline-flex h-12 items-center border border-line-strong px-6 text-sm font-medium transition-colors hover:bg-paper hover:text-ink"
         >
-          Back to services
+          {content?.dismissLabel}
         </button>
       </div>
     </dialog>

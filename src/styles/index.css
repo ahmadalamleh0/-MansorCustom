@@ -35,7 +35,7 @@
   --color-paper: #f2f1ee;
   --color-muted: #9b9a97;
   --color-faint: #6b6a68;
-  --color-signature: rgb(246 247 248 / 0.9); /* intro signature rules */
+  --color-signature: rgb(246 247 248 / 0.55); /* intro signature rules: subtle */
   --color-scrim: rgb(0 0 0 / 0.72); /* modal backdrop */
 
   /* Type — system stacks until brand fonts are supplied (drop files in src/assets/fonts) */
@@ -122,21 +122,21 @@
   }
 
   /*
-   * Wordmark lockup: MANSOR / CUSTOMS stacked, centred, inside a hairline frame.
-   * Proportions come from the Urban reference, measured in cap heights (c):
-   * tracking ≈ 1.5c, frame padding ≈ 1.58c × 0.84c, 1px stroke.
-   * Michroma cap height = 0.75em, so 1c = 0.75em.
-   * The base values are the compact nav tier; the intro uses full tracking.
+   * Wordmark lockup: MANSOR (primary) over CUSTOMS (secondary, half size),
+   * inside a hairline frame. CUSTOMS is justified to MANSOR's width with
+   * space-between, so the two lines form one precise block at any size.
+   * Michroma cap height = 0.75em. Variables are in em of the primary line.
    */
   .wordmark {
-    --wm-track: 0.5em; /* between letters */
-    --wm-leading: 0.9em; /* between the two lines */
-    --wm-pad-x: 1em;
-    --wm-pad-y: 0.63em;
+    --wm-track: 0.62em; /* MANSOR letter spacing */
+    --wm-secondary: 0.5; /* CUSTOMS size relative to MANSOR */
+    --wm-leading: 0.55em; /* space between the two lines */
+    --wm-pad-x: 0.95em;
+    --wm-pad-y: 0.72em;
     position: relative;
     display: inline-flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: var(--wm-leading);
     padding: var(--wm-pad-y) var(--wm-pad-x);
     font-family: var(--font-brand);
@@ -149,7 +149,15 @@
 
   .wordmark__line {
     display: flex;
+  }
+
+  .wordmark__line--primary {
     gap: var(--wm-track);
+  }
+
+  .wordmark__line--secondary {
+    justify-content: space-between;
+    font-size: calc(var(--wm-secondary) * 1em);
   }
 
   .wordmark__letter {
@@ -176,24 +184,22 @@
   }
 
   .wordmark--nav {
-    font-size: 8px;
+    --wm-secondary: 0.55; /* a touch larger so CUSTOMS stays legible at nav size */
+    font-size: 12px;
   }
 
   /*
-   * Intro: full reference tracking. The lockup is 16.63em wide (CUSTOMS
-   * advance 7.53em + 6 × 1.12em tracking + 2 × 1.19em padding). Width-bound
-   * on phones (~84vw), height-bound like the reference elsewhere (cap ≈ 2.2vh).
+   * Intro: lockup width = MANSOR advance 6.68em + 5 × 0.62em tracking
+   * + 2 × 0.95em padding = 11.68em. Width-bound on phones (~84vw);
+   * height-bound elsewhere (MANSOR cap ≈ 3vh).
    */
   .wordmark--intro {
-    --wm-track: 1.12em;
-    --wm-leading: 1.05em;
-    --wm-pad-x: 1.19em;
-    font-size: min(2.95vh, calc(84vw / 16.63));
+    font-size: min(4vh, calc(84vw / 11.68));
   }
 
   @media (min-width: 768px) {
     .wordmark--nav {
-      font-size: 9px;
+      font-size: 13px;
     }
   }
 
@@ -249,6 +255,250 @@
     align-self: flex-end;
   }
 
+  /*
+   * Hero (DAS Tuning-inspired composition): media fills the viewport, and a
+   * centred headline, one line of copy and a single CTA sit low in the frame
+   * so the vehicle stays the focus. The scrim fades into the page background,
+   * so the hero flows straight into the showcase banner.
+   */
+  .hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    /* Functional legibility scrim (not decoration): light at the top so the
+       vehicle reads, deeper behind the copy, solid ink at the seam */
+    background: linear-gradient(
+      to bottom,
+      rgb(11 11 12 / 0.35) 0%,
+      rgb(11 11 12 / 0.1) 32%,
+      rgb(11 11 12 / 0.62) 68%,
+      var(--color-ink) 100%
+    );
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    padding-top: calc(var(--header-h) + 2rem);
+    padding-bottom: clamp(3.5rem, 2rem + 7vh, 8rem);
+    text-align: center;
+  }
+
+  .hero__headline {
+    font-family: var(--font-editorial);
+    font-size: clamp(2.5rem, 1.1rem + 6.2vw, 6.25rem);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--color-paper);
+  }
+
+  .hero__row {
+    display: block;
+  }
+
+  /* Masked parts for the line reveal; extra bottom room keeps descenders intact */
+  .hero__mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
+  @media (min-width: 768px) {
+    .hero__row > .hero__mask {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .hero__row > .hero__mask + .hero__mask {
+      margin-left: 0.26em;
+    }
+  }
+
+  .hero__lede {
+    max-width: 34ch;
+    margin-top: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+    font-family: var(--font-editorial);
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+    line-height: 1.55;
+    color: rgb(242 241 238 / 0.78);
+  }
+
+  .hero__actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: min(100%, 20rem);
+    height: 3.5rem;
+    padding-inline: 2.75rem;
+    border-radius: 999px;
+    background: var(--color-paper);
+    font-family: var(--font-editorial);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
+    transition:
+      background-color 220ms ease,
+      transform 160ms var(--ease-out-expo);
+  }
+
+  @media (min-width: 640px) {
+    .hero__cta {
+      width: auto;
+      min-width: 15.5rem;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero__cta:hover {
+      background: #fff;
+    }
+  }
+
+  .hero__cta:active {
+    transform: scale(0.97);
+  }
+
+  /*
+   * Showcase banner (IR Customs reference). One plane of tall panels,
+   * rotated in 3D so it recedes to the right: near panels are tall and wide,
+   * far ones shorter and narrower, with top edges falling and bottom edges
+   * rising. Both sides fade into the background through a mask.
+   * Geometry is driven by the variables on .showcase__stage.
+   */
+  .showcase {
+    padding-block: clamp(0.5rem, 0.25rem + 1.5vw, 2rem) clamp(0.5rem, 0.25rem + 1.5vw, 2rem);
+    overflow: clip;
+  }
+
+  /* Logo row: monochrome marquee with faded edges */
+  .showcase__logos {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  }
+
+  .showcase__logo-track {
+    display: flex;
+    width: max-content;
+  }
+
+  .showcase__logo-list {
+    --logo-gap: clamp(2.5rem, 1.75rem + 3vw, 4.5rem);
+    display: flex;
+    align-items: center;
+    gap: var(--logo-gap);
+    padding-right: var(--logo-gap); /* equal spacing across the loop seam */
+  }
+
+  .showcase__logo {
+    display: block;
+    height: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    width: auto;
+    max-width: 9rem;
+    object-fit: contain;
+    opacity: 0.62;
+  }
+
+  .showcase__logo--filter {
+    filter: brightness(0) invert(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .showcase__logo-list[data-duplicate] {
+      display: none;
+    }
+
+    .showcase__logos {
+      mask-image: none;
+    }
+
+    .showcase__logo-track {
+      width: auto;
+    }
+
+    .showcase__logo-list {
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 1.5rem;
+      padding-inline: var(--gutter);
+    }
+  }
+
+  .showcase__stage {
+    /* Fitted to the reference with a parameter search (408px viewport):
+       left-edge height 0.734W (ref 0.735), far/near ratio 0.655 (0.65),
+       top slope 0.189 (0.19), bottom slope -0.064 (-0.066), front panel
+       at 0.141W and 0.462W wide (0.142 / 0.456). Perspective scales with
+       --panel-w, so the same angles hold at every width. */
+    --panel-w: min(60vw, 28rem);
+    --panel-ratio: 0.82; /* width / height */
+    --panel-gap: calc(var(--panel-w) * 0.045);
+    --plane-rot-y: 32deg;
+    --plane-rot-z: 5deg;
+    --plane-lead: calc(var(--panel-w) * -0.75); /* first panel partly off-screen */
+    margin-top: clamp(2rem, 1.25rem + 3vw, 3.5rem);
+    height: calc(var(--panel-w) / var(--panel-ratio) * 1.12);
+    perspective: calc(var(--panel-w) * 2.5);
+    perspective-origin: 50% 42%;
+    mask-image: linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%);
+  }
+
+  .showcase__plane {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transform: rotateY(var(--plane-rot-y)) rotateZ(var(--plane-rot-z));
+    transform-origin: 0% 50%;
+  }
+
+  .showcase__track {
+    display: flex;
+    gap: var(--panel-gap);
+    margin-left: var(--plane-lead);
+    will-change: transform;
+  }
+
+  .showcase__panel {
+    position: relative;
+    flex: none;
+    width: var(--panel-w);
+    aspect-ratio: var(--panel-ratio);
+    overflow: hidden;
+    background: var(--color-surface-raised);
+  }
+
+  .showcase__panel-index {
+    position: absolute;
+    left: 7%;
+    bottom: 5%;
+    font-family: var(--font-display);
+    font-size: calc(var(--panel-w) * 0.28);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgb(255 255 255 / 0.05);
+  }
+
   /* Statement: centred editorial headline + supporting paragraph.
      Spacing scales with the headline size, matching the reference ratios:
      cards → headline ≈ 2.3×, headline → paragraph ≈ 1.25×. */
@@ -288,8 +538,8 @@
    * centred in the viewport. In em units, so they scale with the wordmark.
    */
   .intro__lockup {
-    --rule-length: 2.6em;
-    --rule-distance: 1.15em;
+    --rule-length: 2.2em;
+    --rule-distance: 1em;
     position: relative;
   }
 

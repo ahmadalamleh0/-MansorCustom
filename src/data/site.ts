@@ -19,12 +19,20 @@ export const site = {
   // change is approved.
   wordmark: ['Mansor', 'Customs'],
 
-  // PLACEHOLDER copy — final hero copy comes with the creative direction.
+  // Hero copy (DAS Tuning-inspired composition). The headline is approved
+  // copy. Rows break on desktop; parts within a row stack on phones:
+  //   phones: "Experience Your" / "Car's" / "Full Potential"
+  //   md+:    "Experience Your" / "Car's Full Potential"
   hero: {
-    eyebrow: 'Vehicle wrapping & customization',
-    heading: 'Mansour Customs',
-    lede: 'Temporary supporting copy. The final hero message will be supplied with the creative direction.',
-    cta: { label: 'View services', href: '#services' },
+    headline: [['Experience Your'], ['Car’s', 'Full Potential']],
+    // Lists only the client-confirmed services (PRODUCT.md)
+    lede: 'Vinyl wraps, paint protection film, ceramic coating and window tint.',
+    cta: {
+      label: 'Book Appointment',
+      // UNCONFIRMED: no booking method yet, so the CTA opens a Coming Soon
+      // dialog. Swap in the real booking URL or flow here.
+      bookingUrl: null as string | null,
+    },
   },
 
   nav: [

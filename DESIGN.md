@@ -16,22 +16,39 @@ colors:
 typography:
   wordmark:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "min(2.95vh, calc(84vw / 16.63))"
+    fontSize: "min(4vh, calc(84vw / 11.68))"
     fontWeight: 400
     lineHeight: 0.75
-    letterSpacing: "1.12em"
+    letterSpacing: "0.62em"
   wordmark-nav:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "8px"
+    fontSize: "12px"
     fontWeight: 400
     lineHeight: 0.75
-    letterSpacing: "0.5em"
+    letterSpacing: "0.62em"
   wordmark-nav-md:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "9px"
+    fontSize: "13px"
     fontWeight: 400
     lineHeight: 0.75
-    letterSpacing: "0.5em"
+    letterSpacing: "0.62em"
+  hero-headline:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 1.1rem + 6.2vw, 6.25rem)"
+    fontWeight: 500
+    lineHeight: 1.04
+    letterSpacing: "-0.015em"
+  hero-lede:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1rem, 0.95rem + 0.3vw, 1.1875rem)"
+    fontWeight: 400
+    lineHeight: 1.55
+  button-label:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: "0.01em"
   display:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
     fontSize: "clamp(3rem, 1.6rem + 7.2vw, 9.5rem)"
@@ -69,6 +86,7 @@ typography:
     letterSpacing: "0.18em"
 rounded:
   none: "0px"
+  pill: "999px"
 spacing:
   gutter: "clamp(1.25rem, 0.6rem + 3vw, 3.5rem)"
   section-y: "clamp(5rem, 3rem + 8vw, 10rem)"
@@ -77,9 +95,12 @@ components:
   button-primary:
     backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "0 28px"
+    typography: "{typography.button-label}"
+    rounded: "{rounded.pill}"
+    padding: "0 44px"
     height: "56px"
+  button-primary-hover:
+    backgroundColor: "#ffffff"
   button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.paper}"
@@ -127,8 +148,9 @@ not shipped):
 |---|---|---|
 | Opening intro | Urban Automotive intro video (`references/urban-intro.mp4`) | Implemented |
 | Editorial section (cards → statement → cards) | Motorcarlease mobile screenshots | Implemented; images pending |
-| Hero / banner | IR Customs mobile banner screenshot | Pending |
-| Partner logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | Real assets; not yet placed |
+| Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
+| Showcase banner after the hero (angled panels) | IR Customs mobile banner screenshot | Implemented; geometry fitted to measurements, photos pending |
+| Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
 
 Screenshots shared only in chat should also be saved to `references/` so
 they can be measured again later.
@@ -202,7 +224,9 @@ scrims), not from shadows. No drop shadows on cards or text.
 
 ## Shapes
 
-Square corners (`rounded.none`) across cards, buttons and media. Hairline
+Square corners (`rounded.none`) across cards, buttons and media. The one
+exception is the hero's primary CTA, a pill (`rounded.pill`), because the
+DAS Tuning reference uses one. Hairline
 1px frames, as in the wordmark lockup, are the signature line language.
 Introduce radius only when a reference explicitly uses it.
 
@@ -211,20 +235,36 @@ Introduce radius only when a reference explicitly uses it.
 - **Wordmark** (`components/brand/Wordmark.tsx`): letters as separate spans
   for reveals, with an SVG frame (`pathLength` 1000) that traces clockwise
   from the top-left.
-- **Logo lockup:** MANSOR / CUSTOMS, stacked and centred (the client's logo
-  structure; the spelling "Mansor" was confirmed 2026-10-09). The lines come
-  from `site.wordmark`. Intro: full reference tracking (1.12em), leading
-  1.05em, about 16.6em wide. Nav: compact tier (0.5em tracking, 8/9px).
-- **Signature rules** (intro only): a 1px `signature` rule 2.6em long,
-  1.15em above and below the framed lockup, drawn outward from the centre
+- **Logo lockup:** MANSOR over CUSTOMS (the client's logo structure; the
+  spelling "Mansor" was confirmed 2026-10-09). MANSOR is primary; CUSTOMS is
+  half size and justified to MANSOR's exact width (`space-between`), forming
+  one block inside the hairline frame. The lines come from `site.wordmark`.
+  Intro: MANSOR tracking 0.62em, leading 0.55em, about 11.7em wide. Nav:
+  12/13px, with CUSTOMS at 0.55× so it stays legible.
+- **Signature rules** (intro only): a 1px `signature` rule (55% white) 2.2em
+  long, 1em above and below the framed lockup, drawn outward from the centre
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
   they support the type, never compete with it.
+- **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition. A
+  centred `hero-headline` (Outfit 500; 3 rows on phones, 2 on md+), a single
+  line of confirmed services, and one white pill CTA, "Book Appointment".
+  With no booking method confirmed, the CTA opens the Coming Soon dialog
+  (`site.hero.cta.bookingUrl` switches it to a link). A functional scrim
+  fades the hero into `ink`.
+- **Showcase** (`components/sections/Showcase.tsx`): directly after the hero.
+  A monochrome product-logo marquee, then one 3D plane of tall panels
+  (`rotateY 32°`, `rotateZ 5°`, perspective 2.5× the panel width, origin
+  50% / 42%, panel ratio 0.82, gap 4.5%), fitted by a parameter search to the
+  IR Customs reference (edge heights, slopes and panel spans within ~1%).
+  Both sides fade through a mask, and the strip drifts slightly with scroll
+  (scrub). Panels take portrait photos from `data/banner.ts`.
 - **Media** (`components/ui/Media.tsx`): every image or video slot. Lazy by
   default; videos are muted and inline, play only on screen, and never
   autoplay with reduced motion. An empty slot renders an honest neutral
   placeholder.
-- **Service card / Coming Soon dialog:** native `<dialog>`, focus returns to
-  the card, and Escape closes it.
+- **Coming Soon dialog** (`ComingSoonModal`): a native `<dialog>` with its
+  content passed in as props (services, booking). Focus returns to the
+  trigger, and Escape closes it.
 - **Collage + statement** (`components/sections/Editorial.tsx`): content from
   `data/editorial.ts`.
 - All content and media live in `src/data/*`. Components contain no copy.

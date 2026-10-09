@@ -39,7 +39,16 @@ export function Services() {
         </ul>
       </div>
 
-      <ComingSoonModal service={active} onClose={() => setActive(null)} />
+      <ComingSoonModal
+        content={
+          active && {
+            label: active.title,
+            message: 'The full service experience is being developed. Check back soon to explore it in detail.',
+            dismissLabel: 'Back to services',
+          }
+        }
+        onClose={() => setActive(null)}
+      />
     </section>
   )
 }

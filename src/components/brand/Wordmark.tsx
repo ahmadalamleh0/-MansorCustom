@@ -10,9 +10,10 @@ type WordmarkProps = {
 }
 
 /**
- * Typographic wordmark: the lines from `site.wordmark` (MANSOR / CUSTOMS),
- * stacked and centred, mirroring the client's logo structure. Temporary until
- * the client supplies their logo files. Letters are individual elements so
+ * Typographic wordmark: the lines from `site.wordmark`, stacked to mirror the
+ * client's logo structure. MANSOR is the primary line; CUSTOMS sits beneath
+ * at a smaller size, letter-spaced to span exactly MANSOR's width.
+ * Temporary until the client supplies their logo files. Letters are individual elements so
  * the intro can reveal them one by one:
  *   [data-wm-letter]  each glyph, in reading order
  *   [data-wm-frame]   the frame <rect>; pathLength=FRAME_LENGTH, and it traces
@@ -23,10 +24,14 @@ export function Wordmark({ framed = false, className = '' }: WordmarkProps) {
 
   return (
     <span role="img" aria-label={lines.join(' ')} className={`wordmark ${className}`}>
-      {lines.map((line) => (
-        <span key={line} aria-hidden="true" className="wordmark__line">
-          {[...line.toUpperCase()].map((char, i) => (
-            <span key={i} data-wm-letter className="wordmark__letter">
+      {lines.map((line, i) => (
+        <span
+          key={line}
+          aria-hidden="true"
+          className={`wordmark__line ${i === 0 ? 'wordmark__line--primary' : 'wordmark__line--secondary'}`}
+        >
+          {[...line.toUpperCase()].map((char, j) => (
+            <span key={j} data-wm-letter className="wordmark__letter">
               {char}
             </span>
           ))}

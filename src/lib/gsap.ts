@@ -11,6 +11,15 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 gsap.defaults({ ease: 'power3.out', duration: 0.9 })
 
+// Web fonts (font-display: swap) can land after triggers are measured and
+// change section heights. Re-measure once they're in, or a trigger near the
+// end of the page can sit past the maximum scroll and never fire.
+// `loadingdone` fires for every load, whenever it starts (`fonts.ready` can
+// resolve before a lazily used face is even requested).
+if (typeof document !== 'undefined' && document.fonts) {
+  document.fonts.addEventListener('loadingdone', () => ScrollTrigger.refresh())
+}
+
 /**
  * Shared gsap.matchMedia() conditions. Every animation module builds its
  * variants from these, so breakpoints and reduced-motion handling stay

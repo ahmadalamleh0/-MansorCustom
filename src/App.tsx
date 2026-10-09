@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Editorial } from '@/components/sections/Editorial'
 import { Hero } from '@/components/sections/Hero'
 import { Services } from '@/components/sections/Services'
+import { Showcase } from '@/components/sections/Showcase'
 
 export default function App() {
   const [introDone, setIntroDone] = useState(false)
@@ -23,6 +24,7 @@ export default function App() {
       <div id="page">
         <main id="main">
           <Hero />
+          <Showcase />
           <Editorial />
           <Services />
         </main>

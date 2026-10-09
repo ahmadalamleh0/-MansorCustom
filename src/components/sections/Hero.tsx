@@ -1,67 +1,67 @@
+import { useState } from 'react'
+import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { Media } from '@/components/ui/Media'
-import { ArrowIcon } from '@/components/ui/icons'
 import { site } from '@/data/site'
-import { handleAnchorClick } from '@/lib/scroll'
+
+const BOOKING_PENDING = {
+  label: 'Book Appointment',
+  message: 'Online booking is being set up. Check back soon to reserve your appointment.',
+  dismissLabel: 'Close',
+}
 
 /**
- * Full-viewport hero. Layer structure, ready for the cinematic treatment:
- *   [data-hero-media]    media layer (image / video / scroll-scrubbed sequence)
- *   [data-hero-overlay]  legibility scrim, tuned once media exists
- *   [data-hero-content]  copy; heading lines are masked for line reveals
- * The entrance is driven by the opening intro timeline (animations/intro.ts).
+ * Full-viewport hero (DAS Tuning-inspired composition): vehicle media fills
+ * the frame, and a centred headline, short line and single CTA sit low in it.
+ *   [data-hero-media]    media layer (image / video)
+ *   [data-hero-overlay]  legibility scrim; fades into the page background
+ *   [data-hero-line]     masked headline parts, revealed by the intro timeline
+ *   [data-hero-fade]     supporting line + CTA
  */
 export function Hero() {
   const { hero } = site
-  const [firstWord, ...rest] = hero.heading.split(' ')
+  const [bookingOpen, setBookingOpen] = useState(false)
 
   return (
-    <section
-      id="top"
-      aria-labelledby="hero-title"
-      className="relative isolate flex min-h-svh flex-col overflow-hidden"
-    >
+    <section id="top" aria-labelledby="hero-title" className="hero">
       <div data-hero-media className="absolute inset-0 -z-20">
-        {/* PLACEHOLDER: hero imagery/video pending creative direction */}
+        {/* PLACEHOLDER: hero vehicle video/photography pending from the client */}
         <Media priority />
       </div>
-      <div data-hero-overlay aria-hidden="true" className="absolute inset-0 -z-10" />
+      <div data-hero-overlay aria-hidden="true" className="hero__scrim" />
 
-      <div
-        data-hero-content
-        className="container-site flex flex-1 flex-col justify-end pt-[calc(var(--header-h)+3rem)] pb-[clamp(3rem,2rem+5vw,7rem)]"
-      >
-        <p data-hero-fade className="eyebrow">
-          {hero.eyebrow}
-        </p>
-
-        <h1
-          id="hero-title"
-          className="mt-6 font-display text-display font-semibold text-paper sm:mt-8"
-        >
-          {[firstWord, rest.join(' ')].map((line) => (
-            <span key={line} className="block overflow-hidden pb-[0.06em]">
-              <span data-hero-line className="block">
-                {line}
-              </span>
+      <div data-hero-content className="hero__content container-site">
+        <h1 id="hero-title" className="hero__headline">
+          {hero.headline.map((row, r) => (
+            <span key={r} className="hero__row">
+              {row.map((part) => (
+                <span key={part} className="hero__mask">
+                  <span data-hero-line className="block">
+                    {part}
+                  </span>
+                </span>
+              ))}
             </span>
           ))}
         </h1>
 
-        <div className="mt-10 flex flex-col gap-8 border-t border-line pt-8 sm:mt-14 md:flex-row md:items-end md:justify-between">
-          <p data-hero-fade className="max-w-[44ch] text-lede text-muted">
-            {hero.lede}
-          </p>
-          <a
-            data-hero-fade
-            href={hero.cta.href}
-            onClick={handleAnchorClick}
-            className="group inline-flex h-14 shrink-0 items-center justify-between gap-6 self-start bg-paper px-7 text-sm font-medium text-ink transition-colors duration-300 hover:bg-white md:self-auto"
-          >
-            {hero.cta.label}
-            <ArrowIcon className="size-4 rotate-90 transition-transform duration-500 ease-out-expo group-hover:translate-y-0.5" />
-          </a>
+        <p data-hero-fade className="hero__lede">
+          {hero.lede}
+        </p>
+
+        <div data-hero-fade className="hero__actions">
+          {hero.cta.bookingUrl ? (
+            <a href={hero.cta.bookingUrl} className="hero__cta">
+              {hero.cta.label}
+            </a>
+          ) : (
+            <button type="button" aria-haspopup="dialog" onClick={() => setBookingOpen(true)} className="hero__cta">
+              {hero.cta.label}
+            </button>
+          )}
         </div>
       </div>
+
+      <ComingSoonModal content={bookingOpen ? BOOKING_PENDING : null} onClose={() => setBookingOpen(false)} />
     </section>
   )
 }
