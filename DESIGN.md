@@ -34,7 +34,7 @@ typography:
     letterSpacing: "0.62em"
   wordmark-footer:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "15px"
+    fontSize: "18px"
     fontWeight: 400
     lineHeight: 0.75
     letterSpacing: "0.62em"
@@ -165,7 +165,7 @@ not shipped):
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
 | Showcase banner after the hero (angled panels) | IR Customs mobile banner screenshot | Implemented; geometry fitted to measurements, photos pending |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
-| Location map | Black Star Studio map screenshot | Placeholder; needs a verified location and Maps API configuration |
+| Location map | Black Star Studio map screenshot + Framer OpenFreeMap 3D component | Implemented: dark 3D MapLibre map at the verified address |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
 
 Screenshots shared only in chat should also be saved to `references/` so
@@ -282,14 +282,32 @@ Introduce radius only when a reference explicitly uses it.
   IR Customs reference (edge heights, slopes and panel spans within ~1%).
   Both sides fade through a mask, and the strip drifts slightly with scroll
   (scrub). Panels take portrait photos from `data/banner.ts`.
-- **Location map** (`components/sections/LocationMap.tsx`): a compact dark
-  band (`clamp(15rem, 12rem + 8vw, 21rem)`, about 240px on phones and 315px
-  on desktop) between the content and the footer, fading in and out through
-  a mask. It is the "Contact" nav target. **Placeholder until activated:** an
-  abstract dark street-grid texture and a "Location to be confirmed" note,
-  with no address and no marker. To activate it, set a verified
-  `site.location`, plus `VITE_GOOGLE_MAPS_API_KEY` and a dark-styled
-  `VITE_GOOGLE_MAPS_MAP_ID` in `.env.local` (see the component header).
+- **Location map** (`components/sections/LocationMap.tsx` + `lib/locationMap.ts`):
+  a compact, edge-to-edge dark 3D map (`clamp(17.5rem, 14.5rem + 9vw, 22rem)`,
+  about 280px on phones and 352px on desktop) between the content and the
+  footer. It is the "Contact" nav target. It's an adaptation of the Framer
+  "OpenFreeMap 3D" component (source in `references/`): MapLibre GL v6 plus
+  OpenFreeMap's **Dark** style (no API key), tuned as JSON before the first
+  frame: ground `#0b0b0c`, lifted minor roads, solid woodland (the upstream
+  style references a missing sprite image), no one-way arrows, and a
+  `fill-extrusion` **3D buildings** layer from the same `openmaptiles` →
+  `building` source (`render_height` / `render_min_height`, colour stepping
+  #141416 → #26262a with height, vertical gradient) under the labels, lit by
+  a soft directional light. Camera: zoom 16.4, pitch 60, bearing −28.
+  Marker: a small light point plus a tracked "MANSOR CUSTOMS" label, at the
+  verified OSM building point for 19 Saddle River Ave (40.864118,
+  −74.100951). Overlay: the address plus a "Get Directions" link (Google
+  Maps directions to the exact address, new tab).
+  **Behaviour:** MapLibre and its CSS are a lazy chunk, loaded only within
+  600px of the section (never during the intro). No scroll-wheel zoom; on
+  touch, one finger scrolls the page and two move the map; no zoom
+  controls. `setWorkerUrl` points at the Vite-emitted worker (v6 needs
+  this once bundled). If WebGL is missing, the style fails or 15s pass, the
+  dark panel with the address and directions is shown instead. Attribution
+  stays visible as a small dark label. `map.remove()` runs on unmount.
+  **CSS note:** MapLibre's stylesheet is un-layered, so overrides for it
+  must also be un-layered (end of index.css); inside `@layer` they lose
+  whatever the specificity.
 - **Footer** (`components/layout/Footer.tsx`, MANSORY reference): one
   centred column. Wordmark (`wordmark-footer`), a full-width hairline,
   two symmetric columns of services (`footer-link`, 68% white, hover to
