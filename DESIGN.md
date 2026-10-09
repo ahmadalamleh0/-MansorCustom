@@ -255,10 +255,6 @@ Introduce radius only when a reference explicitly uses it.
   smaller (60%) and justified to MANSOR's exact width (`space-between`), forming
   one block inside the hairline frame. The lines come from `site.wordmark`.
   CUSTOMS is 60% of MANSOR's letter height everywhere (intro and nav).
-  **No triangle:** Michroma's stock "A" (crossbar at 23-33% of cap height)
-  reads as a triangle, like Urban's logo, so the wordmark draws its own A,
-  built from Michroma's outline with the crossbar raised to 39-49%
-  (`LetterA` in Wordmark.tsx). Never fall back to the font's A in the logo.
   Intro: MANSOR tracking 0.62em, leading 0.55em, about 11.7em wide. Nav:
   12/13px.
 - **Signature rules** (intro only): a 1px `signature` rule (55% white) 2.2em
