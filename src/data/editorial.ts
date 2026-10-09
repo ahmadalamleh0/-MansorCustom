@@ -1,3 +1,4 @@
+import bespokeInteriors from '@/assets/images/services/bespoke-interiors.jpg'
 import bodyKits from '@/assets/images/services/body-kits.jpg'
 import protectionFinish from '@/assets/images/services/protection-finish.jpg'
 import starlight from '@/assets/images/services/starlight.jpg'
@@ -35,7 +36,18 @@ export const editorial = {
         position: '50% 70%', // hex ceiling, wall logo and the whole car
       },
     },
-    { id: 'bespoke-interiors', title: 'Bespoke Interiors' },
+    {
+      id: 'bespoke-interiors',
+      title: 'Bespoke Interiors',
+      media: {
+        type: 'image',
+        src: bespokeInteriors,
+        alt: 'Mercedes G-Class interior fully trimmed in turquoise with diamond-quilted seats',
+        width: 941,
+        height: 1672,
+        position: '50% 55%', // steering wheel and dash above, quilted seat below
+      },
+    },
     {
       id: 'wheels-suspension',
       title: 'Wheels & Suspension',
