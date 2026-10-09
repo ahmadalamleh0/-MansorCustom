@@ -16,3 +16,6 @@ references/
 # Impeccable: machine-local config and caches
 .impeccable/config.local.json
 .impeccable/*.cache.json
+
+# Original client photographs (web-optimised copies live in src/assets/images)
+client-photos/

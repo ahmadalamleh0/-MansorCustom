@@ -744,6 +744,72 @@
     }
   }
 
+  /*
+   * Service tile (Motorcarlease reference): photo first, a functional bottom
+   * scrim for legibility, and a centred white title with a small arrow. The
+   * button is stretched over the whole card. Hover: a slow, slight zoom.
+   * Type scales with the collage width (cqi), so titles stay on one line.
+   */
+  .service-tile__media {
+    position: absolute;
+    inset: 0;
+    transition: transform 900ms var(--ease-out-expo);
+  }
+
+  .service-tile::after {
+    content: '';
+    position: absolute;
+    inset: 45% 0 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0), rgb(0 0 0 / 0.62));
+  }
+
+  .service-tile__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 0.5rem 9%;
+    outline: none;
+  }
+
+  .service-tile__title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--font-editorial);
+    font-size: clamp(0.75rem, 0.45rem + 1.7cqi, 1.25rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    color: #fff;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.35);
+  }
+
+  .service-tile__arrow {
+    width: 0.8em;
+    height: 0.8em;
+    flex: none;
+    transition: transform 400ms var(--ease-out-expo);
+  }
+
+  .service-tile:has(:focus-visible) {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 3px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .service-tile:hover .service-tile__media {
+      transform: scale(1.035);
+    }
+
+    .service-tile:hover .service-tile__arrow {
+      transform: translateX(3px);
+    }
+  }
+
   /* Statement: centred editorial headline + supporting paragraph.
      Spacing scales with the headline size, matching the reference ratios:
      cards → headline ≈ 2.3×, headline → paragraph ≈ 1.25×. */

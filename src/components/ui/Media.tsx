@@ -38,6 +38,7 @@ export function Media({ media, priority = false, className = '', fallback }: Med
         fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
         className={fill}
+        style={media.position ? { objectPosition: media.position } : undefined}
       />
     )
   }
