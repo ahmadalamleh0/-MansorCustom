@@ -1,5 +1,15 @@
 @import 'tailwindcss';
 
+/* Brand wordmark face — Michroma (SIL OFL 1.1), self-hosted and preloaded in index.html.
+   font-display: block keeps fallback glyphs from ever flashing inside the intro. */
+@font-face {
+  font-family: 'Michroma';
+  src: url('/fonts/michroma-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
 /*
  * Design tokens — TEMPORARY foundation.
  * Neutral, restrained values until the creative direction defines the brand
@@ -20,6 +30,7 @@
   /* Type — system stacks until brand fonts are supplied (drop files in src/assets/fonts) */
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-display: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-brand: 'Michroma', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
   /* Fluid type scale */
@@ -96,6 +107,136 @@
 
   .eyebrow {
     @apply text-eyebrow text-muted font-medium uppercase;
+  }
+
+  /*
+   * Wordmark lockup: spaced uppercase letters inside a hairline frame.
+   * Proportions come from the Urban reference, measured in cap heights (c):
+   * tracking ≈ 1.5c, frame padding ≈ 1.58c × 0.84c, 1px stroke.
+   * Michroma cap height = 0.75em, so 1c = 0.75em.
+   * The base values are the compact tier (nav + phones); the intro widens to
+   * the full reference tracking where the viewport allows it.
+   */
+  .wordmark {
+    --wm-track: 0.5em;
+    --wm-space: 0.55em;
+    --wm-pad-x: 1em;
+    --wm-pad-y: 0.63em;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wm-track);
+    padding: var(--wm-pad-y) var(--wm-pad-x);
+    font-family: var(--font-brand);
+    font-weight: 400;
+    line-height: 0.75;
+    color: #fff;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .wordmark__letter {
+    display: block;
+  }
+
+  .wordmark__space {
+    width: var(--wm-space);
+  }
+
+  /* Offset by half a pixel so the 1px stroke lands on whole pixels */
+  .wordmark__frame {
+    position: absolute;
+    top: -0.5px;
+    left: -0.5px;
+    width: calc(100% + 1px);
+    height: calc(100% + 1px);
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .wordmark__frame rect {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1px;
+    stroke-linecap: square;
+    stroke-dasharray: 1000 1000; /* pathLength=1000 → dashoffset 1000 hidden, 0 complete */
+  }
+
+  .wordmark--nav {
+    font-size: 9px;
+  }
+
+  .wordmark--intro {
+    /* Width-bound on phones (~84vw); otherwise height-bound like the reference (cap ≈ 2.2vh) */
+    font-size: min(2.95vh, calc(84vw / 24.2));
+  }
+
+  @media (min-width: 640px) {
+    .wordmark--intro {
+      --wm-track: 1.12em;
+      --wm-space: 1.1em;
+      --wm-pad-x: 1.19em;
+      font-size: min(2.95vh, calc(80vw / 33.6));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .wordmark--nav {
+      font-size: 10px;
+    }
+  }
+
+  /* Intro overlay */
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    /* Failsafe: if script ever stalls, the overlay gets out of the way on its own */
+    animation: intro-failsafe 0.6s 9s forwards;
+  }
+
+  .intro__curtain {
+    position: absolute;
+    inset: 0;
+    background: var(--color-ink);
+    will-change: transform;
+  }
+
+  .intro__mark {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  /* Pre-animation state, applied from first paint */
+  .intro [data-wm-letter] {
+    opacity: 0;
+  }
+
+  .intro [data-wm-frame] {
+    stroke-dashoffset: 1000;
+  }
+
+  html.intro-active [data-site-header] {
+    opacity: 0;
+    visibility: hidden;
+    animation: intro-failsafe-show 0.6s 9s forwards;
+  }
+
+  @keyframes intro-failsafe {
+    to {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  @keyframes intro-failsafe-show {
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   /* Coming Soon dialog: enter/exit transitions (degrades to instant where unsupported) */

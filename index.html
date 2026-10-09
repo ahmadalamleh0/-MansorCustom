@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="intro-active">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -11,6 +11,9 @@
     <meta property="og:title" content="Mansour Customs" />
     <meta property="og:description" content="Vehicle wrapping and customization." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/michroma-latin-400.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Paint black before any CSS/JS arrives, so the intro starts from a clean black frame -->
+    <style>html { background: #0b0b0c; }</style>
   </head>
   <body>
     <div id="root"></div>

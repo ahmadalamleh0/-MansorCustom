@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { flushSync } from 'react-dom'
+import { Wordmark } from '@/components/brand/Wordmark'
 import { site } from '@/data/site'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { handleAnchorClick } from '@/lib/scroll'
@@ -54,7 +55,8 @@ export function Header() {
   const solid = scrolled || menuOpen
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    // [data-site-header] is hidden during the intro and faded in by its timeline
+    <header data-site-header className="fixed inset-x-0 top-0 z-50">
       {/* Bar background lives on its own layer: a backdrop-filter on <header>
           would become the containing block for the fixed mobile menu below */}
       <div
@@ -63,14 +65,12 @@ export function Header() {
           solid ? 'border-line bg-ink/85 backdrop-blur-md' : 'border-transparent'
         }`}
       />
-      <div className="relative container-site flex h-(--header-h) items-center justify-between">
-        {/* Temporary text wordmark until the client's logo is supplied */}
-        <a
-          href="#top"
-          onClick={onNavClick}
-          className="text-sm font-semibold tracking-[0.2em] text-paper uppercase"
-        >
-          {site.name}
+      {/* Phones: wordmark centred, menu right (as in the reference). md+: wordmark left, links right */}
+      <div className="relative container-site grid h-(--header-h) grid-cols-[1fr_auto_1fr] items-center md:flex md:justify-between">
+        <span aria-hidden="true" className="md:hidden" />
+        {/* Temporary framed wordmark until the client's logo is supplied */}
+        <a href="#top" onClick={onNavClick} className="flex">
+          <Wordmark framed className="wordmark--nav" />
         </a>
 
         <nav aria-label="Primary" className="hidden md:block">
@@ -95,9 +95,9 @@ export function Header() {
           onClick={() => setMenuOpen((o) => !o)}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          className="-mr-3 flex h-11 items-center gap-3 px-3 text-sm text-paper md:hidden"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          className="-mr-3 grid size-11 place-items-center justify-self-end text-paper md:hidden"
         >
-          <span>{menuOpen ? 'Close' : 'Menu'}</span>
           <span aria-hidden="true" className="relative block h-2.5 w-5">
             <span
               className={`absolute left-0 h-px w-full bg-current transition-transform duration-500 ease-out-expo ${

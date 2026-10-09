@@ -1,9 +1,6 @@
-import { useRef } from 'react'
-import { heroIntro } from '@/animations/heroIntro'
 import { Media } from '@/components/ui/Media'
 import { ArrowIcon } from '@/components/ui/icons'
 import { site } from '@/data/site'
-import { useGSAP } from '@/lib/gsap'
 import { handleAnchorClick } from '@/lib/scroll'
 
 /**
@@ -11,24 +8,21 @@ import { handleAnchorClick } from '@/lib/scroll'
  *   [data-hero-media]    media layer (image / video / scroll-scrubbed sequence)
  *   [data-hero-overlay]  legibility scrim, tuned once media exists
  *   [data-hero-content]  copy; heading lines are masked for line reveals
+ * The entrance is driven by the opening intro timeline (animations/intro.ts).
  */
 export function Hero() {
-  const scope = useRef<HTMLElement>(null)
   const { hero } = site
   const [firstWord, ...rest] = hero.heading.split(' ')
-
-  useGSAP(() => heroIntro(), { scope })
 
   return (
     <section
       id="top"
-      ref={scope}
       aria-labelledby="hero-title"
       className="relative isolate flex min-h-svh flex-col overflow-hidden"
     >
       <div data-hero-media className="absolute inset-0 -z-20">
         {/* PLACEHOLDER: hero imagery/video pending creative direction */}
-        <Media priority className="bg-ink" />
+        <Media priority />
       </div>
       <div data-hero-overlay aria-hidden="true" className="absolute inset-0 -z-10" />
 
