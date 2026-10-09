@@ -13,9 +13,6 @@ colors:
   wordmark-white: "#ffffff"
   signature: "rgb(246 247 248 / 0.9)"
   scrim: "rgb(0 0 0 / 0.72)"
-  ivory: "#ece7dd"
-  ivory-hover: "#f4f0e8"
-  charcoal: "#1c1c1e"
 typography:
   wordmark:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
@@ -49,10 +46,10 @@ typography:
     letterSpacing: "0.2em"
   button-label:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.875rem"
+    fontSize: "0.78125rem"
     fontWeight: 500
     lineHeight: 1
-    letterSpacing: "0.02em"
+    letterSpacing: "0.22em"
   display:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif"
     fontSize: "clamp(3rem, 1.6rem + 7.2vw, 9.5rem)"
@@ -90,21 +87,18 @@ typography:
     letterSpacing: "0.18em"
 rounded:
   none: "0px"
-  pill: "999px"
 spacing:
   gutter: "clamp(1.25rem, 0.6rem + 3vw, 3.5rem)"
   section-y: "clamp(5rem, 3rem + 8vw, 10rem)"
   header-h: "4.5rem"
 components:
-  button-primary:
-    backgroundColor: "{colors.ivory}"
-    textColor: "{colors.charcoal}"
+  cta-link:
+    backgroundColor: "transparent"
+    textColor: "{colors.paper}"
     typography: "{typography.button-label}"
-    rounded: "{rounded.pill}"
-    padding: "0 28px"
-    height: "46px"
-  button-primary-hover:
-    backgroundColor: "{colors.ivory-hover}"
+    rounded: "{rounded.none}"
+    padding: "14px 4px"
+    height: "48px"
   button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.paper}"
@@ -228,9 +222,8 @@ scrims), not from shadows. No drop shadows on cards or text.
 
 ## Shapes
 
-Square corners (`rounded.none`) across cards, buttons and media. The one
-exception is the hero's primary CTA, a pill (`rounded.pill`), because the
-DAS Tuning reference uses one. Hairline
+Square corners (`rounded.none`) across cards, buttons and media. The hero
+CTA has no container at all: it's an editorial text link. Hairline
 1px frames, as in the wordmark lockup, are the signature line language.
 Introduce radius only when a reference explicitly uses it.
 
@@ -241,10 +234,11 @@ Introduce radius only when a reference explicitly uses it.
   from the top-left.
 - **Logo lockup:** MANSOR over CUSTOMS (the client's logo structure; the
   spelling "Mansor" was confirmed 2026-10-09). MANSOR is primary; CUSTOMS is
-  half size and justified to MANSOR's exact width (`space-between`), forming
+  smaller (60%) and justified to MANSOR's exact width (`space-between`), forming
   one block inside the hairline frame. The lines come from `site.wordmark`.
+  CUSTOMS is 60% of MANSOR's letter height everywhere (intro and nav).
   Intro: MANSOR tracking 0.62em, leading 0.55em, about 11.7em wide. Nav:
-  12/13px, with CUSTOMS at 0.55× so it stays legible.
+  12/13px.
 - **Signature rules** (intro only): a 1px `signature` rule (55% white) 2.2em
   long, 1em above and below the framed lockup, drawn outward from the centre
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
@@ -253,9 +247,11 @@ Introduce radius only when a reference explicitly uses it.
   low in the frame so the vehicle leads. A centred `hero-headline` (Outfit
   500; 3 rows on phones, 2 on md+), the service categories in tracked
   uppercase with round 3px dot separators (two fixed rows on phones, one
-  line on md+, never breaking inside a category), and one compact ivory
-  pill CTA, "Book Appointment" (hover: slight lighten and 1px lift, on
-  hover-capable devices only).
+  line on md+, never breaking inside a category), and one editorial CTA,
+  "Book Appointment": transparent, tracked off-white capitals over a 1px
+  rule at 32%. On hover a full-strength rule draws in from the left and
+  retracts to the right (expo.out, hover-capable devices only). 48px tap
+  target.
   With no booking method confirmed, the CTA opens the Coming Soon dialog
   (`site.hero.cta.bookingUrl` switches it to a link). A functional scrim
   fades the hero into `ink`.

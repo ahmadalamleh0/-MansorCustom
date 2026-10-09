@@ -37,9 +37,6 @@
   --color-faint: #6b6a68;
   --color-signature: rgb(246 247 248 / 0.55); /* intro signature rules: subtle */
   --color-scrim: rgb(0 0 0 / 0.72); /* modal backdrop */
-  --color-ivory: #ece7dd; /* hero CTA */
-  --color-ivory-hover: #f4f0e8;
-  --color-charcoal: #1c1c1e;
 
   /* Type — system stacks until brand fonts are supplied (drop files in src/assets/fonts) */
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -132,7 +129,7 @@
    */
   .wordmark {
     --wm-track: 0.62em; /* MANSOR letter spacing */
-    --wm-secondary: 0.5; /* CUSTOMS size relative to MANSOR */
+    --wm-secondary: 0.6; /* CUSTOMS letter height relative to MANSOR (brief: 55–65%) */
     --wm-leading: 0.55em; /* space between the two lines */
     --wm-pad-x: 0.95em;
     --wm-pad-y: 0.72em;
@@ -187,8 +184,7 @@
   }
 
   .wordmark--nav {
-    --wm-secondary: 0.55; /* a touch larger so CUSTOMS stays legible at nav size */
-    font-size: 12px;
+    font-size: 12px; /* same 0.6 proportion as the intro */
   }
 
   /*
@@ -384,35 +380,64 @@
     margin-top: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
   }
 
-  /* Compact ivory pill: sized to its label, quiet but unmistakable */
+  /*
+   * Editorial CTA: transparent, small tracked off-white capitals over a
+   * hairline rule. On hover a brighter line draws across from the left and
+   * retracts to the right on leave. Padding keeps a 48px+ tap target while
+   * the visible mark stays small.
+   */
   .hero__cta {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    height: 2.875rem;
-    padding-inline: 1.75rem;
-    border-radius: 999px;
-    background: var(--color-ivory);
+    min-height: 3rem;
+    padding: 0.875rem 0.25rem;
+    background: transparent;
     font-family: var(--font-editorial);
-    font-size: 0.875rem;
+    font-size: 0.78125rem;
     font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--color-charcoal);
-    transition:
-      background-color 240ms ease,
-      transform 240ms var(--ease-out-expo);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(242 241 238 / 0.92);
+    transition: color 240ms ease;
+  }
+
+  /* Resting rule (always visible, so it reads as a link on touch) and the
+     drawn highlight that sits on top of it */
+  .hero__cta::before,
+  .hero__cta::after {
+    content: '';
+    position: absolute;
+    left: 0.25rem;
+    right: calc(0.25rem + 0.22em); /* stop under the last letter, not its tracking */
+    bottom: 0.625rem;
+    height: 1px;
+  }
+
+  .hero__cta::before {
+    background: rgb(242 241 238 / 0.32);
+  }
+
+  .hero__cta::after {
+    background: var(--color-paper);
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 520ms var(--ease-out-expo);
   }
 
   @media (hover: hover) and (pointer: fine) {
     .hero__cta:hover {
-      background: var(--color-ivory-hover);
-      transform: translateY(-1px);
+      color: var(--color-paper);
+    }
+
+    .hero__cta:hover::after {
+      transform: scaleX(1);
+      transform-origin: left center;
     }
   }
 
-  .hero__cta:active {
-    transform: scale(0.98);
-    transition-duration: 120ms;
+  .hero__cta:focus-visible::after {
+    transform: scaleX(1);
   }
 
   /*
