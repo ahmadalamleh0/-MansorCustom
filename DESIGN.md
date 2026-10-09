@@ -163,7 +163,7 @@ not shipped):
 | Opening intro | Urban Automotive intro video (`references/urban-intro.mp4`) | Implemented |
 | Editorial section (cards → statement → cards) | Motorcarlease mobile screenshots | Implemented; images pending |
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
-| Showcase banner after the hero (angled panels) | IR Customs mobile banner screenshot | Implemented; geometry fitted to measurements, photos pending |
+| Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
 | Location map | Framer OpenFreeMap 3D component (Liberty) | Implemented: natural-colour 3D map at the verified address |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
@@ -275,13 +275,11 @@ Introduce radius only when a reference explicitly uses it.
   With no booking method confirmed, the CTA opens the Coming Soon dialog
   (`site.hero.cta.bookingUrl` switches it to a link). A functional scrim
   fades the hero into `ink`.
-- **Showcase** (`components/sections/Showcase.tsx`): directly after the hero.
-  A monochrome product-logo marquee, then one 3D plane of tall panels
-  (`rotateY 32°`, `rotateZ 5°`, perspective 2.5× the panel width, origin
-  50% / 42%, panel ratio 0.82, gap 4.5%), fitted by a parameter search to the
-  IR Customs reference (edge heights, slopes and panel spans within ~1%).
-  Both sides fade through a mask, and the strip drifts slightly with scroll
-  (scrub). Panels take portrait photos from `data/banner.ts`.
+- **Brand banner** (`components/sections/Showcase.tsx`): directly after the
+  hero, a slow monochrome marquee of product-brand logos (XPEL, STEK,
+  SunTek, HEXIS, Gtechniq, Ceramic Pro) with faded edges; static and
+  wrapped with reduced motion. The angled 3D image panels that used to
+  follow it were removed at the creative director's request (2026-10-09).
 - **Location** (`components/sections/LocationMap.tsx` + `lib/locationMap.ts`):
   the "Visit Mansor Customs" heading (Outfit 500, tracked caps), then the
   address and "Get Directions" (Google Maps directions to the exact address)
