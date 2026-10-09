@@ -1,3 +1,8 @@
+import heroPoster from '@/assets/videos/hero-poster.jpg'
+import heroMobile from '@/assets/videos/hero-mobile.mp4'
+import heroVideo from '@/assets/videos/hero.mp4'
+import type { MediaAsset } from './media'
+
 /**
  * Central site content and business details.
  *
@@ -24,6 +29,16 @@ export const site = {
   //   phones: "Experience Your" / "Car's" / "Full Potential"
   //   md+:    "Experience Your" / "Car's Full Potential"
   hero: {
+    // Client brand film (2026-10-09). Desktop: original 1080p stream (audio
+    // stripped, faststart). Phones: 854px encode (~half the size). Poster: the
+    // sharp red SF90 profile at 7.4s. It shows under the intro curtain (so the
+    // switch to playback is never seen) and permanently with reduced motion.
+    media: {
+      type: 'video',
+      src: heroVideo,
+      mobileSrc: heroMobile,
+      poster: heroPoster,
+    } as MediaAsset,
     headline: [['Experience Your'], ['Car’s', 'Full Potential']],
     // Service categories supplied by the creative director (2026-10-09).
     // Two rows so phones wrap into two balanced lines; one line on md+.

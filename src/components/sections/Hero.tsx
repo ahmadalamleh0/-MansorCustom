@@ -25,8 +25,7 @@ export function Hero() {
   return (
     <section id="top" aria-labelledby="hero-title" className="hero">
       <div data-hero-media className="absolute inset-0 -z-20">
-        {/* PLACEHOLDER: hero vehicle video/photography pending from the client */}
-        <Media priority />
+        <Media media={hero.media} priority />
       </div>
       <div data-hero-overlay aria-hidden="true" className="hero__scrim" />
 
