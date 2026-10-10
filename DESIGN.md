@@ -354,12 +354,15 @@ Introduce radius only when a reference explicitly uses it.
   "View Reel →" link to the original sits bottom-right, on a soft bottom
   scrim. Reduced motion: no autoplay, and nothing downloads until Play. A
   Reel whose file Meta withholds (licensed music) or whose CDN URL has
-  expired keeps its thumbnail and link, with no toggle. Source: only
-  `/api/instagram-reels`, fed by the official Instagram API with Instagram
+  expired keeps its thumbnail and link, with no toggle. Source: the three
+  clips supplied by the creative director (`site.instagram.reels`, 540×960
+  muted H.264; without permalinks the link reads "View Reels" and opens the
+  Reels tab). Once connected, `/api/instagram-reels` takes over, fed by the
+  official Instagram API with Instagram
   Login (`instagram_business_basic`, read-only). A key-protected connect
   flow stores the token in Netlify Blobs, an hourly sync fetches new Reels
-  and renews the token, and the CDN caches for 5 minutes. No manual uploads.
-  Until connected, the slots are quiet `surface-raised` cards with a Reels
+  and renews the token, and the CDN caches for 5 minutes.
+  With neither source, the slots are quiet `surface-raised` cards with a Reels
   glyph linking to the Reels tab. Never stand-in footage or reused site
   photos. Setup and operations: `docs/INSTAGRAM.md`. Vite dev stubs the
   endpoint as `not_configured`.
