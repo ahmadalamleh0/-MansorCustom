@@ -315,8 +315,8 @@ Introduce radius only when a reference explicitly uses it.
   follow it were removed at the creative director's request (2026-10-09).
 - **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
   Alain Class reference), between Services and the Instagram showcase:
-  brand storytelling, not services. Centred: a tracked `muted` eyebrow "The
-  Mansor Philosophy", the `philosophy-headline` in Michroma caps with a
+  brand storytelling, not services. Centred: no eyebrow (removed by the
+  creative director, 2026-10-10), the `philosophy-headline` in Michroma caps with a
   paper-to-graphite gradient fill (stacked on two lines below 1280px, one
   line above), then one front-on car photo (2.2:1 band on md+, 4:3 on
   phones) whose top tucks under the headline and whose edges and lit floor
@@ -325,7 +325,7 @@ Introduce radius only when a reference explicitly uses it.
   short line and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
-  once only: the text rises in, the car emerges from the dark (fade, scale
+  once only: the headline rises in, the car emerges from the dark (fade, scale
   1.05 → 1), the arc draws outward from its top tick, then the copy and CTA
   follow. Reduced motion: final state.
 - **Editorial CTA** (`.cta-line`, shared by the hero and the brand section):

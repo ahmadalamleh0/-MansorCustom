@@ -87,7 +87,6 @@ export const site = {
   // src/assets/images/philosophy/ (desktop 2.2:1 band, mobile 4:3 centred
   // on the car, car roughly centred and front-on so the arc frames it).
   philosophy: {
-    eyebrow: 'The Mansor Philosophy',
     headline: ['Beyond', 'Factory.'],
     copy: 'From bold exterior transformations to bespoke interior details, every build is designed to feel unmistakably yours.',
     cta: {

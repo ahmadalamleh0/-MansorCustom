@@ -11,14 +11,14 @@ const BUILD_PENDING = {
 }
 
 /**
- * "Beyond Factory." brand storytelling (Alain Class reference): eyebrow and
- * a wide Michroma headline over one front-on vehicle, framed by a thin arc
+ * "Beyond Factory." brand storytelling (Alain Class reference): a wide
+ * Michroma headline over one front-on vehicle, framed by a thin arc
  * with three ticks, then a short line and one editorial CTA.
  * Animation hooks: [data-ph-text], [data-ph-visual], [data-ph-arc], [data-ph-tick].
  */
 export function Philosophy() {
   const scope = useRef<HTMLElement>(null)
-  const { eyebrow, headline, copy, cta, image } = site.philosophy
+  const { headline, copy, cta, image } = site.philosophy
   const [open, setOpen] = useState(false)
 
   useGSAP(() => philosophyReveal(), { scope })
@@ -26,9 +26,6 @@ export function Philosophy() {
   return (
     <section ref={scope} id="philosophy" aria-labelledby="philosophy-title" className="philosophy">
       <div className="container-site philosophy__inner">
-        <p data-ph-text className="philosophy__eyebrow">
-          {eyebrow}
-        </p>
         <h2 id="philosophy-title" data-ph-text className="philosophy__headline">
           {headline.map((word, i) => (
             <span key={word} className="philosophy__word">

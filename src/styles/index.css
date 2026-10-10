@@ -762,8 +762,8 @@
   }
 
   /*
-   * "Beyond Factory." brand section (Alain Class reference). Centred: eyebrow,
-   * a wide Michroma headline, one front-on car in a black stage framed by a
+   * "Beyond Factory." brand section (Alain Class reference). Centred: a wide
+   * Michroma headline, one front-on car in a black stage framed by a
    * thin arc with three ticks, then a short line and the editorial CTA.
    * The arc geometry is set per crop (--arc-w / --arc-top, as fractions of
    * the stage) so it clears the car's flanks on both crops.
@@ -780,20 +780,10 @@
     align-items: center;
   }
 
-  .philosophy__eyebrow {
-    font-family: var(--font-editorial);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
-
   /* Above the stage: the photo's dark top sits under the headline's last line */
   .philosophy__headline {
     position: relative;
     z-index: 1;
-    margin-top: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
     font-family: var(--font-brand);
     font-size: clamp(2.5rem, 0.9rem + 6.6vw, 5rem);
     font-weight: 400;
