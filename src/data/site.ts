@@ -69,7 +69,7 @@ export const site = {
 
   nav: [
     { label: 'Home', href: '#top' },
-    { label: 'Services', href: '#services' },
+    { label: 'Services', href: '#editorial' },
     { label: 'Contact', href: '#contact' },
   ] as NavItem[],
 
@@ -144,7 +144,7 @@ export const site = {
 
   footerNav: [
     { label: 'Home', href: '#top' },
-    { label: 'Services', href: '#services' },
+    { label: 'Services', href: '#editorial' },
   ] as NavItem[],
 
   // UNCONFIRMED — supply verified details from the client.

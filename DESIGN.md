@@ -315,7 +315,9 @@ Introduce radius only when a reference explicitly uses it.
   wrapped with reduced motion. The angled 3D image panels that used to
   follow it were removed at the creative director's request (2026-10-09).
 - **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
-  Alain Class reference), between Services and the Instagram showcase:
+  Alain Class reference), after the service tiles and before the Instagram showcase (the six-card
+  Services grid was removed at the creative director's request, 2026-10-10;
+  the nav "Services" link now targets the tiles):
   brand storytelling, not services. Centred: no eyebrow (removed by the
   creative director, 2026-10-10), the `philosophy-headline` in Michroma caps with a
   paper-to-graphite gradient fill (stacked on two lines below 1280px, one
