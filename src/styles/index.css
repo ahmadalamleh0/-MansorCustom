@@ -1092,7 +1092,25 @@
   .philosophy__led--l { left: 21.484%; top: 46.875%; width: 4.349%; height: 5.833%; }
   .philosophy__led--r { left: 74.167%; top: 46.806%; width: 5.13%; height: 6.042%; }
 
+  /* Each patch is split into its three LED bars (bands measured from the
+     photo) so the bars can wake top to bottom */
+  .philosophy__led--l.philosophy__led--row1 { clip-path: inset(0 0 54.5% 0); }
+  .philosophy__led--l.philosophy__led--row2 { clip-path: inset(45.5% 0 40.8% 0); }
+  .philosophy__led--l.philosophy__led--row3 { clip-path: inset(59.2% 0 0 0); }
+  .philosophy__led--r.philosophy__led--row1 { clip-path: inset(0 0 52% 0); }
+  .philosophy__led--r.philosophy__led--row2 { clip-path: inset(48% 0 39.4% 0); }
+  .philosophy__led--r.philosophy__led--row3 { clip-path: inset(60.6% 0 0 0); }
+
+  /* The car "wakes": a light veil over the photo lifts at power-on */
+  .philosophy__dim {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+  }
+
   .philosophy__bloom,
+  .philosophy__halo,
   .philosophy__spill {
     position: absolute;
     translate: -50% -50%;
@@ -1100,33 +1118,52 @@
     mix-blend-mode: screen;
   }
 
-  /* Tight bloom on the LED bars: cool white, falls off fast */
+  /* Core: hot white on the LED bars, falling off fast */
   .philosophy__bloom {
-    --bloom-w: 6.77%;
+    --bloom-w: 7.8%;
     width: var(--bloom-w);
     aspect-ratio: 1.5;
-    background: radial-gradient(closest-side, rgb(236 242 255 / 0.5), rgb(214 226 255 / 0.16) 45%, transparent);
-    opacity: 0.6;
+    background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(240 246 255 / 0.55) 30%, rgb(220 232 255 / 0.12) 65%, transparent);
+    opacity: 0.85;
   }
 
-  /* Faint spill onto the surrounding bodywork */
+  /* Halo: the wider glow a lit lamp throws into the air */
+  .philosophy__halo {
+    --halo-w: 14.7%;
+    width: var(--halo-w);
+    aspect-ratio: 1.6;
+    background: radial-gradient(closest-side, rgb(228 237 255 / 0.42), rgb(225 235 255 / 0.11) 50%, transparent);
+    opacity: 0.8;
+  }
+
+  /* Spill onto the surrounding bodywork, and faintly onto bumper and grille */
   .philosophy__spill {
     --spill-w: 18.23%;
     width: var(--spill-w);
     aspect-ratio: 2;
-    background: radial-gradient(closest-side, rgb(205 216 240 / 0.12), rgb(205 216 240 / 0.04) 55%, transparent);
+    background: radial-gradient(closest-side, rgb(212 224 247 / 0.3), rgb(210 222 245 / 0.08) 55%, transparent);
   }
 
-  .philosophy__bloom--l, .philosophy__spill--l { left: 23.646%; top: 49.861%; }
-  .philosophy__bloom--r, .philosophy__spill--r { left: 76.719%; top: 49.861%; }
+  .philosophy__spill--front {
+    --spill-w: 45%;
+    aspect-ratio: 3.4;
+    left: 50%;
+    top: 67.7%;
+    background: radial-gradient(closest-side, rgb(210 222 245 / 0.1), rgb(210 222 245 / 0.03) 60%, transparent);
+  }
+
+  .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 23.646%; top: 49.861%; }
+  .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 76.719%; top: 49.861%; }
 
   @media (min-width: 768px) {
     .philosophy__led--l { left: 28.613%; top: 37.473%; width: 3.262%; height: 7.22%; }
     .philosophy__led--r { left: 68.125%; top: 37.387%; width: 3.848%; height: 7.477%; }
-    .philosophy__bloom { --bloom-w: 5.08%; }
+    .philosophy__bloom { --bloom-w: 5.85%; }
+    .philosophy__halo { --halo-w: 11%; }
     .philosophy__spill { --spill-w: 13.67%; }
-    .philosophy__bloom--l, .philosophy__spill--l { left: 30.234%; top: 41.169%; }
-    .philosophy__bloom--r, .philosophy__spill--r { left: 70.039%; top: 41.169%; }
+    .philosophy__spill--front { --spill-w: 34%; top: 63.3%; }
+    .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 30.234%; top: 41.169%; }
+    .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 70.039%; top: 41.169%; }
   }
 
   .philosophy__arc {

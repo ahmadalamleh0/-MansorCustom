@@ -1,10 +1,13 @@
-import { useRef, useState } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import { philosophyReveal } from '@/animations/philosophyReveal'
 import headlightOffL from '@/assets/images/philosophy/headlight-off-l.webp'
 import headlightOffR from '@/assets/images/philosophy/headlight-off-r.webp'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { site } from '@/data/site'
 import { useGSAP } from '@/lib/gsap'
+
+/** The three LED bars per headlight, top to bottom (startup sequence order) */
+const LED_ROWS = [1, 2, 3] as const
 
 const BUILD_PENDING = {
   label: 'Start Your Build',
@@ -55,16 +58,25 @@ export function Philosophy() {
               />
             </picture>
 
-            {/* Headlight ignition. The photo is the "on" state (its LED running
-                lights are lit). Two aligned retouch patches of the same lenses,
-                with the LED emission removed, are the "off" state; fading them
-                out switches the real LEDs on. Bloom and spill sit on top
-                (screen blend). Positions per crop live in CSS. */}
+            {/* Headlight startup. The photo is the "on" state (its LED running
+                lights are lit). Aligned retouch patches of the same lenses, with
+                the LED emission removed, are the "off" state, split into the
+                three LED bars per lamp so they can wake in sequence. A dim layer
+                lets the car "wake"; bloom, halo and spill sit on top (screen
+                blend). Positions per crop live in CSS. */}
             <div aria-hidden="true" className="philosophy__lights">
-              <img data-ph-led-off src={headlightOffL} alt="" className="philosophy__led philosophy__led--l" />
-              <img data-ph-led-off src={headlightOffR} alt="" className="philosophy__led philosophy__led--r" />
+              <span data-ph-dim className="philosophy__dim" />
+              {LED_ROWS.map((row) => (
+                <Fragment key={row}>
+                  <img data-ph-led-off data-row={row} src={headlightOffL} alt="" className={`philosophy__led philosophy__led--l philosophy__led--row${row}`} />
+                  <img data-ph-led-off data-row={row} src={headlightOffR} alt="" className={`philosophy__led philosophy__led--r philosophy__led--row${row}`} />
+                </Fragment>
+              ))}
+              <span data-ph-spill className="philosophy__spill philosophy__spill--front" />
               <span data-ph-spill className="philosophy__spill philosophy__spill--l" />
               <span data-ph-spill className="philosophy__spill philosophy__spill--r" />
+              <span data-ph-halo className="philosophy__halo philosophy__halo--l" />
+              <span data-ph-halo className="philosophy__halo philosophy__halo--r" />
               <span data-ph-bloom className="philosophy__bloom philosophy__bloom--l" />
               <span data-ph-bloom className="philosophy__bloom philosophy__bloom--r" />
             </div>
