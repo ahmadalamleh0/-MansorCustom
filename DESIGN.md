@@ -108,10 +108,10 @@ typography:
     letterSpacing: "-0.025em"
   statement:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.875rem, 0.6rem + 5.6vw, 5.25rem)"
-    fontWeight: 600
-    lineHeight: 1.1
-    letterSpacing: "-0.015em"
+    fontSize: "clamp(2.25rem, 0.75rem + 6.4vw, 5.75rem)"
+    fontWeight: 500
+    lineHeight: 1.02
+    letterSpacing: "-0.025em"
   statement-body:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1rem, 0.94rem + 0.3vw, 1.25rem)"
@@ -234,7 +234,9 @@ Three voices, each with one job:
 - **Wordmark:** Michroma, wide-tracked uppercase, stacked MANSOR / CUSTOMS.
   Brand lockup only (intro and header). Temporary until the client's logo
   files arrive.
-- **Editorial display:** Outfit 600. Large centred statements.
+- **Editorial display:** Outfit 500. Large centred statements ("The Mansor
+  Standard.": one line on md+, a balanced two-line break on phones; block
+  spacing still follows the original statement scale).
 - **Interface and body:** system sans. Temporary; replace when the brand face
   is chosen.
 

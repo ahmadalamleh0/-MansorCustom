@@ -1509,10 +1509,12 @@
     max-width: 14em;
     margin-inline: auto;
     font-family: var(--font-editorial);
-    font-size: var(--statement-size);
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
+    /* Its own scale (the block's spacing still follows --statement-size):
+       one confident line on md+, a balanced two-line break on phones */
+    font-size: clamp(2.25rem, 0.75rem + 6.4vw, 5.75rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
     color: var(--color-paper);
   }
 
