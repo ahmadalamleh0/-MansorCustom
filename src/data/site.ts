@@ -1,10 +1,8 @@
-import bodyKits from '@/assets/images/services/body-kits.jpg'
-import bespokeInteriors from '@/assets/images/services/bespoke-interiors.jpg'
-import wraps from '@/assets/images/services/wraps.jpg'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
 import type { MediaAsset } from './media'
+import type { Reel } from './reels'
 
 /**
  * Central site content and business details.
@@ -74,12 +72,13 @@ export const site = {
     messageUrl: 'https://ig.me/m/mansor.customs',
     followers: null as string | null,
     verified: null as boolean | null,
-    // Three tall panels. No individual post URLs yet, so each links to the profile.
-    posts: [
-      { id: 'wrap', url: null as string | null, media: { type: 'image', src: wraps, alt: 'Colour-shift wrapped McLaren 720S in the Mansor Customs studio', width: 1000, height: 1333, position: '45% 60%' } as MediaAsset },
-      { id: 'interior', url: null as string | null, media: { type: 'image', src: bespokeInteriors, alt: 'G-Class interior trimmed in turquoise with diamond-quilted seats', width: 941, height: 1672, position: '55% 60%' } as MediaAsset },
-      { id: 'xm', url: null as string | null, media: { type: 'image', src: bodyKits, alt: 'Black BMW XM with a widebody kit outside the Mansor Customs shop', width: 1000, height: 1333, position: '68% 70%' } as MediaAsset },
-    ],
+    reelsUrl: 'https://www.instagram.com/mansor.customs/reels/',
+    // Live Reels come from /api/instagram-reels (Netlify function, official
+    // Instagram API; see netlify/lib/instagram.mts). Until that is authorised,
+    // Reel exports supplied by the client can be listed here (files in
+    // public/reels/, 9:16 MP4 + JPG poster, each with its Instagram permalink).
+    // Never stock footage or reused website photos.
+    reels: [] as Reel[],
   },
 
   // Footer service directory (creative director, 2026-10-09). Two balanced

@@ -1,20 +1,29 @@
 import { useRef } from 'react'
 import { instagramReveal } from '@/animations/instagramReveal'
 import { Wordmark } from '@/components/brand/Wordmark'
-import { Media } from '@/components/ui/Media'
+import { ReelsIcon } from '@/components/ui/icons'
+import { ReelCard } from '@/components/ui/ReelCard'
 import { site } from '@/data/site'
+import { useInstagramReels } from '@/hooks/useInstagramReels'
 import { useGSAP } from '@/lib/gsap'
+
+const SLOTS = [0, 1, 2]
 
 /**
  * Instagram showcase (Venuum reference): a left-aligned profile (gradient
- * ring avatar, handle, two buttons), then three tall photo panels that keep
- * their three-column composition on phones. A curated gallery linking to
- * Instagram, not a live embed, for a consistent layout and performance.
- * Animation hooks: [data-ig-profile], [data-ig-panel].
+ * ring avatar, handle, two buttons), then three tall 9:16 Reels that keep
+ * their three-column composition on phones.
+ *
+ * Reels come from the official Instagram API via /api/instagram-reels (or
+ * client-supplied files). Until either exists, the slots honestly point to
+ * the Reels tab instead of showing placeholder content.
+ * Animation hooks: [data-ig-profile], [data-ig-panel] (the stable slots, so
+ * the reveal survives the loading → Reels swap).
  */
 export function InstagramShowcase() {
   const scope = useRef<HTMLElement>(null)
   const ig = site.instagram
+  const feed = useInstagramReels()
 
   useGSAP(() => instagramReveal(), { scope })
 
@@ -48,17 +57,23 @@ export function InstagramShowcase() {
         </div>
       </div>
 
-      <ul className="instagram__gallery" aria-label="Recent work on Instagram">
-        {ig.posts.map((post) => (
-          <li key={post.id}>
-            <a data-ig-panel href={post.url ?? ig.profileUrl} target="_blank" rel="noopener noreferrer" className="instagram__panel">
-              <span className="instagram__panel-media">
-                <Media media={post.media} />
-              </span>
-              <span className="sr-only">View on Instagram (opens in a new tab)</span>
-            </a>
-          </li>
-        ))}
+      <ul className="instagram__gallery" aria-label="Latest Reels" aria-busy={feed.status === 'loading'} data-feed={feed.status}>
+        {SLOTS.map((slot) => {
+          const reel = feed.reels[slot]
+          return (
+            <li key={slot} data-ig-panel className="instagram__panel">
+              {reel ? (
+                <ReelCard key={reel.id} reel={reel} index={slot} total={feed.reels.length} />
+              ) : feed.status === 'unavailable' ? (
+                <a href={ig.reelsUrl} target="_blank" rel="noopener noreferrer" className="instagram__pending">
+                  <ReelsIcon className="instagram__pending-icon" />
+                  {slot === 1 && <span className="instagram__pending-label">Watch Reels</span>}
+                  <span className="sr-only">{slot === 1 ? ' on Instagram (opens in a new tab)' : 'Watch Reels on Instagram (opens in a new tab)'}</span>
+                </a>
+              ) : null}
+            </li>
+          )
+        })}
       </ul>
     </section>
   )

@@ -119,6 +119,9 @@ typography:
     letterSpacing: "0.18em"
 rounded:
   none: "0px"
+  card: "0.625rem"
+  card-md: "0.75rem"
+  pill: "999px"
 spacing:
   gutter: "clamp(1.25rem, 0.6rem + 3vw, 3.5rem)"
   section-y: "clamp(5rem, 3rem + 8vw, 10rem)"
@@ -181,7 +184,7 @@ not shipped):
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
 | Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
-| Instagram showcase | Venuum mobile screenshot (`references/venuum-instagram.jpeg`) | Implemented; follower count and badge pending confirmation |
+| Instagram showcase | Venuum mobile screenshot (`references/venuum-instagram.jpeg`) | Implemented; Reels via official API (awaiting Mansor's authorisation); follower count and badge pending confirmation |
 | Location map | Creative director's aerial reference image | Implemented: aerial preview → live Google Maps satellite |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
 
@@ -258,7 +261,7 @@ scrims), not from shadows. No drop shadows on cards or text.
 ## Shapes
 
 Square corners (`rounded.none`) across cards, buttons and media, except where
-a reference explicitly rounds: the Instagram showcase's pills and photo panels. The hero
+a reference explicitly rounds: the Instagram showcase's pills and Reel cards. The hero
 CTA has no container at all: it's an editorial text link. Thin 1px rules
 (the intro's signature rules, footer dividers) are the signature line
 language. The logo has no frame.
@@ -304,11 +307,28 @@ Introduce radius only when a reference explicitly uses it.
   ring, a black gap and the wordmark disc), "@mansor.customs", a meta line,
   and pill buttons "View Instagram" (profile) and "Send Message"
   (`ig.me/m/mansor.customs`, verified to redirect to Instagram's DM
-  handler). Then three tall rounded panels (0.44 w/h on phones, never
-  stacked; 3:5 on md+, inside a 64rem column) of client photos linking to
-  the profile. Follower count and verified badge stay hidden until
+  handler). Then three rounded 9:16 Reel cards (never stacked; inside a
+  64rem column on md+). Follower count and verified badge stay hidden until
   confirmed (`site.instagram`). Motion: avatar settle plus a text stagger;
-  panels unmask upward (clip-path); hover zoom on hover-capable devices only.
+  the three slots unmask upward (clip-path); hover zoom on hover-capable
+  devices only.
+- **Instagram Reels** (`components/ui/ReelCard.tsx`,
+  `hooks/useInstagramReels.ts`, `netlify/functions/instagram-reels.mts`):
+  our own inline player, not Instagram's embed. Each card shows the
+  thumbnail first; the video is only attached once the card is within 300px
+  of the viewport. It is muted, inline and looping, plays while at least 50%
+  visible and pauses off screen. A round 32px/38px play/pause toggle (44px
+  hit area; the user's choice wins over autoplay) sits bottom-left and a
+  "View Reel →" link to the original sits bottom-right, on a soft bottom
+  scrim. Reduced motion: no autoplay, and nothing downloads until Play. A
+  failed video (an expired CDN URL, say) keeps the thumbnail and the link.
+  Source order: `/api/instagram-reels` (official Instagram API with
+  Instagram Login, permission `instagram_business_basic`, token server-side
+  in Netlify env `INSTAGRAM_ACCESS_TOKEN`, refreshed weekly into Netlify
+  Blobs, CDN-cached for 15 minutes), then client-supplied files in
+  `site.instagram.reels`. With neither, the slots are quiet `surface-raised`
+  cards with a Reels glyph linking to the Reels tab. Never stand-in footage
+  or reused site photos. Vite dev stubs the endpoint as `not_configured`.
 - **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
   heading, then the address and "Get Directions" (Google Maps directions to
   the exact address) on the black page, then a compact full-bleed band
