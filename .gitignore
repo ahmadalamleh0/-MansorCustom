@@ -19,3 +19,6 @@ references/
 
 # Original client photographs (web-optimised copies live in src/assets/images)
 client-photos/
+
+# Original Reel exports from the client (web copies live in src/assets/reels)
+Mansor Reels/

@@ -67,9 +67,10 @@ typography:
     letterSpacing: "0.02em"
   philosophy-copy:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1rem, 0.92rem + 0.35vw, 1.1875rem)"
+    fontSize: "clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem)"
     fontWeight: 300
-    lineHeight: 1.6
+    lineHeight: 1.45
+    letterSpacing: "0.005em"
   instagram-handle:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.5rem, 1.2rem + 1.2vw, 2rem)"
@@ -321,8 +322,9 @@ Introduce radius only when a reference explicitly uses it.
   line above), then one front-on car photo (2.2:1 band on md+, 4:3 on
   phones) whose top tucks under the headline and whose edges and lit floor
   mask into the page black. A thin 42% white arc with three ticks (top,
-  left, right) frames the car and fades out below its midline. Then one
-  short line and the shared editorial CTA "Start Your Build" (Coming Soon
+  left, right) frames the car and fades out below its midline. Then the line
+  "You bought the car. / Now make it yours." set as two lines (the first
+  at 62% paper, the second full paper) and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale

@@ -1,3 +1,9 @@
+import reelBmwPoster from '@/assets/reels/bmw-owners.jpg'
+import reelBmw from '@/assets/reels/bmw-owners.mp4'
+import reelLamboPoster from '@/assets/reels/camo-lamborghini.jpg'
+import reelLambo from '@/assets/reels/camo-lamborghini.mp4'
+import reelMercedesPoster from '@/assets/reels/red-mercedes.jpg'
+import reelMercedes from '@/assets/reels/red-mercedes.mp4'
 import philosophy1600 from '@/assets/images/philosophy/beyond-factory-1600.jpg'
 import philosophy1600Webp from '@/assets/images/philosophy/beyond-factory-1600.webp'
 import philosophy2400 from '@/assets/images/philosophy/beyond-factory-2400.jpg'
@@ -8,6 +14,7 @@ import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
 import type { MediaAsset } from './media'
+import type { Reel } from './reels'
 
 /**
  * Central site content and business details.
@@ -78,8 +85,16 @@ export const site = {
     followers: null as string | null,
     verified: null as boolean | null,
     reelsUrl: 'https://www.instagram.com/mansor.customs/reels/',
-    // The Reels themselves come live from /api/instagram-reels (official
-    // Instagram API, hourly sync; see docs/INSTAGRAM.md). No manual uploads.
+    // Three Mansor Reels supplied by the creative director (2026-10-10;
+    // originals in "Mansor Reels/", web copies: 540×960, muted, H.264). No
+    // individual permalinks yet, so each card links to the Reels tab; add a
+    // reel's URL as `permalink` to link it directly. Once the Instagram API
+    // is connected (docs/INSTAGRAM.md), its live feed replaces these.
+    reels: [
+      { id: 'bmw-owners', video: reelBmw, poster: reelBmwPoster, permalink: null, caption: 'Bergen County BMW owners: paint protection at Mansor Customs' },
+      { id: 'red-mercedes', video: reelMercedes, poster: reelMercedesPoster, permalink: null, caption: 'Red Mercedes delivery in the Mansor Customs studio' },
+      { id: 'camo-lamborghini', video: reelLambo, poster: reelLamboPoster, permalink: null, caption: 'Camo-wrapped Lamborghini outside Mansor Customs' },
+    ] as Reel[],
   },
 
   // Brand storytelling section (creative director, 2026-10-10; Alain Class
@@ -88,7 +103,8 @@ export const site = {
   // on the car, car roughly centred and front-on so the arc frames it).
   philosophy: {
     headline: ['Beyond', 'Factory.'],
-    copy: 'From bold exterior transformations to bespoke interior details, every build is designed to feel unmistakably yours.',
+    // Two deliberate lines (creative director, 2026-10-10)
+    copy: ['You bought the car.', 'Now make it yours.'],
     cta: {
       label: 'Start Your Build',
       // UNCONFIRMED: no enquiry/booking flow yet, so it opens the Coming Soon dialog

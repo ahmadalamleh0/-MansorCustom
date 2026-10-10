@@ -3,7 +3,13 @@ import type { Reel } from '@/data/reels'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { ArrowIcon, PauseIcon, PlayIcon } from './icons'
 
-type ReelCardProps = { reel: Reel; index: number; total: number }
+type ReelCardProps = {
+  reel: Reel
+  index: number
+  total: number
+  /** Where the link goes when the Reel has no permalink of its own */
+  reelsUrl: string
+}
 
 /**
  * A 9:16 Reel in our own inline player.
@@ -16,7 +22,7 @@ type ReelCardProps = { reel: Reel; index: number; total: number }
  *    expired Instagram CDN URL): the thumbnail stays, without a play
  *    button, and "View Reel" opens the original on Instagram.
  */
-export function ReelCard({ reel, index, total }: ReelCardProps) {
+export function ReelCard({ reel, index, total, reelsUrl }: ReelCardProps) {
   const root = useRef<HTMLDivElement>(null)
   const video = useRef<HTMLVideoElement>(null)
   const reduceMotion = usePrefersReducedMotion()
@@ -111,11 +117,19 @@ export function ReelCard({ reel, index, total }: ReelCardProps) {
             {wantPlay ? <PauseIcon className="size-3.5" /> : <PlayIcon className="size-3.5" />}
           </button>
         )}
-        <a href={reel.permalink} target="_blank" rel="noopener noreferrer" className="reel__link">
-          View Reel
-          <ArrowIcon className="reel__link-icon" />
-          <span className="sr-only">{` ${index + 1} on Instagram (opens in a new tab)`}</span>
-        </a>
+        {reel.permalink ? (
+          <a href={reel.permalink} target="_blank" rel="noopener noreferrer" className="reel__link">
+            View Reel
+            <ArrowIcon className="reel__link-icon" />
+            <span className="sr-only">{` ${index + 1} on Instagram (opens in a new tab)`}</span>
+          </a>
+        ) : (
+          <a href={reelsUrl} target="_blank" rel="noopener noreferrer" className="reel__link">
+            View Reels
+            <ArrowIcon className="reel__link-icon" />
+            <span className="sr-only"> on Instagram (opens in a new tab)</span>
+          </a>
+        )}
       </div>
     </div>
   )

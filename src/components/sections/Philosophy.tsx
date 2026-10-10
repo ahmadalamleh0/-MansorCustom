@@ -63,7 +63,12 @@ export function Philosophy() {
         </div>
 
         <p data-ph-text className="philosophy__copy">
-          {copy}
+          {copy.map((line, i) => (
+            <span key={line} className="philosophy__line">
+              {line}
+              {i < copy.length - 1 && ' '}
+            </span>
+          ))}
         </p>
 
         <div data-ph-text className="philosophy__actions">

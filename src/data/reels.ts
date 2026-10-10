@@ -9,8 +9,9 @@ export type Reel = {
   video: string | null
   /** Thumbnail shown before the video loads, and if it fails */
   poster: string | null
-  /** The original Reel on Instagram */
-  permalink: string
+  /** The original Reel on Instagram; null for a supplied clip without one
+   *  (the card then links to the account's Reels tab) */
+  permalink: string | null
   caption?: string | null
 }
 

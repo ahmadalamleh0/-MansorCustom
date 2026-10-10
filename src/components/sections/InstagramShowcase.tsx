@@ -14,9 +14,11 @@ const SLOTS = [0, 1, 2]
  * ring avatar, handle, two buttons), then three tall 9:16 Reels that keep
  * their three-column composition on phones.
  *
- * Reels come live from the official Instagram API via /api/instagram-reels
- * (synced hourly; docs/INSTAGRAM.md). Until the account is connected, the
- * slots honestly point to the Reels tab instead of showing placeholders.
+ * Reels: the three clips supplied by the creative director
+ * (site.instagram.reels). Once the Instagram API is connected
+ * (docs/INSTAGRAM.md), the live feed from /api/instagram-reels takes over.
+ * With neither, the slots point to the Reels tab rather than showing
+ * placeholders.
  * Animation hooks: [data-ig-profile], [data-ig-panel] (the stable slots, so
  * the reveal survives the loading → Reels swap).
  */
@@ -63,7 +65,7 @@ export function InstagramShowcase() {
           return (
             <li key={slot} data-ig-panel className="instagram__panel">
               {reel ? (
-                <ReelCard key={reel.id} reel={reel} index={slot} total={feed.reels.length} />
+                <ReelCard key={reel.id} reel={reel} index={slot} total={feed.reels.length} reelsUrl={ig.reelsUrl} />
               ) : feed.status === 'unavailable' ? (
                 <a href={ig.reelsUrl} target="_blank" rel="noopener noreferrer" className="instagram__pending">
                   <ReelsIcon className="instagram__pending-icon" />
