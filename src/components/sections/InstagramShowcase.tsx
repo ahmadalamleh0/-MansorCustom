@@ -14,9 +14,9 @@ const SLOTS = [0, 1, 2]
  * ring avatar, handle, two buttons), then three tall 9:16 Reels that keep
  * their three-column composition on phones.
  *
- * Reels come from the official Instagram API via /api/instagram-reels (or
- * client-supplied files). Until either exists, the slots honestly point to
- * the Reels tab instead of showing placeholder content.
+ * Reels come live from the official Instagram API via /api/instagram-reels
+ * (synced hourly; docs/INSTAGRAM.md). Until the account is connected, the
+ * slots honestly point to the Reels tab instead of showing placeholders.
  * Animation hooks: [data-ig-profile], [data-ig-panel] (the stable slots, so
  * the reveal survives the loading → Reels swap).
  */

@@ -8,7 +8,6 @@ import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
 import type { MediaAsset } from './media'
-import type { Reel } from './reels'
 
 /**
  * Central site content and business details.
@@ -79,12 +78,8 @@ export const site = {
     followers: null as string | null,
     verified: null as boolean | null,
     reelsUrl: 'https://www.instagram.com/mansor.customs/reels/',
-    // Live Reels come from /api/instagram-reels (Netlify function, official
-    // Instagram API; see netlify/lib/instagram.mts). Until that is authorised,
-    // Reel exports supplied by the client can be listed here (files in
-    // public/reels/, 9:16 MP4 + JPG poster, each with its Instagram permalink).
-    // Never stock footage or reused website photos.
-    reels: [] as Reel[],
+    // The Reels themselves come live from /api/instagram-reels (official
+    // Instagram API, hourly sync; see docs/INSTAGRAM.md). No manual uploads.
   },
 
   // Brand storytelling section (creative director, 2026-10-10; Alain Class

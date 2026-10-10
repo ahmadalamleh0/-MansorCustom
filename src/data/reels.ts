@@ -4,21 +4,30 @@
  */
 export type Reel = {
   id: string
-  /** 9:16 MP4: Instagram CDN media_url (signed, expires) or a client-supplied file */
-  video: string
+  /** 9:16 MP4 (Instagram's signed CDN URL, which expires); null when Meta
+   *  withholds the file (licensed music / copyright): thumbnail + link only */
+  video: string | null
   /** Thumbnail shown before the video loads, and if it fails */
-  poster: string
+  poster: string | null
   /** The original Reel on Instagram */
   permalink: string
   caption?: string | null
 }
 
-const isUrl = (v: unknown): v is string => typeof v === 'string' && /^(https:\/\/|\/)/.test(v)
+// https URLs, or same-origin paths (not protocol-relative //host)
+const isUrl = (v: unknown): v is string => typeof v === 'string' && /^(https:\/\/|\/(?!\/))/.test(v)
+const urlOrNull = (v: unknown) => (isUrl(v) ? v : null)
 
 /** Accepts only well-formed reels from the API (defensive: never trust the wire). */
 export function parseReels(value: unknown): Reel[] {
   if (!Array.isArray(value)) return []
   return value
-    .filter((r): r is Reel => !!r && typeof r.id === 'string' && isUrl(r.video) && isUrl(r.poster) && isUrl(r.permalink))
-    .map(({ id, video, poster, permalink, caption }) => ({ id, video, poster, permalink, caption: typeof caption === 'string' ? caption : null }))
+    .filter((r) => !!r && typeof r.id === 'string' && isUrl(r.permalink) && (isUrl(r.video) || isUrl(r.poster)))
+    .map((r) => ({
+      id: r.id,
+      video: urlOrNull(r.video),
+      poster: urlOrNull(r.poster),
+      permalink: r.permalink,
+      caption: typeof r.caption === 'string' ? r.caption : null,
+    }))
 }

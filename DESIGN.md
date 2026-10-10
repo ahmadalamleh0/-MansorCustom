@@ -351,14 +351,16 @@ Introduce radius only when a reference explicitly uses it.
   hit area; the user's choice wins over autoplay) sits bottom-left and a
   "View Reel →" link to the original sits bottom-right, on a soft bottom
   scrim. Reduced motion: no autoplay, and nothing downloads until Play. A
-  failed video (an expired CDN URL, say) keeps the thumbnail and the link.
-  Source order: `/api/instagram-reels` (official Instagram API with
-  Instagram Login, permission `instagram_business_basic`, token server-side
-  in Netlify env `INSTAGRAM_ACCESS_TOKEN`, refreshed weekly into Netlify
-  Blobs, CDN-cached for 15 minutes), then client-supplied files in
-  `site.instagram.reels`. With neither, the slots are quiet `surface-raised`
-  cards with a Reels glyph linking to the Reels tab. Never stand-in footage
-  or reused site photos. Vite dev stubs the endpoint as `not_configured`.
+  Reel whose file Meta withholds (licensed music) or whose CDN URL has
+  expired keeps its thumbnail and link, with no toggle. Source: only
+  `/api/instagram-reels`, fed by the official Instagram API with Instagram
+  Login (`instagram_business_basic`, read-only). A key-protected connect
+  flow stores the token in Netlify Blobs, an hourly sync fetches new Reels
+  and renews the token, and the CDN caches for 5 minutes. No manual uploads.
+  Until connected, the slots are quiet `surface-raised` cards with a Reels
+  glyph linking to the Reels tab. Never stand-in footage or reused site
+  photos. Setup and operations: `docs/INSTAGRAM.md`. Vite dev stubs the
+  endpoint as `not_configured`.
 - **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
   heading, then the address and "Get Directions" (Google Maps directions to
   the exact address) on the black page, then a compact full-bleed band

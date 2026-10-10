@@ -1,4 +1,4 @@
-import { currentTokens, fetchLatestReels, GraphApiError, store, type CachedReels } from '../lib/instagram.mts'
+import { FRESH_FOR, STALE_LIMIT, store, syncReels, type CachedReels } from '../lib/instagram.mts'
 
 /**
  * GET /api/instagram-reels → the latest three @mansor.customs Reels.
@@ -6,47 +6,35 @@ import { currentTokens, fetchLatestReels, GraphApiError, store, type CachedReels
  *   { status: 'ok' | 'stale', reels, fetchedAt }
  *   { status: 'not_configured' | 'unauthorized' | 'unavailable', reels: [] }
  *
- * Always HTTP 200 (except wrong method): "no Reels yet" is an expected state
- * the page handles quietly, not a browser console error. The reason is in
- * `status` and the function log.
+ * Serves the last hourly sync from Netlify Blobs (no Graph API call per
+ * visitor). If that is missing or older than ~70 min (first deploy, missed
+ * schedule) it syncs on demand. A failed sync falls back to the last good
+ * result for up to 6 h, because Instagram's signed CDN video URLs expire;
+ * the browser keeps the thumbnail if one has expired anyway.
  *
- * Netlify's CDN caches successful responses for 15 minutes (new Reels appear
- * after that), serving stale while revalidating. Instagram CDN video URLs
- * are signed and expire, so a last good result is only reused for 6 hours
- * when the API fails; the browser falls back to the thumbnail if a URL has
- * expired anyway.
+ * Always HTTP 200: "no Reels yet" is an expected state the page handles
+ * quietly, not a console error. The reason is in `status` and the logs.
+ * Netlify's CDN caches it for 5 minutes, so a new Reel shows within about
+ * an hour of posting, with no redeploy.
  */
-
-const LAST_GOOD_MAX_AGE = 6 * 60 * 60 * 1000
-
 export default async (req: Request) => {
   if (req.method !== 'GET') return json({ status: 'method_not_allowed', reels: [] }, 405, 'no-store')
 
-  const tokens = await currentTokens()
-  if (tokens.length === 0) return json({ status: 'not_configured', reels: [] }, 200, 'public, s-maxage=300')
-
-  let lastError: unknown
-  for (const token of tokens) {
-    try {
-      const reels = await fetchLatestReels(token)
-      const payload: CachedReels = { reels, fetchedAt: new Date().toISOString() }
-      await store().setJSON('reels', payload).catch(() => {})
-      return json({ status: 'ok', ...payload }, 200, 'public, durable, s-maxage=900, stale-while-revalidate=3600')
-    } catch (err) {
-      lastError = err
-      // Expired/revoked token: try the next candidate (env seed after the stored one)
-      if (!(err instanceof GraphApiError && err.isAuth)) break
-    }
-  }
-
-  const authFailed = lastError instanceof GraphApiError && lastError.isAuth
-  console.error('[instagram-reels]', authFailed ? 'auth failed' : 'fetch failed', (lastError as Error)?.message)
-
   const cached = (await store().get('reels', { type: 'json' }).catch(() => null)) as CachedReels | null
-  if (cached && Date.now() - Date.parse(cached.fetchedAt) < LAST_GOOD_MAX_AGE && cached.reels.length) {
-    return json({ status: 'stale', ...cached }, 200, 'public, s-maxage=120')
-  }
-  return json({ status: authFailed ? 'unauthorized' : 'unavailable', reels: [] }, 200, 'public, s-maxage=60')
+  const age = cached ? Date.now() - Date.parse(cached.fetchedAt) : Infinity
+  if (cached && age < FRESH_FOR) return ok('ok', cached)
+
+  const result = await syncReels({ refresh: true })
+  if (result.ok && result.cached) return ok('ok', result.cached)
+
+  if (cached && age < STALE_LIMIT && cached.reels.length) return ok('stale', cached, 'public, s-maxage=120')
+
+  const status = result.status.errorKind === 'not_configured' ? 'not_configured' : result.status.errorKind === 'auth' ? 'unauthorized' : 'unavailable'
+  return json({ status, reels: [] }, 200, 'public, s-maxage=60')
+}
+
+function ok(status: 'ok' | 'stale', c: CachedReels, cdn = 'public, durable, s-maxage=300, stale-while-revalidate=600') {
+  return json({ status, reels: c.reels, fetchedAt: c.fetchedAt }, 200, cdn)
 }
 
 function json(body: unknown, status: number, cdnCache: string) {

@@ -12,8 +12,9 @@ type ReelCardProps = { reel: Reel; index: number; total: number }
  *  - Muted, inline, looping; plays while ≥ 50% visible, pauses off screen.
  *  - Play/pause button (the user's choice wins over autoplay). Reduced
  *    motion: never autoplays, and nothing loads until the user presses play.
- *  - If the video fails (e.g. an expired Instagram CDN URL) the thumbnail
- *    stays and "View Reel" still opens the original on Instagram.
+ *  - No file (Meta withholds Reels with licensed music) or a failed one (an
+ *    expired Instagram CDN URL): the thumbnail stays, without a play
+ *    button, and "View Reel" opens the original on Instagram.
  */
 export function ReelCard({ reel, index, total }: ReelCardProps) {
   const root = useRef<HTMLDivElement>(null)
@@ -29,6 +30,7 @@ export function ReelCard({ reel, index, total }: ReelCardProps) {
   const [ready, setReady] = useState(false)
   const [failed, setFailed] = useState(false)
   const [posterFailed, setPosterFailed] = useState(false)
+  const playable = !!reel.video && !failed
 
   useEffect(() => {
     const el = root.current
@@ -54,7 +56,7 @@ export function ReelCard({ reel, index, total }: ReelCardProps) {
   // Attach the video once it is near and wanted; keep it once it has loaded
   const attached = (near && wantPlay) || ready
 
-  const shouldPlay = attached && visible && wantPlay && !failed
+  const shouldPlay = attached && visible && wantPlay && playable
 
   useEffect(() => {
     const v = video.current
@@ -68,20 +70,20 @@ export function ReelCard({ reel, index, total }: ReelCardProps) {
   }, [shouldPlay, attached])
 
   const label = `Reel ${index + 1} of ${total}`
-  const desc = reel.caption ? `: ${truncate(reel.caption, 90)}` : ''
+  const desc = (reel.caption ? `: ${truncate(reel.caption, 90)}` : '') + (reel.video ? '' : ' (plays on Instagram)')
 
   return (
-    <div ref={root} role="group" aria-label={label + desc} className="reel" data-playing={playing || undefined} data-ready={(ready && !failed) || undefined}>
-      {!posterFailed && (
+    <div ref={root} role="group" aria-label={label + desc} className="reel" data-playing={playing || undefined} data-ready={(ready && playable) || undefined}>
+      {reel.poster && !posterFailed && (
         <img src={reel.poster} alt="" loading="lazy" decoding="async" className="reel__poster" onError={() => setPosterFailed(true)} />
       )}
 
-      {attached && !failed && (
+      {attached && playable && (
         <video
           ref={video}
           className="reel__video"
-          src={reel.video}
-          poster={posterFailed ? undefined : reel.poster}
+          src={reel.video ?? undefined}
+          poster={posterFailed ? undefined : (reel.poster ?? undefined)}
           muted
           loop
           playsInline
@@ -99,7 +101,7 @@ export function ReelCard({ reel, index, total }: ReelCardProps) {
       )}
 
       <div className="reel__controls">
-        {!failed && (
+        {playable && (
           <button
             type="button"
             className="reel__toggle"
