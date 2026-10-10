@@ -7,6 +7,7 @@ import { Hero } from '@/components/sections/Hero'
 import { InstagramShowcase } from '@/components/sections/InstagramShowcase'
 import { LocationMap } from '@/components/sections/LocationMap'
 import { Philosophy } from '@/components/sections/Philosophy'
+import { Projects } from '@/components/sections/Projects'
 import { Showcase } from '@/components/sections/Showcase'
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           <Hero />
           <Showcase />
           <Editorial />
+          <Projects />
           <Philosophy />
           <InstagramShowcase />
           <LocationMap />

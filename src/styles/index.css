@@ -762,6 +762,231 @@
   }
 
   /*
+   * Selected Projects (VOIR PPF reference). A horizontal strip of tall 3:5
+   * build cards, square-cornered and full-bleed, separated by narrow black
+   * gutters with a 1px rule (Mansor's signature line). Each card: a small
+   * monochrome maker mark top-left and the model in Michroma, set
+   * vertically up the right edge. Native scroll-snap; nothing hijacked.
+   * Card sizes scale type via container units, so any card width works.
+   */
+  .projects {
+    padding-top: clamp(4.5rem, 3rem + 5vw, 8rem);
+  }
+
+  .projects__track {
+    --card-w: 72vw;
+    --strip-gap: 0.75rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--card-w);
+    gap: var(--strip-gap);
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .projects__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projects__track:focus-visible {
+    outline: 1px solid var(--color-paper);
+    outline-offset: -1px;
+  }
+
+  @media (min-width: 768px) {
+    .projects__track {
+      --card-w: 40vw;
+      --strip-gap: 0.875rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects__track {
+      --card-w: clamp(17rem, 24vw, 24rem);
+    }
+  }
+
+  .project {
+    position: relative;
+    scroll-snap-align: start;
+  }
+
+  /* Hairline in the gutter between cards */
+  .project + .project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--strip-gap) / -2);
+    width: 1px;
+    translate: -50% 0;
+    background: rgb(242 241 238 / 0.22);
+  }
+
+  .project__card {
+    position: relative;
+    aspect-ratio: 3 / 5;
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-surface-raised);
+    container-type: inline-size;
+  }
+
+  .project__media,
+  .project__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .project__media img {
+    object-fit: cover;
+    transition: transform 1100ms var(--ease-out-expo);
+  }
+
+  .project__media--placeholder {
+    background: linear-gradient(165deg, #1d1d20, #111113 70%);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project__card:hover .project__media img {
+      transform: scale(1.04);
+    }
+  }
+
+  /* Legibility only where type sits: top band for the mark, right band for the model */
+  .project__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgb(0 0 0 / 0.42), transparent 24%),
+      linear-gradient(to left, rgb(0 0 0 / 0.38), transparent 34%);
+    pointer-events: none;
+  }
+
+  /* Wide, short box: round crests size by height, wide marks by width,
+     so every maker reads at a similar visual weight */
+  .project__logo {
+    position: absolute;
+    top: 7cqw;
+    left: 7cqw;
+    width: 20cqw;
+    height: 8cqw;
+    background: rgb(242 241 238 / 0.9);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: left center;
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+  }
+
+  .project__wordmark {
+    position: absolute;
+    top: 9.2cqw; /* optically centred on the logo band (7cqw + 8cqw / 2) */
+    left: 7cqw;
+    font-family: var(--font-editorial);
+    font-size: max(0.625rem, 3.6cqw);
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgb(242 241 238 / 0.9);
+  }
+
+  /* Model, bottom-to-top along the right edge (VOIR's vertical type) */
+  .project__model {
+    position: absolute;
+    right: 4.5cqw;
+    bottom: 6cqw;
+    writing-mode: vertical-rl;
+    rotate: 180deg;
+    font-family: var(--font-brand);
+    font-size: 11.5cqw;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgb(242 241 238 / 0.92);
+  }
+
+  .projects__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Phones swipe (the next card peeks in); controls are for pointer devices */
+  @media (max-width: 767px) {
+    .projects__controls {
+      display: none;
+    }
+  }
+
+  .projects__progress {
+    position: relative;
+    flex: 0 1 10rem;
+    height: 1px;
+    background: var(--color-line-strong);
+    overflow: hidden;
+  }
+
+  .projects__progress-bar {
+    position: absolute;
+    inset: 0;
+    background: var(--color-paper);
+    transform-origin: left center;
+    transition: transform 320ms var(--ease-out-expo);
+  }
+
+  .projects__buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .projects__btn {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 999px;
+    color: var(--color-paper);
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      opacity 200ms ease,
+      transform 160ms var(--ease-out-expo);
+  }
+
+  .projects__btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .projects__btn:not(:disabled):hover {
+      border-color: rgb(242 241 238 / 0.5);
+      background: rgb(255 255 255 / 0.06);
+    }
+  }
+
+  .projects__btn:not(:disabled):active {
+    transform: scale(0.96);
+  }
+
+  .projects__btn:focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 2px;
+  }
+
+  /*
    * "Beyond Factory." brand section (Alain Class reference). Centred: a wide
    * Michroma headline, one front-on car in a black stage framed by a
    * thin arc with three ticks, then a short line and the editorial CTA.

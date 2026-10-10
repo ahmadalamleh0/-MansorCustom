@@ -196,6 +196,7 @@ not shipped):
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
 | Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
+| Selected Projects gallery | VOIR PPF archived screenshot (`references/voir-collection.png`) | Implemented (Michroma vertical models, 1px gutters, maker marks) |
 | "Beyond Factory." brand section | Alain Class Aftersales mobile screenshot (`references/alainclass-aftersales.jpeg`) | Implemented (monochrome; no red glow, arc + ticks kept) |
 | Instagram showcase | Venuum mobile screenshot (`references/venuum-instagram.jpeg`) | Implemented; Reels via official API (awaiting Mansor's authorisation); follower count and badge pending confirmation |
 | Location map | Creative director's aerial reference image | Implemented: aerial preview → live Google Maps satellite |
@@ -314,6 +315,21 @@ Introduce radius only when a reference explicitly uses it.
   SunTek, HEXIS, Gtechniq, Ceramic Pro) with faded edges; static and
   wrapped with reduced motion. The angled 3D image panels that used to
   follow it were removed at the creative director's request (2026-10-09).
+- **Selected Projects** (`components/sections/Projects.tsx`,
+  `data/projects.ts`, VOIR PPF reference), between the service tiles and
+  Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of
+  square-cornered 3:5 build cards, full-bleed photos, with narrow black
+  gutters (12–14px) and a 1px 22% rule. Each card has a small monochrome
+  maker mark top-left (a CSS mask of a Simple Icons SVG with its viewBox
+  tightened to the artwork, in a 20×8cqw box; makes without an open-licence
+  mark get a tracked Outfit wordmark until official logos arrive). The
+  model is set in Michroma at 11.5cqw, reading bottom-to-top up the right
+  edge, fully visible, over a soft right-edge scrim. Cards are 72vw on
+  phones (the next card peeks in), 40vw on tablet and 17–24rem on desktop.
+  Native scroll-snap with no scroll hijack. Discreet 44px previous/next
+  circles and a 1px progress line on md+. Hover: photo scale 1.04 (fine
+  pointers). Entrance: a once-only stagger (y 36, expo.out). Add a vehicle
+  by appending to `projects`; `image: null` renders a placeholder card.
 - **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
   Alain Class reference), after the service tiles and before the Instagram showcase (the six-card
   Services grid was removed at the creative director's request, 2026-10-10;
