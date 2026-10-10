@@ -325,7 +325,7 @@ Introduce radius only when a reference explicitly uses it.
   phones) whose top tucks under the headline and whose edges and lit floor
   mask into the page black. A thin 42% white arc with three ticks (top,
   left, right) frames the car and fades out below its midline. Then the line
-  "You bought the car. / Now make it yours." set as two lines (the first
+  "Some cars are built to stand out. / We take them a step further." set as two lines (the first
   at 62% paper, the second full paper) and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,

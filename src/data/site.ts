@@ -104,7 +104,7 @@ export const site = {
   philosophy: {
     headline: ['Beyond', 'Factory.'],
     // Two deliberate lines (creative director, 2026-10-10)
-    copy: ['You bought the car.', 'Now make it yours.'],
+    copy: ['Some cars are built to stand out.', 'We take them a step further.'],
     cta: {
       label: 'Start Your Build',
       // UNCONFIRMED: no enquiry/booking flow yet, so it opens the Coming Soon dialog
