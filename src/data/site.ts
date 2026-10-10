@@ -1,3 +1,9 @@
+import philosophy1600 from '@/assets/images/philosophy/beyond-factory-1600.jpg'
+import philosophy1600Webp from '@/assets/images/philosophy/beyond-factory-1600.webp'
+import philosophy2400 from '@/assets/images/philosophy/beyond-factory-2400.jpg'
+import philosophy2400Webp from '@/assets/images/philosophy/beyond-factory-2400.webp'
+import philosophyMobile from '@/assets/images/philosophy/beyond-factory-mobile.jpg'
+import philosophyMobileWebp from '@/assets/images/philosophy/beyond-factory-mobile.webp'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
@@ -79,6 +85,26 @@ export const site = {
     // public/reels/, 9:16 MP4 + JPG poster, each with its Instagram permalink).
     // Never stock footage or reused website photos.
     reels: [] as Reel[],
+  },
+
+  // Brand storytelling section (creative director, 2026-10-10; Alain Class
+  // reference). To swap the vehicle, replace the three crops in
+  // src/assets/images/philosophy/ (desktop 2.2:1 band, mobile 4:3 centred
+  // on the car, car roughly centred and front-on so the arc frames it).
+  philosophy: {
+    eyebrow: 'The Mansor Philosophy',
+    headline: ['Beyond', 'Factory.'],
+    copy: 'From bold exterior transformations to bespoke interior details, every build is designed to feel unmistakably yours.',
+    cta: {
+      label: 'Start Your Build',
+      // UNCONFIRMED: no enquiry/booking flow yet, so it opens the Coming Soon dialog
+      url: null as string | null,
+    },
+    image: {
+      alt: 'Black Ferrari, front-on, under a single studio light',
+      desktop: { jpg: `${philosophy1600} 1600w, ${philosophy2400} 2400w`, webp: `${philosophy1600Webp} 1600w, ${philosophy2400Webp} 2400w`, src: philosophy1600, width: 1600, height: 727 },
+      mobile: { jpg: philosophyMobile, webp: philosophyMobileWebp, width: 1200, height: 900 },
+    },
   },
 
   // Footer service directory (creative director, 2026-10-09). Two balanced

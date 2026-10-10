@@ -62,11 +62,11 @@ export function Hero() {
 
         <div data-hero-fade className="hero__actions">
           {hero.cta.bookingUrl ? (
-            <a href={hero.cta.bookingUrl} className="hero__cta">
+            <a href={hero.cta.bookingUrl} className="cta-line">
               {hero.cta.label}
             </a>
           ) : (
-            <button type="button" aria-haspopup="dialog" onClick={() => setBookingOpen(true)} className="hero__cta">
+            <button type="button" aria-haspopup="dialog" onClick={() => setBookingOpen(true)} className="cta-line">
               {hero.cta.label}
             </button>
           )}

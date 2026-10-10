@@ -356,7 +356,7 @@
    * retracts to the right on leave. Padding keeps a 48px+ tap target while
    * the visible mark stays small.
    */
-  .hero__cta {
+  .cta-line {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -374,8 +374,8 @@
 
   /* Resting rule (always visible, so it reads as a link on touch) and the
      drawn highlight that sits on top of it */
-  .hero__cta::before,
-  .hero__cta::after {
+  .cta-line::before,
+  .cta-line::after {
     content: '';
     position: absolute;
     left: 0.25rem;
@@ -384,11 +384,11 @@
     height: 1px;
   }
 
-  .hero__cta::before {
+  .cta-line::before {
     background: rgb(242 241 238 / 0.32);
   }
 
-  .hero__cta::after {
+  .cta-line::after {
     background: var(--color-paper);
     transform: scaleX(0);
     transform-origin: right center;
@@ -396,17 +396,17 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .hero__cta:hover {
+    .cta-line:hover {
       color: var(--color-paper);
     }
 
-    .hero__cta:hover::after {
+    .cta-line:hover::after {
       transform: scaleX(1);
       transform-origin: left center;
     }
   }
 
-  .hero__cta:focus-visible::after {
+  .cta-line:focus-visible::after {
     transform: scaleX(1);
   }
 
@@ -762,10 +762,146 @@
   }
 
   /*
+   * "Beyond Factory." brand section (Alain Class reference). Centred: eyebrow,
+   * a wide Michroma headline, one front-on car in a black stage framed by a
+   * thin arc with three ticks, then a short line and the editorial CTA.
+   * The arc geometry is set per crop (--arc-w / --arc-top, as fractions of
+   * the stage) so it clears the car's flanks on both crops.
+   */
+  .philosophy {
+    padding-block: clamp(4rem, 2.5rem + 4vw, 6.5rem);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .philosophy__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .philosophy__eyebrow {
+    font-family: var(--font-editorial);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Above the stage: the photo's dark top sits under the headline's last line */
+  .philosophy__headline {
+    position: relative;
+    z-index: 1;
+    margin-top: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+    font-family: var(--font-brand);
+    font-size: clamp(2.5rem, 0.9rem + 6.6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    /* White into graphite, as in the reference's lit-from-the-left type */
+    background: linear-gradient(100deg, var(--color-paper) 35%, rgb(242 241 238 / 0.5) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Stacked on phones/tablets, one line from 1280px */
+  .philosophy__word {
+    display: block;
+  }
+
+  @media (min-width: 1280px) {
+    .philosophy__word {
+      display: inline;
+    }
+  }
+
+  .philosophy__stage {
+    --arc-w: 0.82;
+    --arc-top: 0.1;
+    position: relative;
+    width: calc(100% + 2 * var(--gutter));
+    max-width: 72rem;
+    aspect-ratio: 4 / 3;
+    margin-top: clamp(-1.5rem, -0.5rem - 1vw, -0.5rem);
+  }
+
+  @media (min-width: 768px) {
+    .philosophy__stage {
+      --arc-w: 0.62;
+      --arc-top: 0.06;
+      width: 100%;
+      aspect-ratio: 2.2 / 1;
+      margin-top: clamp(-2.5rem, 1rem - 3vw, -1rem);
+    }
+  }
+
+  .philosophy__visual,
+  .philosophy__visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .philosophy__visual img {
+    object-fit: cover;
+    /* Melt the photo's edges and lit floor into the page black */
+    mask-image:
+      radial-gradient(ellipse 62% 78% at 50% 46%, #000 52%, transparent 100%),
+      linear-gradient(to bottom, #000 68%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .philosophy__arc {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--arc-top) * 100%);
+    width: calc(var(--arc-w) * 100%);
+    aspect-ratio: 1;
+    overflow: visible;
+    translate: -50% 0;
+    fill: none;
+    stroke: rgb(242 241 238 / 0.42);
+    stroke-width: 1;
+    pointer-events: none;
+    /* Arc fades out as it comes down past the car */
+    mask-image: linear-gradient(to bottom, #000 40%, transparent 70%);
+  }
+
+  .philosophy__arc path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .philosophy__arc [data-ph-arc] {
+    stroke-dasharray: 1000;
+  }
+
+  .philosophy__arc [data-ph-tick] {
+    stroke: rgb(242 241 238 / 0.6);
+  }
+
+  .philosophy__copy {
+    max-width: 34ch;
+    margin-top: clamp(0.25rem, 0rem + 1vw, 1rem);
+    font-family: var(--font-editorial);
+    font-size: clamp(1rem, 0.92rem + 0.35vw, 1.1875rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgb(242 241 238 / 0.72);
+  }
+
+  .philosophy__actions {
+    margin-top: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+  }
+
+  /*
    * Instagram showcase (Venuum reference). Left-aligned profile: gradient
    * ring avatar (~37% of a phone's width), handle, meta, two pill buttons.
-   * Then three tall photo panels: 0.44 w/h on phones (three columns, never
-   * stacked), roomier 3:5 on md+. Rounded corners per the reference.
+   * Then three 9:16 Reel cards (three columns, never stacked). Rounded
+   * corners per the reference.
    */
   .instagram {
     --avatar: clamp(9.125rem, 7rem + 6vw, 11.5rem); /* ~146px phones, ~184px desktop */

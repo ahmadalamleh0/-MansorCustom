@@ -6,6 +6,7 @@ import { Editorial } from '@/components/sections/Editorial'
 import { Hero } from '@/components/sections/Hero'
 import { InstagramShowcase } from '@/components/sections/InstagramShowcase'
 import { LocationMap } from '@/components/sections/LocationMap'
+import { Philosophy } from '@/components/sections/Philosophy'
 import { Services } from '@/components/sections/Services'
 import { Showcase } from '@/components/sections/Showcase'
 
@@ -29,6 +30,7 @@ export default function App() {
           <Showcase />
           <Editorial />
           <Services />
+          <Philosophy />
           <InstagramShowcase />
           <LocationMap />
         </main>

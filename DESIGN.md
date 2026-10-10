@@ -59,6 +59,17 @@ typography:
     fontSize: "clamp(1.125rem, 0.95rem + 0.8vw, 1.625rem)"
     fontWeight: 500
     letterSpacing: "0.24em"
+  philosophy-headline:
+    fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 0.9rem + 6.6vw, 5rem)"
+    fontWeight: 400
+    lineHeight: 1.08
+    letterSpacing: "0.02em"
+  philosophy-copy:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1rem, 0.92rem + 0.35vw, 1.1875rem)"
+    fontWeight: 300
+    lineHeight: 1.6
   instagram-handle:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.5rem, 1.2rem + 1.2vw, 2rem)"
@@ -184,6 +195,7 @@ not shipped):
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
 | Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
+| "Beyond Factory." brand section | Alain Class Aftersales mobile screenshot (`references/alainclass-aftersales.jpeg`) | Implemented (monochrome; no red glow, arc + ticks kept) |
 | Instagram showcase | Venuum mobile screenshot (`references/venuum-instagram.jpeg`) | Implemented; Reels via official API (awaiting Mansor's authorisation); follower count and badge pending confirmation |
 | Location map | Creative director's aerial reference image | Implemented: aerial preview → live Google Maps satellite |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
@@ -301,6 +313,24 @@ Introduce radius only when a reference explicitly uses it.
   SunTek, HEXIS, Gtechniq, Ceramic Pro) with faded edges; static and
   wrapped with reduced motion. The angled 3D image panels that used to
   follow it were removed at the creative director's request (2026-10-09).
+- **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
+  Alain Class reference), between Services and the Instagram showcase:
+  brand storytelling, not services. Centred: a tracked `muted` eyebrow "The
+  Mansor Philosophy", the `philosophy-headline` in Michroma caps with a
+  paper-to-graphite gradient fill (stacked on two lines below 1280px, one
+  line above), then one front-on car photo (2.2:1 band on md+, 4:3 on
+  phones) whose top tucks under the headline and whose edges and lit floor
+  mask into the page black. A thin 42% white arc with three ticks (top,
+  left, right) frames the car and fades out below its midline. Then one
+  short line and the shared editorial CTA "Start Your Build" (Coming Soon
+  dialog until a build-enquiry flow exists). The vehicle swaps via the
+  three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
+  once only: the text rises in, the car emerges from the dark (fade, scale
+  1.05 → 1), the arc draws outward from its top tick, then the copy and CTA
+  follow. Reduced motion: final state.
+- **Editorial CTA** (`.cta-line`, shared by the hero and the brand section):
+  transparent tracked capitals over a 1px rule at 32%, with a full-strength
+  rule drawing in on hover. 48px tap target.
 - **Instagram showcase** (`components/sections/InstagramShowcase.tsx`,
   Venuum reference), before "Visit Us": a left-aligned profile (avatar
   ~146px on phones and 184px on desktop, with a thin conic `ig-*` gradient
