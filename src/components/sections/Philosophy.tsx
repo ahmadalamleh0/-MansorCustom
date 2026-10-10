@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react'
 import { philosophyReveal } from '@/animations/philosophyReveal'
+import headlightOffL from '@/assets/images/philosophy/headlight-off-l.webp'
+import headlightOffR from '@/assets/images/philosophy/headlight-off-r.webp'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { site } from '@/data/site'
 import { useGSAP } from '@/lib/gsap'
@@ -36,21 +38,37 @@ export function Philosophy() {
         </h2>
 
         <div className="philosophy__stage">
-          <picture data-ph-visual className="philosophy__visual">
-            <source media="(max-width: 767px)" type="image/webp" srcSet={image.mobile.webp} />
-            <source media="(max-width: 767px)" srcSet={image.mobile.jpg} />
-            <source type="image/webp" srcSet={image.desktop.webp} sizes="(min-width: 1200px) 72rem, 100vw" />
-            <img
-              src={image.desktop.src}
-              srcSet={image.desktop.jpg}
-              sizes="(min-width: 1200px) 72rem, 100vw"
-              alt={image.alt}
-              width={image.desktop.width}
-              height={image.desktop.height}
-              loading="lazy"
-              decoding="async"
-            />
-          </picture>
+          <div data-ph-visual className="philosophy__visual">
+            <picture className="philosophy__photo">
+              <source media="(max-width: 767px)" type="image/webp" srcSet={image.mobile.webp} />
+              <source media="(max-width: 767px)" srcSet={image.mobile.jpg} />
+              <source type="image/webp" srcSet={image.desktop.webp} sizes="(min-width: 1200px) 72rem, 100vw" />
+              <img
+                src={image.desktop.src}
+                srcSet={image.desktop.jpg}
+                sizes="(min-width: 1200px) 72rem, 100vw"
+                alt={image.alt}
+                width={image.desktop.width}
+                height={image.desktop.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+
+            {/* Headlight ignition. The photo is the "on" state (its LED running
+                lights are lit). Two aligned retouch patches of the same lenses,
+                with the LED emission removed, are the "off" state; fading them
+                out switches the real LEDs on. Bloom and spill sit on top
+                (screen blend). Positions per crop live in CSS. */}
+            <div aria-hidden="true" className="philosophy__lights">
+              <img data-ph-led-off src={headlightOffL} alt="" className="philosophy__led philosophy__led--l" />
+              <img data-ph-led-off src={headlightOffR} alt="" className="philosophy__led philosophy__led--r" />
+              <span data-ph-spill className="philosophy__spill philosophy__spill--l" />
+              <span data-ph-spill className="philosophy__spill philosophy__spill--r" />
+              <span data-ph-bloom className="philosophy__bloom philosophy__bloom--l" />
+              <span data-ph-bloom className="philosophy__bloom philosophy__bloom--r" />
+            </div>
+          </div>
 
           {/* Arc drawn outward from the top, like the intro's signature rules */}
           <svg viewBox="0 0 100 100" aria-hidden="true" className="philosophy__arc">
