@@ -13,6 +13,12 @@ colors:
   wordmark-white: "#ffffff"
   signature: "rgb(246 247 248 / 0.9)"
   scrim: "rgb(0 0 0 / 0.72)"
+  ig-amber: "#f9a03f"
+  ig-orange: "#f05a28"
+  ig-pink: "#e1306c"
+  ig-magenta: "#c13584"
+  ig-purple: "#833ab4"
+  ig-blue: "#5b51d8"
 typography:
   wordmark:
     fontFamily: "Michroma, ui-sans-serif, system-ui, sans-serif"
@@ -48,6 +54,16 @@ typography:
     fontSize: "0.875rem"
     fontWeight: 400
     lineHeight: 1.5
+  location-title:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.125rem, 0.95rem + 0.8vw, 1.625rem)"
+    fontWeight: 500
+    letterSpacing: "0.24em"
+  instagram-handle:
+    fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.5rem, 1.2rem + 1.2vw, 2rem)"
+    fontWeight: 600
+    letterSpacing: "-0.01em"
   hero-headline:
     fontFamily: "Outfit, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(2.05rem, 0.9rem + 5.1vw, 5.125rem)"
@@ -165,6 +181,7 @@ not shipped):
 | Hero composition | DAS Tuning mobile video (`references/das-tuning.mp4`) | Implemented; hero media pending |
 | Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
+| Instagram showcase | Venuum mobile screenshot (`references/venuum-instagram.jpeg`) | Implemented; follower count and badge pending confirmation |
 | Location map | Creative director's aerial reference image | Implemented: aerial preview → live Google Maps satellite |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
 
@@ -240,7 +257,8 @@ scrims), not from shadows. No drop shadows on cards or text.
 
 ## Shapes
 
-Square corners (`rounded.none`) across cards, buttons and media. The hero
+Square corners (`rounded.none`) across cards, buttons and media, except where
+a reference explicitly rounds: the Instagram showcase's pills and photo panels. The hero
 CTA has no container at all: it's an editorial text link. Thin 1px rules
 (the intro's signature rules, footer dividers) are the signature line
 language. The logo has no frame.
@@ -280,6 +298,17 @@ Introduce radius only when a reference explicitly uses it.
   SunTek, HEXIS, Gtechniq, Ceramic Pro) with faded edges; static and
   wrapped with reduced motion. The angled 3D image panels that used to
   follow it were removed at the creative director's request (2026-10-09).
+- **Instagram showcase** (`components/sections/InstagramShowcase.tsx`,
+  Venuum reference), before "Visit Us": a left-aligned profile (avatar
+  ~146px on phones and 184px on desktop, with a thin conic `ig-*` gradient
+  ring, a black gap and the wordmark disc), "@mansor.customs", a meta line,
+  and pill buttons "View Instagram" (profile) and "Send Message"
+  (`ig.me/m/mansor.customs`, verified to redirect to Instagram's DM
+  handler). Then three tall rounded panels (0.44 w/h on phones, never
+  stacked; 3:5 on md+, inside a 64rem column) of client photos linking to
+  the profile. Follower count and verified badge stay hidden until
+  confirmed (`site.instagram`). Motion: avatar settle plus a text stagger;
+  panels unmask upward (clip-path); hover zoom on hover-capable devices only.
 - **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
   heading, then the address and "Get Directions" (Google Maps directions to
   the exact address) on the black page, then a compact full-bleed band

@@ -1,3 +1,6 @@
+import bodyKits from '@/assets/images/services/body-kits.jpg'
+import bespokeInteriors from '@/assets/images/services/bespoke-interiors.jpg'
+import wraps from '@/assets/images/services/wraps.jpg'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
@@ -59,6 +62,25 @@ export const site = {
     { label: 'Services', href: '#services' },
     { label: 'Contact', href: '#contact' },
   ] as NavItem[],
+
+  // Instagram showcase (Venuum reference). Links verified 2026-10-10:
+  // the profile returns 200; ig.me/m/<handle> 302-redirects to Instagram's
+  // message handler (opens the DM in the app on phones).
+  // followers / verified: UNCONFIRMED. Instagram doesn't expose them
+  // publicly, so they stay null (hidden) until confirmed.
+  instagram: {
+    handle: 'mansor.customs',
+    profileUrl: 'https://www.instagram.com/mansor.customs/',
+    messageUrl: 'https://ig.me/m/mansor.customs',
+    followers: null as string | null,
+    verified: null as boolean | null,
+    // Three tall panels. No individual post URLs yet, so each links to the profile.
+    posts: [
+      { id: 'wrap', url: null as string | null, media: { type: 'image', src: wraps, alt: 'Colour-shift wrapped McLaren 720S in the Mansor Customs studio', width: 1000, height: 1333, position: '45% 60%' } as MediaAsset },
+      { id: 'interior', url: null as string | null, media: { type: 'image', src: bespokeInteriors, alt: 'G-Class interior trimmed in turquoise with diamond-quilted seats', width: 941, height: 1672, position: '55% 60%' } as MediaAsset },
+      { id: 'xm', url: null as string | null, media: { type: 'image', src: bodyKits, alt: 'Black BMW XM with a widebody kit outside the Mansor Customs shop', width: 1000, height: 1333, position: '68% 70%' } as MediaAsset },
+    ],
+  },
 
   // Footer service directory (creative director, 2026-10-09). Two balanced
   // columns; each opens the Coming Soon dialog until service pages exist.
