@@ -1,4 +1,5 @@
 import bmwLogo from '@/assets/logos/makes/bmw.svg'
+import ferrariLogo from '@/assets/logos/makes/ferrari.svg'
 import mclarenLogo from '@/assets/logos/makes/mclaren.svg'
 import porscheLogo from '@/assets/logos/makes/porsche.svg'
 import m3PosterJpg from '@/assets/images/projects/bmw-m3-poster.jpg'
@@ -8,6 +9,9 @@ import xm560Jpg from '@/assets/images/projects/bmw-xm-560.jpg'
 import xm560Webp from '@/assets/images/projects/bmw-xm-560.webp'
 import xm960Jpg from '@/assets/images/projects/bmw-xm-960.jpg'
 import xm960Webp from '@/assets/images/projects/bmw-xm-960.webp'
+import sf90PosterJpg from '@/assets/images/projects/ferrari-sf90-poster.jpg'
+import sf90PosterWebp from '@/assets/images/projects/ferrari-sf90-poster.webp'
+import sf90Video from '@/assets/images/projects/ferrari-sf90.mp4'
 import gi1560Jpg from '@/assets/images/projects/g-class-interior-1-560.jpg'
 import gi1560Webp from '@/assets/images/projects/g-class-interior-1-560.webp'
 import gi1960Jpg from '@/assets/images/projects/g-class-interior-1-960.jpg'
@@ -120,6 +124,18 @@ export const projects: Project[] = [
         jpg: set([[mc4560Jpg, 560], [mc4960Jpg, 960]]),
       },
     ],
+  },
+  {
+    id: 'ferrari-sf90',
+    make: 'Ferrari',
+    model: 'SF90', // SF90 Stradale: identified from the rear (lights, high exhausts, diffuser)
+    logo: ferrariLogo,
+    video: sf90Video,
+    image: {
+      alt: 'Black Ferrari SF90 Stradale firing flames from its exhausts in a dark workshop',
+      webp: set([[sf90PosterWebp, 576]]),
+      jpg: set([[sf90PosterJpg, 576]]),
+    },
   },
   {
     id: 'bmw-m3',
