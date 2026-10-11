@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from 'react'
 import { philosophyReveal } from '@/animations/philosophyReveal'
-import headlightOffL from '@/assets/images/philosophy/headlight-off-l.webp'
-import headlightOffR from '@/assets/images/philosophy/headlight-off-r.webp'
+import headlightOffL from '@/assets/images/philosophy/supercar-led-off-l.webp'
+import headlightOffR from '@/assets/images/philosophy/supercar-led-off-r.webp'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { site } from '@/data/site'
 import { useGSAP } from '@/lib/gsap'
@@ -17,7 +17,7 @@ const BUILD_PENDING = {
 
 /**
  * "Beyond Factory." brand storytelling (Alain Class reference): a wide
- * Michroma headline over one front-on vehicle, framed by a thin arc
+ * Michroma headline over one dramatic vehicle, framed by a thin arc
  * with three ticks, then a short line and one editorial CTA.
  * Animation hooks: [data-ph-text], [data-ph-visual], [data-ph-arc], [data-ph-tick].
  */
@@ -59,9 +59,10 @@ export function Philosophy() {
             </picture>
 
             {/* Headlight startup. The photo is the "on" state (its LED running
-                lights are lit). Aligned retouch patches of the same lenses, with
-                the LED emission removed, are the "off" state, split into the
-                three LED bars per lamp so they can wake in sequence. A dim layer
+                lights are lit). Aligned retouch patches of the same lamps, with
+                the white emission removed, are the "off" state, split into three
+                bands per lamp (projector, LED upright, lower LED bar) so they
+                wake in sequence. A dim layer
                 lets the car "wake"; bloom, halo and spill sit on top (screen
                 blend). Positions per crop live in CSS. */}
             <div aria-hidden="true" className="philosophy__lights">

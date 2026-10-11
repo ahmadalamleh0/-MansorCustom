@@ -1337,22 +1337,25 @@
     }
   }
 
+  /* Frames sized for the supercar: the whole car, wing to splitter.
+     Arc geometry = the photo's own (retouched-out) halo ring. */
   .philosophy__stage {
-    --arc-w: 0.82;
-    --arc-top: 0.1;
+    --arc-w: 0.936;
+    --arc-top: 0.053;
     position: relative;
     width: calc(100% + 2 * var(--gutter));
     max-width: 72rem;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
     margin-top: clamp(-1.5rem, -0.5rem - 1vw, -0.5rem);
   }
 
   @media (min-width: 768px) {
     .philosophy__stage {
-      --arc-w: 0.62;
-      --arc-top: 0.06;
+      --arc-w: 0.468;
+      --arc-top: 0.053;
+      --mask-x: 48%; /* the widened desktop frame: fade the added sides sooner */
       width: 100%;
-      aspect-ratio: 2.2 / 1;
+      aspect-ratio: 1.6 / 1;
       margin-top: clamp(-2.5rem, 1rem - 3vw, -1rem);
     }
   }
@@ -1370,15 +1373,15 @@
     object-fit: cover;
     /* Melt the photo's edges and lit floor into the page black */
     mask-image:
-      radial-gradient(ellipse 62% 78% at 50% 46%, #000 52%, transparent 100%),
-      linear-gradient(to bottom, #000 68%, transparent 100%);
+      radial-gradient(ellipse var(--mask-x, 62%) 78% at 50% 46%, #000 52%, transparent 100%),
+      linear-gradient(to bottom, #000 84%, transparent 100%);
     mask-composite: intersect;
   }
 
   /*
    * Headlight ignition layers, positioned in % of the stage, which has the
-   * same aspect as each crop (4:3 phones, 2.2:1 md+). Measured from the
-   * original photo: LED clusters at (1548, 1436) and (3586, 1436) of 5120×2880.
+   * same aspect as each crop (4:5 phones, 1.6:1 md+). Measured from the
+   * original photo (1024×1536): lamps at x 138–334 / 682–880, y 856–1050.
    * Resting state = lights on (patches hidden), which is also the
    * reduced-motion state; GSAP plays the off → on ignition.
    */
@@ -1393,17 +1396,14 @@
     opacity: 0;
   }
 
-  .philosophy__led--l { left: 21.484%; top: 46.875%; width: 4.349%; height: 5.833%; }
-  .philosophy__led--r { left: 74.167%; top: 46.806%; width: 5.13%; height: 6.042%; }
+  .philosophy__led--l { left: 10.516%; top: 62.857%; width: 24.206%; height: 19.206%; }
+  .philosophy__led--r { left: 64.484%; top: 62.857%; width: 24.405%; height: 19.206%; }
 
-  /* Each patch is split into its three LED bars (bands measured from the
-     photo) so the bars can wake top to bottom */
-  .philosophy__led--l.philosophy__led--row1 { clip-path: inset(0 0 54.5% 0); }
-  .philosophy__led--l.philosophy__led--row2 { clip-path: inset(45.5% 0 40.8% 0); }
-  .philosophy__led--l.philosophy__led--row3 { clip-path: inset(59.2% 0 0 0); }
-  .philosophy__led--r.philosophy__led--row1 { clip-path: inset(0 0 52% 0); }
-  .philosophy__led--r.philosophy__led--row2 { clip-path: inset(48% 0 39.4% 0); }
-  .philosophy__led--r.philosophy__led--row3 { clip-path: inset(60.6% 0 0 0); }
+  /* Each lamp patch in three bands (projector, LED upright, lower LED bar)
+     so the lamp wakes top to bottom */
+  .philosophy__led--row1 { clip-path: inset(0 0 60% 0); }
+  .philosophy__led--row2 { clip-path: inset(40% 0 38% 0); }
+  .philosophy__led--row3 { clip-path: inset(62% 0 0 0); }
 
   /* The car "wakes": a light veil over the photo lifts at power-on */
   .philosophy__dim {
@@ -1424,7 +1424,7 @@
 
   /* Core: hot white on the LED bars, falling off fast */
   .philosophy__bloom {
-    --bloom-w: 7.8%;
+    --bloom-w: 18%;
     width: var(--bloom-w);
     aspect-ratio: 1.5;
     background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(240 246 255 / 0.55) 30%, rgb(220 232 255 / 0.12) 65%, transparent);
@@ -1433,7 +1433,7 @@
 
   /* Halo: the wider glow a lit lamp throws into the air */
   .philosophy__halo {
-    --halo-w: 14.7%;
+    --halo-w: 34%;
     width: var(--halo-w);
     aspect-ratio: 1.6;
     background: radial-gradient(closest-side, rgb(228 237 255 / 0.42), rgb(225 235 255 / 0.11) 50%, transparent);
@@ -1442,32 +1442,32 @@
 
   /* Spill onto the surrounding bodywork, and faintly onto bumper and grille */
   .philosophy__spill {
-    --spill-w: 18.23%;
+    --spill-w: 44%;
     width: var(--spill-w);
     aspect-ratio: 2;
     background: radial-gradient(closest-side, rgb(212 224 247 / 0.3), rgb(210 222 245 / 0.08) 55%, transparent);
   }
 
   .philosophy__spill--front {
-    --spill-w: 45%;
+    --spill-w: 60%;
     aspect-ratio: 3.4;
     left: 50%;
-    top: 67.7%;
+    top: 88.1%;
     background: radial-gradient(closest-side, rgb(210 222 245 / 0.1), rgb(210 222 245 / 0.03) 60%, transparent);
   }
 
-  .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 23.646%; top: 49.861%; }
-  .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 76.719%; top: 49.861%; }
+  .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 22.62%; top: 72.46%; }
+  .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 76.69%; top: 72.46%; }
 
   @media (min-width: 768px) {
-    .philosophy__led--l { left: 28.613%; top: 37.473%; width: 3.262%; height: 7.22%; }
-    .philosophy__led--r { left: 68.125%; top: 37.387%; width: 3.848%; height: 7.477%; }
-    .philosophy__bloom { --bloom-w: 5.85%; }
-    .philosophy__halo { --halo-w: 11%; }
-    .philosophy__spill { --spill-w: 13.67%; }
-    .philosophy__spill--front { --spill-w: 34%; top: 63.3%; }
-    .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 30.234%; top: 41.169%; }
-    .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 70.039%; top: 41.169%; }
+    .philosophy__led--l { left: 30.258%; top: 62.857%; width: 12.103%; height: 19.206%; }
+    .philosophy__led--r { left: 57.242%; top: 62.857%; width: 12.202%; height: 19.206%; }
+    .philosophy__bloom { --bloom-w: 9%; }
+    .philosophy__halo { --halo-w: 17%; }
+    .philosophy__spill { --spill-w: 22%; }
+    .philosophy__spill--front { --spill-w: 30%; top: 88.1%; }
+    .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 36.31%; top: 72.46%; }
+    .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 63.34%; top: 72.46%; }
   }
 
   .philosophy__arc {

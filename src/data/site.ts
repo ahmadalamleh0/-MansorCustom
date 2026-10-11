@@ -4,12 +4,14 @@ import reelLamboPoster from '@/assets/reels/camo-lamborghini.jpg'
 import reelLambo from '@/assets/reels/camo-lamborghini.mp4'
 import reelMercedesPoster from '@/assets/reels/red-mercedes.jpg'
 import reelMercedes from '@/assets/reels/red-mercedes.mp4'
-import philosophy1600 from '@/assets/images/philosophy/beyond-factory-1600.jpg'
-import philosophy1600Webp from '@/assets/images/philosophy/beyond-factory-1600.webp'
-import philosophy2400 from '@/assets/images/philosophy/beyond-factory-2400.jpg'
-import philosophy2400Webp from '@/assets/images/philosophy/beyond-factory-2400.webp'
-import philosophyMobile from '@/assets/images/philosophy/beyond-factory-mobile.jpg'
-import philosophyMobileWebp from '@/assets/images/philosophy/beyond-factory-mobile.webp'
+import philosophy1600 from '@/assets/images/philosophy/supercar-desktop-1600.jpg'
+import philosophy1600Webp from '@/assets/images/philosophy/supercar-desktop-1600.webp'
+import philosophy2016 from '@/assets/images/philosophy/supercar-desktop-2016.jpg'
+import philosophy2016Webp from '@/assets/images/philosophy/supercar-desktop-2016.webp'
+import philosophyMobile800 from '@/assets/images/philosophy/supercar-mobile-800.jpg'
+import philosophyMobile800Webp from '@/assets/images/philosophy/supercar-mobile-800.webp'
+import philosophyMobile1008 from '@/assets/images/philosophy/supercar-mobile-1008.jpg'
+import philosophyMobile1008Webp from '@/assets/images/philosophy/supercar-mobile-1008.webp'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
@@ -98,9 +100,10 @@ export const site = {
   },
 
   // Brand storytelling section (creative director, 2026-10-10; Alain Class
-  // reference). To swap the vehicle, replace the three crops in
-  // src/assets/images/philosophy/ (desktop 2.2:1 band, mobile 4:3 centred
-  // on the car, car roughly centred and front-on so the arc frames it).
+  // reference). Vehicle: the burgundy widebody supercar (creative director,
+  // 2026-10-11; original in client-photos/philosophy/). Its own baked-in halo
+  // ring was retouched out so the section's animated arc replaces it at the
+  // same geometry. Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
   philosophy: {
     headline: ['Beyond', 'Factory.'],
     // Two deliberate lines (creative director, 2026-10-10)
@@ -111,9 +114,9 @@ export const site = {
       url: null as string | null,
     },
     image: {
-      alt: 'Black Ferrari, front-on, under a single studio light',
-      desktop: { jpg: `${philosophy1600} 1600w, ${philosophy2400} 2400w`, webp: `${philosophy1600Webp} 1600w, ${philosophy2400Webp} 2400w`, src: philosophy1600, width: 1600, height: 727 },
-      mobile: { jpg: philosophyMobile, webp: philosophyMobileWebp, width: 1200, height: 900 },
+      alt: 'Burgundy widebody supercar with a tall rear wing, seen from above and in front under studio light',
+      desktop: { jpg: `${philosophy1600} 1600w, ${philosophy2016} 2016w`, webp: `${philosophy1600Webp} 1600w, ${philosophy2016Webp} 2016w`, src: philosophy1600, width: 1600, height: 1000 },
+      mobile: { jpg: `${philosophyMobile800} 800w, ${philosophyMobile1008} 1008w`, webp: `${philosophyMobile800Webp} 800w, ${philosophyMobile1008Webp} 1008w`, width: 800, height: 1000 },
     },
   },
 
