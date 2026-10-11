@@ -332,6 +332,14 @@ Introduce radius only when a reference explicitly uses it.
   circles and a 1px progress line on md+. Hover: photo scale 1.04 (fine
   pointers). Entrance: a once-only stagger (y 36, expo.out). Add a vehicle
   by appending to `projects`; `image: null` renders a placeholder card.
+  Headline "Recent Work" in the shared `.brand-headline` (identical to
+  "Beyond Factory."). **Video cards** (`video`): the poster shows first;
+  the 3:5 muted loop is attached near the viewport, plays while 40%
+  visible and pauses off screen; reduced motion keeps the poster (S-Class,
+  M3). **Multi-photo cards** (`gallery`): photos crossfade (450ms); tap or
+  click the card for the next photo, or a dot to jump. Small 6px dots sit
+  bottom-left, opposite the model name; the active dot is full paper.
+  Tap-based so it never fights the strip's swipe (McLaren, 4 photos).
 - **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
   Alain Class reference), after the service tiles and before the Instagram showcase (the six-card
   Services grid was removed at the creative director's request, 2026-10-10;

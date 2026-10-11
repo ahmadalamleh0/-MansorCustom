@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { projectsReveal } from '@/animations/projectsReveal'
 import { ChevronIcon } from '@/components/ui/icons'
-import { projects, type Project } from '@/data/projects'
+import { projects, type Photo, type Project } from '@/data/projects'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { useGSAP } from '@/lib/gsap'
 
@@ -92,28 +92,37 @@ export function Projects() {
   )
 }
 
+const SIZES = '(min-width: 1024px) 24rem, (min-width: 768px) 40vw, 72vw'
+const srcset = (list: { url: string; w: number }[]) => list.map((s) => `${s.url} ${s.w}w`).join(', ')
+
+function ProjectPicture({ photo, priority, className = '' }: { photo: Photo; priority: boolean; className?: string }) {
+  return (
+    <picture className={`project__media ${className}`}>
+      <source type="image/webp" srcSet={srcset(photo.webp)} sizes={SIZES} />
+      <img
+        src={photo.jpg[photo.jpg.length - 1].url}
+        srcSet={srcset(photo.jpg)}
+        sizes={SIZES}
+        alt={photo.alt}
+        width={600}
+        height={1000}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding="async"
+        style={photo.position ? { objectPosition: photo.position } : undefined}
+      />
+    </picture>
+  )
+}
+
 function ProjectCard({ project, priority }: { project: Project; priority: boolean }) {
-  const { image, video, make, model, logo } = project
-  const srcset = (list: { url: string; w: number }[]) => list.map((s) => `${s.url} ${s.w}w`).join(', ')
-  const sizes = '(min-width: 1024px) 24rem, (min-width: 768px) 40vw, 72vw'
+  const { image, video, gallery, make, model, logo } = project
 
   return (
     <figure className="project__card" data-placeholder={image ? undefined : ''}>
-      {image ? (
-        <picture className="project__media">
-          <source type="image/webp" srcSet={srcset(image.webp)} sizes={sizes} />
-          <img
-            src={image.jpg[image.jpg.length - 1].url}
-            srcSet={srcset(image.jpg)}
-            sizes={sizes}
-            alt={image.alt}
-            width={600}
-            height={1000}
-            loading={priority ? 'eager' : 'lazy'}
-            decoding="async"
-            style={image.position ? { objectPosition: image.position } : undefined}
-          />
-        </picture>
+      {image && gallery?.length ? (
+        <ProjectGallery photos={[image, ...gallery]} priority={priority} label={`${make} ${model}`} />
+      ) : image ? (
+        <ProjectPicture photo={image} priority={priority} />
       ) : (
         <span aria-hidden="true" className="project__media project__media--placeholder" />
       )}
@@ -135,6 +144,42 @@ function ProjectCard({ project, priority }: { project: Project; priority: boolea
         {model}
       </figcaption>
     </figure>
+  )
+}
+
+/**
+ * Several photos of one build. Tap or click the card for the next photo
+ * (wraps), or a dot to jump; photos crossfade. Small dots at the bottom-left
+ * show there's more than one. Tap-based, not swipe, so it never competes
+ * with the strip's horizontal scroll.
+ */
+function ProjectGallery({ photos, priority, label }: { photos: Photo[]; priority: boolean; label: string }) {
+  const [active, setActive] = useState(0)
+  const total = photos.length
+
+  return (
+    <>
+      {photos.map((photo, i) => (
+        <ProjectPicture key={photo.alt} photo={photo} priority={priority && i === 0} className={`project__slide${i === active ? ' is-active' : ''}`} />
+      ))}
+
+      <button type="button" className="project__next" onClick={() => setActive((active + 1) % total)}>
+        <span className="sr-only">{`Next photo of the ${label} (${active + 1} of ${total})`}</span>
+      </button>
+
+      <div className="project__dots">
+        {photos.map((photo, i) => (
+          <button
+            key={photo.alt}
+            type="button"
+            className="project__dot"
+            aria-label={`${label}, photo ${i + 1} of ${total}`}
+            aria-current={i === active || undefined}
+            onClick={() => setActive(i)}
+          />
+        ))}
+      </div>
+    </>
   )
 }
 

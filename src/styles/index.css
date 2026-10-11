@@ -854,6 +854,73 @@
     transition: transform 1100ms var(--ease-out-expo);
   }
 
+  /* Multi-photo cards: stacked photos crossfade; the whole card steps to
+     the next photo, the dots jump. Type overlays let taps through. */
+  .project__slide {
+    opacity: 0;
+    transition: opacity 450ms ease;
+  }
+
+  .project__slide.is-active {
+    opacity: 1;
+  }
+
+  .project__next {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .project__next:focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: -2px;
+  }
+
+  .project__logo,
+  .project__wordmark,
+  .project__model {
+    pointer-events: none;
+  }
+
+  /* Small dots at the bottom-left, opposite the vertical model name */
+  .project__dots {
+    position: absolute;
+    left: calc(7cqw - 0.375rem);
+    bottom: calc(6cqw - 0.375rem);
+    z-index: 2;
+    display: flex;
+  }
+
+  .project__dot {
+    display: grid;
+    place-items: center;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .project__dot::before {
+    content: '';
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: rgb(242 241 238 / 0.42);
+    transition:
+      background-color 250ms ease,
+      transform 250ms var(--ease-out-expo);
+  }
+
+  .project__dot[aria-current]::before {
+    background: var(--color-paper);
+    transform: scale(1.15);
+  }
+
+  .project__dot:focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: -2px;
+    border-radius: 50%;
+  }
+
   /* Video cards: the loop fades in over its poster once it has a frame */
   .project__video {
     position: absolute;

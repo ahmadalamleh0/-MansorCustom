@@ -11,10 +11,22 @@ import xm560Jpg from '@/assets/images/projects/bmw-xm-560.jpg'
 import xm560Webp from '@/assets/images/projects/bmw-xm-560.webp'
 import xm960Jpg from '@/assets/images/projects/bmw-xm-960.jpg'
 import xm960Webp from '@/assets/images/projects/bmw-xm-960.webp'
-import mcl560Jpg from '@/assets/images/projects/mclaren-720s-560.jpg'
-import mcl560Webp from '@/assets/images/projects/mclaren-720s-560.webp'
-import mcl960Jpg from '@/assets/images/projects/mclaren-720s-960.jpg'
-import mcl960Webp from '@/assets/images/projects/mclaren-720s-960.webp'
+import mc1560Jpg from '@/assets/images/projects/mclaren-1-560.jpg'
+import mc1560Webp from '@/assets/images/projects/mclaren-1-560.webp'
+import mc1960Jpg from '@/assets/images/projects/mclaren-1-960.jpg'
+import mc1960Webp from '@/assets/images/projects/mclaren-1-960.webp'
+import mc2560Jpg from '@/assets/images/projects/mclaren-2-560.jpg'
+import mc2560Webp from '@/assets/images/projects/mclaren-2-560.webp'
+import mc2960Jpg from '@/assets/images/projects/mclaren-2-960.jpg'
+import mc2960Webp from '@/assets/images/projects/mclaren-2-960.webp'
+import mc3560Jpg from '@/assets/images/projects/mclaren-3-560.jpg'
+import mc3560Webp from '@/assets/images/projects/mclaren-3-560.webp'
+import mc3960Jpg from '@/assets/images/projects/mclaren-3-960.jpg'
+import mc3960Webp from '@/assets/images/projects/mclaren-3-960.webp'
+import mc4560Jpg from '@/assets/images/projects/mclaren-4-560.jpg'
+import mc4560Webp from '@/assets/images/projects/mclaren-4-560.webp'
+import mc4960Jpg from '@/assets/images/projects/mclaren-4-960.jpg'
+import mc4960Webp from '@/assets/images/projects/mclaren-4-960.webp'
 import sClassPosterJpg from '@/assets/images/projects/mercedes-s-class-poster.jpg'
 import sClassPosterWebp from '@/assets/images/projects/mercedes-s-class-poster.webp'
 import sClassVideo from '@/assets/images/projects/mercedes-s-class.mp4'
@@ -40,6 +52,7 @@ import rr960Webp from '@/assets/images/projects/range-rover-960.webp'
  */
 
 type Source = { url: string; w: number }
+export type Photo = { alt: string; webp: Source[]; jpg: Source[]; position?: string }
 export type Project = {
   id: string
   make: string
@@ -48,9 +61,11 @@ export type Project = {
   /** Monochrome maker mark (SVG, drawn as a mask in the text colour). null → tracked wordmark of `make` */
   logo: string | null
   /** The still (for a video card, its poster: shown first, and instead of the video with reduced motion) */
-  image: { alt: string; webp: Source[]; jpg: Source[]; position?: string } | null
+  image: Photo | null
   /** Optional 3:5 muted loop (H.264, no audio): plays inline while the card is on screen */
   video?: string
+  /** More photos after `image`, in order; the card shows dots and steps through them on tap */
+  gallery?: Photo[]
   /** Model name not yet confirmed by Mansor */
   confirm?: string
 }
@@ -77,10 +92,27 @@ export const projects: Project[] = [
     logo: mclarenLogo,
     confirm: '720S vs 750S: the two share this front; confirm with Mansor',
     image: {
-      alt: 'McLaren in a colour-shift wrap, doors up, in the Mansor Customs studio',
-      webp: set([[mcl560Webp, 560], [mcl960Webp, 960]]),
-      jpg: set([[mcl560Jpg, 560], [mcl960Jpg, 960]]),
+      alt: 'Colour-shift McLaren, door up, close on the front wing',
+      webp: set([[mc1560Webp, 560], [mc1960Webp, 576]]),
+      jpg: set([[mc1560Jpg, 560], [mc1960Jpg, 576]]),
     },
+    gallery: [
+      {
+        alt: 'The McLaren, doors up, under the hex lights in the Mansor Customs studio',
+        webp: set([[mc2560Webp, 560], [mc2960Webp, 960]]),
+        jpg: set([[mc2560Jpg, 560], [mc2960Jpg, 960]]),
+      },
+      {
+        alt: 'Colour-shift McLaren at night, front three-quarter',
+        webp: set([[mc3560Webp, 560], [mc3960Webp, 960]]),
+        jpg: set([[mc3560Jpg, 560], [mc3960Jpg, 960]]),
+      },
+      {
+        alt: 'The McLaren outside the Mansor Customs shop',
+        webp: set([[mc4560Webp, 560], [mc4960Webp, 960]]),
+        jpg: set([[mc4560Jpg, 560], [mc4960Jpg, 960]]),
+      },
+    ],
   },
   {
     id: 'bmw-m3',
