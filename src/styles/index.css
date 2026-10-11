@@ -1501,6 +1501,173 @@
   }
 
   /*
+   * Client reviews ("Words From Our Clients"; Wraptors Dubai quote-form
+   * reference for the material). Glassy charcoal cards: a deep charcoal
+   * fill with a soft highlight spilling from the top-left, an inner top
+   * edge, a hairline border, rounded corners and a soft drop. No heavy blur,
+   * no colour. Native scroll-snap strip: 1 card + peek on phones, 2 on md,
+   * 3 inside the container on lg.
+   */
+  .reviews {
+    padding-top: clamp(4.5rem, 3rem + 5vw, 8rem);
+  }
+
+  .reviews__title {
+    margin-bottom: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+    font-size: clamp(1.75rem, 0.85rem + 3.6vw, 3.5rem);
+    text-align: center;
+  }
+
+  .reviews__title-line {
+    display: block;
+  }
+
+  @media (min-width: 1024px) {
+    .reviews__title-line {
+      display: inline;
+    }
+  }
+
+  .reviews__track {
+    --edge: var(--gutter);
+    --gap: 0.875rem;
+    --card-w: calc(100vw - 2 * var(--edge) - 3rem);
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--card-w);
+    gap: var(--gap);
+    padding-inline: var(--edge);
+    padding-block: 0.25rem 1.5rem; /* room for the card shadow */
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--edge);
+    scrollbar-width: none;
+  }
+
+  .reviews__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews__track:focus-visible {
+    outline: 1px solid var(--color-paper);
+    outline-offset: -1px;
+  }
+
+  @media (min-width: 768px) {
+    .reviews__track {
+      --gap: 1rem;
+      --card-w: calc((100vw - 2 * var(--edge) - var(--gap)) / 2 - 1.5rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .reviews__track {
+      /* three cards across the 90rem container */
+      --edge: max(var(--gutter), calc((100vw - 90rem) / 2 + var(--gutter)));
+      --gap: 1.25rem;
+      --card-w: calc((min(100vw, 90rem) - 2 * var(--gutter) - 2 * var(--gap)) / 3);
+    }
+  }
+
+  .reviews__item {
+    display: flex;
+    scroll-snap-align: start;
+  }
+
+  .reviews__controls {
+    margin-top: 0.75rem;
+  }
+
+  .review-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 17rem;
+    margin: 0;
+    padding: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+    border: 1px solid rgb(255 255 255 / 0.09);
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(120% 70% at 22% 0%, rgb(255 255 255 / 0.075), transparent 55%),
+      linear-gradient(180deg, rgb(33 33 36 / 0.94), rgb(17 17 19 / 0.97));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.07),
+      0 24px 48px -28px rgb(0 0 0 / 0.85);
+  }
+
+  .review-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .review-card__stars {
+    display: inline-flex;
+    gap: 0.1875rem;
+  }
+
+  .review-card__stars svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    fill: rgb(242 241 238 / 0.2);
+  }
+
+  .review-card__stars svg.is-on {
+    fill: rgb(242 241 238 / 0.92);
+  }
+
+  /* Visible marker on placeholder content, so it can never pass as a real review */
+  .review-card__demo {
+    padding: 0.25rem 0.625rem;
+    border: 1px solid rgb(242 241 238 / 0.22);
+    border-radius: 999px;
+    font-family: var(--font-editorial);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .review-card__text {
+    flex: 1;
+    margin: clamp(1.25rem, 1rem + 1vw, 1.75rem) 0 0;
+    font-family: var(--font-editorial);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgb(242 241 238 / 0.82);
+  }
+
+  .review-card__by {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    padding-top: 1.25rem;
+    border-top: 1px solid rgb(255 255 255 / 0.07);
+  }
+
+  .review-card__name {
+    font-family: var(--font-editorial);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-paper);
+  }
+
+  .review-card__source {
+    font-family: var(--font-editorial);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+  }
+
+  /*
    * Instagram showcase (Venuum reference). Left-aligned profile: gradient
    * ring avatar (~37% of a phone's width), handle, meta, two pill buttons.
    * Then three 9:16 Reel cards (three columns, never stacked). Rounded

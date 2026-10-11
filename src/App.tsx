@@ -9,6 +9,7 @@ import { InstagramShowcase } from '@/components/sections/InstagramShowcase'
 import { LocationMap } from '@/components/sections/LocationMap'
 import { Philosophy } from '@/components/sections/Philosophy'
 import { Projects } from '@/components/sections/Projects'
+import { Reviews } from '@/components/sections/Reviews'
 import { Showcase } from '@/components/sections/Showcase'
 import { findService } from '@/data/services'
 import { ScrollTrigger } from '@/lib/gsap'
@@ -60,6 +61,7 @@ export default function App() {
             <Editorial />
             <Projects />
             <Philosophy />
+            <Reviews />
             <InstagramShowcase />
             <LocationMap />
           </main>

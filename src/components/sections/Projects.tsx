@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { projectsReveal } from '@/animations/projectsReveal'
 import { ChevronIcon } from '@/components/ui/icons'
 import { projects, type Photo, type Project } from '@/data/projects'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useScrollStrip } from '@/hooks/useScrollStrip'
 import { useGSAP } from '@/lib/gsap'
 
 /** Headline words: stacked on phones/tablets, one line from 1280px (as "Beyond Factory.") */
@@ -20,39 +21,9 @@ const TITLE = ['Recent', 'Work']
  */
 export function Projects() {
   const scope = useRef<HTMLElement>(null)
-  const track = useRef<HTMLUListElement>(null)
-  const reduceMotion = usePrefersReducedMotion()
-  const [edge, setEdge] = useState({ start: true, end: false, progress: 0 })
+  const { track, edge, step } = useScrollStrip<HTMLUListElement>('[data-project]')
 
   useGSAP(() => projectsReveal(), { scope })
-
-  const measure = useCallback(() => {
-    const el = track.current
-    if (!el) return
-    const max = el.scrollWidth - el.clientWidth
-    setEdge({ start: el.scrollLeft <= 2, end: el.scrollLeft >= max - 2, progress: max > 0 ? el.scrollLeft / max : 1 })
-  }, [])
-
-  useEffect(() => {
-    const el = track.current
-    if (!el) return
-    measure()
-    el.addEventListener('scroll', measure, { passive: true })
-    const ro = new ResizeObserver(measure)
-    ro.observe(el)
-    return () => {
-      el.removeEventListener('scroll', measure)
-      ro.disconnect()
-    }
-  }, [measure])
-
-  const step = (dir: 1 | -1) => {
-    const el = track.current
-    const card = el?.querySelector<HTMLElement>('[data-project]')
-    if (!el || !card) return
-    const gap = parseFloat(getComputedStyle(el).columnGap) || 0
-    el.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: reduceMotion ? 'auto' : 'smooth' })
-  }
 
   return (
     <section ref={scope} id="projects" aria-labelledby="projects-title" className="projects">

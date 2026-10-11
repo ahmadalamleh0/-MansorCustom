@@ -381,6 +381,19 @@ Introduce radius only when a reference explicitly uses it.
 - **Editorial CTA** (`.cta-line`, shared by the hero and the brand section):
   transparent tracked capitals over a 1px rule at 32%, with a full-strength
   rule drawing in on hover. 48px tap target.
+- **Client reviews** (`components/sections/Reviews.tsx`, `data/reviews.ts`,
+  Wraptors Dubai quote-form reference for the material), between Beyond
+  Factory and Instagram. Heading "Words From Our Clients" in the brand
+  headline style at a smaller scale (1.75–3.5rem; two lines below 1024px).
+  Glassy charcoal cards: a charcoal fill with a soft top-left radial
+  highlight, an inner 1px top edge, a 9% white hairline border, 20px
+  radius and a soft drop. No blur, no colour. Each card: stars (with an
+  accessible rating label), the review, then the name and source under a
+  hairline. Native scroll-snap strip: 1 card + peek on phones, 2 on md, 3
+  inside the 90rem container on lg; equal heights; the shared 44px
+  controls on md+; never auto-advances. **Content is demo placeholders**
+  (a visible "Demo" tag on every card) until real reviews are supplied;
+  see the note in `data/reviews.ts`.
 - **Instagram showcase** (`components/sections/InstagramShowcase.tsx`,
   Venuum reference), before "Visit Us": a left-aligned profile (avatar
   ~146px on phones and 184px on desktop, with a thin conic `ig-*` gradient
