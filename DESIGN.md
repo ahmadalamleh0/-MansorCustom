@@ -361,9 +361,11 @@ Introduce radius only when a reference explicitly uses it.
   brand storytelling, not services. Centred: no eyebrow (removed by the
   creative director, 2026-10-10), the `philosophy-headline` in Michroma caps with a
   paper-to-graphite gradient fill (stacked on two lines below 1280px, one
-  line above), then one front-on car photo (2.2:1 band on md+, 4:3 on
-  phones) whose top tucks under the headline and whose edges and lit floor
-  mask into the page black. A thin 42% white arc with three ticks (top,
+  line above), then the burgundy widebody supercar (1.6:1 frame on md+,
+  4:5 on phones; the whole car from wing to splitter) whose top tucks under
+  the headline and whose edges mask into the page black (desktop sides
+  extended and blended; the photo's own baked-in halo ring retouched out so
+  the animated arc replaces it at the same geometry). A thin 42% white arc with three ticks (top,
   left, right) frames the car and fades out below its midline. Then the line
   "Some cars are built to stand out. / We take them a step further." set as two lines (the first
   at 62% paper, the second full paper) and the shared editorial CTA "Start Your Build" (Coming Soon
