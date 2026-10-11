@@ -1,25 +1,9 @@
-import audiLogo from '@/assets/logos/makes/audi.svg'
 import bmwLogo from '@/assets/logos/makes/bmw.svg'
-import jeepLogo from '@/assets/logos/makes/jeep.svg'
-import jt1560Jpg from '@/assets/images/projects/jeep-trackhawk-1-560.jpg'
-import jt1560Webp from '@/assets/images/projects/jeep-trackhawk-1-560.webp'
-import jt1960Jpg from '@/assets/images/projects/jeep-trackhawk-1-960.jpg'
-import jt1960Webp from '@/assets/images/projects/jeep-trackhawk-1-960.webp'
-import jt2560Jpg from '@/assets/images/projects/jeep-trackhawk-2-560.jpg'
-import jt2560Webp from '@/assets/images/projects/jeep-trackhawk-2-560.webp'
-import jt2960Jpg from '@/assets/images/projects/jeep-trackhawk-2-960.jpg'
-import jt2960Webp from '@/assets/images/projects/jeep-trackhawk-2-960.webp'
-import jt3560Jpg from '@/assets/images/projects/jeep-trackhawk-3-560.jpg'
-import jt3560Webp from '@/assets/images/projects/jeep-trackhawk-3-560.webp'
-import jt3960Jpg from '@/assets/images/projects/jeep-trackhawk-3-960.jpg'
-import jt3960Webp from '@/assets/images/projects/jeep-trackhawk-3-960.webp'
 import mclarenLogo from '@/assets/logos/makes/mclaren.svg'
 import porscheLogo from '@/assets/logos/makes/porsche.svg'
 import m3PosterJpg from '@/assets/images/projects/bmw-m3-poster.jpg'
 import m3PosterWebp from '@/assets/images/projects/bmw-m3-poster.webp'
 import m3Video from '@/assets/images/projects/bmw-m3.mp4'
-import r8Jpg from '@/assets/images/projects/audi-r8-960.jpg'
-import r8Webp from '@/assets/images/projects/audi-r8-960.webp'
 import xm560Jpg from '@/assets/images/projects/bmw-xm-560.jpg'
 import xm560Webp from '@/assets/images/projects/bmw-xm-560.webp'
 import xm960Jpg from '@/assets/images/projects/bmw-xm-960.jpg'
@@ -140,17 +124,6 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'bmw-xm',
-    make: 'BMW',
-    model: 'XM',
-    logo: bmwLogo,
-    image: {
-      alt: 'Black BMW XM with red accents outside the Mansor Customs shop',
-      webp: set([[xm560Webp, 560], [xm960Webp, 960]]),
-      jpg: set([[xm560Jpg, 560], [xm960Jpg, 960]]),
-    },
-  },
-  {
     id: 'range-rover',
     make: 'Range Rover',
     model: 'Range Rover',
@@ -162,14 +135,14 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'audi-r8',
-    make: 'Audi',
-    model: 'R8',
-    logo: audiLogo,
+    id: 'bmw-xm',
+    make: 'BMW',
+    model: 'XM',
+    logo: bmwLogo,
     image: {
-      alt: 'Audi R8 in a silver and blue split wrap',
-      webp: set([[r8Webp, 512]]),
-      jpg: set([[r8Jpg, 512]]),
+      alt: 'Black BMW XM with red accents outside the Mansor Customs shop',
+      webp: set([[xm560Webp, 560], [xm960Webp, 960]]),
+      jpg: set([[xm560Jpg, 560], [xm960Jpg, 960]]),
     },
   },
   {
@@ -193,28 +166,5 @@ export const projects: Project[] = [
       webp: set([[gWebp, 941]]),
       jpg: set([[gJpg, 941]]),
     },
-  },
-  {
-    id: 'jeep-trackhawk',
-    make: 'Jeep',
-    model: 'Trackhawk', // Grand Cherokee Trackhawk, confirmed by the creative director, 2026-10-10
-    logo: jeepLogo,
-    image: {
-      alt: 'Yellow Jeep Grand Cherokee Trackhawk with a carbon bonnet at night',
-      webp: set([[jt1560Webp, 560], [jt1960Webp, 864]]),
-      jpg: set([[jt1560Jpg, 560], [jt1960Jpg, 864]]),
-    },
-    gallery: [
-      {
-        alt: 'The Trackhawk head-on: carbon vented bonnet and LED headlights',
-        webp: set([[jt2560Webp, 560], [jt2960Webp, 864]]),
-        jpg: set([[jt2560Jpg, 560], [jt2960Jpg, 864]]),
-      },
-      {
-        alt: 'The Trackhawk from the rear three-quarter, with its graphic livery',
-        webp: set([[jt3560Webp, 560], [jt3960Webp, 864]]),
-        jpg: set([[jt3560Jpg, 560], [jt3960Jpg, 864]]),
-      },
-    ],
   },
 ]
