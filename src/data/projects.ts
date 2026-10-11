@@ -8,6 +8,18 @@ import xm560Jpg from '@/assets/images/projects/bmw-xm-560.jpg'
 import xm560Webp from '@/assets/images/projects/bmw-xm-560.webp'
 import xm960Jpg from '@/assets/images/projects/bmw-xm-960.jpg'
 import xm960Webp from '@/assets/images/projects/bmw-xm-960.webp'
+import gi1560Jpg from '@/assets/images/projects/g-class-interior-1-560.jpg'
+import gi1560Webp from '@/assets/images/projects/g-class-interior-1-560.webp'
+import gi1960Jpg from '@/assets/images/projects/g-class-interior-1-960.jpg'
+import gi1960Webp from '@/assets/images/projects/g-class-interior-1-960.webp'
+import gi2560Jpg from '@/assets/images/projects/g-class-interior-2-560.jpg'
+import gi2560Webp from '@/assets/images/projects/g-class-interior-2-560.webp'
+import gi2960Jpg from '@/assets/images/projects/g-class-interior-2-960.jpg'
+import gi2960Webp from '@/assets/images/projects/g-class-interior-2-960.webp'
+import gi3560Jpg from '@/assets/images/projects/g-class-interior-3-560.jpg'
+import gi3560Webp from '@/assets/images/projects/g-class-interior-3-560.webp'
+import gi3960Jpg from '@/assets/images/projects/g-class-interior-3-960.jpg'
+import gi3960Webp from '@/assets/images/projects/g-class-interior-3-960.webp'
 import mc1560Jpg from '@/assets/images/projects/mclaren-1-560.jpg'
 import mc1560Webp from '@/assets/images/projects/mclaren-1-560.webp'
 import mc1960Jpg from '@/assets/images/projects/mclaren-1-960.jpg'
@@ -27,8 +39,6 @@ import mc4960Webp from '@/assets/images/projects/mclaren-4-960.webp'
 import sClassPosterJpg from '@/assets/images/projects/mercedes-s-class-poster.jpg'
 import sClassPosterWebp from '@/assets/images/projects/mercedes-s-class-poster.webp'
 import sClassVideo from '@/assets/images/projects/mercedes-s-class.mp4'
-import gJpg from '@/assets/images/projects/mercedes-g-class-960.jpg'
-import gWebp from '@/assets/images/projects/mercedes-g-class-960.webp'
 import p911560Jpg from '@/assets/images/projects/porsche-911-560.jpg'
 import p911560Webp from '@/assets/images/projects/porsche-911-560.webp'
 import p911960Jpg from '@/assets/images/projects/porsche-911-960.jpg'
@@ -162,9 +172,21 @@ export const projects: Project[] = [
     model: 'G-Class',
     logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
     image: {
-      alt: 'Mercedes-Benz G-Class interior trimmed in turquoise with diamond-quilted seats',
-      webp: set([[gWebp, 941]]),
-      jpg: set([[gJpg, 941]]),
+      alt: 'Mercedes-Benz G-Class interior in orange quilted leather, AMG steering wheel',
+      webp: set([[gi1560Webp, 560], [gi1960Webp, 960]]),
+      jpg: set([[gi1560Jpg, 560], [gi1960Jpg, 960]]),
     },
+    gallery: [
+      {
+        alt: 'The G-Class rear cabin: orange leather, suede headliner and rear-seat screens',
+        webp: set([[gi2560Webp, 560], [gi2960Webp, 960]]),
+        jpg: set([[gi2560Jpg, 560], [gi2960Jpg, 960]]),
+      },
+      {
+        alt: 'The G-Class back row in diamond-quilted orange leather',
+        webp: set([[gi3560Webp, 560], [gi3960Webp, 960]]),
+        jpg: set([[gi3560Jpg, 560], [gi3960Jpg, 960]]),
+      },
+    ],
   },
 ]
