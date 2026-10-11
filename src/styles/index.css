@@ -773,6 +773,11 @@
     padding-top: clamp(4.5rem, 3rem + 5vw, 8rem);
   }
 
+  .projects__title {
+    margin-bottom: clamp(2rem, 1.4rem + 2.4vw, 3.75rem);
+    text-align: center;
+  }
+
   .projects__track {
     --card-w: 72vw;
     --strip-gap: 0.75rem;
@@ -847,6 +852,29 @@
   .project__media img {
     object-fit: cover;
     transition: transform 1100ms var(--ease-out-expo);
+  }
+
+  /* Video cards: the loop fades in over its poster once it has a frame */
+  .project__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition:
+      opacity 500ms ease,
+      transform 1100ms var(--ease-out-expo);
+  }
+
+  .project__video[data-ready] {
+    opacity: 1;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project__card:hover .project__video {
+      transform: scale(1.04);
+    }
   }
 
   .project__media--placeholder {
@@ -1009,6 +1037,14 @@
   .philosophy__headline {
     position: relative;
     z-index: 1;
+  }
+
+  /*
+   * Brand display headline (Michroma caps, lit white-into-graphite fill),
+   * shared by "Recent Work" and "Beyond Factory." Words stack on phones and
+   * tablets and run on one line from 1280px.
+   */
+  .brand-headline {
     font-family: var(--font-brand);
     font-size: clamp(2.5rem, 0.9rem + 6.6vw, 5rem);
     font-weight: 400;
@@ -1022,13 +1058,12 @@
     color: transparent;
   }
 
-  /* Stacked on phones/tablets, one line from 1280px */
-  .philosophy__word {
+  .brand-headline__word {
     display: block;
   }
 
   @media (min-width: 1280px) {
-    .philosophy__word {
+    .brand-headline__word {
       display: inline;
     }
   }

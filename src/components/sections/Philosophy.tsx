@@ -31,9 +31,9 @@ export function Philosophy() {
   return (
     <section ref={scope} id="philosophy" aria-labelledby="philosophy-title" className="philosophy">
       <div className="container-site philosophy__inner">
-        <h2 id="philosophy-title" data-ph-text className="philosophy__headline">
+        <h2 id="philosophy-title" data-ph-text className="brand-headline philosophy__headline">
           {headline.map((word, i) => (
-            <span key={word} className="philosophy__word">
+            <span key={word} className="brand-headline__word">
               {word}
               {i < headline.length - 1 && ' '}
             </span>

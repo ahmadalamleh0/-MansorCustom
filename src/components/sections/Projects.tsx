@@ -5,6 +5,9 @@ import { projects, type Project } from '@/data/projects'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 import { useGSAP } from '@/lib/gsap'
 
+/** Headline words: stacked on phones/tablets, one line from 1280px (as "Beyond Factory.") */
+const TITLE = ['Recent', 'Work']
+
 /**
  * Selected Projects (VOIR PPF reference): a horizontal strip of tall,
  * full-bleed build cards separated by hairline gutters, each with a small
@@ -53,11 +56,18 @@ export function Projects() {
 
   return (
     <section ref={scope} id="projects" aria-labelledby="projects-title" className="projects">
-      <h2 id="projects-title" className="sr-only">
-        Selected projects
-      </h2>
+      <div className="container-site">
+        <h2 id="projects-title" data-projects-title className="brand-headline projects__title">
+          {TITLE.map((word, i) => (
+            <span key={word} className="brand-headline__word">
+              {word}
+              {i < TITLE.length - 1 && ' '}
+            </span>
+          ))}
+        </h2>
+      </div>
 
-      <ul ref={track} id="projects-track" className="projects__track" tabIndex={0} aria-label="Selected projects, scroll horizontally">
+      <ul ref={track} id="projects-track" className="projects__track" tabIndex={0} aria-label="Recent work, scroll horizontally">
         {projects.map((project, i) => (
           <li key={project.id} data-project className="project">
             <ProjectCard project={project} priority={i < 2} />
@@ -83,7 +93,7 @@ export function Projects() {
 }
 
 function ProjectCard({ project, priority }: { project: Project; priority: boolean }) {
-  const { image, make, model, logo } = project
+  const { image, video, make, model, logo } = project
   const srcset = (list: { url: string; w: number }[]) => list.map((s) => `${s.url} ${s.w}w`).join(', ')
   const sizes = '(min-width: 1024px) 24rem, (min-width: 768px) 40vw, 72vw'
 
@@ -108,6 +118,8 @@ function ProjectCard({ project, priority }: { project: Project; priority: boolea
         <span aria-hidden="true" className="project__media project__media--placeholder" />
       )}
 
+      {video && image && <ProjectVideo src={video} />}
+
       <span aria-hidden="true" className="project__scrim" />
 
       {logo ? (
@@ -123,5 +135,67 @@ function ProjectCard({ project, priority }: { project: Project; priority: boolea
         {model}
       </figcaption>
     </figure>
+  )
+}
+
+/**
+ * Muted 3:5 loop over the card's poster. The file is only attached once the
+ * card is near the viewport (the strip scrolls sideways too), plays while
+ * at least 40% visible and pauses otherwise. Reduced motion: never loads;
+ * the poster stays.
+ */
+function ProjectVideo({ src }: { src: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  const reduceMotion = usePrefersReducedMotion()
+  const [near, setNear] = useState(false)
+  const [ready, setReady] = useState(false)
+  const visible = useRef(false)
+
+  useEffect(() => {
+    const v = ref.current
+    if (!v || reduceMotion) return
+    const nearObs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setNear(true)
+          nearObs.disconnect()
+        }
+      },
+      { rootMargin: '300px' },
+    )
+    const playObs = new IntersectionObserver(
+      ([e]) => {
+        visible.current = e.isIntersecting
+        if (e.isIntersecting && v.currentSrc) v.play().catch(() => {})
+        else v.pause()
+      },
+      { threshold: 0.4 },
+    )
+    nearObs.observe(v)
+    playObs.observe(v)
+    return () => {
+      nearObs.disconnect()
+      playObs.disconnect()
+    }
+  }, [reduceMotion])
+
+  if (reduceMotion) return null
+  return (
+    <video
+      ref={ref}
+      className="project__video"
+      data-ready={ready || undefined}
+      src={near ? src : undefined}
+      muted
+      loop
+      playsInline
+      preload="auto" // src is only attached once the card is near the viewport
+      aria-hidden="true"
+      tabIndex={-1}
+      onLoadedData={(e) => {
+        setReady(true)
+        if (visible.current) e.currentTarget.play().catch(() => {})
+      }}
+    />
   )
 }

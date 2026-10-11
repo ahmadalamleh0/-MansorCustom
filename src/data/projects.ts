@@ -2,6 +2,9 @@ import audiLogo from '@/assets/logos/makes/audi.svg'
 import bmwLogo from '@/assets/logos/makes/bmw.svg'
 import mclarenLogo from '@/assets/logos/makes/mclaren.svg'
 import porscheLogo from '@/assets/logos/makes/porsche.svg'
+import m3PosterJpg from '@/assets/images/projects/bmw-m3-poster.jpg'
+import m3PosterWebp from '@/assets/images/projects/bmw-m3-poster.webp'
+import m3Video from '@/assets/images/projects/bmw-m3.mp4'
 import r8Jpg from '@/assets/images/projects/audi-r8-960.jpg'
 import r8Webp from '@/assets/images/projects/audi-r8-960.webp'
 import xm560Jpg from '@/assets/images/projects/bmw-xm-560.jpg'
@@ -12,6 +15,9 @@ import mcl560Jpg from '@/assets/images/projects/mclaren-720s-560.jpg'
 import mcl560Webp from '@/assets/images/projects/mclaren-720s-560.webp'
 import mcl960Jpg from '@/assets/images/projects/mclaren-720s-960.jpg'
 import mcl960Webp from '@/assets/images/projects/mclaren-720s-960.webp'
+import sClassPosterJpg from '@/assets/images/projects/mercedes-s-class-poster.jpg'
+import sClassPosterWebp from '@/assets/images/projects/mercedes-s-class-poster.webp'
+import sClassVideo from '@/assets/images/projects/mercedes-s-class.mp4'
 import gJpg from '@/assets/images/projects/mercedes-g-class-960.jpg'
 import gWebp from '@/assets/images/projects/mercedes-g-class-960.webp'
 import p911560Jpg from '@/assets/images/projects/porsche-911-560.jpg'
@@ -41,7 +47,10 @@ export type Project = {
   model: string
   /** Monochrome maker mark (SVG, drawn as a mask in the text colour). null → tracked wordmark of `make` */
   logo: string | null
+  /** The still (for a video card, its poster: shown first, and instead of the video with reduced motion) */
   image: { alt: string; webp: Source[]; jpg: Source[]; position?: string } | null
+  /** Optional 3:5 muted loop (H.264, no audio): plays inline while the card is on screen */
+  video?: string
   /** Model name not yet confirmed by Mansor */
   confirm?: string
 }
@@ -49,6 +58,18 @@ export type Project = {
 const set = (pairs: [string, number][]) => pairs.map(([url, w]) => ({ url, w }))
 
 export const projects: Project[] = [
+  {
+    id: 'mercedes-s-class',
+    make: 'Mercedes-Benz',
+    model: 'S-Class',
+    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
+    video: sClassVideo,
+    image: {
+      alt: 'Silver Mercedes-Benz S-Class at night, doors open, turquoise interior with ambient lighting',
+      webp: set([[sClassPosterWebp, 576]]),
+      jpg: set([[sClassPosterJpg, 576]]),
+    },
+  },
   {
     id: 'mclaren-720s',
     make: 'McLaren',
@@ -59,6 +80,18 @@ export const projects: Project[] = [
       alt: 'McLaren in a colour-shift wrap, doors up, in the Mansor Customs studio',
       webp: set([[mcl560Webp, 560], [mcl960Webp, 960]]),
       jpg: set([[mcl560Jpg, 560], [mcl960Jpg, 960]]),
+    },
+  },
+  {
+    id: 'bmw-m3',
+    make: 'BMW',
+    model: 'M3', // confirmed by the creative director, 2026-10-10
+    logo: bmwLogo,
+    video: m3Video,
+    image: {
+      alt: 'Satin black BMW M3 with carbon aero outside the Mansor Customs shop',
+      webp: set([[m3PosterWebp, 576]]),
+      jpg: set([[m3PosterJpg, 576]]),
     },
   },
   {
