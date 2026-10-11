@@ -395,12 +395,15 @@ Introduce radius only when a reference explicitly uses it.
   Glassy charcoal cards: a charcoal fill with a soft top-left radial
   highlight, an inner 1px top edge, a 9% white hairline border, 20px
   radius and a soft drop. No blur, no colour. Each card: stars (with an
-  accessible rating label), the review, then the name and source under a
-  hairline. Native scroll-snap strip: 1 card + peek on phones, 2 on md, 3
+  accessible rating label) and the source badge, the review, then the
+  name under a hairline. Native scroll-snap strip: 1 card + peek on phones, 2 on md, 3
   inside the 90rem container on lg; equal heights; the shared 44px
-  controls on md+; never auto-advances. **Content is demo placeholders**
-  (a visible "Demo" tag on every card) until real reviews are supplied;
-  see the note in `data/reviews.ts`.
+  controls on md+; never auto-advances. Content: eight client-supplied
+  reviews, verbatim, published on Mansor's own site as Google reviews
+  (`data/reviews.ts`). Source badge top-right: Google's four-colour G
+  (13px) with "Google Review" in muted Outfit, in a quiet glass pill; it
+  names the source and claims no verification. `demo: true` swaps the badge
+  for a "Demo" tag.
 - **Instagram showcase** (`components/sections/InstagramShowcase.tsx`,
   Venuum reference), before "Visit Us": a left-aligned profile (avatar
   ~146px on phones and 184px on desktop, with a thin conic `ig-*` gradient

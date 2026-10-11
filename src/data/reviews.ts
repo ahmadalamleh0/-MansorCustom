@@ -1,15 +1,14 @@
 /**
  * Client reviews for "Words From Our Clients".
  *
- * DEMO PLACEHOLDERS ONLY. No authentic Mansor Customs reviews could be
- * verified (2026-10-11): Google and Facebook reviews sit behind logins, and
- * BBB loads its reviews client-side; that profile also shows an F rating and
- * 12 complaints, so selectively quoting it would mislead. Every entry below
- * is marked `demo: true` and renders a visible "Demo" tag.
+ * Supplied by the creative director (2026-10-11) from Mansor Customs' own
+ * website, where each is published as a Google review. Transcribed
+ * verbatim. Not independently checked against the live Google listing
+ * (not readable from here), so the card labels the source ("Google Review")
+ * without claiming verification or a live feed.
  *
- * To go live: replace with real reviews the client supplies or approves
- * (exact wording, the reviewer's name as published, the real rating, and
- * where it was posted), and set `demo: false`.
+ * `demo: true` renders a "Demo" tag instead of the source badge, for any
+ * placeholder content in future.
  */
 
 export type Review = {
@@ -18,42 +17,74 @@ export type Review = {
   /** 1–5 */
   rating: number
   text: string
-  /** Where it was published, e.g. "Google review" */
-  source: string
+  /** Where it was published */
+  source: 'google' | 'other'
   demo: boolean
 }
 
 export const reviews: Review[] = [
   {
-    id: 'demo-1',
-    name: 'Client name',
+    id: 'michael-s',
+    name: 'Michael S.',
     rating: 5,
-    text: 'Demo review. A verified client review appears here in the client’s own words, describing their build and their experience with the Mansor team.',
-    source: 'Placeholder',
-    demo: true,
+    text: 'Got my car wrapped in Satin Black and it looks incredibly phenomenal. Highly professional crew in the Tri-State area. Will be coming back for an exhaust tune!',
+    source: 'google',
+    demo: false,
   },
   {
-    id: 'demo-2',
-    name: 'Client name',
+    id: 'james-d',
+    name: 'James D.',
     rating: 5,
-    text: 'Demo review. Replace with a real review, for example from Google, quoted exactly as published, with the reviewer’s name and rating.',
-    source: 'Placeholder',
-    demo: true,
+    text: 'Outstanding service! The PPF they applied to my GT3 is absolutely flawless. The edges are tucked perfectly and you can’t even tell it’s there. Mansor is top tier.',
+    source: 'google',
+    demo: false,
   },
   {
-    id: 'demo-3',
-    name: 'Client name',
+    id: 'david-r',
+    name: 'David R.',
     rating: 5,
-    text: 'Demo review. This card shows how a longer testimonial wraps: a few sentences about the wrap, the finish, the communication and the hand-over of the finished car.',
-    source: 'Placeholder',
-    demo: true,
+    text: 'Best customization shop around! The team communicated with me throughout the entire process. The custom interior work they did is unmatched!',
+    source: 'google',
+    demo: false,
   },
   {
-    id: 'demo-4',
-    name: 'Client name',
+    id: 'sarah-l',
+    name: 'Sarah L.',
     rating: 5,
-    text: 'Demo review. Short reviews sit comfortably too.',
-    source: 'Placeholder',
-    demo: true,
+    text: 'Incredible attention to detail. I brought in my daily driver for a ceramic coating and it truly looks better than when it drove off the dealer lot.',
+    source: 'google',
+    demo: false,
+  },
+  {
+    id: 'william-k',
+    name: 'William K.',
+    rating: 5,
+    text: 'The starlight headliner installation was beyond my expectations. Mansor Customs transformed the interior of my Rolls-Royce into a true masterpiece!',
+    source: 'google',
+    demo: false,
+  },
+  {
+    id: 'anthony-p',
+    name: 'Anthony P.',
+    rating: 5,
+    text: 'Brought my McLaren in for a full body color change wrap. Their precision and care for high-end exotics are the best in the business. Very satisfied with the result.',
+    source: 'google',
+    demo: false,
+  },
+  {
+    id: 'chris-n',
+    name: 'Chris N.',
+    rating: 5,
+    text: 'Superior service from start to finish. The team is extremely knowledgeable about performance tuning, and my car feels completely alive now. Excellent work!',
+    source: 'google',
+    demo: false,
+  },
+  {
+    id: 'jonathan-v',
+    name: 'Jonathan V.',
+    rating: 5,
+    text: 'Mansor Customs is the only place I trust with my Ferrari. Their paint protection process is meticulous and completely invisible. Worth every penny.',
+    source: 'google',
+    demo: false,
   },
 ]
