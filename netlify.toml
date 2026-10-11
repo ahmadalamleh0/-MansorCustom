@@ -4,3 +4,10 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Service pages are client-side routes: serve the app for direct links and
+# refreshes. Scoped to /services/* so it never shadows /api functions.
+[[redirects]]
+  from = "/services/*"
+  to = "/index.html"
+  status = 200

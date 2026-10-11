@@ -15,7 +15,8 @@ type ComingSoonModalProps = {
 }
 
 /**
- * Demo stand-in for features that aren't live yet (service pages, booking).
+ * Demo stand-in for features that aren't live yet (booking: Book Appointment,
+ * Start Your Build). Service pages have their own routes now.
  * Built on the native <dialog>, which provides the focus trap, Escape-to-close,
  * top-layer stacking and an inert background. Focus returns to the trigger
  * on close.

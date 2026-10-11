@@ -1,4 +1,5 @@
 import type { MouseEvent } from 'react'
+import { navigate } from './router'
 
 /**
  * In-page navigation. All anchor links go through this one function, so a
@@ -24,5 +25,7 @@ export function handleAnchorClick(event: MouseEvent<HTMLAnchorElement>) {
   const hash = event.currentTarget.hash
   if (!hash || event.metaKey || event.ctrlKey || event.shiftKey) return
   event.preventDefault()
-  scrollToHash(hash)
+  // From a service page, homepage section links go home first (App then scrolls)
+  if (location.pathname !== '/') navigate(hash === '#top' ? '/' : `/${hash}`)
+  else scrollToHash(hash)
 }

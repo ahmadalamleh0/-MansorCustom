@@ -1,29 +1,29 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { editorialReveal } from '@/animations/editorialReveal'
-import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { Media } from '@/components/ui/Media'
 import { ChevronIcon } from '@/components/ui/icons'
 import { editorial, type EditorialCard, type EditorialGroup } from '@/data/editorial'
+import { servicePath } from '@/data/services'
 import { useGSAP } from '@/lib/gsap'
+import { handleLinkClick } from '@/lib/router'
 
 /**
  * Services showcase after the hero: 4 service cards (offset collage) →
  * centred statement → 4 service cards. Each card is a client photo with a
- * centred title and chevron (Motorcarlease reference) that opens the Coming
- * Soon dialog until service pages exist. Content: data/editorial.ts.
+ * centred title and chevron (Motorcarlease reference) linking to the
+ * service's page (/services/:id). Content: data/editorial.ts.
  * Animation hooks: [data-editorial-card], [data-editorial-statement].
  */
 export function Editorial() {
   const scope = useRef<HTMLElement>(null)
   const { upper, statement, lower } = editorial
-  const [active, setActive] = useState<string | null>(null)
 
   useGSAP(() => editorialReveal(), { scope })
 
   return (
     <section ref={scope} id="editorial" aria-labelledby="editorial-title" className="pt-(--section-y)">
       <div className="container-site">
-        <Collage group={upper} onOpen={setActive} />
+        <Collage group={upper} />
 
         <div data-editorial-statement className="statement">
           <h2 id="editorial-title" className="statement__headline">
@@ -36,21 +36,8 @@ export function Editorial() {
           <p className="statement__body">{withEmphasis(statement.body)}</p>
         </div>
 
-        <Collage group={lower} onOpen={setActive} />
+        <Collage group={lower} />
       </div>
-
-      <ComingSoonModal
-        content={
-          active === null
-            ? null
-            : {
-                label: active,
-                message: 'This service page is being developed. Check back soon to explore it in detail.',
-                dismissLabel: 'Close',
-              }
-        }
-        onClose={() => setActive(null)}
-      />
     </section>
   )
 }
@@ -60,39 +47,37 @@ function withEmphasis(text: string) {
   return text.split(/\*(.+?)\*/).map((part, i) => (i % 2 ? <em key={i}>{part}</em> : part))
 }
 
-type OpenService = (title: string) => void
-
-function Collage({ group, onOpen }: { group: EditorialGroup; onOpen: OpenService }) {
+function Collage({ group }: { group: EditorialGroup }) {
   const [topLeft, topRight, bottomLeft, bottomRight] = group
   return (
     <div className="collage">
       <div className="collage__grid">
         <div className="collage__col">
-          <Card card={topLeft} onOpen={onOpen} />
-          <Card card={bottomLeft} onOpen={onOpen} />
+          <Card card={topLeft} />
+          <Card card={bottomLeft} />
         </div>
         <div className="collage__col">
-          <Card card={topRight} onOpen={onOpen} />
-          <Card card={bottomRight} onOpen={onOpen} />
+          <Card card={topRight} />
+          <Card card={bottomRight} />
         </div>
       </div>
     </div>
   )
 }
 
-/** Photo + centred title with a small chevron; the whole card is one button */
-function Card({ card, onOpen }: { card: EditorialCard; onOpen: OpenService }) {
+/** Photo + centred title with a small chevron; the whole card is one link */
+function Card({ card }: { card: EditorialCard }) {
   return (
     <figure data-editorial-card className="collage__card service-tile">
       <div className="service-tile__media">
         <Media media={card.media} />
       </div>
-      <button type="button" aria-haspopup="dialog" onClick={() => onOpen(card.title)} className="service-tile__link">
+      <a href={servicePath(card.id)} onClick={handleLinkClick} className="service-tile__link">
         <span className="service-tile__title">
           {card.title}
           <ChevronIcon className="service-tile__chevron" />
         </span>
-      </button>
+      </a>
     </figure>
   )
 }

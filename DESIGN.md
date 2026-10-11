@@ -405,6 +405,19 @@ Introduce radius only when a reference explicitly uses it.
   glyph linking to the Reels tab. Never stand-in footage or reused site
   photos. Setup and operations: `docs/INSTAGRAM.md`. Vite dev stubs the
   endpoint as `not_configured`.
+- **Service pages** (`components/pages/ServicePage.tsx`, `data/services.ts`,
+  `lib/router.ts`): one shared Coming Soon template at `/services/:slug`
+  for the eight service tiles (slug = tile id; the tile's photo and name).
+  Phones: the photo on top (4:5, max 72svh), fading into the copy. lg+: a
+  full-height photo panel (56% wide) bleeding off the right edge and fading
+  left into black, with the copy in the left column. Copy: the service name
+  in Michroma caps (gradient fill, balanced wrap), a 56px hairline, COMING
+  SOON (tracked Outfit 500), one line, and "Back to Services" (arrow, goes
+  to `/#editorial`). Restrained once-only entrance (photo settles, hairline
+  draws, copy rises). Tiles and footer links navigate client-side (a small
+  History-API router; the homepage stays mounted, so the intro never
+  replays); direct links skip the intro. Netlify serves index.html for
+  `/services/*`. The Coming Soon dialog now only covers booking CTAs.
 - **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
   heading, then the address and "Get Directions" (Google Maps directions to
   the exact address) on the black page, then a compact full-bleed band

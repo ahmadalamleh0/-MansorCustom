@@ -1,16 +1,15 @@
-import { useState } from 'react'
 import { Wordmark } from '@/components/brand/Wordmark'
-import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
+import { servicePath } from '@/data/services'
 import { site } from '@/data/site'
+import { handleLinkClick } from '@/lib/router'
 
 /**
  * Footer (after the MANSORY reference): centred wordmark, a hairline, two
  * balanced centred columns of services, verified social links (only when a
- * URL exists), a short hairline and the copyright line. Services open the
- * Coming Soon dialog until their pages exist.
+ * URL exists), a short hairline and the copyright line. Services link to
+ * their service pages (/services/:slug).
  */
 export function Footer() {
-  const [active, setActive] = useState<string | null>(null)
   const socials = site.socials.filter((s) => s.url)
 
   return (
@@ -24,15 +23,10 @@ export function Footer() {
           {site.footerServices.map((column, c) => (
             <ul key={c} className="footer__column">
               {column.map((service) => (
-                <li key={service}>
-                  <button
-                    type="button"
-                    aria-haspopup="dialog"
-                    onClick={() => setActive(service)}
-                    className="footer__link"
-                  >
-                    {service}
-                  </button>
+                <li key={service.label}>
+                  <a href={servicePath(service.slug)} onClick={handleLinkClick} className="footer__link">
+                    {service.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -54,19 +48,6 @@ export function Footer() {
         <hr className="footer__rule footer__rule--short" />
         <p className="footer__copyright">{site.copyright}</p>
       </div>
-
-      <ComingSoonModal
-        content={
-          active === null
-            ? null
-            : {
-                label: active,
-                message: 'This service page is being developed. Check back soon to explore it in detail.',
-                dismissLabel: 'Close',
-              }
-        }
-        onClose={() => setActive(null)}
-      />
     </footer>
   )
 }

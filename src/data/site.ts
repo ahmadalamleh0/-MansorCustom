@@ -118,10 +118,24 @@ export const site = {
   },
 
   // Footer service directory (creative director, 2026-10-09). Two balanced
-  // columns; each opens the Coming Soon dialog until service pages exist.
+  // columns. Each label links to the closest service page (slug = the
+  // service tile's id). Interior Upgrades and Screens → Bespoke Interiors,
+  // Ambient Lighting → Starlight, until they get pages of their own.
   footerServices: [
-    ['Wraps', 'PPF', 'Ceramic Coating', 'Bespoke Interiors', 'Wheels'],
-    ['Interior Upgrades', 'Ambient Lighting', 'Screens', 'Tuning', 'Body Kits'],
+    [
+      { label: 'Wraps', slug: 'wraps' },
+      { label: 'PPF', slug: 'protection-finish' },
+      { label: 'Ceramic Coating', slug: 'protection-finish' },
+      { label: 'Bespoke Interiors', slug: 'bespoke-interiors' },
+      { label: 'Wheels', slug: 'wheels-suspension' },
+    ],
+    [
+      { label: 'Interior Upgrades', slug: 'bespoke-interiors' },
+      { label: 'Ambient Lighting', slug: 'starlight' },
+      { label: 'Screens', slug: 'bespoke-interiors' },
+      { label: 'Tuning', slug: 'tuning' },
+      { label: 'Body Kits', slug: 'body-kits' },
+    ],
   ],
 
   copyright: '© Mansor Customs',

@@ -762,6 +762,156 @@
   }
 
   /*
+   * Service page (/services/:slug), shared Coming Soon template. Phones:
+   * the service photo on top, fading into the copy. lg+: the photo is a tall
+   * full-height panel bleeding off the right edge, fading left into the
+   * black, with the copy in the left column. Portrait client photos stay
+   * portrait instead of being stretched into a wide banner.
+   */
+  .service-page {
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+
+  .service-page__media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    max-height: 72svh;
+    width: 100%;
+  }
+
+  .service-page__scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgb(11 11 12 / 0.55), transparent 22%),
+      linear-gradient(to top, var(--color-ink) 2%, rgb(11 11 12 / 0.35) 38%, transparent 62%);
+  }
+
+  .service-page__content {
+    position: relative;
+    margin-top: clamp(-5rem, -3rem - 4vw, -3rem);
+    padding-bottom: clamp(4.5rem, 3rem + 5vw, 7rem);
+  }
+
+  .service-page__copy {
+    max-width: 34rem;
+  }
+
+  @media (min-width: 1024px) {
+    .service-page {
+      display: flex;
+      align-items: center;
+      min-height: max(100svh, 44rem);
+    }
+
+    .service-page__media {
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: 56%;
+      max-height: none;
+      aspect-ratio: auto;
+    }
+
+    .service-page__scrim {
+      background:
+        linear-gradient(to right, var(--color-ink) 0%, rgb(11 11 12 / 0.55) 22%, transparent 48%),
+        linear-gradient(to bottom, rgb(11 11 12 / 0.6), transparent 20%),
+        linear-gradient(to top, var(--color-ink) 0%, transparent 26%);
+    }
+
+    .service-page__content {
+      width: 100%;
+      margin-top: 0;
+      padding-block: calc(var(--header-h) + 3rem) 4rem;
+    }
+
+    .service-page__copy {
+      max-width: min(38rem, 46%);
+    }
+  }
+
+  /* Service name: the brand display face, sized for multi-word names */
+  .service-page__title {
+    font-family: var(--font-brand);
+    font-size: clamp(1.875rem, 0.95rem + 3.3vw, 3.25rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    background: linear-gradient(100deg, var(--color-paper) 35%, rgb(242 241 238 / 0.55) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .service-page__rule {
+    display: block;
+    width: 3.5rem;
+    height: 1px;
+    margin-block: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    background: rgb(242 241 238 / 0.45);
+  }
+
+  .service-page__status {
+    font-family: var(--font-editorial);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-paper);
+  }
+
+  .service-page__line {
+    max-width: 30ch;
+    margin-top: 0.875rem;
+    font-family: var(--font-editorial);
+    font-size: clamp(1rem, 0.94rem + 0.3vw, 1.1875rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgb(242 241 238 / 0.68);
+  }
+
+  .service-page__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75em;
+    min-height: 3rem;
+    margin-top: clamp(2rem, 1.6rem + 1.5vw, 2.75rem);
+    font-family: var(--font-editorial);
+    font-size: 0.78125rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(242 241 238 / 0.85);
+    transition: color 220ms ease;
+  }
+
+  .service-page__back-icon {
+    width: 1rem;
+    height: 1rem;
+    rotate: 180deg;
+    transition: translate 320ms var(--ease-out-expo);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .service-page__back:hover {
+      color: var(--color-paper);
+    }
+
+    .service-page__back:hover .service-page__back-icon {
+      translate: -3px 0;
+    }
+  }
+
+  .service-page__back:focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 4px;
+  }
+
+  /*
    * Selected Projects (VOIR PPF reference). A horizontal strip of tall 3:5
    * build cards, square-cornered and full-bleed, separated by narrow black
    * gutters with a 1px rule (Mansor's signature line). Each card: a small
