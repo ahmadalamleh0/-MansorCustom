@@ -163,6 +163,37 @@
     display: block;
   }
 
+  /* Official logo (header, footer): same footprint as the typeset wordmark
+     it replaced: 147px wide on phones, 156px md+ in the header; 176/205px
+     in the footer. Height follows the logo's own proportions. */
+  .brand-logo,
+  .brand-logo img {
+    display: block;
+  }
+
+  .brand-logo img {
+    width: 100%;
+    height: auto;
+  }
+
+  .brand-logo--nav {
+    width: 9.1875rem;
+  }
+
+  .brand-logo--footer {
+    width: 11rem;
+  }
+
+  @media (min-width: 768px) {
+    .brand-logo--nav {
+      width: 9.775rem;
+    }
+
+    .brand-logo--footer {
+      width: 12.84rem;
+    }
+  }
+
   .wordmark--nav {
     font-size: 15px; /* sized up so the 42% CUSTOMS subtitle stays legible */
   }

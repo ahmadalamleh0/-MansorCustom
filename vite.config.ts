@@ -20,9 +20,19 @@ function instagramReelsStub(): Plugin {
   }
 }
 
+/**
+ * Absolute site URL for canonical / Open Graph / Twitter tags (social
+ * crawlers need absolute image URLs). SITE_URL wins; on Netlify builds the
+ * platform's URL (primary domain) is used; local dev falls back to localhost.
+ */
+function siteUrl(): Plugin {
+  const url = (process.env.SITE_URL || process.env.URL || 'http://localhost:5180').replace(/\/+$/, '')
+  return { name: 'site-url', transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', url) }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), instagramReelsStub()],
+  plugins: [react(), tailwindcss(), instagramReelsStub(), siteUrl()],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { flushSync } from 'react-dom'
-import { Wordmark } from '@/components/brand/Wordmark'
+import { BrandLogo } from '@/components/brand/BrandLogo'
 import { site } from '@/data/site'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { handleAnchorClick } from '@/lib/scroll'
@@ -70,7 +70,7 @@ export function Header() {
         <span aria-hidden="true" className="md:hidden" />
         {/* Temporary typographic wordmark until the client's logo is supplied */}
         <a href="#top" onClick={onNavClick} className="flex">
-          <Wordmark className="wordmark--nav" />
+          <BrandLogo className="brand-logo--nav" />
         </a>
 
         <nav aria-label="Primary" className="hidden md:block">

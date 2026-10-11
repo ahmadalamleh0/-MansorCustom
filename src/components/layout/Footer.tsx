@@ -1,4 +1,4 @@
-import { Wordmark } from '@/components/brand/Wordmark'
+import { BrandLogo } from '@/components/brand/BrandLogo'
 import { servicePath } from '@/data/services'
 import { site } from '@/data/site'
 import { handleLinkClick } from '@/lib/router'
@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container-site footer__inner">
-        <Wordmark className="wordmark--footer" />
+        <BrandLogo className="brand-logo--footer" />
 
         <hr className="footer__rule" />
 
