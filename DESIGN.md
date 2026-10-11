@@ -321,11 +321,16 @@ Introduce radius only when a reference explicitly uses it.
   With no booking method confirmed, the CTA opens the Coming Soon dialog
   (`site.hero.cta.bookingUrl` switches it to a link). A functional scrim
   fades the hero into `ink`.
-- **Brand banner** (`components/sections/Showcase.tsx`): directly after the
-  hero, a slow monochrome marquee of product-brand logos (XPEL, STEK,
-  SunTek, HEXIS, Gtechniq, Ceramic Pro) with faded edges; static and
-  wrapped with reduced motion. The angled 3D image panels that used to
-  follow it were removed at the creative director's request (2026-10-09).
+- **Brand banner** (`components/sections/Showcase.tsx`, `data/banner.ts`):
+  directly after the hero, a slow monochrome marquee with faded edges of
+  brands genuinely associated with Mansor. Only `confirmed` brands show:
+  Stage 4 Tuning and Brillsteel Motorsport (Stage 4 dealer network). Until
+  their official logo files are supplied, each shows its name in tracked
+  Outfit caps at the logos' weight, never a redrawn logo. Akrapovič,
+  Eventuri, Wagner Tuning, XPEL, 3M and SunTek are staged as `pending`
+  (mentioned on Mansor's site, awaiting approval). The set repeats to fill
+  the row; static and wrapped with reduced motion. The reference shop's
+  logos were removed (2026-10-11).
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of
