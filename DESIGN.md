@@ -330,7 +330,9 @@ Introduce radius only when a reference explicitly uses it.
   onto transparency, never redrawn. Also confirmed and shown (logos supplied
   2026-10-12): Akrapovič (red emblem kept, black lettering reversed to white),
   XPEL (reversed to white) and 3M (the official mark as a clean Simple Icons
-  vector in 3M red; the supplied file was a watermarked clip-art copy). Akrapovič,
+  vector in 3M red; the supplied file was a watermarked clip-art copy). PurePPF:
+  its official light logo at full size from pureprotectionfilm.com (the
+  supplied file was a 126px thumbnail of it), ghost tagline removed. Akrapovič,
   Eventuri, Wagner Tuning, XPEL, 3M and SunTek are staged as `pending`
   (mentioned on Mansor's site, awaiting approval). The set repeats to fill
   the row; static and wrapped with reduced motion. The reference shop's

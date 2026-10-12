@@ -1,6 +1,7 @@
 import threeM from '@/assets/logos/3m.svg'
 import akrapovic from '@/assets/logos/akrapovic.png'
 import brillsteel from '@/assets/logos/brillsteel-motorsport.png'
+import pureppf from '@/assets/logos/pureppf.png'
 import stage4 from '@/assets/logos/stage4-tuning.png'
 import suntek from '@/assets/logos/suntek.svg'
 import xpel from '@/assets/logos/xpel-official.png'
@@ -75,6 +76,16 @@ export const brands: Brand[] = [
     // The supplied file was a watermarked clip-art copy; this is the same
     // official mark as a clean vector (Simple Icons, CC0), in 3M red
     logo: { src: threeM, prepared: true, color: true },
+  },
+
+  {
+    name: 'PurePPF',
+    status: 'confirmed',
+    relation: 'Approved by the creative director, who supplied the logo (2026-10-12)',
+    // The supplied file was a 126px thumbnail of PurePPF's own logo; this is
+    // the same file at full size from their official site (pureprotectionfilm.com),
+    // light version, ghost tagline removed. Already light: no filter.
+    logo: { src: pureppf, prepared: true },
   },
 
   // Pending client approval: mentioned on Mansor's website
