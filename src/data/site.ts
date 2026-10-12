@@ -101,8 +101,8 @@ export const site = {
 
   // Brand storytelling section (creative director, 2026-10-10; Alain Class
   // reference). Vehicle: the burgundy widebody supercar (creative director,
-  // 2026-10-12 studio-lights render; original in
-  // client-photos/philosophy/burgundy-supercar-studio.png). Its own baked-in halo
+  // 2026-10-12 neon-halo render; original in
+  // client-photos/philosophy/burgundy-lamborghini-neon-halo.png). Its own baked-in halo
   // ring was retouched out so the section's animated arc replaces it at the
   // same geometry. Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
   philosophy: {
@@ -115,7 +115,7 @@ export const site = {
       url: null as string | null,
     },
     image: {
-      alt: 'Burgundy widebody Lamborghini with a tall rear wing, seen from above and in front under studio lights',
+      alt: 'Burgundy Lamborghini with a carbon rear wing, seen from above and in front under a halo of light',
       desktop: { jpg: `${philosophy1600} 1600w, ${philosophy2016} 2016w`, webp: `${philosophy1600Webp} 1600w, ${philosophy2016Webp} 2016w`, src: philosophy1600, width: 1600, height: 1000 },
       mobile: { jpg: `${philosophyMobile800} 800w, ${philosophyMobile1008} 1008w`, webp: `${philosophyMobile800Webp} 800w, ${philosophyMobile1008Webp} 1008w`, width: 800, height: 1000 },
     },

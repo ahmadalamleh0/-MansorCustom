@@ -1340,8 +1340,8 @@
   /* Frames sized for the supercar: the whole car, wing to splitter.
      Arc geometry = the photo's own (retouched-out) halo ring. */
   .philosophy__stage {
-    --arc-w: 0.936;
-    --arc-top: 0.053;
+    --arc-w: 0.98;
+    --arc-top: 0.035;
     position: relative;
     width: calc(100% + 2 * var(--gutter));
     max-width: 72rem;
@@ -1351,8 +1351,8 @@
 
   @media (min-width: 768px) {
     .philosophy__stage {
-      --arc-w: 0.468;
-      --arc-top: 0.053;
+      --arc-w: 0.49;
+      --arc-top: 0.035;
       --mask-x: 48%; /* the widened desktop frame: fade the added sides sooner */
       width: 100%;
       aspect-ratio: 1.6 / 1;
@@ -1381,7 +1381,7 @@
   /*
    * Headlight ignition layers, positioned in % of the stage, which has the
    * same aspect as each crop (4:5 phones, 1.6:1 md+). Measured from the
-   * original photo (1024×1536): lamps at x 138–334 / 682–880, y 856–1050.
+   * original photo (1086×1448): lamps at x 165–310 / 776–921, y 810–975.
    * Resting state = lights on (patches hidden), which is also the
    * reduced-motion state; GSAP plays the off → on ignition.
    */
@@ -1396,8 +1396,8 @@
     opacity: 0;
   }
 
-  .philosophy__led--l { left: 10.516%; top: 62.857%; width: 24.206%; height: 19.206%; }
-  .philosophy__led--r { left: 64.484%; top: 62.857%; width: 24.405%; height: 19.206%; }
+  .philosophy__led--l { left: 10.119%; top: 60%; width: 19.147%; height: 16.905%; }
+  .philosophy__led--r { left: 70.734%; top: 60%; width: 19.147%; height: 16.905%; }
 
   /* Each lamp patch in three bands (projector, LED upright, lower LED bar)
      so the lamp wakes top to bottom */
@@ -1452,22 +1452,22 @@
     --spill-w: 60%;
     aspect-ratio: 3.4;
     left: 50%;
-    top: 88.1%;
+    top: 77.8%;
     background: radial-gradient(closest-side, rgb(210 222 245 / 0.1), rgb(210 222 245 / 0.03) 60%, transparent);
   }
 
-  .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 22.62%; top: 72.46%; }
-  .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 76.69%; top: 72.46%; }
+  .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 19.69%; top: 68.45%; }
+  .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 80.31%; top: 68.45%; }
 
   @media (min-width: 768px) {
-    .philosophy__led--l { left: 30.258%; top: 62.857%; width: 12.103%; height: 19.206%; }
-    .philosophy__led--r { left: 57.242%; top: 62.857%; width: 12.202%; height: 19.206%; }
+    .philosophy__led--l { left: 30.06%; top: 60%; width: 9.573%; height: 16.905%; }
+    .philosophy__led--r { left: 60.367%; top: 60%; width: 9.573%; height: 16.905%; }
     .philosophy__bloom { --bloom-w: 9%; }
     .philosophy__halo { --halo-w: 17%; }
     .philosophy__spill { --spill-w: 22%; }
-    .philosophy__spill--front { --spill-w: 30%; top: 88.1%; }
-    .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 36.31%; top: 72.46%; }
-    .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 63.34%; top: 72.46%; }
+    .philosophy__spill--front { --spill-w: 30%; top: 77.8%; }
+    .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 34.85%; top: 68.45%; }
+    .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 65.15%; top: 68.45%; }
   }
 
   .philosophy__arc {
