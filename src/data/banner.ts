@@ -43,7 +43,8 @@ export const brands: Brand[] = [
   },
   {
     name: 'Brillsteel Motorsport',
-    status: 'confirmed',
+    // Removed from the strip at the creative director's request (2026-10-12)
+    status: 'pending',
     relation: 'Stage 4 Tuning official dealer network',
     source: 'https://stage4tuning.com/dealers/brillsteel',
     // Official logo, supplied by the creative director (2026-10-12), cut onto

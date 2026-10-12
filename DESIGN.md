@@ -325,9 +325,8 @@ Introduce radius only when a reference explicitly uses it.
   directly after the hero, a slow monochrome marquee with faded edges of
   brands genuinely associated with Mansor. Only `confirmed` brands show:
   Stage 4 Tuning (its official S4T logo, cut white on transparency, set a
-  little taller as a two-line lockup) and Brillsteel Motorsport (Stage 4
-  dealer network; its official logo in its own red and white, set taller
-  again as a stacked emblem lockup). Both logos are supplied files, cut
+  little taller as a two-line lockup) and Brillsteel Motorsport (removed from
+  the strip 2026-10-12; entry kept hidden with its logo for easy return). Both logos are supplied files, cut
   onto transparency, never redrawn. Also confirmed and shown (logos supplied
   2026-10-12): Akrapovič (red emblem kept, black lettering reversed to white),
   XPEL (reversed to white) and 3M (the official mark as a clean Simple Icons
