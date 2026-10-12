@@ -107,8 +107,12 @@ export const site = {
   // same geometry. Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
   philosophy: {
     headline: ['Beyond', 'Factory.'],
-    // Two deliberate lines (creative director, 2026-10-10)
-    copy: ['Some cars are built to stand out.', 'We take them a step further.'],
+    // Two sentences (creative director, 2026-10-12): the premise softer, the
+    // promise at full strength. The \u00a0 escape keeps the dash off a line start.
+    copy: [
+      'Every car leaves the factory a certain way.',
+      'At Mansor, we work on what comes after\u00a0— from a new wrap or body kit to the wheels, interior, and performance.',
+    ],
     cta: {
       label: 'Start Your Build',
       // UNCONFIRMED: no enquiry/booking flow yet, so it opens the Coming Soon dialog

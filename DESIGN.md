@@ -366,12 +366,15 @@ Introduce radius only when a reference explicitly uses it.
   creative director, 2026-10-10), the `philosophy-headline` in Michroma caps with a
   paper-to-graphite gradient fill (stacked on two lines below 1280px, one
   line above), then the burgundy widebody supercar (1.6:1 frame on md+,
-  4:5 on phones; the whole car from wing to splitter) whose top tucks under
+  4:5 on phones; the whole car from wing to splitter, shown at 0.94 scale
+  so it breathes inside the arc) whose top tucks under
   the headline and whose edges mask into the page black (desktop sides
   extended and blended; the photo's own baked-in halo ring retouched out so
   the animated arc replaces it at the same geometry). A thin 42% white arc with three ticks (top,
   left, right) frames the car and fades out below its midline. Then the line
-  "Some cars are built to stand out. / We take them a step further." set as two lines (the first
+  "Every car leaves the factory a certain way. / At Mansor, we work on what
+  comes after — from a new wrap or body kit to the wheels, interior, and
+  performance." as two balanced sentences (36ch phones, 46ch md+) (the first
   at 62% paper, the second full paper) and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,

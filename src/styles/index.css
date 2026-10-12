@@ -1378,6 +1378,12 @@
     }
   }
 
+  /* The car (with its light layers) sits ~6% smaller inside the arc. CSS
+     `scale` composes with GSAP's transform entrance instead of fighting it. */
+  .philosophy__visual {
+    scale: 0.94;
+  }
+
   .philosophy__visual,
   .philosophy__photo,
   .philosophy__photo img {
@@ -1518,17 +1524,29 @@
 
   /* Two set lines: the premise quieter, the promise at full strength */
   .philosophy__copy {
+    max-width: 36ch;
     margin-top: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
     font-family: var(--font-editorial);
-    font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
+    font-size: clamp(1.0625rem, 0.98rem + 0.4vw, 1.3125rem);
     font-weight: 300;
-    line-height: 1.45;
+    line-height: 1.55;
     letter-spacing: 0.005em;
     color: var(--color-paper);
   }
 
   .philosophy__line {
     display: block;
+    text-wrap: balance;
+  }
+
+  .philosophy__line + .philosophy__line {
+    margin-top: 0.35em;
+  }
+
+  @media (min-width: 768px) {
+    .philosophy__copy {
+      max-width: 46ch;
+    }
   }
 
   .philosophy__line:first-child {
