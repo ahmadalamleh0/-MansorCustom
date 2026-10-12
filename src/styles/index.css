@@ -481,6 +481,18 @@
     filter: brightness(0) invert(1);
   }
 
+  /* Logos kept in their own colours (Brillsteel's red and white) */
+  .showcase__logo--color {
+    opacity: 0.9;
+  }
+
+  /* Stacked emblem + name lockups (Brillsteel, ~2:1) need more height than
+     wide lockups to read at the same visual weight */
+  .showcase__logo--stacked {
+    height: clamp(2.5rem, 2rem + 1.4vw, 3.375rem);
+    max-width: 7rem;
+  }
+
   /* Two-line lockups (Stage 4: S4T over STAGE 4 TUNING) */
   .showcase__logo--tall {
     height: clamp(1.75rem, 1.4rem + 1vw, 2.375rem);

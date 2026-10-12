@@ -326,8 +326,9 @@ Introduce radius only when a reference explicitly uses it.
   brands genuinely associated with Mansor. Only `confirmed` brands show:
   Stage 4 Tuning (its official S4T logo, cut white on transparency, set a
   little taller as a two-line lockup) and Brillsteel Motorsport (Stage 4
-  dealer network; its name in tracked Outfit caps until the official file
-  arrives, never a redrawn logo). Akrapovič,
+  dealer network; its official logo in its own red and white, set taller
+  again as a stacked emblem lockup). Both logos are supplied files, cut
+  onto transparency, never redrawn. Akrapovič,
   Eventuri, Wagner Tuning, XPEL, 3M and SunTek are staged as `pending`
   (mentioned on Mansor's site, awaiting approval). The set repeats to fill
   the row; static and wrapped with reduced motion. The reference shop's

@@ -12,7 +12,7 @@ import { useGSAP } from '@/lib/gsap'
  */
 
 /** Copies of the brand set per list, so one list is wider than any screen */
-const REPEAT = Math.max(1, Math.ceil(8 / Math.max(1, shownBrands.length)))
+const REPEAT = Math.max(1, Math.ceil(12 / Math.max(1, shownBrands.length)))
 export function Showcase() {
   const scope = useRef<HTMLElement>(null)
 
@@ -52,7 +52,7 @@ function LogoList({ brands, duplicate = false }: { brands: Brand[]; duplicate?: 
                 alt={hidden ? '' : brand.name}
                 loading="lazy"
                 decoding="async"
-                className={`showcase__logo ${brand.logo.prepared ? '' : 'showcase__logo--filter'} ${brand.logo.tall ? 'showcase__logo--tall' : ''}`}
+                className={`showcase__logo ${brand.logo.prepared ? '' : 'showcase__logo--filter'} ${brand.logo.tall ? 'showcase__logo--tall' : ''} ${brand.logo.color ? 'showcase__logo--color' : ''} ${brand.logo.stacked ? 'showcase__logo--stacked' : ''}`}
               />
             ) : (
               <span className="showcase__name">{brand.name}</span>

@@ -1,3 +1,4 @@
+import brillsteel from '@/assets/logos/brillsteel-motorsport.png'
 import stage4 from '@/assets/logos/stage4-tuning.png'
 import suntek from '@/assets/logos/suntek.svg'
 import xpel from '@/assets/logos/xpel.svg'
@@ -23,7 +24,9 @@ export type Brand = {
   relation: string
   source?: string
   /** `tall`: a two-line lockup, set a little taller so its small line stays legible */
-  logo?: { src: string; prepared?: boolean; tall?: boolean }
+  /** `color`: keep the logo's own colours at full strength (not dimmed to the strip's grey) */
+  /** `stacked`: an emblem-over-name lockup (~2:1), set taller again */
+  logo?: { src: string; prepared?: boolean; tall?: boolean; stacked?: boolean; color?: boolean }
 }
 
 export const brands: Brand[] = [
@@ -41,7 +44,9 @@ export const brands: Brand[] = [
     status: 'confirmed',
     relation: 'Stage 4 Tuning official dealer network',
     source: 'https://stage4tuning.com/dealers/brillsteel',
-    // logo: official Brillsteel file pending (brillsteel.com unreachable)
+    // Official logo, supplied by the creative director (2026-10-12), cut onto
+    // transparency. Its red and white are kept, as asked: not filtered.
+    logo: { src: brillsteel, prepared: true, stacked: true, color: true },
   },
 
   // Pending client approval: mentioned on Mansor's website
