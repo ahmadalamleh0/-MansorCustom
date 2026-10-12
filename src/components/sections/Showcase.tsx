@@ -52,7 +52,7 @@ function LogoList({ brands, duplicate = false }: { brands: Brand[]; duplicate?: 
                 alt={hidden ? '' : brand.name}
                 loading="lazy"
                 decoding="async"
-                className={`showcase__logo ${brand.logo.prepared ? '' : 'showcase__logo--filter'}`}
+                className={`showcase__logo ${brand.logo.prepared ? '' : 'showcase__logo--filter'} ${brand.logo.tall ? 'showcase__logo--tall' : ''}`}
               />
             ) : (
               <span className="showcase__name">{brand.name}</span>

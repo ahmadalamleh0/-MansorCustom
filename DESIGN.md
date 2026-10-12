@@ -324,9 +324,10 @@ Introduce radius only when a reference explicitly uses it.
 - **Brand banner** (`components/sections/Showcase.tsx`, `data/banner.ts`):
   directly after the hero, a slow monochrome marquee with faded edges of
   brands genuinely associated with Mansor. Only `confirmed` brands show:
-  Stage 4 Tuning and Brillsteel Motorsport (Stage 4 dealer network). Until
-  their official logo files are supplied, each shows its name in tracked
-  Outfit caps at the logos' weight, never a redrawn logo. Akrapovič,
+  Stage 4 Tuning (its official S4T logo, cut white on transparency, set a
+  little taller as a two-line lockup) and Brillsteel Motorsport (Stage 4
+  dealer network; its name in tracked Outfit caps until the official file
+  arrives, never a redrawn logo). Akrapovič,
   Eventuri, Wagner Tuning, XPEL, 3M and SunTek are staged as `pending`
   (mentioned on Mansor's site, awaiting approval). The set repeats to fill
   the row; static and wrapped with reduced motion. The reference shop's

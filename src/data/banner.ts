@@ -1,3 +1,4 @@
+import stage4 from '@/assets/logos/stage4-tuning.png'
 import suntek from '@/assets/logos/suntek.svg'
 import xpel from '@/assets/logos/xpel.svg'
 
@@ -21,7 +22,8 @@ export type Brand = {
   /** How Mansor is associated with the brand, and where that's documented */
   relation: string
   source?: string
-  logo?: { src: string; prepared?: boolean }
+  /** `tall`: a two-line lockup, set a little taller so its small line stays legible */
+  logo?: { src: string; prepared?: boolean; tall?: boolean }
 }
 
 export const brands: Brand[] = [
@@ -30,7 +32,9 @@ export const brands: Brand[] = [
     status: 'confirmed',
     relation: 'Stage 4 Tuning official dealer network',
     source: 'https://stage4tuning.com/dealers',
-    // logo: official Stage 4 file pending (stage4tuning.com blocks automated download)
+    // Official logo, supplied by the creative director (2026-10-12): Stage 4's
+    // own share image, cut to white on transparency. Already light: no filter.
+    logo: { src: stage4, prepared: true, tall: true },
   },
   {
     name: 'Brillsteel Motorsport',

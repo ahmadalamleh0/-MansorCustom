@@ -481,6 +481,12 @@
     filter: brightness(0) invert(1);
   }
 
+  /* Two-line lockups (Stage 4: S4T over STAGE 4 TUNING) */
+  .showcase__logo--tall {
+    height: clamp(1.75rem, 1.4rem + 1vw, 2.375rem);
+    max-width: 8rem;
+  }
+
   /* A confirmed brand without its official logo file yet: its name in plain
      tracked type at the logos' visual weight (never a drawn logo) */
   .showcase__name {
