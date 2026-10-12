@@ -328,7 +328,10 @@ Introduce radius only when a reference explicitly uses it.
   little taller as a two-line lockup) and Brillsteel Motorsport (Stage 4
   dealer network; its official logo in its own red and white, set taller
   again as a stacked emblem lockup). Both logos are supplied files, cut
-  onto transparency, never redrawn. Akrapovič,
+  onto transparency, never redrawn. Also confirmed and shown (logos supplied
+  2026-10-12): Akrapovič (red emblem kept, black lettering reversed to white),
+  XPEL (reversed to white) and 3M (the official mark as a clean Simple Icons
+  vector in 3M red; the supplied file was a watermarked clip-art copy). Akrapovič,
   Eventuri, Wagner Tuning, XPEL, 3M and SunTek are staged as `pending`
   (mentioned on Mansor's site, awaiting approval). The set repeats to fill
   the row; static and wrapped with reduced motion. The reference shop's

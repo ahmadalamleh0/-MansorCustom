@@ -1,7 +1,9 @@
+import threeM from '@/assets/logos/3m.svg'
+import akrapovic from '@/assets/logos/akrapovic.png'
 import brillsteel from '@/assets/logos/brillsteel-motorsport.png'
 import stage4 from '@/assets/logos/stage4-tuning.png'
 import suntek from '@/assets/logos/suntek.svg'
-import xpel from '@/assets/logos/xpel.svg'
+import xpel from '@/assets/logos/xpel-official.png'
 
 /**
  * Brand banner below the hero: brands genuinely associated with Mansor
@@ -49,12 +51,35 @@ export const brands: Brand[] = [
     logo: { src: brillsteel, prepared: true, stacked: true, color: true },
   },
 
+  {
+    name: 'Akrapovič',
+    status: 'confirmed',
+    relation: 'Approved by the creative director, who supplied the logo (2026-10-12)',
+    // Official logo, reversed for dark: red emblem kept, black lettering to white
+    logo: { src: akrapovic, prepared: true, color: true },
+  },
+
+  {
+    name: 'XPEL',
+    status: 'confirmed',
+    relation: 'Approved by the creative director, who supplied the logo (2026-10-12)',
+    // Official logo, reversed to white for the dark strip
+    logo: { src: xpel, prepared: true },
+  },
+
+  {
+    name: '3M',
+    status: 'confirmed',
+    relation: 'Approved by the creative director, who supplied a logo (2026-10-12)',
+    // The supplied file was a watermarked clip-art copy; this is the same
+    // official mark as a clean vector (Simple Icons, CC0), in 3M red
+    logo: { src: threeM, prepared: true, color: true },
+  },
+
   // Pending client approval: mentioned on Mansor's website
-  { name: 'Akrapovič', status: 'pending', relation: 'Mentioned on Mansor’s website' },
+
   { name: 'Eventuri', status: 'pending', relation: 'Mentioned on Mansor’s website' },
   { name: 'Wagner Tuning', status: 'pending', relation: 'Mentioned on Mansor’s website' },
-  { name: 'XPEL', status: 'pending', relation: 'Mentioned on Mansor’s website', logo: { src: xpel } },
-  { name: '3M', status: 'pending', relation: 'Mentioned on Mansor’s website' },
   { name: 'SunTek', status: 'pending', relation: 'Mentioned on Mansor’s website', logo: { src: suntek } },
 ]
 
