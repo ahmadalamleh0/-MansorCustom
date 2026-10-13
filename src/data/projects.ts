@@ -4,10 +4,14 @@ import mclarenLogo from '@/assets/logos/makes/mclaren.svg'
 import m3PosterJpg from '@/assets/images/projects/bmw-m3-poster.jpg'
 import m3PosterWebp from '@/assets/images/projects/bmw-m3-poster.webp'
 import m3Video from '@/assets/images/projects/bmw-m3.mp4'
-import xm560Jpg from '@/assets/images/projects/bmw-xm-560.jpg'
-import xm560Webp from '@/assets/images/projects/bmw-xm-560.webp'
-import xm960Jpg from '@/assets/images/projects/bmw-xm-960.jpg'
-import xm960Webp from '@/assets/images/projects/bmw-xm-960.webp'
+import icy1560Jpg from '@/assets/images/projects/icy-m3-1-560.jpg'
+import icy1560Webp from '@/assets/images/projects/icy-m3-1-560.webp'
+import icy1960Jpg from '@/assets/images/projects/icy-m3-1-960.jpg'
+import icy1960Webp from '@/assets/images/projects/icy-m3-1-960.webp'
+import icy2560Jpg from '@/assets/images/projects/icy-m3-2-560.jpg'
+import icy2560Webp from '@/assets/images/projects/icy-m3-2-560.webp'
+import icy2960Jpg from '@/assets/images/projects/icy-m3-2-960.jpg'
+import icy2960Webp from '@/assets/images/projects/icy-m3-2-960.webp'
 import sf90PosterJpg from '@/assets/images/projects/ferrari-sf90-poster.jpg'
 import sf90PosterWebp from '@/assets/images/projects/ferrari-sf90-poster.webp'
 import sf90Video from '@/assets/images/projects/ferrari-sf90.mp4'
@@ -149,6 +153,24 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'bmw-m3-icy-blue',
+    make: 'BMW',
+    model: 'M3',
+    logo: bmwLogo,
+    image: {
+      alt: 'Icy blue BMW M3 by an old garage, rear three-quarter: swan-neck wing and gold-centred mesh wheels',
+      webp: set([[icy1560Webp, 560], [icy1960Webp, 869]]),
+      jpg: set([[icy1560Jpg, 560], [icy1960Jpg, 869]]),
+    },
+    gallery: [
+      {
+        alt: 'The icy blue BMW M3 in the garage alley, front three-quarter',
+        webp: set([[icy2560Webp, 560], [icy2960Webp, 869]]),
+        jpg: set([[icy2560Jpg, 560], [icy2960Jpg, 869]]),
+      },
+    ],
+  },
+  {
     id: 'ferrari-sf90-stradale',
     make: 'Ferrari',
     model: 'SF90 Stradale',
@@ -165,17 +187,6 @@ export const projects: Project[] = [
         jpg: set([[sfs2560Jpg, 560], [sfs2960Jpg, 960]]),
       },
     ],
-  },
-  {
-    id: 'bmw-xm',
-    make: 'BMW',
-    model: 'XM',
-    logo: bmwLogo,
-    image: {
-      alt: 'Black BMW XM with red accents outside the Mansor Customs shop',
-      webp: set([[xm560Webp, 560], [xm960Webp, 960]]),
-      jpg: set([[xm560Jpg, 560], [xm960Jpg, 960]]),
-    },
   },
   {
     id: 'mercedes-g-class',
