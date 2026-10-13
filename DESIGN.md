@@ -468,6 +468,17 @@ Introduce radius only when a reference explicitly uses it.
   History-API router; the homepage stays mounted, so the intro never
   replays); direct links skip the intro. Netlify serves index.html for
   `/services/*`. The Coming Soon dialog now only covers booking CTAs.
+- **The Journal** (`components/sections/Journal.tsx`, `data/journal.ts`) and
+  **Frequently Asked Questions** (`components/sections/Faq.tsx`,
+  `data/faq.ts`), after Instagram and before Visit Us: a quieter break.
+  Smaller left-aligned brand headings (`.quiet-title`, 1.5-2.5rem). Journal:
+  three 4:5 cards (16px radius, graphite placeholder until photography
+  arrives), category label, title; three across on lg, a swipe strip with a
+  peek below. Every entry is tagged "Placeholder" with no dates, authors or
+  links. FAQ: heading left / list right on lg; questions between 1px rules;
+  a plus that becomes a minus; answers open via grid-row height + fade
+  (0.32s, interruptible), several at once; closed panels are inert.
+  Unconfirmed answers carry a "Draft" tag.
 - **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
   heading, then the address and "Get Directions" (Google Maps directions to
   the exact address) on the black page, then a compact full-bleed band
