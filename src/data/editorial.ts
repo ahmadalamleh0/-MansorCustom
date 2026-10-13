@@ -30,10 +30,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: wraps,
-        alt: 'McLaren 720S in a colour-shift wrap, doors raised, under hexagonal lighting in the Mansor Customs studio',
-        width: 1000,
-        height: 1333,
-        position: '50% 70%', // hex ceiling, wall logo and the whole car
+        alt: 'Corvette in a satin green wrap, bonnet open, under hexagonal lighting with rolls of wrap film on the wall',
+        width: 941,
+        height: 1672,
+        position: '50% 62%', // wrap-film rolls on the wall and the car's nose
       },
     },
     {
