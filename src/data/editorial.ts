@@ -54,10 +54,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: tuning,
-        alt: 'Matte grey Porsche from behind: large rear wing, glowing light bar and an exhaust flame',
-        width: 1000,
-        height: 1502,
-        position: '50% 40%', // wing, light bar and flame all in the square crop
+        alt: 'Ferrari SF90 engine bay: twin-turbo V8 with red cam covers, wrapped turbos and the hybrid battery pack',
+        width: 1122,
+        height: 1402,
+        position: '50% 52%', // the V8, turbos and battery pack
       },
     },
     {
