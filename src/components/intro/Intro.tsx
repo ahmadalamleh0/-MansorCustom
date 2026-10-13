@@ -25,7 +25,8 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
     window.scrollTo(0, 0)
     let alive = true
     Promise.race([
-      document.fonts.load('1em Michroma'),
+      // Brand face for the wordmark, plus the hero headline face it reveals into
+      Promise.all([document.fonts.load('1em Michroma'), document.fonts.load('1em "Bruno Ace SC"')]),
       new Promise((resolve) => setTimeout(resolve, FONT_WAIT_MS)),
     ]).finally(() => alive && setFontReady(true))
     return () => {

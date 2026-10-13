@@ -10,6 +10,19 @@
   font-display: block;
 }
 
+/* Wide geometric display face — Bruno Ace SC (SIL OFL 1.1), self-hosted.
+   Closest open-licence match to RYFT's proprietary RyftSansHeading (the
+   reference): pointed A, M whose V meets the baseline, rounded-square O/G,
+   angled R leg. Used, set in capitals, for the hero headline, "The Mansor
+   Standard." and the Beyond Factory description only. */
+@font-face {
+  font-family: 'Bruno Ace SC';
+  src: url('/fonts/bruno-ace-sc-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Editorial display face — Outfit variable (SIL OFL 1.1), self-hosted */
 @font-face {
   font-family: 'Outfit';
@@ -43,6 +56,7 @@
   --font-display: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-editorial: 'Outfit', ui-sans-serif, system-ui, sans-serif;
   --font-brand: 'Michroma', ui-sans-serif, system-ui, sans-serif;
+  --font-geo: 'Bruno Ace SC', 'Michroma', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
   /* Fluid type scale */
@@ -295,12 +309,14 @@
     text-align: center;
   }
 
+  /* RYFT reference: wide geometric caps, generous tracking, even weight */
   .hero__headline {
-    font-family: var(--font-editorial);
-    font-size: clamp(2.05rem, 0.9rem + 5.1vw, 5.125rem); /* ~18% below the first pass */
-    font-weight: 500;
-    line-height: 1.04;
-    letter-spacing: -0.015em;
+    font-family: var(--font-geo);
+    font-size: clamp(1.5rem, 0.55rem + 4.1vw, 4rem);
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--color-paper);
   }
 
@@ -1870,14 +1886,17 @@
   }
 
   /* Two set lines: the premise quieter, the promise at full strength */
+  /* RYFT reference face at paragraph size: small caps-height, open tracking
+     and leading so the wide letterforms stay comfortable to read */
   .philosophy__copy {
-    max-width: 36ch;
+    max-width: 30ch;
     margin-top: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
-    font-family: var(--font-editorial);
-    font-size: clamp(1.0625rem, 0.98rem + 0.4vw, 1.3125rem);
-    font-weight: 300;
-    line-height: 1.55;
-    letter-spacing: 0.005em;
+    font-family: var(--font-geo);
+    font-size: clamp(0.8125rem, 0.76rem + 0.28vw, 1rem);
+    font-weight: 400;
+    line-height: 1.85;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     color: var(--color-paper);
   }
 
@@ -1892,7 +1911,7 @@
 
   @media (min-width: 768px) {
     .philosophy__copy {
-      max-width: 46ch;
+      max-width: 44ch;
     }
   }
 
@@ -2537,16 +2556,25 @@
     text-align: center;
   }
 
+  /* One line on desktop; tablets and phones take a balanced two-line break */
+  @media (min-width: 1024px) {
+    .statement__headline.statement__headline {
+      max-width: none;
+      white-space: nowrap;
+    }
+  }
+
   .statement__headline {
     max-width: 14em;
     margin-inline: auto;
-    font-family: var(--font-editorial);
+    font-family: var(--font-geo);
     /* Its own scale (the block's spacing still follows --statement-size):
-       one confident line on md+, a balanced two-line break on phones */
-    font-size: clamp(2.25rem, 0.75rem + 6.4vw, 5.75rem);
-    font-weight: 500;
-    line-height: 1.02;
-    letter-spacing: -0.025em;
+       one line on md+, a balanced two-line break on phones (RYFT reference) */
+    font-size: clamp(1.75rem, 0.75rem + 3.9vw, 4rem);
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     color: var(--color-paper);
   }
 
