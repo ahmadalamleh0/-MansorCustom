@@ -49,15 +49,15 @@ export const editorial = {
       },
     },
     {
-      id: 'wheels-suspension',
-      title: 'Wheels & Suspension',
+      id: 'tuning',
+      title: 'Tuning',
       media: {
         type: 'image',
-        src: wheelsSuspension,
-        alt: 'Black SUV in profile on polished multi-spoke wheels',
-        width: 1200,
-        height: 1200,
-        position: '43% 62%',
+        src: tuning,
+        alt: 'Matte grey Porsche from behind: large rear wing, glowing light bar and an exhaust flame',
+        width: 1000,
+        height: 1502,
+        position: '50% 40%', // wing, light bar and flame all in the square crop
       },
     },
     {
@@ -107,15 +107,15 @@ export const editorial = {
       },
     },
     {
-      id: 'tuning',
-      title: 'Tuning',
+      id: 'wheels-suspension',
+      title: 'Wheels & Suspension',
       media: {
         type: 'image',
-        src: tuning,
-        alt: 'Matte grey Porsche from behind: large rear wing, glowing light bar and an exhaust flame',
-        width: 1000,
-        height: 1502,
-        position: '50% 40%', // wing, light bar and flame all in the square crop
+        src: wheelsSuspension,
+        alt: 'Black SUV in profile on polished multi-spoke wheels',
+        width: 1200,
+        height: 1200,
+        position: '43% 62%',
       },
     },
     {

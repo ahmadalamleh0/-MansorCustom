@@ -116,10 +116,10 @@ export const site = {
   philosophy: {
     headline: ['Beyond', 'Factory.'],
     // Two sentences (creative director, 2026-10-12): the premise softer, the
-    // promise at full strength. The \u00a0 escape keeps the dash off a line start.
+    // promise at full strength. No dash (creative director, 2026-10-12).
     copy: [
       'Every car leaves the factory a certain way.',
-      'At Mansor, we work on what comes after\u00a0— from a new wrap or body kit to the wheels, interior, and performance.',
+      'At Mansor, we work on what comes after, from a new wrap or body kit to the wheels, interior, and performance.',
     ],
     cta: {
       label: 'Start Your Build',

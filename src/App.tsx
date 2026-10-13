@@ -68,8 +68,8 @@ export default function App() {
             <Reviews />
             <InstagramShowcase />
             <Journal />
-            <Faq />
             <LocationMap />
+            <Faq />
           </main>
         )}
         <Footer />
