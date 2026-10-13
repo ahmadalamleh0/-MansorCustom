@@ -358,10 +358,11 @@ Outfit body copy are unchanged.
   phone; preferred contact as three underlined words). A 01 — 02 — 03
   indicator (done segments fill in paper). Underlined fields, labels in
   tracked 10px caps, placeholders at 38%. The primary action is a
-  full-width editorial line ("Continue to your build" / "Continue to your
-  details" / "Submit Your Build"): label left, arrow right, a hairline
-  above that draws in paper on hover while the arrow steps forward; 4rem
-  tall. Back sits on the same line. Steps validate before advancing, keep
+  full-width editorial line ("Continue" / "Submit Your Build"): label
+  left, arrow right, a hairline above that draws in paper on hover while
+  the arrow steps forward; 3.5rem tall, directly under the fields. Compact
+  rhythm (2026-10-13): 16px indicator gap, 18px rule-to-heading, 20px
+  heading-to-fields, about 32px fields-to-action. Back sits on the same line. Steps validate before advancing, keep
   every value, move focus to the step heading and fade in (0.32s). The
   Year list is a select-only combobox: compact (about six rows, scrolls),
   newest first, fades and drops in, arrows / Page / Home / End / typed

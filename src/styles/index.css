@@ -1009,7 +1009,7 @@
   .build-brief {
     position: relative;
     z-index: 2;
-    padding-block: clamp(5rem, 3.5rem + 6vw, 9rem) 0;
+    padding-block: clamp(4rem, 3rem + 4vw, 6.5rem) 0;
   }
 
   .build-brief__grid {
@@ -1067,14 +1067,14 @@
   /* Numbered parts: a rule, the number and title, then the body */
   .bd-part {
     border-top: 1px solid var(--color-line-strong);
-    padding-block: clamp(1.25rem, 1rem + 0.8vw, 1.75rem) clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
+    padding-block: 1.125rem clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
   }
 
   .bd-part__head {
     display: flex;
     align-items: baseline;
     gap: 0.625rem;
-    margin: 0 0 clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+    margin: 0 0 1.25rem;
     font-size: 0.75rem;
     color: var(--color-muted);
   }
@@ -1091,7 +1091,7 @@
   /* Underlined fields */
   .bd-row {
     display: grid;
-    gap: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    gap: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
   }
 
   @media (min-width: 768px) {
@@ -1318,7 +1318,7 @@
     justify-content: space-between;
     gap: 1.5rem;
     flex: 1;
-    min-height: 4rem;
+    min-height: 3.5rem;
     padding: 0;
     border: 0;
     border-top: 1px solid var(--color-line-strong);
@@ -1390,7 +1390,7 @@
   .bd-steps {
     display: flex;
     align-items: center;
-    margin: 0 0 clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    margin: 0 0 1rem;
     padding: 0;
     list-style: none;
     font-family: var(--font-editorial);
@@ -1619,11 +1619,11 @@
     display: flex;
     align-items: flex-end;
     gap: clamp(1.25rem, 1rem + 1.5vw, 2.5rem);
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
 
   .bd-submit-row .bd-back {
-    min-height: 4rem;
+    min-height: 3.5rem;
     border-top: 1px solid transparent;
   }
 
@@ -1662,11 +1662,11 @@
   /* Compact on phones: two-column service rows, tighter part spacing */
   @media (max-width: 767px) {
     .bd-part {
-      padding-bottom: 1.75rem;
+      padding-bottom: 1.5rem;
     }
 
     .bd-row {
-      gap: 1.25rem;
+      gap: 1.125rem;
     }
 
     .bd-service-list {

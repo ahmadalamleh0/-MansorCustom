@@ -305,7 +305,7 @@ export function BuildDesk() {
                   </button>
                 )}
                 <button type="submit" className="bd-submit" disabled={status === 'sending'} aria-busy={status === 'sending' || undefined}>
-                  <span>{step === 0 ? 'Continue to your build' : step === 1 ? 'Continue to your details' : status === 'sending' ? 'Sending…' : 'Submit Your Build'}</span>
+                  <span>{step < 2 ? 'Continue' : status === 'sending' ? 'Sending…' : 'Submit Your Build'}</span>
                   {status !== 'sending' && <ArrowIcon className="bd-submit__icon" />}
                 </button>
               </div>
