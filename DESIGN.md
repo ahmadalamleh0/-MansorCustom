@@ -492,8 +492,9 @@ Outfit body copy are unchanged.
   Smaller left-aligned brand heading (`.quiet-title`, 1.5-2.5rem); heading
   left / list right on lg; questions between 1px rules; a plus that becomes
   a minus; answers open via grid-row height + fade (0.32s, interruptible),
-  several at once; closed panels are inert. Unconfirmed answers carry a
-  "Draft" tag. (The Journal section was deleted 2026-10-13.)
+  several at once; closed panels are inert. Copy: four questions supplied
+  by the creative director (proposed, pending Mansor's approval; no visible
+  labels). (The Journal section was deleted 2026-10-13.)
 - **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
   heading, then the address and "Get Directions" (Google Maps directions to
   the exact address) on the black page, then a compact full-bleed band

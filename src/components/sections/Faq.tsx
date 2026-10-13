@@ -7,7 +7,7 @@ import { useGSAP } from '@/lib/gsap'
  * Frequently Asked Questions: a minimal accordion between thin rules. Each
  * question is a button (aria-expanded/-controls); the answer opens with a
  * short height + fade transition (CSS grid rows, interruptible). Several can
- * be open. Content: data/faq.ts (draft answers are tagged).
+ * be open. Content: data/faq.ts.
  */
 export function Faq() {
   const scope = useRef<HTMLElement>(null)
@@ -44,10 +44,7 @@ export function Faq() {
                 </h3>
                 <div id={panel} role="region" aria-label={item.q} className="faq__panel" inert={!isOpen || undefined}>
                   <div className="faq__panel-inner">
-                    <p className="faq__a">
-                      {item.draft && <span className="faq__draft">Draft</span>}
-                      {item.a}
-                    </p>
+                    <p className="faq__a">{item.a}</p>
                   </div>
                 </div>
               </li>
