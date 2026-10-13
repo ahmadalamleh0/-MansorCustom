@@ -299,10 +299,10 @@ Outfit body copy are unchanged.
   CUSTOMS, white on transparent, extracted from the client's logo
   (`client-photos/brand/mansor-logo-official.jpg`; the starfield dropped).
   Header (147px phones / 156px md+) and footer (176 / 205px). The intro
-  keeps the typeset Wordmark below. Favicons: the logo's own M on a black
-  tile (16/32/48 + .ico); apple-touch and manifest icons: the official
-  starry badge. Social preview `public/og-image.jpg` (1200×630, logo on
-  black); OG/Twitter tags use an absolute URL filled at build time
+  keeps the typeset Wordmark below. Favicons (16/32/48 + .ico) and
+  apple-touch / manifest icons: the official starfield disc itself, cut on
+  its edge (2026-10-13). Social preview `public/og-image.jpg` (1200×630,
+  the official disc on black); OG/Twitter tags use an absolute URL filled at build time
   (`SITE_URL`, else Netlify's `URL`).
 - **Wordmark** (`components/brand/Wordmark.tsx`): letters as separate spans
   for the letter-by-letter reveal. Type only, with no frame.

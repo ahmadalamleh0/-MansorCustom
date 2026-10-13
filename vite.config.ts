@@ -26,7 +26,7 @@ function instagramReelsStub(): Plugin {
  * platform's URL (primary domain) is used; local dev falls back to localhost.
  */
 function siteUrl(): Plugin {
-  const url = (process.env.SITE_URL || process.env.URL || 'http://localhost:5180').replace(/\/+$/, '')
+  const url = (process.env.SITE_URL || process.env.URL || (process.env.NODE_ENV === 'production' ? 'https://mansorcustom.netlify.app' : 'http://localhost:5180')).replace(/\/+$/, '')
   return { name: 'site-url', transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', url) }
 }
 
