@@ -100,10 +100,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: bodyKits,
-        alt: 'Yellow Jeep Grand Cherokee Trackhawk from above, with a vented carbon bonnet, widebody front bumper and splitter',
+        alt: 'Black BMW XM with red-accented wheels and aero outside the Mansor Customs shop, rear three-quarter',
         width: 1440,
         height: 1440,
-        position: '50% 55%', // bonnet vents to splitter
+        position: '60% 62%', // the car, with the shop sign behind
       },
     },
     {
