@@ -18,3 +18,10 @@ export function buildDeskReveal() {
   })
   return mm
 }
+
+/** Restrained step change: the new step's fields settle in (0.32s). */
+export function stepIn(sheet: HTMLElement | null) {
+  const el = sheet?.querySelector('[data-bd-step]')
+  if (!el || !window.matchMedia(mq.motionOk).matches) return
+  gsap.fromTo(el, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.32, ease: 'power3.out', clearProps: 'transform,opacity' })
+}
