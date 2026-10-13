@@ -348,22 +348,25 @@ Outfit body copy are unchanged.
   the row; static and wrapped with reduced motion. The reference shop's
   logos were removed (2026-10-11).
 - **The Build Brief** (`components/sections/BuildDesk.tsx`,
-  `lib/buildRequest.ts`): "Let's talk about your build." between the
-  service tiles and Recent Work, as a bespoke order sheet rather than a
-  wizard (redesigned 2026-10-13 to move away from the Wraptors glass form).
-  No container: deep black, a tracked "The Build Brief" kicker, the brand
-  headline (1.75-2.5rem) and lede in a sticky column on lg, the sheet
-  beside it. One continuous form in three numbered parts, each opened by a
-  22% hairline: 01 / Vehicle (make, model, year in one row on md+),
-  02 / Customization (the eight services as indexed rows between 10%
-  rules, a short rule that extends when chosen, Wraps preselected; notes),
-  03 / Contact (name; email + phone; preferred contact as three words, the
-  chosen one underlined). Fields are underlined only (1px, brightening on
-  focus), labels tracked uppercase 10px grey. Outlined square "Submit Your
-  Build" with an arrow (fills paper on hover). The whole sheet validates on
-  submit (inline errors, focus on the first). Posts to **Netlify Forms**
-  (`build-request`, static copy in index.html, honeypot `bot-field`);
-  recipients are set in the Netlify dashboard.
+  `lib/buildRequest.ts`, `data/makes.ts`): "Let's talk builds." between the
+  service tiles and Recent Work. Black editorial order sheet, no container:
+  a kicker, the brand headline and lede (sticky column on lg), the sheet
+  beside. **Three steps, one visible at a time**: 01 / Your Vehicle
+  (searchable Make combobox with "Other" → free text; Model; a custom Year
+  list), 02 / Your Build (eight indexed service rows, Wraps preselected,
+  two columns on phones; optional notes), 03 / Your Details (name, email,
+  phone; preferred contact as three underlined words). A 01 — 02 — 03
+  indicator (done segments fill in paper). Underlined fields, labels in
+  tracked 10px caps, placeholders at 38%. The primary action is a
+  full-width editorial line ("Continue to your build" / "Continue to your
+  details" / "Submit Your Build"): label left, arrow right, a hairline
+  above that draws in paper on hover while the arrow steps forward; 4rem
+  tall. Back sits on the same line. Steps validate before advancing, keep
+  every value, move focus to the step heading and fade in (0.32s). The
+  Year list is a select-only combobox: compact (about six rows, scrolls),
+  newest first, fades and drops in, arrows / Page / Home / End / typed
+  digits, Enter or a tap selects. Posts to **Netlify Forms**
+  (`build-request`, static copy in index.html, honeypot `bot-field`).
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of

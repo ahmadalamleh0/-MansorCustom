@@ -1,4 +1,4 @@
-import { useId, useMemo, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from 'react'
+import { useEffect, useId, useMemo, useRef, useState, type FormEvent, type KeyboardEvent, type ReactNode } from 'react'
 import { buildDeskReveal, stepIn } from '@/animations/buildDeskReveal'
 import { ArrowIcon } from '@/components/ui/icons'
 import { MAKES, OTHER_MAKE } from '@/data/makes'
@@ -6,9 +6,12 @@ import { services } from '@/data/services'
 import { submitBuildRequest, FORM_NAME, type BuildRequest } from '@/lib/buildRequest'
 import { useGSAP } from '@/lib/gsap'
 
+const STEPS = ['Your Vehicle', 'Your Build', 'Your Details'] as const
+type Step = 0 | 1 | 2
 const CONTACT = ['Email', 'Phone call', 'Text message'] as const
 const THIS_YEAR = new Date().getFullYear()
 const OLDEST_YEAR = 1950
+/** Newest first, including next model year */
 const YEARS = Array.from({ length: THIS_YEAR + 1 - OLDEST_YEAR + 1 }, (_, i) => String(THIS_YEAR + 1 - i))
 
 const EMPTY: BuildRequest = {
@@ -32,40 +35,39 @@ function finalMake(m: MakeState) {
   return m.picked === OTHER_MAKE ? m.other.trim() : (m.picked ?? '')
 }
 
-function validateVehicle(d: BuildRequest, m: MakeState): Errors {
+function validateStep(step: Step, d: BuildRequest, m: MakeState): Errors {
   const e: Errors = {}
-  if (!m.picked) e.make = m.query.trim() ? 'Choose a make from the list, or pick Other.' : 'Choose the make.'
-  else if (m.picked === OTHER_MAKE && !m.other.trim()) e.makeOther = 'Enter the make.'
-  if (!d.model.trim()) e.model = 'Enter the model.'
-  if (!d.year) e.year = 'Choose the year.'
-  return e
-}
-
-function validateBuild(d: BuildRequest): Errors {
-  const e: Errors = {}
-  if (!d.service) e.service = 'Choose a service.'
-  if (!d.name.trim()) e.name = 'Enter your name.'
-  if (!d.email.trim()) e.email = 'Enter your email.'
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) e.email = 'Enter a valid email address.'
-  const digits = d.phone.replace(/\D/g, '')
-  if (d.contact !== 'Email' && !digits) e.phone = 'Add a phone number so we can call or text you.'
-  else if (digits && (digits.length < 10 || digits.length > 15)) e.phone = 'Enter a valid phone number.'
+  if (step === 0) {
+    if (!m.picked) e.make = m.query.trim() ? 'Choose a make from the list, or pick Other.' : 'Choose the make.'
+    else if (m.picked === OTHER_MAKE && !m.other.trim()) e.makeOther = 'Enter the make.'
+    if (!d.model.trim()) e.model = 'Enter the model.'
+    if (!d.year) e.year = 'Choose the year.'
+  }
+  if (step === 1 && !d.service) e.service = 'Choose a service.'
+  if (step === 2) {
+    if (!d.name.trim()) e.name = 'Enter your name.'
+    if (!d.email.trim()) e.email = 'Enter your email.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email.trim())) e.email = 'Enter a valid email address.'
+    const digits = d.phone.replace(/\D/g, '')
+    if (d.contact !== 'Email' && !digits) e.phone = 'Add a phone number so we can call or text you.'
+    else if (digits && (digits.length < 10 || digits.length > 15)) e.phone = 'Enter a valid phone number.'
+  }
   return e
 }
 
 /**
- * The Build Brief: "Let's talk builds." A two-step order sheet in the black
- * editorial style (no container, hairlines, underlined fields). Step 01:
- * the vehicle (searchable make, model, year). Step 02: the build (service
- * rows, notes, contact). A small 01/02 indicator, Continue and Back keep
- * everything entered; steps validate before moving on and settle in with a
- * short fade. Posts to Netlify Forms (lib/buildRequest.ts).
- * Animation hooks: [data-bd-reveal], [data-bd-step].
+ * The Build Brief: "Let's talk builds." A three-step order sheet in the black
+ * editorial style (no container, hairlines, underlined fields). Only the
+ * active step renders: 01 Your Vehicle (searchable make, model, custom year
+ * list), 02 Your Build (service rows, notes), 03 Your Details (contact).
+ * Continue validates the step; Back keeps everything. A 01/02/03 indicator,
+ * steps settle in with a short fade. Posts to Netlify Forms
+ * (lib/buildRequest.ts). Animation hooks: [data-bd-reveal], [data-bd-step].
  */
 export function BuildDesk() {
   const scope = useRef<HTMLElement>(null)
   const sheet = useRef<HTMLDivElement>(null)
-  const [step, setStep] = useState<0 | 1>(0)
+  const [step, setStep] = useState<Step>(0)
   const [data, setData] = useState<BuildRequest>(EMPTY)
   const [make, setMake] = useState<MakeState>({ query: '', picked: null, other: '' })
   const [errors, setErrors] = useState<Errors>({})
@@ -83,37 +85,39 @@ export function BuildDesk() {
     if (first) sheet.current?.querySelector<HTMLElement>(`[data-field="${first}"]`)?.focus()
   }
 
-  const goTo = (to: 0 | 1) => {
+  const goTo = (to: Step) => {
     setStep(to)
     requestAnimationFrame(() => {
       const el = sheet.current
       if (!el) return
-      // Focus before the fade: a visibility-hidden element can't take focus
+      // Focus before the fade: a hidden element can't take focus
       el.querySelector<HTMLElement>('[data-step-focus]')?.focus({ preventScroll: true })
-      // Keep the sheet in view on phones, where step 02 starts lower
+      // Keep the sheet in view on phones when a step is shorter than the last
       if (el.getBoundingClientRect().top < 0) el.scrollIntoView({ block: 'start', behavior: 'auto' })
       stepIn(el)
     })
   }
 
-  const next = () => {
-    const e = validateVehicle(data, make)
+  const advance = () => {
+    const e = validateStep(step, data, make)
     setErrors(e)
     if (Object.keys(e).length) return focusFirst(e)
-    setData((d) => ({ ...d, make: finalMake(make) }))
-    goTo(1)
+    if (step === 0) setData((d) => ({ ...d, make: finalMake(make) }))
+    goTo((step + 1) as Step)
   }
 
   const submit = async (ev: FormEvent) => {
     ev.preventDefault()
-    if (step === 0) return next()
-    const ve = validateVehicle(data, make)
-    if (Object.keys(ve).length) {
-      setErrors(ve)
-      goTo(0)
-      return
+    if (step < 2) return advance()
+    // Earlier steps are re-checked (e.g. after Back) before sending
+    for (const s of [0, 1] as const) {
+      const e = validateStep(s, data, make)
+      if (Object.keys(e).length) {
+        setErrors(e)
+        return goTo(s)
+      }
     }
-    const e = validateBuild(data)
+    const e = validateStep(2, data, make)
     setErrors(e)
     if (Object.keys(e).length) return focusFirst(e)
     setStatus('sending')
@@ -139,6 +143,8 @@ export function BuildDesk() {
       </p>
     ) : null
 
+  const vehicle = [data.year, finalMake(make), data.model].filter(Boolean).join(' ')
+
   return (
     <section ref={scope} id="build" aria-labelledby="build-title" className="build-brief">
       <div className="container-site build-brief__grid">
@@ -160,7 +166,7 @@ export function BuildDesk() {
               <p className="bd-part__num">Brief received</p>
               <p className="bd-done__title">Thank you, {data.name.trim().split(/\s+/)[0]}.</p>
               <p className="bd-done__text">
-                We have your {data.year} {finalMake(make)} {data.model} and will be in touch by {data.contact.toLowerCase()}.
+                We have your {vehicle} and will be in touch by {data.contact.toLowerCase()}.
               </p>
             </div>
           ) : (
@@ -172,21 +178,17 @@ export function BuildDesk() {
                 </label>
               </p>
 
-              <div className="bd-steps" aria-hidden="true">
-                <span className={`bd-steps__item${step === 0 ? ' is-on' : ''}`}>
-                  <span className="bd-steps__num">01</span> Vehicle
-                </span>
-                <span className="bd-steps__track">
-                  <span className="bd-steps__fill" style={{ transform: `scaleX(${step === 0 ? 0 : 1})` }} />
-                </span>
-                <span className={`bd-steps__item${step === 1 ? ' is-on' : ''}`}>
-                  <span className="bd-steps__num">02</span> Build
-                </span>
-              </div>
+              <ol className="bd-steps" aria-label="Progress">
+                {STEPS.map((_, i) => (
+                  <li key={i} className={`bd-steps__item${i === step ? ' is-on' : i < step ? ' is-done' : ''}`} aria-current={i === step ? 'step' : undefined}>
+                    <span className="bd-steps__num">0{i + 1}</span>
+                  </li>
+                ))}
+              </ol>
 
               <div data-bd-step className="bd-step">
-                {step === 0 ? (
-                  <StepHead num="01" title="Your Vehicle">
+                {step === 0 && (
+                  <StepHead num="01" title={STEPS[0]}>
                     <div className="bd-row bd-row--vehicle">
                       <MakeCombobox
                         state={make}
@@ -219,28 +221,15 @@ export function BuildDesk() {
                         <input {...field('model')} autoComplete="off" placeholder="Aventador S" value={data.model} onChange={(e) => set('model', e.target.value)} />
                         {err('model')}
                       </div>
-                      <div className="bd-line bd-line--year">
-                        <label htmlFor="bd-year">Year</label>
-                        <span className="bd-select">
-                          <select {...field('year')} value={data.year} onChange={(e) => set('year', e.target.value)}>
-                            <option value="">Select</option>
-                            {YEARS.map((y) => (
-                              <option key={y} value={y}>
-                                {y}
-                              </option>
-                            ))}
-                          </select>
-                        </span>
-                        {err('year')}
-                      </div>
+                      <YearSelect value={data.year} error={errors.year} onChange={(y) => set('year', y)} />
                     </div>
                   </StepHead>
-                ) : (
-                  <StepHead num="02" title="Your Build">
+                )}
+
+                {step === 1 && (
+                  <StepHead num="02" title={STEPS[1]}>
                     <fieldset className="bd-services">
-                      <legend className="bd-sublabel">
-                        Services · {data.year} {data.make} {data.model}
-                      </legend>
+                      <legend className="bd-sublabel">Services · {vehicle}</legend>
                       <ul className="bd-service-list" role="radiogroup" aria-label="Service">
                         {services.map((s, i) => (
                           <li key={s.slug}>
@@ -255,14 +244,17 @@ export function BuildDesk() {
                       </ul>
                       {err('service')}
                     </fieldset>
-
                     <div className="bd-line bd-line--area">
                       <label htmlFor="bd-details">
                         Notes <span className="bd-optional">Optional</span>
                       </label>
                       <textarea {...field('details')} rows={2} placeholder="Colours, finishes, references, timing" value={data.details} onChange={(e) => set('details', e.target.value)} />
                     </div>
+                  </StepHead>
+                )}
 
+                {step === 2 && (
+                  <StepHead num="03" title={STEPS[2]}>
                     <div className="bd-row bd-row--contact">
                       <div className="bd-line">
                         <label htmlFor="bd-name">Name</label>
@@ -282,7 +274,6 @@ export function BuildDesk() {
                         {err('phone')}
                       </div>
                     </div>
-
                     <div className="bd-contact">
                       <span className="bd-sublabel" id="bd-contact-label">
                         Preferred contact
@@ -307,14 +298,14 @@ export function BuildDesk() {
               )}
 
               <div className="bd-submit-row">
-                {step === 1 && (
-                  <button type="button" className="bd-back" onClick={() => goTo(0)} disabled={status === 'sending'}>
+                {step > 0 && (
+                  <button type="button" className="bd-back" onClick={() => goTo((step - 1) as Step)} disabled={status === 'sending'}>
                     <ArrowIcon className="bd-back__icon" />
                     Back
                   </button>
                 )}
                 <button type="submit" className="bd-submit" disabled={status === 'sending'} aria-busy={status === 'sending' || undefined}>
-                  <span>{step === 0 ? 'Continue to your build' : status === 'sending' ? 'Sending…' : 'Submit Your Build'}</span>
+                  <span>{step === 0 ? 'Continue to your build' : step === 1 ? 'Continue to your details' : status === 'sending' ? 'Sending…' : 'Submit Your Build'}</span>
                   {status !== 'sending' && <ArrowIcon className="bd-submit__icon" />}
                 </button>
               </div>
@@ -420,7 +411,7 @@ function MakeCombobox({ state, error, onChange }: { state: MakeState; error?: st
                 e.preventDefault()
                 choose(m)
               }}
-              onMouseEnter={() => setActive(i)}
+              onMouseMove={() => setActive(i)}
             >
               {m}
             </li>
@@ -429,6 +420,124 @@ function MakeCombobox({ state, error, onChange }: { state: MakeState; error?: st
       )}
       {error && (
         <p id="bd-make-error" className="bd-error">
+          {error}
+        </p>
+      )}
+    </div>
+  )
+}
+
+/**
+ * Year: a custom select-only combobox (ARIA APG pattern) in the sheet's
+ * style. A compact scrollable list (newest first) that fades open; arrows,
+ * Home/End, Page Up/Down and typed digits move, Enter/Space choose,
+ * Escape/Tab close. Touch: tap to open, tap a year.
+ */
+function YearSelect({ value, error, onChange }: { value: string; error?: string; onChange: (y: string) => void }) {
+  const id = useId()
+  const btn = useRef<HTMLDivElement>(null)
+  const list = useRef<HTMLUListElement>(null)
+  const [open, setOpen] = useState(false)
+  const [active, setActive] = useState(() => Math.max(0, YEARS.indexOf(value)))
+  const typed = useRef({ text: '', at: 0 })
+
+  // Keep the active year in view while the list is open
+  useEffect(() => {
+    if (!open) return
+    list.current?.querySelector<HTMLElement>(`[data-i="${active}"]`)?.scrollIntoView({ block: 'nearest' })
+  }, [open, active])
+
+  const openList = () => {
+    setActive(value ? YEARS.indexOf(value) : 0)
+    setOpen(true)
+  }
+  const choose = (i: number) => {
+    onChange(YEARS[i])
+    setOpen(false)
+  }
+
+  const onKey = (e: KeyboardEvent<HTMLDivElement>) => {
+    const move = (to: number) => {
+      e.preventDefault()
+      if (!open) return openList()
+      setActive(Math.max(0, Math.min(YEARS.length - 1, to)))
+    }
+    if (e.key === 'ArrowDown') move(active + 1)
+    else if (e.key === 'ArrowUp') move(active - 1)
+    else if (e.key === 'PageDown') move(active + 6)
+    else if (e.key === 'PageUp') move(active - 6)
+    else if (e.key === 'Home') move(0)
+    else if (e.key === 'End') move(YEARS.length - 1)
+    else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      if (open) choose(active)
+      else openList()
+    } else if (e.key === 'Escape') setOpen(false)
+    else if (e.key === 'Tab' && open) choose(active)
+    else if (/^\d$/.test(e.key)) {
+      // Type-ahead: "2", "20", "201", "2018" jump to the first match
+      const now = Date.now()
+      const text = (now - typed.current.at < 900 ? typed.current.text : '') + e.key
+      typed.current = { text, at: now }
+      const i = YEARS.findIndex((y) => y.startsWith(text))
+      if (i >= 0) {
+        if (!open) setOpen(true)
+        setActive(i)
+      }
+    }
+  }
+
+  return (
+    <div className="bd-line bd-line--year bd-yearsel">
+      <span className="bd-label" id={`${id}-label`}>
+        Year
+      </span>
+      <div
+        ref={btn}
+        id="bd-year"
+        role="combobox"
+        tabIndex={0}
+        data-field="year"
+        aria-labelledby={`${id}-label ${id}-value`}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={`${id}-list`}
+        aria-activedescendant={open ? `${id}-y-${active}` : undefined}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? 'bd-year-error' : undefined}
+        className="bd-yearsel__button"
+        data-empty={!value || undefined}
+        onClick={() => (open ? setOpen(false) : openList())}
+        onKeyDown={onKey}
+        onBlur={(e) => {
+          if (!e.currentTarget.parentElement?.contains(e.relatedTarget as Node)) setOpen(false)
+        }}
+      >
+        <span id={`${id}-value`}>{value || 'Select'}</span>
+        <span aria-hidden="true" className="bd-yearsel__chevron" />
+      </div>
+      <ul ref={list} id={`${id}-list`} role="listbox" aria-labelledby={`${id}-label`} className="bd-yearsel__list" data-open={open || undefined}>
+        {YEARS.map((y, i) => (
+          <li
+            key={y}
+            id={`${id}-y-${i}`}
+            data-i={i}
+            role="option"
+            aria-selected={y === value}
+            className={`bd-yearsel__opt${i === active ? ' is-active' : ''}`}
+            onMouseDown={(e) => {
+              e.preventDefault()
+              choose(i)
+              btn.current?.focus()
+            }}
+            onMouseMove={() => setActive(i)}
+          >
+            {y}
+          </li>
+        ))}
+      </ul>
+      {error && (
+        <p id="bd-year-error" className="bd-error">
           {error}
         </p>
       )}

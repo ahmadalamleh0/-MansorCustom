@@ -1386,66 +1386,55 @@
   }
 
 
-  /* 01 Vehicle ——— 02 Build: names in the field-label voice, the track
-     fills as you reach step 02 */
+  /* 01 —— 02 —— 03: numbers joined by hairlines; done segments fill */
   .bd-steps {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    margin: 0 0 clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    padding: 0;
+    list-style: none;
     font-family: var(--font-editorial);
     font-size: 0.625rem;
     font-weight: 500;
     letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
     color: var(--color-faint);
   }
 
   .bd-steps__item {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
     transition: color 260ms ease;
   }
 
-  .bd-steps__num {
-    font-variant-numeric: tabular-nums;
+  .bd-steps__item + .bd-steps__item::before {
+    content: '';
+    width: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+    height: 1px;
+    margin-inline: 0.875rem;
+    background: var(--color-line-strong);
+    transition: background-color 420ms ease;
   }
 
-  .bd-steps__item.is-on {
+  .bd-steps__item.is-on,
+  .bd-steps__item.is-done {
     color: var(--color-paper);
   }
 
-  .bd-steps__track {
-    position: relative;
-    flex: 1;
-    max-width: 8rem;
-    height: 1px;
-    overflow: hidden;
-    background: var(--color-line-strong);
+  .bd-steps__item.is-done + .bd-steps__item::before {
+    background: var(--color-paper);
   }
 
-  .bd-steps__fill {
-    position: absolute;
-    inset: 0;
-    background: var(--color-paper);
-    transform-origin: left center;
-    transition: transform 520ms var(--ease-out-expo);
+  .bd-steps__item.is-done {
+    color: rgb(242 241 238 / 0.55);
   }
 
   .bd-part__head:focus {
     outline: none;
   }
 
-  /* Year: a styled native select (phones get their own picker) */
-  .bd-select {
-    position: relative;
-    display: block;
-  }
-
-  .bd-select::after,
-  .bd-combo__chevron {
+  .bd-combo__chevron,
+  .bd-yearsel__chevron {
     content: '';
     position: absolute;
     right: 0.125rem;
@@ -1455,41 +1444,127 @@
     border-bottom: 1px solid rgb(242 241 238 / 0.55);
     rotate: 45deg;
     pointer-events: none;
+    transition: rotate 260ms var(--ease-out-expo), translate 260ms var(--ease-out-expo);
   }
 
-  .bd-select::after {
-    top: calc(50% - 0.375rem);
+  /* Year: custom select-only combobox in the sheet's style */
+  .bd-yearsel {
+    position: relative;
   }
 
-  .bd-select select {
-    width: 100%;
+  .bd-label {
+    font-family: var(--font-editorial);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .bd-yearsel__button {
+    position: relative;
+    display: flex;
+    align-items: center;
     min-height: 2.75rem;
     padding: 0.5rem 1.25rem 0.625rem 0;
-    border: 0;
     border-bottom: 1px solid rgb(242 241 238 / 0.22);
-    border-radius: 0;
-    background: transparent;
     font-family: var(--font-editorial);
     font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
     font-weight: 300;
     color: var(--color-paper);
-    appearance: none;
     cursor: pointer;
+    user-select: none;
     transition: border-color 200ms ease;
   }
 
-  .bd-select select:focus-visible {
+  .bd-yearsel__button[data-empty] {
+    color: rgb(242 241 238 / 0.38);
+  }
+
+  .bd-yearsel__button:focus-visible,
+  .bd-yearsel__button[aria-expanded='true'] {
     outline: none;
     border-bottom-color: var(--color-paper);
   }
 
-  .bd-select select option {
-    background: #141416;
+  .bd-yearsel__button[aria-invalid] {
+    border-bottom-color: rgb(239 120 110 / 0.75);
+  }
+
+  .bd-yearsel__chevron {
+    top: calc(50% - 0.375rem);
+  }
+
+  .bd-yearsel__button[aria-expanded='true'] .bd-yearsel__chevron {
+    rotate: 225deg;
+    translate: 0 0.25rem;
+  }
+
+  /* Compact list: ~6 rows visible, scrolls; fades and drops in */
+  .bd-yearsel__list {
+    position: absolute;
+    top: calc(100% - 0.25rem);
+    left: 0;
+    right: 0;
+    z-index: 6;
+    max-height: 15.25rem;
+    margin: 0;
+    padding: 0.375rem 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    list-style: none;
+    border: 1px solid var(--color-line-strong);
+    background: #0f0f11;
+    box-shadow: 0 24px 40px -20px rgb(0 0 0 / 0.9);
+    scrollbar-width: thin;
+    scrollbar-color: rgb(242 241 238 / 0.25) transparent;
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 -4px;
+    transition:
+      opacity 180ms ease,
+      translate 220ms var(--ease-out-expo),
+      visibility 0s linear 220ms;
+  }
+
+  .bd-yearsel__list[data-open] {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+    transition:
+      opacity 180ms ease,
+      translate 220ms var(--ease-out-expo),
+      visibility 0s;
+  }
+
+  .bd-yearsel__opt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 2.5rem;
+    padding-inline: 0.875rem;
+    font-family: var(--font-editorial);
+    font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+    color: rgb(242 241 238 / 0.62);
+    cursor: pointer;
+  }
+
+  .bd-yearsel__opt.is-active {
+    background: rgb(255 255 255 / 0.06);
     color: var(--color-paper);
   }
 
-  .bd-select [aria-invalid] {
-    border-bottom-color: rgb(239 120 110 / 0.75);
+  /* Selected: full paper with a short rule, echoing the service rows */
+  .bd-yearsel__opt[aria-selected='true'] {
+    color: var(--color-paper);
+  }
+
+  .bd-yearsel__opt[aria-selected='true']::after {
+    content: '';
+    width: 1rem;
+    height: 1px;
+    background: var(--color-paper);
   }
 
   /* Make: searchable combobox */
