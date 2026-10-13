@@ -8,7 +8,6 @@ import { Editorial } from '@/components/sections/Editorial'
 import { Faq } from '@/components/sections/Faq'
 import { Hero } from '@/components/sections/Hero'
 import { InstagramShowcase } from '@/components/sections/InstagramShowcase'
-import { Journal } from '@/components/sections/Journal'
 import { LocationMap } from '@/components/sections/LocationMap'
 import { Philosophy } from '@/components/sections/Philosophy'
 import { Projects } from '@/components/sections/Projects'
@@ -64,10 +63,9 @@ export default function App() {
             <Editorial />
             <BuildDesk />
             <Projects />
-            <Philosophy />
             <Reviews />
+            <Philosophy />
             <InstagramShowcase />
-            <Journal />
             <LocationMap />
             <Faq />
           </main>

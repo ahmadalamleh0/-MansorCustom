@@ -337,18 +337,23 @@ Introduce radius only when a reference explicitly uses it.
   (mentioned on Mansor's site, awaiting approval). The set repeats to fill
   the row; static and wrapped with reduced motion. The reference shop's
   logos were removed (2026-10-11).
-- **Build desk** (`components/sections/BuildDesk.tsx`, `lib/buildRequest.ts`):
-  "Let's talk about your build." between the service tiles and Recent Work.
-  Brand headline (1.75-2.5rem, balanced) and lede left, sticky on lg; a
-  graphite glass panel right (single column on phones). Three steps:
-  01 / Your Vehicle (make, model, year), 02 / Your Build (the eight
-  services as glass radio rows, Wraps preselected; optional details),
-  03 / Your Details (name, email, phone, preferred contact as a segmented
-  pill; phone required for call or text). A three-segment progress line;
-  steps settle in (0.32s); validation per step with inline errors and
-  focus on the first; loading, success and error states. Submits to
-  **Netlify Forms** (`build-request`, static copy in index.html, honeypot
-  `bot-field`); recipients are set in the Netlify dashboard.
+- **The Build Brief** (`components/sections/BuildDesk.tsx`,
+  `lib/buildRequest.ts`): "Let's talk about your build." between the
+  service tiles and Recent Work, as a bespoke order sheet rather than a
+  wizard (redesigned 2026-10-13 to move away from the Wraptors glass form).
+  No container: deep black, a tracked "The Build Brief" kicker, the brand
+  headline (1.75-2.5rem) and lede in a sticky column on lg, the sheet
+  beside it. One continuous form in three numbered parts, each opened by a
+  22% hairline: 01 / Vehicle (make, model, year in one row on md+),
+  02 / Customization (the eight services as indexed rows between 10%
+  rules, a short rule that extends when chosen, Wraps preselected; notes),
+  03 / Contact (name; email + phone; preferred contact as three words, the
+  chosen one underlined). Fields are underlined only (1px, brightening on
+  focus), labels tracked uppercase 10px grey. Outlined square "Submit Your
+  Build" with an arrow (fills paper on hover). The whole sheet validates on
+  submit (inline errors, focus on the first). Posts to **Netlify Forms**
+  (`build-request`, static copy in index.html, honeypot `bot-field`);
+  recipients are set in the Netlify dashboard.
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of
@@ -407,8 +412,8 @@ Introduce radius only when a reference explicitly uses it.
   transparent tracked capitals over a 1px rule at 32%, with a full-strength
   rule drawing in on hover. 48px tap target.
 - **Client reviews** (`components/sections/Reviews.tsx`, `data/reviews.ts`,
-  Wraptors Dubai quote-form reference for the material), between Beyond
-  Factory and Instagram. Heading "Testimonials" in the brand
+  Wraptors Dubai quote-form reference for the material), between Recent
+  Work and Beyond Factory. Heading "Testimonials" in the brand
   headline style at a smaller scale (1.75–3.5rem; one line).
   Glassy charcoal cards: a charcoal fill with a soft top-left radial
   highlight, an inner 1px top edge, a 9% white hairline border, 20px
@@ -468,17 +473,13 @@ Introduce radius only when a reference explicitly uses it.
   History-API router; the homepage stays mounted, so the intro never
   replays); direct links skip the intro. Netlify serves index.html for
   `/services/*`. The Coming Soon dialog now only covers booking CTAs.
-- **The Journal** (`components/sections/Journal.tsx`, `data/journal.ts`) and
-  **Frequently Asked Questions** (`components/sections/Faq.tsx`,
-  `data/faq.ts`), after Instagram and before Visit Us: a quieter break.
-  Smaller left-aligned brand headings (`.quiet-title`, 1.5-2.5rem). Journal:
-  three 4:5 cards (16px radius, graphite placeholder until photography
-  arrives), category label, title; three across on lg, a swipe strip with a
-  peek below. Every entry is tagged "Placeholder" with no dates, authors or
-  links. FAQ: heading left / list right on lg; questions between 1px rules;
-  a plus that becomes a minus; answers open via grid-row height + fade
-  (0.32s, interruptible), several at once; closed panels are inert.
-  Unconfirmed answers carry a "Draft" tag.
+- **Frequently Asked Questions** (`components/sections/Faq.tsx`,
+  `data/faq.ts`), after Visit Us and before the footer: a quieter break.
+  Smaller left-aligned brand heading (`.quiet-title`, 1.5-2.5rem); heading
+  left / list right on lg; questions between 1px rules; a plus that becomes
+  a minus; answers open via grid-row height + fade (0.32s, interruptible),
+  several at once; closed panels are inert. Unconfirmed answers carry a
+  "Draft" tag. (The Journal section was deleted 2026-10-13.)
 - **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
   heading, then the address and "Get Directions" (Google Maps directions to
   the exact address) on the black page, then a compact full-bleed band

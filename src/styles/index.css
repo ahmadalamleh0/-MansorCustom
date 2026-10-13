@@ -983,181 +983,173 @@
   }
 
   /*
-   * Build desk ("Let's talk about your build."). Wraptors quote-form
-   * reference for the material: a graphite glass panel (charcoal fill, soft
-   * top-left highlight, inner top edge, hairline border, 20px radius). md+:
-   * editorial heading left, form right; phones: single column. Fields are
-   * quiet graphite wells; focus brightens the border, never a glow.
+   * The Build Brief ("Let's talk about your build."). A bespoke order sheet,
+   * not a card: deep black, no container, hairline-separated numbered parts,
+   * underlined fields, services as thin rows with an index number, and an
+   * outlined, square-cornered Submit Your Build. lg: heading column (sticky)
+   * beside the sheet; phones: one column with generous rhythm.
    */
-  .build-desk {
-    padding-block: clamp(4.5rem, 3rem + 5vw, 8rem) 0;
+  .build-brief {
+    padding-block: clamp(5rem, 3.5rem + 6vw, 9rem) 0;
   }
 
-  .build-desk__grid {
+  .build-brief__grid {
     display: grid;
-    gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+    gap: clamp(2.5rem, 2rem + 2vw, 3.5rem);
   }
 
   @media (min-width: 1024px) {
-    .build-desk__grid {
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    .build-brief__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(3rem, 2rem + 4vw, 7rem);
       align-items: start;
-      gap: clamp(3rem, 2rem + 3vw, 6rem);
     }
 
-    .build-desk__intro {
+    .build-brief__intro {
       position: sticky;
       top: calc(var(--header-h) + 3rem);
     }
   }
 
-  .brand-headline.build-desk__title {
-    max-width: 14em;
+  .bd-kicker,
+  .bd-part__head,
+  .bd-sublabel,
+  .bd-line > label {
+    font-family: var(--font-editorial);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .bd-kicker {
+    margin-bottom: 1.25rem;
+    font-size: 0.6875rem;
+    color: var(--color-muted);
+  }
+
+  .brand-headline.build-brief__title {
+    max-width: 13em;
     font-size: clamp(1.75rem, 1rem + 2.2vw, 2.5rem);
     line-height: 1.14;
     text-wrap: balance;
   }
 
-  .build-desk__lede {
+  .build-brief__lede {
     max-width: 32ch;
-    text-wrap: balance;
     margin-top: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
     font-family: var(--font-editorial);
     font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
     font-weight: 300;
     line-height: 1.6;
-    color: rgb(242 241 238 / 0.7);
+    text-wrap: balance;
+    color: rgb(242 241 238 / 0.62);
   }
 
-  .build-desk__panel {
-    padding: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
-    border: 1px solid rgb(255 255 255 / 0.09);
-    border-radius: 1.25rem;
-    background:
-      radial-gradient(120% 60% at 18% 0%, rgb(255 255 255 / 0.075), transparent 55%),
-      linear-gradient(180deg, rgb(33 33 36 / 0.94), rgb(15 15 17 / 0.98));
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.07),
-      0 30px 60px -32px rgb(0 0 0 / 0.9);
+  /* Numbered parts: a rule, the number and title, then the body */
+  .bd-part {
+    border-top: 1px solid var(--color-line-strong);
+    padding-block: clamp(1.25rem, 1rem + 0.8vw, 1.75rem) clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
   }
 
-  .bd-progress {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.375rem;
-  }
-
-  .bd-progress__seg {
-    height: 2px;
-    border-radius: 2px;
-    background: rgb(255 255 255 / 0.1);
-    transition: background-color 320ms ease;
-  }
-
-  .bd-progress__seg.is-on {
-    background: rgb(242 241 238 / 0.85);
-  }
-
-  .bd-step-label {
-    margin-top: 1.25rem;
-    font-family: var(--font-editorial);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
+  .bd-part__head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.625rem;
+    margin: 0 0 clamp(1.5rem, 1.2rem + 1vw, 2.25rem);
+    font-size: 0.75rem;
     color: var(--color-muted);
   }
 
-  .bd-step-label__num {
+  .bd-part__num {
     color: var(--color-paper);
+    font-variant-numeric: tabular-nums;
   }
 
-  .bd-step {
-    margin-top: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  .bd-part__slash {
+    color: var(--color-faint);
   }
 
-  .bd-fields {
+  /* Underlined fields */
+  .bd-row {
     display: grid;
-    gap: 1.125rem;
-    min-width: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
+    gap: clamp(1.5rem, 1.2rem + 1vw, 2rem);
   }
 
-  .bd-legend,
-  .bd-done__title {
-    margin-bottom: 1rem;
-    padding: 0;
-    font-family: var(--font-editorial);
-    font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
-    font-weight: 500;
-    color: var(--color-paper);
+  @media (min-width: 768px) {
+    .bd-row--vehicle {
+      grid-template-columns: 1fr 1fr 7.5rem;
+      column-gap: 1.75rem;
+    }
+
+    .bd-row--contact {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1.75rem;
+    }
+
+    .bd-row--contact .bd-line:first-child {
+      grid-column: 1 / -1;
+    }
   }
 
-  .bd-field {
+  .bd-line {
     display: grid;
     gap: 0.5rem;
+    align-content: start;
   }
 
-  .bd-field--short {
-    max-width: 10rem;
-  }
-
-  .bd-field > label,
-  .bd-label {
+  .bd-line > label {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    font-family: var(--font-editorial);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: rgb(242 241 238 / 0.8);
+    font-size: 0.625rem;
+    color: var(--color-muted);
   }
 
   .bd-optional {
-    font-size: 0.6875rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
     color: var(--color-faint);
   }
 
-  .bd-field input,
-  .bd-field textarea {
+  .bd-line input,
+  .bd-line textarea {
     width: 100%;
-    min-height: 3rem;
-    padding: 0.8125rem 1rem;
-    border: 1px solid rgb(255 255 255 / 0.1);
-    border-radius: 0.75rem;
-    background: rgb(0 0 0 / 0.28);
-    box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.4);
+    min-height: 2.75rem;
+    padding: 0.5rem 0 0.625rem;
+    border: 0;
+    border-bottom: 1px solid rgb(242 241 238 / 0.22);
+    border-radius: 0;
+    background: transparent;
     font-family: var(--font-editorial);
-    font-size: 1rem; /* 16px: no zoom on iOS focus */
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); /* ≥16px: no iOS zoom */
+    font-weight: 300;
     color: var(--color-paper);
-    transition: border-color 180ms ease, background-color 180ms ease;
+    transition: border-color 200ms ease;
   }
 
-  .bd-field textarea {
-    min-height: 7rem;
+  .bd-line textarea {
+    min-height: 5.5rem;
     resize: vertical;
     line-height: 1.55;
   }
 
-  .bd-field input::placeholder,
-  .bd-field textarea::placeholder {
-    color: rgb(242 241 238 / 0.28);
+  .bd-line--area {
+    margin-top: clamp(1.75rem, 1.4rem + 1vw, 2.5rem);
   }
 
-  .bd-field input:focus-visible,
-  .bd-field textarea:focus-visible {
+  .bd-line input::placeholder,
+  .bd-line textarea::placeholder {
+    color: rgb(242 241 238 / 0.22);
+  }
+
+  .bd-line input:focus-visible,
+  .bd-line textarea:focus-visible {
     outline: none;
-    border-color: rgb(242 241 238 / 0.55);
-    background: rgb(0 0 0 / 0.4);
+    border-bottom-color: var(--color-paper);
   }
 
-  .bd-field [aria-invalid] {
-    border-color: rgb(239 120 110 / 0.7);
+  .bd-line [aria-invalid] {
+    border-bottom-color: rgb(239 120 110 / 0.75);
   }
 
   .bd-error,
@@ -1168,210 +1160,222 @@
   }
 
   .bd-alert {
-    margin-top: 1.25rem;
-    padding: 0.75rem 1rem;
-    border: 1px solid rgb(239 120 110 / 0.35);
-    border-radius: 0.75rem;
-    background: rgb(239 120 110 / 0.06);
+    margin-top: 1rem;
   }
 
-  /* Service choice: glass rows with a ring that fills when selected */
-  .bd-options {
-    display: grid;
-    gap: 0.5rem;
+  /* Services: thin selectable rows, index · name · mark */
+  .bd-services {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
   }
 
-  @media (min-width: 640px) {
-    .bd-options {
+  .bd-sublabel {
+    display: block;
+    margin-bottom: 0.875rem;
+    padding: 0;
+    font-size: 0.625rem;
+    color: var(--color-muted);
+  }
+
+  .bd-service-list {
+    border-top: 1px solid var(--color-line);
+  }
+
+  @media (min-width: 768px) {
+    .bd-service-list {
+      display: grid;
       grid-template-columns: 1fr 1fr;
+      column-gap: 1.75rem;
     }
   }
 
-  .bd-option {
+  .bd-service {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    min-height: 3.125rem;
-    padding: 0.75rem 1rem;
-    border: 1px solid rgb(255 255 255 / 0.08);
-    border-radius: 0.75rem;
-    background: rgb(255 255 255 / 0.025);
+    min-height: 3.25rem;
+    border-bottom: 1px solid var(--color-line);
     cursor: pointer;
-    transition: border-color 180ms ease, background-color 180ms ease;
   }
 
-  .bd-option input,
-  .bd-segment__item input {
+  .bd-service input,
+  .bd-contact__option input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
   }
 
-  .bd-option__text {
+  .bd-service__index {
     font-family: var(--font-editorial);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: rgb(242 241 238 / 0.85);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-faint);
+    transition: color 200ms ease;
   }
 
-  .bd-option__dot {
-    flex: none;
-    width: 1.125rem;
-    height: 1.125rem;
-    border: 1px solid rgb(242 241 238 / 0.35);
-    border-radius: 50%;
-    transition: border-color 180ms ease, box-shadow 180ms ease;
-  }
-
-  .bd-option:has(input:checked) {
-    border-color: rgb(242 241 238 / 0.45);
-    background: rgb(255 255 255 / 0.06);
-  }
-
-  .bd-option:has(input:checked) .bd-option__dot {
-    border-color: var(--color-paper);
-    box-shadow: inset 0 0 0 4px rgb(20 20 22), inset 0 0 0 10px var(--color-paper);
-  }
-
-  .bd-option:has(input:focus-visible),
-  .bd-segment__item:has(input:focus-visible) {
-    outline: 2px solid var(--color-paper);
-    outline-offset: 2px;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .bd-option:hover {
-      border-color: rgb(242 241 238 / 0.25);
-    }
-  }
-
-  /* Preferred contact: one segmented pill */
-  .bd-segment {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 0.25rem;
-    border: 1px solid rgb(255 255 255 / 0.1);
-    border-radius: 999px;
-    background: rgb(0 0 0 / 0.28);
-  }
-
-  .bd-segment__item {
-    position: relative;
-    display: grid;
-    place-items: center;
-    min-height: 2.5rem;
-    padding-inline: 0.5rem;
-    border-radius: 999px;
+  .bd-service__name {
     font-family: var(--font-editorial);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    text-align: center;
-    color: rgb(242 241 238 / 0.6);
-    cursor: pointer;
-    transition: background-color 200ms ease, color 200ms ease;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgb(242 241 238 / 0.58);
+    transition: color 200ms ease;
   }
 
-  .bd-segment__item:has(input:checked) {
-    background: rgb(255 255 255 / 0.1);
+  /* A short rule that extends when selected */
+  .bd-service__mark {
+    width: 0.75rem;
+    height: 1px;
+    background: rgb(242 241 238 / 0.25);
+    transition: width 320ms var(--ease-out-expo), background-color 200ms ease;
+  }
+
+  .bd-service:has(input:checked) .bd-service__name,
+  .bd-service:has(input:checked) .bd-service__index {
     color: var(--color-paper);
   }
 
-  .bd-actions {
+  .bd-service:has(input:checked) .bd-service__mark {
+    width: 1.75rem;
+    background: var(--color-paper);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .bd-service:hover .bd-service__name {
+      color: rgb(242 241 238 / 0.9);
+    }
+  }
+
+  .bd-service:has(input:focus-visible),
+  .bd-contact__option:has(input:focus-visible) {
+    outline: 1px solid var(--color-paper);
+    outline-offset: 4px;
+  }
+
+  /* Preferred contact: three words, the chosen one underlined */
+  .bd-contact {
+    margin-top: clamp(1.75rem, 1.4rem + 1vw, 2.5rem);
+  }
+
+  .bd-contact__options {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
-    padding-top: 1.25rem;
-    border-top: 1px solid rgb(255 255 255 / 0.07);
+    flex-wrap: wrap;
+    gap: 0.25rem 1.75rem;
   }
 
-  /* The optional details field after the service choices */
-  .bd-fields + .bd-field {
-    margin-top: 1.5rem;
-  }
-
-  .bd-back,
-  .bd-next {
-    white-space: nowrap;
+  .bd-contact__option {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.625rem;
-    min-height: 3rem;
+    min-height: 2.75rem;
     font-family: var(--font-editorial);
-    font-size: 0.78125rem;
+    font-size: 1rem;
+    color: rgb(242 241 238 / 0.5);
+    cursor: pointer;
+    transition: color 200ms ease;
+  }
+
+  .bd-contact__option span {
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease;
+  }
+
+  .bd-contact__option:has(input:checked) {
+    color: var(--color-paper);
+  }
+
+  .bd-contact__option:has(input:checked) span {
+    border-bottom-color: var(--color-paper);
+  }
+
+  /* Submit: outlined, square, a subtle arrow */
+  .bd-submit-row {
+    border-top: 1px solid var(--color-line-strong);
+    padding-top: clamp(1.75rem, 1.4rem + 1vw, 2.5rem);
+  }
+
+  .bd-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+    min-height: 3.5rem;
+    padding: 0 1.5rem;
+    border: 1px solid rgb(242 241 238 / 0.55);
+    background: transparent;
+    font-family: var(--font-editorial);
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: clamp(0.12em, 0.08em + 0.3vw, 0.2em);
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    transition: background-color 200ms ease, color 200ms ease, opacity 200ms ease, transform 160ms var(--ease-out-expo);
+    white-space: nowrap;
+    color: var(--color-paper);
+    transition: background-color 240ms ease, color 240ms ease, border-color 240ms ease, transform 160ms var(--ease-out-expo);
   }
 
-  .bd-back {
-    padding-inline: 0.25rem;
-    color: rgb(242 241 238 / 0.6);
+  @media (max-width: 639px) {
+    .bd-submit {
+      width: 100%;
+    }
   }
 
-  .bd-back__icon {
-    width: 0.875rem;
-    height: 0.875rem;
-    rotate: 180deg;
+  .bd-submit__icon {
+    width: 1rem;
+    height: 1rem;
+    transition: translate 320ms var(--ease-out-expo);
   }
 
-  .bd-next {
-    padding-inline: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
-    border-radius: 999px;
-    background: var(--color-paper);
-    color: var(--color-ink);
+  @media (hover: hover) and (pointer: fine) {
+    .bd-submit:not(:disabled):hover {
+      border-color: var(--color-paper);
+      background: var(--color-paper);
+      color: var(--color-ink);
+    }
+
+    .bd-submit:not(:disabled):hover .bd-submit__icon {
+      translate: 3px 0;
+    }
   }
 
-  .bd-next__icon {
-    width: 0.875rem;
-    height: 0.875rem;
+  .bd-submit:not(:disabled):active {
+    transform: scale(0.98);
   }
 
-  .bd-next:disabled,
-  .bd-back:disabled {
+  .bd-submit:disabled {
     opacity: 0.55;
     cursor: progress;
   }
 
-  .bd-next:not(:disabled):active {
-    transform: scale(0.97);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .bd-next:not(:disabled):hover {
-      background: #fff;
-    }
-
-    .bd-back:not(:disabled):hover {
-      color: var(--color-paper);
-    }
-  }
-
-  .bd-back:focus-visible,
-  .bd-next:focus-visible {
+  .bd-submit:focus-visible {
     outline: 2px solid var(--color-paper);
     outline-offset: 3px;
   }
 
   .bd-done {
-    padding-block: 1rem;
+    border-top: 1px solid var(--color-line-strong);
+    padding-top: 1.25rem;
   }
 
   .bd-done__title {
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
+    font-family: var(--font-editorial);
+    font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+    font-weight: 400;
+    color: var(--color-paper);
   }
 
   .bd-done__text {
-    max-width: 34ch;
+    max-width: 36ch;
+    margin-top: 0.75rem;
     font-family: var(--font-editorial);
     font-size: 1rem;
     font-weight: 300;
-    line-height: 1.6;
-    color: rgb(242 241 238 / 0.72);
+    line-height: 1.65;
+    color: rgb(242 241 238 / 0.65);
   }
 
   /*
@@ -2083,123 +2087,12 @@
   }
 
   /*
-   * Quieter editorial sections (The Journal, FAQ): smaller brand headings,
+   * Quieter editorial section (FAQ): smaller brand heading,
    * left-aligned, more air, no cinematic effects.
    */
   .brand-headline.quiet-title {
     font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
     line-height: 1.12;
-  }
-
-  /* The Journal */
-  .journal {
-    padding-top: clamp(4.5rem, 3rem + 5vw, 8rem);
-  }
-
-  .journal__track {
-    --edge: var(--gutter);
-    --gap: 1rem;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc(100vw - 2 * var(--edge) - 3.5rem);
-    gap: var(--gap);
-    margin-top: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
-    padding-inline: var(--edge);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--edge);
-    scrollbar-width: none;
-  }
-
-  .journal__track::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .journal__track {
-      grid-auto-columns: calc((100vw - 2 * var(--edge) - var(--gap)) / 2 - 2rem);
-    }
-  }
-
-  /* Three across inside the container: no scrolling needed */
-  @media (min-width: 1024px) {
-    .journal__track {
-      --gap: clamp(1.25rem, 0.8rem + 1vw, 2rem);
-      grid-auto-flow: row;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      max-width: 90rem;
-      margin-inline: auto;
-      padding-inline: var(--gutter);
-      overflow: visible;
-    }
-  }
-
-  .journal__item {
-    scroll-snap-align: start;
-  }
-
-  .journal-card__media {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    border-radius: 1rem;
-    background: var(--color-surface-raised);
-  }
-
-  .journal-card__media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Neutral graphite placeholder until photography arrives */
-  .journal-card__placeholder {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(90% 60% at 30% 20%, rgb(255 255 255 / 0.06), transparent 60%),
-      linear-gradient(165deg, #1c1c1f, #111113 70%);
-  }
-
-  .journal-card__meta {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 1.25rem;
-  }
-
-  .journal-card__category {
-    font-family: var(--font-editorial);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
-
-  .journal-card__tag,
-  .faq__draft {
-    padding: 0.1875rem 0.5rem;
-    border: 1px solid rgb(242 241 238 / 0.2);
-    border-radius: 999px;
-    font-family: var(--font-editorial);
-    font-size: 0.5625rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--color-faint);
-  }
-
-  .journal-card__title {
-    max-width: 24ch;
-    margin-top: 0.625rem;
-    font-family: var(--font-editorial);
-    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
-    font-weight: 500;
-    line-height: 1.35;
-    text-wrap: balance;
-    color: var(--color-paper);
   }
 
   /* Frequently Asked Questions */
