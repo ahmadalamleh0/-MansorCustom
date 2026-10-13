@@ -337,6 +337,18 @@ Introduce radius only when a reference explicitly uses it.
   (mentioned on Mansor's site, awaiting approval). The set repeats to fill
   the row; static and wrapped with reduced motion. The reference shop's
   logos were removed (2026-10-11).
+- **Build desk** (`components/sections/BuildDesk.tsx`, `lib/buildRequest.ts`):
+  "Let's talk about your build." between the service tiles and Recent Work.
+  Brand headline (1.75-2.5rem, balanced) and lede left, sticky on lg; a
+  graphite glass panel right (single column on phones). Three steps:
+  01 / Your Vehicle (make, model, year), 02 / Your Build (the eight
+  services as glass radio rows, Wraps preselected; optional details),
+  03 / Your Details (name, email, phone, preferred contact as a segmented
+  pill; phone required for call or text). A three-segment progress line;
+  steps settle in (0.32s); validation per step with inline errors and
+  focus on the first; loading, success and error states. Submits to
+  **Netlify Forms** (`build-request`, static copy in index.html, honeypot
+  `bot-field`); recipients are set in the Netlify dashboard.
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of

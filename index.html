@@ -40,6 +40,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Netlify Forms: static copy of the build-request form so Netlify detects
+         it at deploy time. The visible form is rendered by React and posts the
+         same fields (src/lib/buildRequest.ts). -->
+    <form name="build-request" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input name="make" /><input name="model" /><input name="year" />
+      <input name="service" /><textarea name="details"></textarea>
+      <input name="name" /><input name="email" /><input name="phone" />
+      <input name="contact" /><input name="bot-field" />
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

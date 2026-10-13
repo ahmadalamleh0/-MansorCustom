@@ -982,6 +982,398 @@
   }
 
   /*
+   * Build desk ("Let's talk about your build."). Wraptors quote-form
+   * reference for the material: a graphite glass panel (charcoal fill, soft
+   * top-left highlight, inner top edge, hairline border, 20px radius). md+:
+   * editorial heading left, form right; phones: single column. Fields are
+   * quiet graphite wells; focus brightens the border, never a glow.
+   */
+  .build-desk {
+    padding-block: clamp(4.5rem, 3rem + 5vw, 8rem) 0;
+  }
+
+  .build-desk__grid {
+    display: grid;
+    gap: clamp(2rem, 1.5rem + 2vw, 3rem);
+  }
+
+  @media (min-width: 1024px) {
+    .build-desk__grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+      gap: clamp(3rem, 2rem + 3vw, 6rem);
+    }
+
+    .build-desk__intro {
+      position: sticky;
+      top: calc(var(--header-h) + 3rem);
+    }
+  }
+
+  .brand-headline.build-desk__title {
+    max-width: 14em;
+    font-size: clamp(1.75rem, 1rem + 2.2vw, 2.5rem);
+    line-height: 1.14;
+    text-wrap: balance;
+  }
+
+  .build-desk__lede {
+    max-width: 32ch;
+    text-wrap: balance;
+    margin-top: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
+    font-family: var(--font-editorial);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgb(242 241 238 / 0.7);
+  }
+
+  .build-desk__panel {
+    padding: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+    border: 1px solid rgb(255 255 255 / 0.09);
+    border-radius: 1.25rem;
+    background:
+      radial-gradient(120% 60% at 18% 0%, rgb(255 255 255 / 0.075), transparent 55%),
+      linear-gradient(180deg, rgb(33 33 36 / 0.94), rgb(15 15 17 / 0.98));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.07),
+      0 30px 60px -32px rgb(0 0 0 / 0.9);
+  }
+
+  .bd-progress {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.375rem;
+  }
+
+  .bd-progress__seg {
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(255 255 255 / 0.1);
+    transition: background-color 320ms ease;
+  }
+
+  .bd-progress__seg.is-on {
+    background: rgb(242 241 238 / 0.85);
+  }
+
+  .bd-step-label {
+    margin-top: 1.25rem;
+    font-family: var(--font-editorial);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .bd-step-label__num {
+    color: var(--color-paper);
+  }
+
+  .bd-step {
+    margin-top: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  }
+
+  .bd-fields {
+    display: grid;
+    gap: 1.125rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .bd-legend,
+  .bd-done__title {
+    margin-bottom: 1rem;
+    padding: 0;
+    font-family: var(--font-editorial);
+    font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.5rem);
+    font-weight: 500;
+    color: var(--color-paper);
+  }
+
+  .bd-field {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .bd-field--short {
+    max-width: 10rem;
+  }
+
+  .bd-field > label,
+  .bd-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-editorial);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: rgb(242 241 238 / 0.8);
+  }
+
+  .bd-optional {
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--color-faint);
+  }
+
+  .bd-field input,
+  .bd-field textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.8125rem 1rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 0.75rem;
+    background: rgb(0 0 0 / 0.28);
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.4);
+    font-family: var(--font-editorial);
+    font-size: 1rem; /* 16px: no zoom on iOS focus */
+    color: var(--color-paper);
+    transition: border-color 180ms ease, background-color 180ms ease;
+  }
+
+  .bd-field textarea {
+    min-height: 7rem;
+    resize: vertical;
+    line-height: 1.55;
+  }
+
+  .bd-field input::placeholder,
+  .bd-field textarea::placeholder {
+    color: rgb(242 241 238 / 0.28);
+  }
+
+  .bd-field input:focus-visible,
+  .bd-field textarea:focus-visible {
+    outline: none;
+    border-color: rgb(242 241 238 / 0.55);
+    background: rgb(0 0 0 / 0.4);
+  }
+
+  .bd-field [aria-invalid] {
+    border-color: rgb(239 120 110 / 0.7);
+  }
+
+  .bd-error,
+  .bd-alert {
+    font-family: var(--font-editorial);
+    font-size: 0.8125rem;
+    color: rgb(244 150 140);
+  }
+
+  .bd-alert {
+    margin-top: 1.25rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgb(239 120 110 / 0.35);
+    border-radius: 0.75rem;
+    background: rgb(239 120 110 / 0.06);
+  }
+
+  /* Service choice: glass rows with a ring that fills when selected */
+  .bd-options {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .bd-options {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .bd-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.125rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: 0.75rem;
+    background: rgb(255 255 255 / 0.025);
+    cursor: pointer;
+    transition: border-color 180ms ease, background-color 180ms ease;
+  }
+
+  .bd-option input,
+  .bd-segment__item input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .bd-option__text {
+    font-family: var(--font-editorial);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: rgb(242 241 238 / 0.85);
+  }
+
+  .bd-option__dot {
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid rgb(242 241 238 / 0.35);
+    border-radius: 50%;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .bd-option:has(input:checked) {
+    border-color: rgb(242 241 238 / 0.45);
+    background: rgb(255 255 255 / 0.06);
+  }
+
+  .bd-option:has(input:checked) .bd-option__dot {
+    border-color: var(--color-paper);
+    box-shadow: inset 0 0 0 4px rgb(20 20 22), inset 0 0 0 10px var(--color-paper);
+  }
+
+  .bd-option:has(input:focus-visible),
+  .bd-segment__item:has(input:focus-visible) {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 2px;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .bd-option:hover {
+      border-color: rgb(242 241 238 / 0.25);
+    }
+  }
+
+  /* Preferred contact: one segmented pill */
+  .bd-segment {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0.25rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.28);
+  }
+
+  .bd-segment__item {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 2.5rem;
+    padding-inline: 0.5rem;
+    border-radius: 999px;
+    font-family: var(--font-editorial);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-align: center;
+    color: rgb(242 241 238 / 0.6);
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  .bd-segment__item:has(input:checked) {
+    background: rgb(255 255 255 / 0.1);
+    color: var(--color-paper);
+  }
+
+  .bd-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+    padding-top: 1.25rem;
+    border-top: 1px solid rgb(255 255 255 / 0.07);
+  }
+
+  /* The optional details field after the service choices */
+  .bd-fields + .bd-field {
+    margin-top: 1.5rem;
+  }
+
+  .bd-back,
+  .bd-next {
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 3rem;
+    font-family: var(--font-editorial);
+    font-size: 0.78125rem;
+    font-weight: 500;
+    letter-spacing: clamp(0.12em, 0.08em + 0.3vw, 0.2em);
+    text-transform: uppercase;
+    transition: background-color 200ms ease, color 200ms ease, opacity 200ms ease, transform 160ms var(--ease-out-expo);
+  }
+
+  .bd-back {
+    padding-inline: 0.25rem;
+    color: rgb(242 241 238 / 0.6);
+  }
+
+  .bd-back__icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    rotate: 180deg;
+  }
+
+  .bd-next {
+    padding-inline: clamp(1.125rem, 0.9rem + 1vw, 1.5rem);
+    border-radius: 999px;
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .bd-next__icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .bd-next:disabled,
+  .bd-back:disabled {
+    opacity: 0.55;
+    cursor: progress;
+  }
+
+  .bd-next:not(:disabled):active {
+    transform: scale(0.97);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .bd-next:not(:disabled):hover {
+      background: #fff;
+    }
+
+    .bd-back:not(:disabled):hover {
+      color: var(--color-paper);
+    }
+  }
+
+  .bd-back:focus-visible,
+  .bd-next:focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 3px;
+  }
+
+  .bd-done {
+    padding-block: 1rem;
+  }
+
+  .bd-done__title {
+    margin-top: 1.25rem;
+  }
+
+  .bd-done__text {
+    max-width: 34ch;
+    font-family: var(--font-editorial);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgb(242 241 238 / 0.72);
+  }
+
+  /*
    * Selected Projects (VOIR PPF reference). A horizontal strip of tall 3:5
    * build cards, square-cornered and full-bleed, separated by narrow black
    * gutters with a 1px rule (Mansor's signature line). Each card: a small

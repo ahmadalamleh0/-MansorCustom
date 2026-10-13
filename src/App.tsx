@@ -3,6 +3,7 @@ import { Intro } from '@/components/intro/Intro'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { ServicePage } from '@/components/pages/ServicePage'
+import { BuildDesk } from '@/components/sections/BuildDesk'
 import { Editorial } from '@/components/sections/Editorial'
 import { Hero } from '@/components/sections/Hero'
 import { InstagramShowcase } from '@/components/sections/InstagramShowcase'
@@ -59,6 +60,7 @@ export default function App() {
             <Hero />
             <Showcase />
             <Editorial />
+            <BuildDesk />
             <Projects />
             <Philosophy />
             <Reviews />
