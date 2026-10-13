@@ -1,13 +1,8 @@
-import { Fragment, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { philosophyReveal } from '@/animations/philosophyReveal'
-import headlightOffL from '@/assets/images/philosophy/supercar-led-off-l.webp'
-import headlightOffR from '@/assets/images/philosophy/supercar-led-off-r.webp'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { site } from '@/data/site'
 import { useGSAP } from '@/lib/gsap'
-
-/** The three LED bars per headlight, top to bottom (startup sequence order) */
-const LED_ROWS = [1, 2, 3] as const
 
 const BUILD_PENDING = {
   label: 'Start Your Build',
@@ -19,7 +14,8 @@ const BUILD_PENDING = {
  * "Beyond Factory." brand storytelling (Alain Class reference): a wide
  * Michroma headline over one dramatic vehicle, framed by a thin arc
  * with three ticks, then a short line and one editorial CTA.
- * Animation hooks: [data-ph-text], [data-ph-visual], [data-ph-arc], [data-ph-tick].
+ * Animation hooks: [data-ph-text], [data-ph-arc], [data-ph-tick], [data-ph-on],
+ * [data-ph-bloom], [data-ph-halo]. The car itself never moves.
  */
 export function Philosophy() {
   const scope = useRef<HTMLElement>(null)
@@ -42,40 +38,11 @@ export function Philosophy() {
 
         <div className="philosophy__stage">
           <div data-ph-visual className="philosophy__visual">
-            <picture className="philosophy__photo">
-              <source media="(max-width: 767px)" type="image/webp" srcSet={image.mobile.webp} />
-              <source media="(max-width: 767px)" srcSet={image.mobile.jpg} />
-              <source type="image/webp" srcSet={image.desktop.webp} sizes="(min-width: 1200px) 72rem, 100vw" />
-              <img
-                src={image.desktop.src}
-                srcSet={image.desktop.jpg}
-                sizes="(min-width: 1200px) 72rem, 100vw"
-                alt={image.alt}
-                width={image.desktop.width}
-                height={image.desktop.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-
-            {/* Headlight startup. The photo is the "on" state (its LED running
-                lights are lit). Aligned retouch patches of the same lamps, with
-                the white emission removed, are the "off" state, split into three
-                bands per lamp (projector, LED upright, lower LED bar) so they
-                wake in sequence. A dim layer
-                lets the car "wake"; bloom, halo and spill sit on top (screen
-                blend). Positions per crop live in CSS. */}
+            <CarPicture set={image.off} alt={image.alt} />
+            {/* The same render with its headlights on: revealed over the dark
+                one by the ignition, so the light on the body and floor is real */}
+            <CarPicture set={image.on} alt="" on />
             <div aria-hidden="true" className="philosophy__lights">
-              <span data-ph-dim className="philosophy__dim" />
-              {LED_ROWS.map((row) => (
-                <Fragment key={row}>
-                  <img data-ph-led-off data-row={row} src={headlightOffL} alt="" className={`philosophy__led philosophy__led--l philosophy__led--row${row}`} />
-                  <img data-ph-led-off data-row={row} src={headlightOffR} alt="" className={`philosophy__led philosophy__led--r philosophy__led--row${row}`} />
-                </Fragment>
-              ))}
-              <span data-ph-spill className="philosophy__spill philosophy__spill--front" />
-              <span data-ph-spill className="philosophy__spill philosophy__spill--l" />
-              <span data-ph-spill className="philosophy__spill philosophy__spill--r" />
               <span data-ph-halo className="philosophy__halo philosophy__halo--l" />
               <span data-ph-halo className="philosophy__halo philosophy__halo--r" />
               <span data-ph-bloom className="philosophy__bloom philosophy__bloom--l" />
@@ -117,5 +84,28 @@ export function Philosophy() {
 
       <ComingSoonModal content={open ? BUILD_PENDING : null} onClose={() => setOpen(false)} />
     </section>
+  )
+}
+
+type CarSet = { desktop: { jpg: string; webp: string; src: string }; mobile: { jpg: string; webp: string; src: string } }
+
+function CarPicture({ set, alt, on = false }: { set: CarSet; alt: string; on?: boolean }) {
+  const { width, height } = site.philosophy.image
+  return (
+    <picture className={on ? 'philosophy__photo philosophy__photo--on' : 'philosophy__photo'} data-ph-on={on || undefined} aria-hidden={on || undefined}>
+      <source media="(max-width: 767px)" type="image/webp" srcSet={set.mobile.webp} sizes="100vw" />
+      <source media="(max-width: 767px)" srcSet={set.mobile.jpg} sizes="100vw" />
+      <source type="image/webp" srcSet={set.desktop.webp} sizes="(min-width: 1200px) 72rem, 100vw" />
+      <img
+        src={set.desktop.src}
+        srcSet={set.desktop.jpg}
+        sizes="(min-width: 1200px) 72rem, 100vw"
+        alt={alt}
+        width={width.desktop}
+        height={height.desktop}
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
   )
 }

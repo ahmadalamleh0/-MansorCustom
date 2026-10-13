@@ -382,18 +382,15 @@ Introduce radius only when a reference explicitly uses it.
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale
   1.05 → 1), the arc draws outward from its top tick, then the copy and CTA
-  follow. **Headlight startup sequence** at 1.3s: the photo's own LED running
-  lights are the "on" state; aligned retouch patches of the lenses
-  (`headlight-off-l/r.webp`, LED emission removed so the unlit modules stay
-  as faint grey bars), split into the three LED bars per lamp, are the
-  "off" state. Sequence: (1) a 50ms power pulse at half output and back;
-  (2) the bars wake top to bottom, 80ms apart (power4.out); (3) full power:
-  a hot white core bloom flares to 1 and settles at 0.85, a wider halo
-  settles at 0.8, and a 24% black veil over the car lifts so the car
-  "wakes"; (4) spill rises onto the bodywork, bumper and grille and stays.
-  Blooms and spill use screen blend. Positions are % of the stage per crop,
-  measured from the original. Plays once. Reduced motion: final state,
-  lights on.
+  follow. **Car and headlights**: a lights-off / lights-on pair of the same
+  render, processed identically (ring removed; neutral environment graded
+  darker with the red paint protected; deepest black mapped to the page
+  black; edge falloff baked in, so no frame edge can show). The car is
+  stationary from the start (no zoom or fade entrance), shown at 0.94
+  scale. Ignition at 0.9s after the section enters: a 50ms pulse of the lit
+  photo, a drop, then a sharp reveal to full (power4.out) so the real light
+  on the bodywork and floor arrives with it; a white bloom and halo flare
+  and settle. Reduced motion: lights on, no movement.
 - **Editorial CTA** (`.cta-line`, shared by the hero and the brand section):
   transparent tracked capitals over a 1px rule at 32%, with a full-strength
   rule drawing in on hover. 48px tap target.

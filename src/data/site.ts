@@ -4,14 +4,22 @@ import reelLamboPoster from '@/assets/reels/camo-lamborghini.jpg'
 import reelLambo from '@/assets/reels/camo-lamborghini.mp4'
 import reelMercedesPoster from '@/assets/reels/red-mercedes.jpg'
 import reelMercedes from '@/assets/reels/red-mercedes.mp4'
-import philosophy1600 from '@/assets/images/philosophy/supercar-desktop-1600.jpg'
-import philosophy1600Webp from '@/assets/images/philosophy/supercar-desktop-1600.webp'
-import philosophy2016 from '@/assets/images/philosophy/supercar-desktop-2016.jpg'
-import philosophy2016Webp from '@/assets/images/philosophy/supercar-desktop-2016.webp'
-import philosophyMobile800 from '@/assets/images/philosophy/supercar-mobile-800.jpg'
-import philosophyMobile800Webp from '@/assets/images/philosophy/supercar-mobile-800.webp'
-import philosophyMobile1008 from '@/assets/images/philosophy/supercar-mobile-1008.jpg'
-import philosophyMobile1008Webp from '@/assets/images/philosophy/supercar-mobile-1008.webp'
+import lamboDesktopOff1600 from '@/assets/images/philosophy/lambo-desktop-off-1600.jpg'
+import lamboDesktopOff1600Webp from '@/assets/images/philosophy/lambo-desktop-off-1600.webp'
+import lamboDesktopOff2112 from '@/assets/images/philosophy/lambo-desktop-off-2112.jpg'
+import lamboDesktopOff2112Webp from '@/assets/images/philosophy/lambo-desktop-off-2112.webp'
+import lamboDesktopOn1600 from '@/assets/images/philosophy/lambo-desktop-on-1600.jpg'
+import lamboDesktopOn1600Webp from '@/assets/images/philosophy/lambo-desktop-on-1600.webp'
+import lamboDesktopOn2112 from '@/assets/images/philosophy/lambo-desktop-on-2112.jpg'
+import lamboDesktopOn2112Webp from '@/assets/images/philosophy/lambo-desktop-on-2112.webp'
+import lamboMobileOff800 from '@/assets/images/philosophy/lambo-mobile-off-800.jpg'
+import lamboMobileOff800Webp from '@/assets/images/philosophy/lambo-mobile-off-800.webp'
+import lamboMobileOff1072 from '@/assets/images/philosophy/lambo-mobile-off-1072.jpg'
+import lamboMobileOff1072Webp from '@/assets/images/philosophy/lambo-mobile-off-1072.webp'
+import lamboMobileOn800 from '@/assets/images/philosophy/lambo-mobile-on-800.jpg'
+import lamboMobileOn800Webp from '@/assets/images/philosophy/lambo-mobile-on-800.webp'
+import lamboMobileOn1072 from '@/assets/images/philosophy/lambo-mobile-on-1072.jpg'
+import lamboMobileOn1072Webp from '@/assets/images/philosophy/lambo-mobile-on-1072.webp'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
@@ -118,10 +126,15 @@ export const site = {
       // UNCONFIRMED: no enquiry/booking flow yet, so it opens the Coming Soon dialog
       url: null as string | null,
     },
+    // Lights-off / lights-on pair of the same render (creative director,
+    // 2026-10-12). The "on" photo powers on over the "off" one; both share one
+    // processing pass (ring removed, edges baked to the page black).
     image: {
-      alt: 'Burgundy Lamborghini with a carbon rear wing, seen from above and in front under a halo of light',
-      desktop: { jpg: `${philosophy1600} 1600w, ${philosophy2016} 2016w`, webp: `${philosophy1600Webp} 1600w, ${philosophy2016Webp} 2016w`, src: philosophy1600, width: 1600, height: 1000 },
-      mobile: { jpg: `${philosophyMobile800} 800w, ${philosophyMobile1008} 1008w`, webp: `${philosophyMobile800Webp} 800w, ${philosophyMobile1008Webp} 1008w`, width: 800, height: 1000 },
+      alt: 'Burgundy Lamborghini with a carbon rear wing, seen from above and in front in a dark studio',
+      width: { desktop: 1600, mobile: 800 },
+      height: { desktop: 1000, mobile: 1000 },
+      off: { desktop: { jpg: `${lamboDesktopOff1600} 1600w, ${lamboDesktopOff2112} 2112w`, webp: `${lamboDesktopOff1600Webp} 1600w, ${lamboDesktopOff2112Webp} 2112w`, src: lamboDesktopOff1600 }, mobile: { jpg: `${lamboMobileOff800} 800w, ${lamboMobileOff1072} 1072w`, webp: `${lamboMobileOff800Webp} 800w, ${lamboMobileOff1072Webp} 1072w`, src: lamboMobileOff800 } },
+      on: { desktop: { jpg: `${lamboDesktopOn1600} 1600w, ${lamboDesktopOn2112} 2112w`, webp: `${lamboDesktopOn1600Webp} 1600w, ${lamboDesktopOn2112Webp} 2112w`, src: lamboDesktopOn1600 }, mobile: { jpg: `${lamboMobileOn800} 800w, ${lamboMobileOn1072} 1072w`, webp: `${lamboMobileOn800Webp} 800w, ${lamboMobileOn1072Webp} 1072w`, src: lamboMobileOn800 } },
     },
   },
 

@@ -1358,8 +1358,8 @@
   /* Frames sized for the supercar: the whole car, wing to splitter.
      Arc geometry = the photo's own (retouched-out) halo ring. */
   .philosophy__stage {
-    --arc-w: 0.98;
-    --arc-top: 0.035;
+    --arc-w: 0.8685;
+    --arc-top: 0.0252;
     position: relative;
     width: calc(100% + 2 * var(--gutter));
     max-width: 72rem;
@@ -1369,17 +1369,16 @@
 
   @media (min-width: 768px) {
     .philosophy__stage {
-      --arc-w: 0.49;
-      --arc-top: 0.035;
-      --mask-x: 48%; /* the widened desktop frame: fade the added sides sooner */
+      --arc-w: 0.4342;
+      --arc-top: 0.0252;
       width: 100%;
       aspect-ratio: 1.6 / 1;
       margin-top: clamp(-2.5rem, 1rem - 3vw, -1rem);
     }
   }
 
-  /* The car (with its light layers) sits ~6% smaller inside the arc. CSS
-     `scale` composes with GSAP's transform entrance instead of fighting it. */
+  /* The car sits ~6% smaller inside the arc and never moves: only its
+     headlights animate. */
   .philosophy__visual {
     scale: 0.94;
   }
@@ -1393,21 +1392,17 @@
     height: 100%;
   }
 
+  /* The photos carry their own falloff to the page black (baked in), so no
+     edge of the frame can show; no CSS mask needed */
   .philosophy__photo img {
     object-fit: cover;
-    /* Melt the photo's edges and lit floor into the page black */
-    mask-image:
-      radial-gradient(ellipse var(--mask-x, 62%) 78% at 50% 46%, #000 52%, transparent 100%),
-      linear-gradient(to bottom, #000 84%, transparent 100%);
-    mask-composite: intersect;
   }
 
   /*
-   * Headlight ignition layers, positioned in % of the stage, which has the
-   * same aspect as each crop (4:5 phones, 1.6:1 md+). Measured from the
-   * original photo (1086×1448): lamps at x 165–310 / 776–921, y 810–975.
-   * Resting state = lights on (patches hidden), which is also the
-   * reduced-motion state; GSAP plays the off → on ignition.
+   * Headlights. The lights-on photo sits over the lights-off one; resting
+   * state is on (also the reduced-motion state) and GSAP plays the
+   * ignition. Bloom/halo add the flare at the lamps, positioned in % of the
+   * stage (same aspect as each crop: 4:5 phones, 1.6:1 md+).
    */
   .philosophy__lights {
     position: absolute;
@@ -1415,83 +1410,38 @@
     pointer-events: none;
   }
 
-  .philosophy__led {
-    position: absolute;
-    opacity: 0;
-  }
-
-  .philosophy__led--l { left: 10.119%; top: 60%; width: 19.147%; height: 16.905%; }
-  .philosophy__led--r { left: 70.734%; top: 60%; width: 19.147%; height: 16.905%; }
-
-  /* Each lamp patch in three bands (projector, LED upright, lower LED bar)
-     so the lamp wakes top to bottom */
-  .philosophy__led--row1 { clip-path: inset(0 0 60% 0); }
-  .philosophy__led--row2 { clip-path: inset(40% 0 38% 0); }
-  .philosophy__led--row3 { clip-path: inset(62% 0 0 0); }
-
-  /* The car "wakes": a light veil over the photo lifts at power-on */
-  .philosophy__dim {
-    position: absolute;
-    inset: 0;
-    background: #000;
-    opacity: 0;
-  }
-
   .philosophy__bloom,
-  .philosophy__halo,
-  .philosophy__spill {
+  .philosophy__halo {
     position: absolute;
     translate: -50% -50%;
     border-radius: 50%;
     mix-blend-mode: screen;
   }
 
-  /* Core: hot white on the LED bars, falling off fast */
   .philosophy__bloom {
-    --bloom-w: 18%;
+    --bloom-w: 16%;
     width: var(--bloom-w);
     aspect-ratio: 1.5;
-    background: radial-gradient(closest-side, rgb(255 255 255 / 0.95), rgb(240 246 255 / 0.55) 30%, rgb(220 232 255 / 0.12) 65%, transparent);
-    opacity: 0.85;
+    background: radial-gradient(closest-side, rgb(255 255 255 / 0.85), rgb(238 245 255 / 0.4) 30%, rgb(220 232 255 / 0.1) 65%, transparent);
+    opacity: 0.4;
   }
 
-  /* Halo: the wider glow a lit lamp throws into the air */
   .philosophy__halo {
-    --halo-w: 34%;
+    --halo-w: 30%;
     width: var(--halo-w);
     aspect-ratio: 1.6;
-    background: radial-gradient(closest-side, rgb(228 237 255 / 0.42), rgb(225 235 255 / 0.11) 50%, transparent);
-    opacity: 0.8;
+    background: radial-gradient(closest-side, rgb(228 237 255 / 0.32), rgb(225 235 255 / 0.08) 50%, transparent);
+    opacity: 0.55;
   }
 
-  /* Spill onto the surrounding bodywork, and faintly onto bumper and grille */
-  .philosophy__spill {
-    --spill-w: 44%;
-    width: var(--spill-w);
-    aspect-ratio: 2;
-    background: radial-gradient(closest-side, rgb(212 224 247 / 0.3), rgb(210 222 245 / 0.08) 55%, transparent);
-  }
-
-  .philosophy__spill--front {
-    --spill-w: 60%;
-    aspect-ratio: 3.4;
-    left: 50%;
-    top: 77.8%;
-    background: radial-gradient(closest-side, rgb(210 222 245 / 0.1), rgb(210 222 245 / 0.03) 60%, transparent);
-  }
-
-  .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 19.69%; top: 68.45%; }
-  .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 80.31%; top: 68.45%; }
+  .philosophy__bloom--l, .philosophy__halo--l { left: 21.74%; top: 63.36%; }
+  .philosophy__bloom--r, .philosophy__halo--r { left: 78.45%; top: 63.51%; }
 
   @media (min-width: 768px) {
-    .philosophy__led--l { left: 30.06%; top: 60%; width: 9.573%; height: 16.905%; }
-    .philosophy__led--r { left: 60.367%; top: 60%; width: 9.573%; height: 16.905%; }
-    .philosophy__bloom { --bloom-w: 9%; }
-    .philosophy__halo { --halo-w: 17%; }
-    .philosophy__spill { --spill-w: 22%; }
-    .philosophy__spill--front { --spill-w: 30%; top: 77.8%; }
-    .philosophy__bloom--l, .philosophy__halo--l, .philosophy__spill--l { left: 34.85%; top: 68.45%; }
-    .philosophy__bloom--r, .philosophy__halo--r, .philosophy__spill--r { left: 65.15%; top: 68.45%; }
+    .philosophy__bloom { --bloom-w: 8%; }
+    .philosophy__halo { --halo-w: 15%; }
+    .philosophy__bloom--l, .philosophy__halo--l { left: 35.87%; top: 63.36%; }
+    .philosophy__bloom--r, .philosophy__halo--r { left: 64.23%; top: 63.51%; }
   }
 
   .philosophy__arc {
