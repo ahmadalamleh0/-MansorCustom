@@ -1,7 +1,6 @@
 import bmwLogo from '@/assets/logos/makes/bmw.svg'
 import ferrariLogo from '@/assets/logos/makes/ferrari.svg'
 import mclarenLogo from '@/assets/logos/makes/mclaren.svg'
-import porscheLogo from '@/assets/logos/makes/porsche.svg'
 import m3PosterJpg from '@/assets/images/projects/bmw-m3-poster.jpg'
 import m3PosterWebp from '@/assets/images/projects/bmw-m3-poster.webp'
 import m3Video from '@/assets/images/projects/bmw-m3.mp4'
@@ -43,10 +42,6 @@ import mc4960Webp from '@/assets/images/projects/mclaren-4-960.webp'
 import sClassPosterJpg from '@/assets/images/projects/mercedes-s-class-poster.jpg'
 import sClassPosterWebp from '@/assets/images/projects/mercedes-s-class-poster.webp'
 import sClassVideo from '@/assets/images/projects/mercedes-s-class.mp4'
-import p911560Jpg from '@/assets/images/projects/porsche-911-560.jpg'
-import p911560Webp from '@/assets/images/projects/porsche-911-560.webp'
-import p911960Jpg from '@/assets/images/projects/porsche-911-960.jpg'
-import p911960Webp from '@/assets/images/projects/porsche-911-960.webp'
 import rr560Jpg from '@/assets/images/projects/range-rover-560.jpg'
 import rr560Webp from '@/assets/images/projects/range-rover-560.webp'
 import rr960Jpg from '@/assets/images/projects/range-rover-960.jpg'
@@ -169,17 +164,6 @@ export const projects: Project[] = [
       alt: 'Black BMW XM with red accents outside the Mansor Customs shop',
       webp: set([[xm560Webp, 560], [xm960Webp, 960]]),
       jpg: set([[xm560Jpg, 560], [xm960Jpg, 960]]),
-    },
-  },
-  {
-    id: 'porsche-911',
-    make: 'Porsche',
-    model: '911',
-    logo: porscheLogo,
-    image: {
-      alt: 'Rear of a Porsche 911 with its wing raised and the light bar lit',
-      webp: set([[p911560Webp, 560], [p911960Webp, 960]]),
-      jpg: set([[p911560Jpg, 560], [p911960Jpg, 960]]),
     },
   },
   {
