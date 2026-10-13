@@ -52,9 +52,14 @@ export const site = {
   //   phones: "Experience Your" / "Car's" / "Full Potential"
   //   md+:    "Experience Your" / "Car's Full Potential"
   hero: {
-    // Client brand film (2026-10-09). Desktop: original 1080p stream (audio
-    // stripped, faststart). Phones: 854px encode (~half the size). Poster: the
-    // sharp red SF90 profile at 7.4s. It shows under the intro curtain (so the
+    // Client brand film, HQ master (client-photos/banner1-hq.mp4, 2026-10-13),
+    // trimmed to its first 29.33s (704 frames: street open → white SF90 on the
+    // street, which cuts back to the opening street shot on loop; drops the
+    // closing third-party logo card). Desktop: the master's own 1080p stream,
+    // copied without re-encoding (audio stripped, faststart). Phones: the
+    // centre 608×1080 strip at full source detail (what object-cover shows on
+    // a portrait screen anyway), CRF 19. Poster: the red SF90 profile at 7.4s,
+    // lossless from the master. It shows under the intro curtain (so the
     // switch to playback is never seen) and permanently with reduced motion.
     media: {
       type: 'video',
