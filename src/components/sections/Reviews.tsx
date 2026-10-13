@@ -5,10 +5,10 @@ import { reviews, type Review } from '@/data/reviews'
 import { useScrollStrip } from '@/hooks/useScrollStrip'
 import { useGSAP } from '@/lib/gsap'
 
-const TITLE = ['Words From', 'Our Clients']
+const TITLE = ['Testimonials']
 
 /**
- * "Words From Our Clients" (Wraptors Dubai quote-form reference for the card
+ * "Testimonials" (Wraptors Dubai quote-form reference for the card
  * material): glassy charcoal cards with a soft top highlight, hairline
  * border and rounded corners, in a native horizontal scroll-snap strip.
  * Phones: one card with the next peeking in; md: two; lg: three. Discreet

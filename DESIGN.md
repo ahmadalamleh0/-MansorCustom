@@ -396,8 +396,8 @@ Introduce radius only when a reference explicitly uses it.
   rule drawing in on hover. 48px tap target.
 - **Client reviews** (`components/sections/Reviews.tsx`, `data/reviews.ts`,
   Wraptors Dubai quote-form reference for the material), between Beyond
-  Factory and Instagram. Heading "Words From Our Clients" in the brand
-  headline style at a smaller scale (1.75–3.5rem; two lines below 1024px).
+  Factory and Instagram. Heading "Testimonials" in the brand
+  headline style at a smaller scale (1.75–3.5rem; one line).
   Glassy charcoal cards: a charcoal fill with a soft top-left radial
   highlight, an inner 1px top edge, a 9% white hairline border, 20px
   radius and a soft drop. No blur, no colour. Each card: stars (with an
