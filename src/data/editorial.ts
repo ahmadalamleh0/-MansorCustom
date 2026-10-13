@@ -30,10 +30,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: wraps,
-        alt: 'Corvette in a satin green wrap, bonnet open, under hexagonal lighting with rolls of wrap film on the wall',
-        width: 941,
-        height: 1672,
-        position: '50% 62%', // wrap-film rolls on the wall and the car's nose
+        alt: 'Rear of a BMW M3 in an icy blue satin wrap, with a swan-neck wing and BBS mesh wheels, by an old garage',
+        width: 1086,
+        height: 1448,
+        position: '55% 62%', // wing, tail-light and wheel; pavement below for the title
       },
     },
     {
