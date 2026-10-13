@@ -11,6 +11,14 @@ import xm960Webp from '@/assets/images/projects/bmw-xm-960.webp'
 import sf90PosterJpg from '@/assets/images/projects/ferrari-sf90-poster.jpg'
 import sf90PosterWebp from '@/assets/images/projects/ferrari-sf90-poster.webp'
 import sf90Video from '@/assets/images/projects/ferrari-sf90.mp4'
+import sfs1560Jpg from '@/assets/images/projects/sf90-stradale-1-560.jpg'
+import sfs1560Webp from '@/assets/images/projects/sf90-stradale-1-560.webp'
+import sfs1960Jpg from '@/assets/images/projects/sf90-stradale-1-960.jpg'
+import sfs1960Webp from '@/assets/images/projects/sf90-stradale-1-960.webp'
+import sfs2560Jpg from '@/assets/images/projects/sf90-stradale-2-560.jpg'
+import sfs2560Webp from '@/assets/images/projects/sf90-stradale-2-560.webp'
+import sfs2960Jpg from '@/assets/images/projects/sf90-stradale-2-960.jpg'
+import sfs2960Webp from '@/assets/images/projects/sf90-stradale-2-960.webp'
 import gi1560Jpg from '@/assets/images/projects/g-class-interior-1-560.jpg'
 import gi1560Webp from '@/assets/images/projects/g-class-interior-1-560.webp'
 import gi1960Jpg from '@/assets/images/projects/g-class-interior-1-960.jpg'
@@ -42,10 +50,6 @@ import mc4960Webp from '@/assets/images/projects/mclaren-4-960.webp'
 import sClassPosterJpg from '@/assets/images/projects/mercedes-s-class-poster.jpg'
 import sClassPosterWebp from '@/assets/images/projects/mercedes-s-class-poster.webp'
 import sClassVideo from '@/assets/images/projects/mercedes-s-class.mp4'
-import rr560Jpg from '@/assets/images/projects/range-rover-560.jpg'
-import rr560Webp from '@/assets/images/projects/range-rover-560.webp'
-import rr960Jpg from '@/assets/images/projects/range-rover-960.jpg'
-import rr960Webp from '@/assets/images/projects/range-rover-960.webp'
 
 /**
  * Selected Projects: Mansor builds for the VOIR-style collection gallery.
@@ -145,15 +149,22 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'range-rover',
-    make: 'Range Rover',
-    model: 'Range Rover',
-    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
+    id: 'ferrari-sf90-stradale',
+    make: 'Ferrari',
+    model: 'SF90 Stradale',
+    logo: ferrariLogo,
     image: {
-      alt: 'Black Range Rover on monoblock wheels',
-      webp: set([[rr560Webp, 560], [rr960Webp, 960]]),
-      jpg: set([[rr560Jpg, 560], [rr960Jpg, 960]]),
+      alt: 'Grey Ferrari SF90 Stradale engine bay in the Mansor Customs workshop: twin-turbo V8 and hybrid battery pack',
+      webp: set([[sfs1560Webp, 560], [sfs1960Webp, 841]]),
+      jpg: set([[sfs1560Jpg, 560], [sfs1960Jpg, 841]]),
     },
+    gallery: [
+      {
+        alt: 'The grey Ferrari SF90 Stradale outside the shop, front three-quarter',
+        webp: set([[sfs2560Webp, 560], [sfs2960Webp, 960]]),
+        jpg: set([[sfs2560Jpg, 560], [sfs2960Jpg, 960]]),
+      },
+    ],
   },
   {
     id: 'bmw-xm',

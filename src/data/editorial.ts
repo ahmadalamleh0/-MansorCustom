@@ -100,10 +100,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: bodyKits,
-        alt: 'White Mercedes-AMG GT 4-door with a vented carbon bonnet, widened front bumper and carbon front splitter',
+        alt: 'Yellow Jeep Grand Cherokee Trackhawk from above, with a vented carbon bonnet, widebody front bumper and splitter',
         width: 1440,
         height: 1440,
-        position: '50% 50%', // bonnet vents to splitter
+        position: '50% 55%', // bonnet vents to splitter
       },
     },
     {
