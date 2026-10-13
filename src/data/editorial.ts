@@ -100,10 +100,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: bodyKits,
-        alt: 'Black BMW XM with a widebody kit and red-accented wheels outside the Mansor Customs shop',
-        width: 1000,
-        height: 1333,
-        position: '50% 85%', // keeps the shop sign and the whole car in frame
+        alt: 'White Mercedes-AMG GT 4-door with a vented carbon bonnet, widened front bumper and carbon front splitter',
+        width: 1440,
+        height: 1440,
+        position: '50% 50%', // bonnet vents to splitter
       },
     },
     {
