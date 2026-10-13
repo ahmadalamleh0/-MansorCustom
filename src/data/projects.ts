@@ -85,18 +85,6 @@ const set = (pairs: [string, number][]) => pairs.map(([url, w]) => ({ url, w }))
 
 export const projects: Project[] = [
   {
-    id: 'mercedes-s-class',
-    make: 'Mercedes-Benz',
-    model: 'S-Class',
-    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
-    video: sClassVideo,
-    image: {
-      alt: 'Silver Mercedes-Benz S-Class at night, doors open, turquoise interior with ambient lighting',
-      webp: set([[sClassPosterWebp, 576]]),
-      jpg: set([[sClassPosterJpg, 576]]),
-    },
-  },
-  {
     id: 'mclaren-720s',
     make: 'McLaren',
     model: '720S',
@@ -147,6 +135,18 @@ export const projects: Project[] = [
       alt: 'Satin black BMW M3 with carbon aero outside the Mansor Customs shop',
       webp: set([[m3PosterWebp, 576]]),
       jpg: set([[m3PosterJpg, 576]]),
+    },
+  },
+  {
+    id: 'mercedes-s-class',
+    make: 'Mercedes-Benz',
+    model: 'S-Class',
+    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
+    video: sClassVideo,
+    image: {
+      alt: 'Silver Mercedes-Benz S-Class at night, doors open, turquoise interior with ambient lighting',
+      webp: set([[sClassPosterWebp, 576]]),
+      jpg: set([[sClassPosterJpg, 576]]),
     },
   },
   {
