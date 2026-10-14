@@ -372,29 +372,29 @@ Outfit body copy are unchanged.
   `bot-field`).
 - **Tuning / performance** (`components/sections/Tuning.tsx`,
   `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
-  2026-10-14), directly after Recent Work. Left-aligned, unlike
-  the centred sections around it. One lead video (the pink SF90 firing
-  flames on the dyno, 2.5-16.5s of the client clip, 4:5; a 3:2 crop on
-  tablets; 480px mobile source), a
-  **rev gauge** (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`; refined
-  2026-10-14: 0-8 ×1000 rpm over a 240° arc, crisp white quarter ticks and
-  Outfit 500 numerals, red ticks and numerals at 7-8, an amber-to-red band
-  outside the scale from 6k, a 2.25px lit arc, a white needle with a red tip
-  and a tabular rpm readout). It sits to the right of the heading and line
-  (spanning both from 640px; on phones top right beside the heading, the
-  line full width below), 7.25-13.5rem wide,
-  "Tuned to / be heard." in the geometric caps face, one line
-  ("Exhausts, downpipes and tuning…") and the editorial CTA "Plan a Tuning
-  Build", which opens the Build Brief with Tuning preselected
-  (`lib/buildBrief.ts` event + scroll). A supporting row: SF90 engine bay
-  (4:3, cats and downpipes), the black SF90 flame clip (3:4 video tile; it is
-  also a Recent Work card) and the green Huracán firing flames on the dyno
-  (3:4 video tile, 2-10s of the client clip, 480×640), one row at
-  one height from 640px (16:9:9 columns); on phones the engine bay full width
-  with the two flame tiles under it. lg: video left spanning the column,
-  text right, the row on the video's baseline. Below lg: heading, line, then
-  video + row as one media block (8px gaps), CTA last. Motion: media and text rise in once. The gauge plays
-  each time the section enters view: idle at 900, a quick rev to 7,600 just
+  2026-10-14), directly after Recent Work. Left-aligned, unlike the centred
+  sections around it. "Tuned to / be heard." in the geometric caps face and
+  one line ("Exhausts, downpipes and tuning…") on the left, the **rev
+  gauge** on the right (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`:
+  0-8 ×1000 rpm over a 240° arc, crisp white quarter ticks and Outfit 500
+  numerals, red ticks and numerals at 7-8, an amber-to-red band outside the
+  scale from 6k, a 2.25px lit arc, a white needle with a red tip and a
+  tabular rpm readout; 7.25-13.5rem wide, aligned to the container's right
+  edge; on phones top right beside the heading, the line full width below),
+  then the editorial CTA "Plan a Tuning Build", which opens the Build Brief
+  with Tuning preselected (`lib/buildBrief.ts` event + scroll). **Gallery**
+  (2026-10-14): the shared collection strip (`components/ui/Collection.tsx`,
+  the Recent Work cards, controls and progress line) with this section's
+  own cards, footage first: the pink SF90 firing flames on the dyno, the
+  green Huracán on the dyno (both 576×960 3:5 loops cut from the client
+  clips), the Porsche 911 exhaust flame and the SF90 engine bay (cats and
+  downpipes). Lamborghini and Porsche use the tracked wordmark until
+  official marks arrive. Playback is livelier than Recent Work's: a loop is
+  attached within 200px of the viewport and plays once 25% of its card shows
+  (Recent Work: 300px, 40%); it pauses off screen, and reduced motion keeps
+  the posters. No SVJ footage has been supplied. Motion: text and cards
+  rise in once (the cards with Recent Work's stagger). The gauge plays each
+  time the section enters view: idle at 900, a quick rev to 7,600 just
   inside the redline, a settle at 6,400, then a soft live idle that runs
   only while it is in view (slow sweeps between ~6.1k and 6.9k, an
   occasional blip to 7,350). The lit arc goes white to 4k, warms to amber by
@@ -402,7 +402,8 @@ Outfit body copy are unchanged.
   glow (max 90%, from 6k) build with the revs. Reduced motion: the settled
   reading, static.
 - **Selected Projects** (`components/sections/Projects.tsx`,
-  `data/projects.ts`, VOIR PPF reference), between the service tiles and
+  `data/projects.ts`, VOIR PPF reference; the strip itself is the shared
+  `components/ui/Collection.tsx`, also used by the Tuning gallery), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of
   square-cornered 3:5 build cards, full-bleed photos, with narrow black
   gutters (12–14px) and a 1px 22% rule. Each card has a small monochrome

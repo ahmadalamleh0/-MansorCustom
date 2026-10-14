@@ -46,7 +46,7 @@ function gaugeRenderer(root: SVGSVGElement) {
 }
 
 /**
- * Tuning entrance: the media and text rise in once. The rev gauge plays each
+ * Tuning entrance: the text and the gallery cards rise in once. The rev gauge plays each
  * time the section comes into view: idle, a quick rev to just past the
  * redline, a settle, then a soft live idle (slow sweeps through the upper
  * range with the odd throttle blip) that runs only while the gauge is in
@@ -65,6 +65,16 @@ export function tuningReveal() {
       ease: 'expo.out',
       stagger: 0.07,
       scrollTrigger: { trigger: '.tuning__grid', start: 'top 75%', once: true },
+    })
+
+    // Gallery cards rise in as Recent Work's do (scoped to this section)
+    gsap.from('[data-project]', {
+      autoAlpha: 0,
+      y: 36,
+      duration: 1.2,
+      ease: 'expo.out',
+      stagger: 0.07,
+      scrollTrigger: { trigger: '#tuning-track', start: 'top 85%', once: true },
     })
 
     if (!root || !render) return

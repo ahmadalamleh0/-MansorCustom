@@ -1679,11 +1679,10 @@
   }
 
   /*
-   * Tuning / performance. The flame video leads (4:5, left column on lg; a
-   * wide 3:2 crop on tablets), with a thin-line rev gauge, the geometric caps
-   * heading, one line and the CTA beside it, and two stills sharing one
-   * height (engine bay 4:3 + exhaust flame 3:4) closing the column. Left
-   * aligned, unlike the centred sections around it.
+   * Tuning / performance. Left aligned, unlike the centred sections around
+   * it: the geometric caps heading and line with the rev gauge to their
+   * right, the CTA under them, then the gallery in the shared collection
+   * strip (the Recent Work cards and controls, styled under .projects__*).
    */
   .tuning {
     padding-top: clamp(4.5rem, 3rem + 5vw, 8rem);
@@ -1693,22 +1692,11 @@
     display: grid;
     grid-template-areas:
       'title'
-      'feature'
-      'stills'
       'actions';
   }
 
-  .tuning__feature {
-    grid-area: feature;
-    position: relative;
-    aspect-ratio: 4 / 5;
-    margin-top: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
-    overflow: hidden;
-    background: var(--color-surface);
-  }
-
-  .tuning__feature video {
-    object-position: 50% 45%;
+  .tuning__gallery {
+    margin-top: clamp(2.25rem, 1.75rem + 2vw, 3.75rem);
   }
 
   /*
@@ -1906,91 +1894,6 @@
   .tuning__actions {
     grid-area: actions;
     margin-top: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
-  }
-
-  /* Phones: the engine bay full width, the two flame tiles (3:4) under it */
-  .tuning__stills {
-    grid-area: stills;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      'engine engine'
-      'clip clip2';
-    gap: 0.5rem;
-    /* Below lg the stills join the video as one media block */
-    margin-top: 0.5rem;
-  }
-
-  .tuning__still {
-    position: relative;
-    overflow: hidden;
-    background: var(--color-surface);
-  }
-
-  .tuning__still--sf90-engine {
-    grid-area: engine;
-    aspect-ratio: 4 / 3;
-  }
-
-  .tuning__still--clip {
-    grid-area: clip;
-    aspect-ratio: 3 / 4;
-  }
-
-  .tuning__still--clip2 {
-    grid-area: clip2;
-    aspect-ratio: 3 / 4;
-  }
-
-  /* From 640px one row at one height: widths in the ratio of the aspect
-     ratios (4:3 = 16 units, 3:4 = 9) */
-  @media (min-width: 640px) {
-    .tuning__stills {
-      grid-template-columns: minmax(0, 16fr) minmax(0, 9fr) minmax(0, 9fr);
-      grid-template-areas: 'engine clip clip2';
-    }
-  }
-
-  .tuning__still img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Tablets: the video as a wide 3:2 crop (car, flames and floor reflection) */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .tuning__feature {
-      aspect-ratio: 3 / 2;
-    }
-
-    .tuning__feature video {
-      object-position: 50% 50%;
-    }
-  }
-
-  /* lg: video left (spanning the column), everything else right */
-  @media (min-width: 1024px) {
-    .tuning__grid {
-      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-      grid-template-rows: auto auto 1fr;
-      grid-template-areas:
-        'feature title'
-        'feature actions'
-        'feature stills';
-      column-gap: clamp(2.5rem, 1rem + 4vw, 6rem);
-    }
-
-    .tuning__feature {
-      margin-top: 0;
-    }
-
-    .tuning__stills {
-      align-self: end;
-      gap: 0.75rem;
-      margin-top: 2rem;
-    }
   }
 
   /*
