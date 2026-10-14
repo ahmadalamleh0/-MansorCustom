@@ -350,21 +350,22 @@ Outfit body copy are unchanged.
 - **The Build Brief** (`components/sections/BuildDesk.tsx`,
   `lib/buildRequest.ts`, `data/makes.ts`; compact card redesign, creative
   director 2026-10-14, which supersedes the flat/no-glass rules for this
-  section only): after the service tiles. One centred graphite glass card
-  (44rem max; charcoal fill with a soft top-left highlight, 9% hairline,
-  inner top edge, 20px radius, a deep soft drop and a faint white halo).
+  section only; restyled to stealth black the same day): after the service
+  tiles. One centred card in near-true black (#060606, 44rem max, 18px
+  radius, a 6% hairline with a faint inner top edge, a barely-there shadow;
+  no glass, no glow), deliberately unlike the Wraptors quote form.
   Inside: a status pill (green dot with a slow ping, "Ready to
   collaborate"), "Let's Talk Builds." in the brand headline at 1.5-2.1rem,
   the lede, a hairline, then the sheet. **Three steps, one visible at a
-  time**: three slim 3px progress bars with "Step n of 3", the step title
-  (Outfit 500), then the fields. Fields are filled, rounded (10px) boxes,
-  46px tall, 16px text, sentence-case labels above; focus brightens the
-  border with a soft 3px ring. Make (searchable combobox, "Other" → free
+  time**: three 2px hairline progress bars with "Step n of 3", the step title
+  (Outfit 500), then the fields. Fields are black-on-black rounded (10px)
+  boxes with thin 8% outlines, 46px tall, 16px text, sentence-case labels
+  above; focus brightens the outline. Make (searchable combobox, "Other" → free
   text), Model, Year (custom select-only combobox); services as eight
   two-column chips with a radio dot (Wraps preselected, or the service sent
   by `lib/buildBrief.ts`); preferred contact as a three-way segmented
-  control. Dropdowns are rounded glass lists. Actions: quiet "Back" left, a
-  compact paper button ("Continue" / "Submit Your Build", arrow) right,
+  control. Dropdowns are rounded black lists. Actions: quiet "Back" left, a
+  compact off-white button ("Continue" / "Submit Your Build", arrow) right,
   full width on phones. Steps validate before advancing, keep every value,
   move focus to the step heading and fade in (0.32s). Posts to **Netlify
   Forms** (`build-request`, static copy in index.html, honeypot
