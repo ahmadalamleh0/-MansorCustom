@@ -102,8 +102,8 @@ export const editorial = {
         src: bodyKits,
         alt: 'Yellow widebody Jeep Grand Cherokee Trackhawk with a carbon bonnet and black wheels at a gas station at night',
         width: 1152,
-        height: 1440,
-        position: '50% 70%', // whole car, title on the forecourt below the splitter
+        height: 1360,
+        position: '50% 50%', // zoomed out (canopy trimmed, forecourt extended): title sits below the splitter
       },
     },
     {
@@ -119,8 +119,8 @@ export const editorial = {
       },
     },
     {
-      id: 'performance-steering',
-      title: 'Performance Steerings',
+      id: 'interior-technology',
+      title: 'Interior Technology',
       media: {
         type: 'image',
         src: steeringWheels,
