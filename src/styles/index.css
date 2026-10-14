@@ -806,7 +806,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 0 0.5rem 8%;
+    padding: 0 0.5rem;
     outline: none;
   }
 
@@ -815,6 +815,9 @@
     align-items: center;
     gap: 0.32em;
     font-family: var(--font-editorial);
+    /* Bottom gap tied to the title size, not the card width: ~16px to the
+       baseline on phones, scaling with the type on desktop */
+    margin-bottom: 0.75em;
     font-size: clamp(0.8125rem, 0.5rem + 1.75cqi, 1.3125rem);
     font-weight: 500;
     letter-spacing: 0.015em;
