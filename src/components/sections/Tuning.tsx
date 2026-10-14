@@ -32,9 +32,10 @@ export function Tuning() {
       <div className="container-site tuning__grid">
         <div className="tuning__head">
           <h2 id="tuning-title" data-tn-reveal className="tuning__title">
-            {headline.map((line) => (
+            {headline.map((line, i) => (
               <span key={line} className="tuning__line">
                 {line}
+                {i < headline.length - 1 && ' '}
               </span>
             ))}
           </h2>

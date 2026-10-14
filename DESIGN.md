@@ -373,22 +373,25 @@ Outfit body copy are unchanged.
 - **Tuning / performance** (`components/sections/Tuning.tsx`,
   `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
   2026-10-14), directly after Recent Work. Left-aligned, unlike the centred
-  sections around it. "Tuned to / be heard." in the geometric caps face and
-  one line ("Exhausts, downpipes and tuning…") on the left, the **rev
+  sections around it. "Beyond / Stock" (2026-10-14) in the geometric caps
+  face, 2.25-5rem at 1.04 leading so the two lines run about the gauge's
+  height, and one line ("Exhausts, downpipes, and performance tuning.")
+  under both, on the left; the **rev
   gauge** on the right (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`:
   0-8 ×1000 rpm over a 240° arc, crisp white quarter ticks and Outfit 500
   numerals, red ticks and numerals at 7-8, an amber-to-red band outside the
   scale from 6k, a 2.25px lit arc, a white needle with a red tip and a
   tabular rpm readout; 7.25-13.5rem wide, aligned to the container's right
-  edge; on phones top right beside the heading, the line full width below),
+  edge and centred on the heading at every width),
   then the editorial CTA "Plan a Tuning Build", which opens the Build Brief
   with Tuning preselected (`lib/buildBrief.ts` event + scroll). **Gallery**
   (2026-10-14): the shared collection strip (`components/ui/Collection.tsx`,
   the Recent Work cards, controls and progress line) with this section's
-  own cards, footage first: the pink SF90 firing flames on the dyno, the
+  own cards, footage first: the black SF90 firing flames in the workshop
+  (moved from Recent Work), the pink SF90 firing flames on the dyno, the
   green Huracán on the dyno (both 576×960 3:5 loops cut from the client
-  clips), the Porsche 911 exhaust flame and the SF90 engine bay (cats and
-  downpipes). Lamborghini and Porsche use the tracked wordmark until
+  clips), the Porsche 911 exhaust flame and the SF90 Stradale (engine bay
+  with the cats and downpipes, then the car; moved from Recent Work). Lamborghini and Porsche use the tracked wordmark until
   official marks arrive. Playback is livelier than Recent Work's: a loop is
   attached within 200px of the viewport and plays once 25% of its card shows
   (Recent Work: 300px, 40%); it pauses off screen, and reduced motion keeps

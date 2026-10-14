@@ -1700,9 +1700,9 @@
   }
 
   /*
-   * Head: heading and line on the left, the rev gauge on the right. Phones:
-   * the gauge sits top right beside the heading, the line runs full width
-   * under both. From 640px the gauge spans the heading and the line.
+   * Head: "Beyond / Stock" on the left, the rev gauge on the right, centred
+   * on each other; the line runs under both. The two caps lines are sized
+   * to about the gauge's height at every width, so they read as one pair.
    */
   .tuning__head {
     grid-area: title;
@@ -1727,14 +1727,7 @@
 
   @media (min-width: 640px) {
     .tuning__head {
-      grid-template-areas:
-        'heading gauge'
-        'copy gauge';
       column-gap: clamp(1.5rem, 0.5rem + 3vw, 3.5rem);
-    }
-
-    .tuning__title {
-      align-self: end;
     }
   }
 
@@ -1864,11 +1857,12 @@
     text-anchor: middle;
   }
 
+  /* Two short caps lines: set larger and tighter, about the gauge's height */
   .tuning__title {
     font-family: var(--font-geo);
-    font-size: clamp(1.75rem, 1rem + 3vw, 3.25rem);
+    font-size: clamp(2.25rem, 1.1rem + 5.2vw, 5rem);
     font-weight: 400;
-    line-height: 1.12;
+    line-height: 1.04;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--color-paper);
@@ -1882,7 +1876,7 @@
     grid-area: copy;
     align-self: start;
     max-width: 34ch;
-    margin-top: clamp(1rem, 0.85rem + 0.6vw, 1.375rem);
+    margin-top: clamp(1.125rem, 0.9rem + 0.9vw, 1.75rem);
     font-family: var(--font-editorial);
     font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
     font-weight: 300;

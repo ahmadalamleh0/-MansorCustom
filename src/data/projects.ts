@@ -1,5 +1,4 @@
 import bmwLogo from '@/assets/logos/makes/bmw.svg'
-import ferrariLogo from '@/assets/logos/makes/ferrari.svg'
 import mclarenLogo from '@/assets/logos/makes/mclaren.svg'
 import m3PosterJpg from '@/assets/images/projects/bmw-m3-poster.jpg'
 import m3PosterWebp from '@/assets/images/projects/bmw-m3-poster.webp'
@@ -12,17 +11,6 @@ import icy2560Jpg from '@/assets/images/projects/icy-m3-2-560.jpg'
 import icy2560Webp from '@/assets/images/projects/icy-m3-2-560.webp'
 import icy2960Jpg from '@/assets/images/projects/icy-m3-2-960.jpg'
 import icy2960Webp from '@/assets/images/projects/icy-m3-2-960.webp'
-import sf90PosterJpg from '@/assets/images/projects/ferrari-sf90-poster.jpg'
-import sf90PosterWebp from '@/assets/images/projects/ferrari-sf90-poster.webp'
-import sf90Video from '@/assets/images/projects/ferrari-sf90.mp4'
-import sfs1560Jpg from '@/assets/images/projects/sf90-stradale-1-560.jpg'
-import sfs1560Webp from '@/assets/images/projects/sf90-stradale-1-560.webp'
-import sfs1960Jpg from '@/assets/images/projects/sf90-stradale-1-960.jpg'
-import sfs1960Webp from '@/assets/images/projects/sf90-stradale-1-960.webp'
-import sfs2560Jpg from '@/assets/images/projects/sf90-stradale-2-560.jpg'
-import sfs2560Webp from '@/assets/images/projects/sf90-stradale-2-560.webp'
-import sfs2960Jpg from '@/assets/images/projects/sf90-stradale-2-960.jpg'
-import sfs2960Webp from '@/assets/images/projects/sf90-stradale-2-960.webp'
 import gi1560Jpg from '@/assets/images/projects/g-class-interior-1-560.jpg'
 import gi1560Webp from '@/assets/images/projects/g-class-interior-1-560.webp'
 import gi1960Jpg from '@/assets/images/projects/g-class-interior-1-960.jpg'
@@ -117,18 +105,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'ferrari-sf90',
-    make: 'Ferrari',
-    model: 'SF90', // SF90 Stradale: identified from the rear (lights, high exhausts, diffuser)
-    logo: ferrariLogo,
-    video: sf90Video,
-    image: {
-      alt: 'Black Ferrari SF90 Stradale firing flames from its exhausts in a dark workshop',
-      webp: set([[sf90PosterWebp, 576]]),
-      jpg: set([[sf90PosterJpg, 576]]),
-    },
-  },
-  {
     id: 'bmw-m3',
     make: 'BMW',
     model: 'M3', // confirmed by the creative director, 2026-10-10
@@ -167,24 +143,6 @@ export const projects: Project[] = [
         alt: 'The icy blue BMW M3 in the garage alley, front three-quarter',
         webp: set([[icy2560Webp, 560], [icy2960Webp, 869]]),
         jpg: set([[icy2560Jpg, 560], [icy2960Jpg, 869]]),
-      },
-    ],
-  },
-  {
-    id: 'ferrari-sf90-stradale',
-    make: 'Ferrari',
-    model: 'SF90 Stradale',
-    logo: ferrariLogo,
-    image: {
-      alt: 'Grey Ferrari SF90 Stradale engine bay in the Mansor Customs workshop: twin-turbo V8 and hybrid battery pack',
-      webp: set([[sfs1560Webp, 560], [sfs1960Webp, 841]]),
-      jpg: set([[sfs1560Jpg, 560], [sfs1960Jpg, 841]]),
-    },
-    gallery: [
-      {
-        alt: 'The grey Ferrari SF90 Stradale outside the shop, front three-quarter',
-        webp: set([[sfs2560Webp, 560], [sfs2960Webp, 960]]),
-        jpg: set([[sfs2560Jpg, 560], [sfs2960Jpg, 960]]),
       },
     ],
   },

@@ -1,4 +1,15 @@
+import blackSf90PosterJpg from '@/assets/images/projects/ferrari-sf90-poster.jpg'
+import blackSf90PosterWebp from '@/assets/images/projects/ferrari-sf90-poster.webp'
+import blackSf90Video from '@/assets/images/projects/ferrari-sf90.mp4'
 import ferrariLogo from '@/assets/logos/makes/ferrari.svg'
+import sfs1560Jpg from '@/assets/images/projects/sf90-stradale-1-560.jpg'
+import sfs1560Webp from '@/assets/images/projects/sf90-stradale-1-560.webp'
+import sfs1960Jpg from '@/assets/images/projects/sf90-stradale-1-960.jpg'
+import sfs1960Webp from '@/assets/images/projects/sf90-stradale-1-960.webp'
+import sfs2560Jpg from '@/assets/images/projects/sf90-stradale-2-560.jpg'
+import sfs2560Webp from '@/assets/images/projects/sf90-stradale-2-560.webp'
+import sfs2960Jpg from '@/assets/images/projects/sf90-stradale-2-960.jpg'
+import sfs2960Webp from '@/assets/images/projects/sf90-stradale-2-960.webp'
 import huracanPosterJpg from '@/assets/images/tuning/card-huracan-dyno-poster.jpg'
 import huracanPosterWebp from '@/assets/images/tuning/card-huracan-dyno-poster.webp'
 import huracanVideo from '@/assets/images/tuning/card-huracan-dyno.mp4'
@@ -9,10 +20,6 @@ import porsche901Webp from '@/assets/images/tuning/card-porsche-flame-901.webp'
 import sf90PosterJpg from '@/assets/images/tuning/card-sf90-dyno-poster.jpg'
 import sf90PosterWebp from '@/assets/images/tuning/card-sf90-dyno-poster.webp'
 import sf90Video from '@/assets/images/tuning/card-sf90-dyno.mp4'
-import engine560Jpg from '@/assets/images/tuning/card-sf90-engine-560.jpg'
-import engine560Webp from '@/assets/images/tuning/card-sf90-engine-560.webp'
-import engine841Jpg from '@/assets/images/tuning/card-sf90-engine-841.jpg'
-import engine841Webp from '@/assets/images/tuning/card-sf90-engine-841.webp'
 import type { Project } from './projects'
 
 const set = (pairs: [string, number][]) => pairs.map(([url, w]) => ({ url, w }))
@@ -20,18 +27,33 @@ const set = (pairs: [string, number][]) => pairs.map(([url, w]) => ({ url, w }))
 /**
  * Tuning / performance, after Recent Work (creative director, 2026-10-14).
  * The gallery reuses the Recent Work collection cards (3:5) with Mansor's
- * own performance media, moving footage first: the pink SF90 on the dyno
+ * own performance media, moving footage first: the black SF90 firing flames
+ * in the workshop (moved here from Recent Work, 2026-10-14), the pink SF90 on the dyno
  * (client-photos/tuning/sf90-pink-dyno-flames.mp4, 2.5–16.5s) and the green
  * Huracán on the dyno (huracan-green-dyno-flames.mp4, 2–10s), then the
- * Porsche exhaust flame and the SF90 engine bay (cats and downpipes). No SVJ
+ * Porsche exhaust flame and the SF90 Stradale (engine bay with the cats and
+ * downpipes, then the car; moved here from Recent Work, 2026-10-14). No SVJ
  * footage has been supplied yet. The CTA opens the Build Brief with
  * `service` preselected (it must match a service title).
  */
 export const tuning = {
-  headline: ['Tuned to', 'be heard.'],
-  copy: 'Exhausts, downpipes and tuning for cars that should sound the way they look.',
+  // Creative director, 2026-10-14
+  headline: ['Beyond', 'Stock'],
+  copy: 'Exhausts, downpipes, and performance tuning.',
   cta: { label: 'Plan a Tuning Build', service: 'Tuning' },
   gallery: [
+    {
+      id: 'ferrari-sf90',
+      make: 'Ferrari',
+      model: 'SF90', // SF90 Stradale: identified from the rear (lights, high exhausts, diffuser)
+      logo: ferrariLogo,
+      video: blackSf90Video,
+      image: {
+        alt: 'Black Ferrari SF90 Stradale firing flames from its exhausts in a dark workshop',
+        webp: set([[blackSf90PosterWebp, 576]]),
+        jpg: set([[blackSf90PosterJpg, 576]]),
+      },
+    },
     {
       id: 'tuning-sf90-dyno',
       make: 'Ferrari',
@@ -70,15 +92,22 @@ export const tuning = {
       },
     },
     {
-      id: 'tuning-sf90-engine',
+      id: 'ferrari-sf90-stradale',
       make: 'Ferrari',
-      model: 'SF90',
+      model: 'SF90 Stradale',
       logo: ferrariLogo,
       image: {
-        alt: 'Ferrari SF90 engine bay from above: the V8, catalytic converters and downpipes',
-        webp: set([[engine560Webp, 560], [engine841Webp, 841]]),
-        jpg: set([[engine560Jpg, 560], [engine841Jpg, 841]]),
+        alt: 'Grey Ferrari SF90 Stradale engine bay in the Mansor Customs workshop: twin-turbo V8 and hybrid battery pack',
+        webp: set([[sfs1560Webp, 560], [sfs1960Webp, 841]]),
+        jpg: set([[sfs1560Jpg, 560], [sfs1960Jpg, 841]]),
       },
+      gallery: [
+        {
+          alt: 'The grey Ferrari SF90 Stradale outside the shop, front three-quarter',
+          webp: set([[sfs2560Webp, 560], [sfs2960Webp, 960]]),
+          jpg: set([[sfs2560Jpg, 560], [sfs2960Jpg, 960]]),
+        },
+      ],
     },
   ] as Project[],
 }
