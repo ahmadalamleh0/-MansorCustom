@@ -375,10 +375,13 @@ Outfit body copy are unchanged.
   2026-10-14), directly after Recent Work. Left-aligned, unlike
   the centred sections around it. One lead video (the SF90 flame clip from
   Mansor Reels, 4:5; a 3:2 crop on tablets; 480px mobile source), a
-  thin-line **rev gauge** (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`:
-  0-8 ×1000 rpm over a 240° arc, quarter ticks, small Outfit numerals, a
-  muted-red redline band at 7-8, a 1.5px lit arc, a hairline needle and a
-  tabular rpm readout; above the title on phones, beside it from 640px),
+  **rev gauge** (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`; refined
+  2026-10-14: 0-8 ×1000 rpm over a 240° arc, crisp white quarter ticks and
+  Outfit 500 numerals, red ticks and numerals at 7-8, an amber-to-red band
+  outside the scale from 6k, a 2.25px lit arc, a white needle with a red tip
+  and a tabular rpm readout). It sits to the right of the heading and line
+  (spanning both from 640px; on phones top right beside the heading, the
+  line full width below), 7.25-13.5rem wide,
   "Tuned to / be heard." in the geometric caps face, one line
   ("Exhausts, downpipes and tuning…") and the editorial CTA "Plan a Tuning
   Build", which opens the Build Brief with Tuning preselected
@@ -387,11 +390,13 @@ Outfit body copy are unchanged.
   video left spanning the column, text right, stills on the video's
   baseline. Below lg: heading, line, then video + stills as one media block
   (8px gaps), CTA last. Motion: media and text rise in once. The gauge plays
-  each time the section enters view (never loops): idle at 900, a quick rev
-  to 7,600 just inside the redline, then it settles at 6,400. The lit arc
-  goes soft white to 4k, warms to amber by 6.5k and turns red only past
-  7k; a blurred copy of the arc gives a glow that appears only in the top
-  of the range (max 50%). Reduced motion: the settled reading, static.
+  each time the section enters view: idle at 900, a quick rev to 7,600 just
+  inside the redline, a settle at 6,400, then a soft live idle that runs
+  only while it is in view (slow sweeps between ~6.1k and 6.9k, an
+  occasional blip to 7,350). The lit arc goes white to 4k, warms to amber by
+  6.5k and turns red only past 7k; its glow (max 50%) and the warm band's
+  glow (max 90%, from 6k) build with the revs. Reduced motion: the settled
+  reading, static.
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of

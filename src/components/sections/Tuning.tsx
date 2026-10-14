@@ -9,9 +9,10 @@ import { useGSAP } from '@/lib/gsap'
 /**
  * Tuning / performance: one flame video leads (4:5, left on lg), the heading,
  * line and CTA beside it, and two stills (engine bay, exhaust flame) under
- * them. A thin-line rev gauge sits above the heading on phones and beside
- * it from 640px; it revs from idle to the redline and settles as the
- * section enters. The CTA opens the Build Brief with Tuning chosen.
+ * them. The rev gauge sits to the right of the heading and line (top right,
+ * beside the heading, on phones); it revs from idle to the redline as the
+ * section enters, then keeps blipping softly while in view. The CTA opens
+ * the Build Brief with Tuning chosen.
  * Animation hooks: [data-tn-reveal], [data-rg-*].
  */
 export function Tuning() {
@@ -29,7 +30,6 @@ export function Tuning() {
         </figure>
 
         <div className="tuning__head">
-          <RevGauge className="tuning__gauge" />
           <h2 id="tuning-title" data-tn-reveal className="tuning__title">
             {headline.map((line) => (
               <span key={line} className="tuning__line">
@@ -37,11 +37,11 @@ export function Tuning() {
               </span>
             ))}
           </h2>
+          <p data-tn-reveal className="tuning__copy">
+            {copy}
+          </p>
+          <RevGauge className="tuning__gauge" />
         </div>
-
-        <p data-tn-reveal className="tuning__copy">
-          {copy}
-        </p>
 
         <div data-tn-reveal className="tuning__actions">
           <button type="button" className="cta-line" onClick={() => openBuildBrief(cta.service)}>

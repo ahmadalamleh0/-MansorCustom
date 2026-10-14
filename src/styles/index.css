@@ -1693,7 +1693,6 @@
     display: grid;
     grid-template-areas:
       'title'
-      'copy'
       'feature'
       'stills'
       'actions';
@@ -1712,36 +1711,50 @@
     object-position: 50% 45%;
   }
 
-  /* Gauge above the title on phones, beside it (after the title) from 640px */
+  /*
+   * Head: heading and line on the left, the rev gauge on the right. Phones:
+   * the gauge sits top right beside the heading, the line runs full width
+   * under both. From 640px the gauge spans the heading and the line.
+   */
   .tuning__head {
     grid-area: title;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'heading gauge'
+      'copy copy';
+    align-items: center;
+    column-gap: 0.75rem;
+  }
+
+  .tuning__title {
+    grid-area: heading;
+  }
+
+  .tuning__gauge {
+    grid-area: gauge;
+    justify-self: end;
+    width: clamp(7.25rem, 4.75rem + 9vw, 13.5rem);
   }
 
   @media (min-width: 640px) {
     .tuning__head {
-      flex-direction: row;
-      align-items: center;
-      gap: clamp(1.5rem, 0.5rem + 3vw, 3rem);
+      grid-template-areas:
+        'heading gauge'
+        'copy gauge';
+      column-gap: clamp(1.5rem, 0.5rem + 3vw, 3.5rem);
     }
 
-    .tuning__gauge {
-      order: 1;
+    .tuning__title {
+      align-self: end;
     }
-  }
-
-  .tuning__gauge {
-    flex: none;
-    width: clamp(8rem, 6.5rem + 5vw, 11.5rem);
   }
 
   /*
-   * Rev gauge: hairline scale and track, numerals in quiet Outfit, the
-   * redline as a short muted-red band. The lit arc and needle are driven
-   * from animations/tuningReveal.ts (soft white → amber → red at the top).
+   * Rev gauge: crisp white markings and numerals, an amber-to-red band
+   * outside the scale whose glow builds with the revs, a bright needle
+   * with a red tip. The lit arc, glows, needle and readout are driven from
+   * animations/tuningReveal.ts (white → amber → red only at the top).
    */
   .rev-gauge {
     display: block;
@@ -1750,36 +1763,47 @@
   }
 
   .rev-gauge__tick {
-    stroke: rgb(242 241 238 / 0.28);
-    stroke-width: 0.75;
+    stroke: rgb(242 241 238 / 0.5);
+    stroke-width: 0.9;
   }
 
   .rev-gauge__tick.is-major {
-    stroke: rgb(242 241 238 / 0.6);
-    stroke-width: 1;
+    stroke: rgb(255 255 255 / 0.95);
+    stroke-width: 1.6;
   }
 
   .rev-gauge__tick.is-red {
-    stroke: rgb(226 74 70 / 0.7);
+    stroke: rgb(236 78 66);
   }
 
-  .rev-gauge__redline {
+  .rev-gauge__band,
+  .rev-gauge__band-glow {
     fill: none;
-    stroke: rgb(226 74 70 / 0.55);
-    stroke-width: 1.5;
+    stroke: url(#rg-band);
+    stroke-linecap: butt;
+  }
+
+  .rev-gauge__band {
+    stroke-width: 3;
+  }
+
+  .rev-gauge__band-glow {
+    stroke-width: 7;
+    opacity: 0;
   }
 
   .rev-gauge__num {
-    fill: rgb(242 241 238 / 0.42);
+    fill: rgb(255 255 255 / 0.82);
     font-family: var(--font-editorial);
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 500;
     font-variant-numeric: tabular-nums;
     text-anchor: middle;
     dominant-baseline: central;
   }
 
   .rev-gauge__num.is-red {
-    fill: rgb(226 74 70 / 0.75);
+    fill: rgb(236 78 66);
   }
 
   .rev-gauge__track,
@@ -1790,49 +1814,62 @@
   }
 
   .rev-gauge__track {
-    stroke: rgb(242 241 238 / 0.1);
+    stroke: rgb(242 241 238 / 0.14);
     stroke-width: 1;
   }
 
   .rev-gauge__lit {
     stroke: rgb(242 241 238);
-    stroke-width: 1.5;
+    stroke-width: 2.25;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
   }
 
   .rev-gauge__glow {
     stroke: rgb(242 241 238);
-    stroke-width: 4;
+    stroke-width: 5;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
     opacity: 0;
   }
 
-  .rev-gauge__needle {
-    stroke: var(--color-paper);
-    stroke-width: 1.25;
+  .rev-gauge__needle,
+  .rev-gauge__needle-tip {
     stroke-linecap: round;
   }
 
+  .rev-gauge__needle {
+    stroke: #fff;
+    stroke-width: 1.75;
+  }
+
+  .rev-gauge__needle-tip {
+    stroke: rgb(240 72 60);
+    stroke-width: 2;
+  }
+
   .rev-gauge__hub {
-    fill: var(--color-ink);
-    stroke: var(--color-paper);
-    stroke-width: 1;
+    fill: #050505;
+    stroke: #fff;
+    stroke-width: 1.25;
+  }
+
+  .rev-gauge__hub-dot {
+    fill: #fff;
   }
 
   .rev-gauge__readout {
-    fill: var(--color-paper);
+    fill: #fff;
     font-family: var(--font-editorial);
-    font-size: 15px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 400;
     letter-spacing: 0.02em;
     font-variant-numeric: tabular-nums;
     text-anchor: middle;
   }
 
   .rev-gauge__unit {
-    fill: rgb(242 241 238 / 0.42);
+    fill: rgb(242 241 238 / 0.5);
     font-family: var(--font-editorial);
     font-size: 8.5px;
     letter-spacing: 0.08em;
@@ -1855,6 +1892,7 @@
 
   .tuning__copy {
     grid-area: copy;
+    align-self: start;
     max-width: 34ch;
     margin-top: clamp(1rem, 0.85rem + 0.6vw, 1.375rem);
     font-family: var(--font-editorial);
@@ -1922,10 +1960,9 @@
   @media (min-width: 1024px) {
     .tuning__grid {
       grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-      grid-template-rows: auto auto auto 1fr;
+      grid-template-rows: auto auto 1fr;
       grid-template-areas:
         'feature title'
-        'feature copy'
         'feature actions'
         'feature stills';
       column-gap: clamp(2.5rem, 1rem + 4vw, 6rem);

@@ -20,11 +20,12 @@ function colorAt(rpm: number): RGB {
   return mix(AMBER, RED, Math.min(1, (rpm - GAUGE.redline) / 0.5))
 }
 
-/** Draws the gauge at a given rpm: needle, lit arc, its glow and the readout */
+/** Draws the gauge at a given rpm: needle, lit arc and glow, redline glow, readout */
 function gaugeRenderer(root: SVGSVGElement) {
   const needle = root.querySelector<SVGGElement>('[data-rg-needle]')!
   const lit = root.querySelector<SVGPathElement>('[data-rg-lit]')!
   const glow = root.querySelector<SVGPathElement>('[data-rg-glow]')!
+  const redGlow = root.querySelector<SVGPathElement>('[data-rg-redglow]')!
   const readout = root.querySelector<SVGTextElement>('[data-rg-readout]')!
   const fmt = new Intl.NumberFormat('en-US')
   return (rpm: number) => {
@@ -38,15 +39,18 @@ function gaugeRenderer(root: SVGSVGElement) {
     glow.style.stroke = color
     // A controlled glow: none at cruise, building only through the top of the range
     glow.style.opacity = String(gsap.utils.clamp(0, 0.5, ((rpm - 5) / (PEAK - 5)) * 0.5))
+    // The warm band comes alive as the needle climbs past 6k
+    redGlow.style.opacity = String(gsap.utils.clamp(0, 0.9, ((rpm - 6) / (PEAK - 6)) * 0.9))
     readout.textContent = fmt.format(Math.round((rpm * 1000) / 50) * 50)
   }
 }
 
 /**
  * Tuning entrance: the media and text rise in once. The rev gauge plays each
- * time the section comes into view (never loops): idle, a quick rev to just
- * past the redline, then it settles a little below the peak. Reduced
- * motion: the settled reading, no movement.
+ * time the section comes into view: idle, a quick rev to just past the
+ * redline, a settle, then a soft live idle (slow sweeps through the upper
+ * range with the odd throttle blip) that runs only while the gauge is in
+ * view. Reduced motion: the settled reading, no movement.
  */
 export function tuningReveal() {
   const mm = gsap.matchMedia()
@@ -67,13 +71,23 @@ export function tuningReveal() {
     const state = { rpm: 0 }
     const draw = () => render(state.rpm)
     draw()
+    // Alive: drifts between ~6k and ~7k, a blip into the redline, back to SETTLE
+    const alive = gsap
+      .timeline({ paused: true, repeat: -1, onUpdate: draw })
+      .to(state, { rpm: 6.9, duration: 1.1, ease: 'sine.inOut' })
+      .to(state, { rpm: 6.1, duration: 1.3, ease: 'sine.inOut' })
+      .to(state, { rpm: 7.35, duration: 0.22, ease: 'power2.out' }, '+=0.5')
+      .to(state, { rpm: 6.2, duration: 0.9, ease: 'power3.out' })
+      .to(state, { rpm: SETTLE, duration: 0.9, ease: 'sine.inOut' }, '+=0.4')
     const rev = gsap
       .timeline({ paused: true, onUpdate: draw })
       .to(state, { rpm: IDLE, duration: 0.4, ease: 'power2.out' })
       .to(state, { rpm: PEAK, duration: 0.7, ease: 'power2.in' }, '+=0.3')
       .to(state, { rpm: SETTLE, duration: 1.2, ease: 'power3.out' })
+      .add(() => alive.restart(), '+=0.6')
 
     const reset = () => {
+      alive.pause()
       rev.pause(0)
       state.rpm = 0
       draw()
