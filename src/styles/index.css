@@ -1680,7 +1680,7 @@
 
   /*
    * Tuning / performance. The flame video leads (4:5, left column on lg; a
-   * wide 3:2 crop on tablets), with a tachometer scale, the geometric caps
+   * wide 3:2 crop on tablets), with a thin-line rev gauge, the geometric caps
    * heading, one line and the CTA beside it, and two stills sharing one
    * height (engine bay 4:3 + exhaust flame 3:4) closing the column. Left
    * aligned, unlike the centred sections around it.
@@ -1692,7 +1692,6 @@
   .tuning__grid {
     display: grid;
     grid-template-areas:
-      'tach'
       'title'
       'copy'
       'feature'
@@ -1713,38 +1712,134 @@
     object-position: 50% 45%;
   }
 
-  /* Tach scale: thin ticks on a baseline; majors taller, redline tallest */
-  .tuning__tach {
-    grid-area: tach;
+  /* Gauge above the title on phones, beside it (after the title) from 640px */
+  .tuning__head {
+    grid-area: title;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: min(100%, 22rem);
-    height: 0.875rem;
-    margin-bottom: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
   }
 
-  .tuning__tick {
-    --rest: 0.28;
-    width: 1px;
-    height: 45%;
-    background: var(--color-paper);
-    opacity: var(--rest);
+  @media (min-width: 640px) {
+    .tuning__head {
+      flex-direction: row;
+      align-items: center;
+      gap: clamp(1.5rem, 0.5rem + 3vw, 3rem);
+    }
+
+    .tuning__gauge {
+      order: 1;
+    }
   }
 
-  .tuning__tick--major {
-    --rest: 0.55;
-    height: 75%;
+  .tuning__gauge {
+    flex: none;
+    width: clamp(8rem, 6.5rem + 5vw, 11.5rem);
   }
 
-  .tuning__tick--red {
-    --rest: 0.92;
-    width: 2px;
-    height: 100%;
+  /*
+   * Rev gauge: hairline scale and track, numerals in quiet Outfit, the
+   * redline as a short muted-red band. The lit arc and needle are driven
+   * from animations/tuningReveal.ts (soft white → amber → red at the top).
+   */
+  .rev-gauge {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+
+  .rev-gauge__tick {
+    stroke: rgb(242 241 238 / 0.28);
+    stroke-width: 0.75;
+  }
+
+  .rev-gauge__tick.is-major {
+    stroke: rgb(242 241 238 / 0.6);
+    stroke-width: 1;
+  }
+
+  .rev-gauge__tick.is-red {
+    stroke: rgb(226 74 70 / 0.7);
+  }
+
+  .rev-gauge__redline {
+    fill: none;
+    stroke: rgb(226 74 70 / 0.55);
+    stroke-width: 1.5;
+  }
+
+  .rev-gauge__num {
+    fill: rgb(242 241 238 / 0.42);
+    font-family: var(--font-editorial);
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  .rev-gauge__num.is-red {
+    fill: rgb(226 74 70 / 0.75);
+  }
+
+  .rev-gauge__track,
+  .rev-gauge__lit,
+  .rev-gauge__glow {
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .rev-gauge__track {
+    stroke: rgb(242 241 238 / 0.1);
+    stroke-width: 1;
+  }
+
+  .rev-gauge__lit {
+    stroke: rgb(242 241 238);
+    stroke-width: 1.5;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+
+  .rev-gauge__glow {
+    stroke: rgb(242 241 238);
+    stroke-width: 4;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+
+  .rev-gauge__needle {
+    stroke: var(--color-paper);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+  }
+
+  .rev-gauge__hub {
+    fill: var(--color-ink);
+    stroke: var(--color-paper);
+    stroke-width: 1;
+  }
+
+  .rev-gauge__readout {
+    fill: var(--color-paper);
+    font-family: var(--font-editorial);
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    text-anchor: middle;
+  }
+
+  .rev-gauge__unit {
+    fill: rgb(242 241 238 / 0.42);
+    font-family: var(--font-editorial);
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
   }
 
   .tuning__title {
-    grid-area: title;
     font-family: var(--font-geo);
     font-size: clamp(1.75rem, 1rem + 3vw, 3.25rem);
     font-weight: 400;
@@ -1827,9 +1922,8 @@
   @media (min-width: 1024px) {
     .tuning__grid {
       grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-      grid-template-rows: auto auto auto auto 1fr;
+      grid-template-rows: auto auto auto 1fr;
       grid-template-areas:
-        'feature tach'
         'feature title'
         'feature copy'
         'feature actions'

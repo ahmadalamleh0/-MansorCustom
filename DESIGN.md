@@ -372,20 +372,26 @@ Outfit body copy are unchanged.
   `bot-field`).
 - **Tuning / performance** (`components/sections/Tuning.tsx`,
   `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
-  2026-10-14), between the Build Brief and Recent Work. Left-aligned, unlike
+  2026-10-14), directly after Recent Work. Left-aligned, unlike
   the centred sections around it. One lead video (the SF90 flame clip from
   Mansor Reels, 4:5; a 3:2 crop on tablets; 480px mobile source), a
-  tachometer scale (41 1px ticks, majors every fifth, the last eight a 2px
-  redline), "Tuned to / be heard." in the geometric caps face, one line
+  thin-line **rev gauge** (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`:
+  0-8 ×1000 rpm over a 240° arc, quarter ticks, small Outfit numerals, a
+  muted-red redline band at 7-8, a 1.5px lit arc, a hairline needle and a
+  tabular rpm readout; above the title on phones, beside it from 640px),
+  "Tuned to / be heard." in the geometric caps face, one line
   ("Exhausts, downpipes and tuning…") and the editorial CTA "Plan a Tuning
   Build", which opens the Build Brief with Tuning preselected
   (`lib/buildBrief.ts` event + scroll). Two stills share one height (SF90
   engine bay 4:3 with the cats and downpipes; Porsche exhaust flame 3:4). lg:
   video left spanning the column, text right, stills on the video's
   baseline. Below lg: heading, line, then video + stills as one media block
-  (8px gaps), CTA last. Motion, once: media and text rise in, and the tach
-  revs: ticks light left to right into the redline, then fall back to their
-  resting levels. Reduced motion: resting state.
+  (8px gaps), CTA last. Motion: media and text rise in once. The gauge plays
+  each time the section enters view (never loops): idle at 900, a quick rev
+  to 7,600 just inside the redline, then it settles at 6,400. The lit arc
+  goes soft white to 4k, warms to amber by 6.5k and turns red only past
+  7k; a blurred copy of the arc gives a glow that appears only in the top
+  of the range (max 50%). Reduced motion: the settled reading, static.
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of

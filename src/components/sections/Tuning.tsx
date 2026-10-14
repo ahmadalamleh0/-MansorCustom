@@ -1,19 +1,18 @@
 import { useRef } from 'react'
 import { tuningReveal } from '@/animations/tuningReveal'
 import { Media } from '@/components/ui/Media'
+import { RevGauge } from '@/components/ui/RevGauge'
 import { tuning } from '@/data/tuning'
 import { openBuildBrief } from '@/lib/buildBrief'
 import { useGSAP } from '@/lib/gsap'
 
-/** Tach scale: 41 ticks, a major every fifth, the last eight are the redline */
-const TICKS = Array.from({ length: 41 }, (_, i) => (i >= 33 ? 'red' : i % 5 === 0 ? 'major' : 'minor'))
-
 /**
  * Tuning / performance: one flame video leads (4:5, left on lg), the heading,
  * line and CTA beside it, and two stills (engine bay, exhaust flame) under
- * them. A tachometer scale sits over the heading and sweeps to the redline
- * once as the section enters. The CTA opens the Build Brief with Tuning
- * chosen. Animation hooks: [data-tn-reveal], [data-tn-tick].
+ * them. A thin-line rev gauge sits above the heading on phones and beside
+ * it from 640px; it revs from idle to the redline and settles as the
+ * section enters. The CTA opens the Build Brief with Tuning chosen.
+ * Animation hooks: [data-tn-reveal], [data-rg-*].
  */
 export function Tuning() {
   const scope = useRef<HTMLElement>(null)
@@ -29,19 +28,16 @@ export function Tuning() {
           <figcaption className="sr-only">{featureAlt}</figcaption>
         </figure>
 
-        <div aria-hidden="true" className="tuning__tach">
-          {TICKS.map((kind, i) => (
-            <span key={i} data-tn-tick className={`tuning__tick tuning__tick--${kind}`} />
-          ))}
+        <div className="tuning__head">
+          <RevGauge className="tuning__gauge" />
+          <h2 id="tuning-title" data-tn-reveal className="tuning__title">
+            {headline.map((line) => (
+              <span key={line} className="tuning__line">
+                {line}
+              </span>
+            ))}
+          </h2>
         </div>
-
-        <h2 id="tuning-title" data-tn-reveal className="tuning__title">
-          {headline.map((line) => (
-            <span key={line} className="tuning__line">
-              {line}
-            </span>
-          ))}
-        </h2>
 
         <p data-tn-reveal className="tuning__copy">
           {copy}
