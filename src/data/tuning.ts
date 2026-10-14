@@ -13,10 +13,6 @@ import sfs2960Webp from '@/assets/images/projects/sf90-stradale-2-960.webp'
 import huracanPosterJpg from '@/assets/images/tuning/card-huracan-dyno-poster.jpg'
 import huracanPosterWebp from '@/assets/images/tuning/card-huracan-dyno-poster.webp'
 import huracanVideo from '@/assets/images/tuning/card-huracan-dyno.mp4'
-import porsche560Jpg from '@/assets/images/tuning/card-porsche-flame-560.jpg'
-import porsche560Webp from '@/assets/images/tuning/card-porsche-flame-560.webp'
-import porsche901Jpg from '@/assets/images/tuning/card-porsche-flame-901.jpg'
-import porsche901Webp from '@/assets/images/tuning/card-porsche-flame-901.webp'
 import sf90PosterJpg from '@/assets/images/tuning/card-sf90-dyno-poster.jpg'
 import sf90PosterWebp from '@/assets/images/tuning/card-sf90-dyno-poster.webp'
 import sf90Video from '@/assets/images/tuning/card-sf90-dyno.mp4'
@@ -31,7 +27,7 @@ const set = (pairs: [string, number][]) => pairs.map(([url, w]) => ({ url, w }))
  * in the workshop (moved here from Recent Work, 2026-10-14), the pink SF90 on the dyno
  * (client-photos/tuning/sf90-pink-dyno-flames.mp4, 2.5–16.5s) and the green
  * Huracán on the dyno (huracan-green-dyno-flames.mp4, 2–10s), then the
- * Porsche exhaust flame and the SF90 Stradale (engine bay with the cats and
+ * SF90 Stradale (engine bay with the cats and
  * downpipes, then the car; moved here from Recent Work, 2026-10-14). No SVJ
  * footage has been supplied yet. The CTA opens the Build Brief with
  * `service` preselected (it must match a service title).
@@ -77,18 +73,6 @@ export const tuning = {
         alt: 'Green Lamborghini Huracán on a dyno, flames streaming from its exhaust',
         webp: set([[huracanPosterWebp, 576]]),
         jpg: set([[huracanPosterJpg, 576]]),
-      },
-    },
-    {
-      id: 'tuning-porsche-flame',
-      make: 'Porsche',
-      model: '911',
-      logo: null,
-      confirm: 'Likely a 992 GT3 RS (light bar, swan-neck wing): confirm with Mansor',
-      image: {
-        alt: 'Matte grey Porsche 911 from behind, a flame leaving the exhaust under its rear wing',
-        webp: set([[porsche560Webp, 560], [porsche901Webp, 901]]),
-        jpg: set([[porsche560Jpg, 560], [porsche901Jpg, 901]]),
       },
     },
     {

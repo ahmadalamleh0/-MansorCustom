@@ -390,8 +390,8 @@ Outfit body copy are unchanged.
   own cards, footage first: the black SF90 firing flames in the workshop
   (moved from Recent Work), the pink SF90 firing flames on the dyno, the
   green Huracán on the dyno (both 576×960 3:5 loops cut from the client
-  clips), the Porsche 911 exhaust flame and the SF90 Stradale (engine bay
-  with the cats and downpipes, then the car; moved from Recent Work). Lamborghini and Porsche use the tracked wordmark until
+  clips) and the SF90 Stradale (engine bay
+  with the cats and downpipes, then the car; moved from Recent Work). Lamborghini uses the tracked wordmark until
   official marks arrive. Playback is livelier than Recent Work's: a loop is
   attached within 200px of the viewport and plays once 25% of its card shows
   (Recent Work: 300px, 40%); it pauses off screen, and reduced motion keeps
