@@ -388,8 +388,8 @@ Outfit body copy are unchanged.
   (2026-10-14): the shared collection strip (`components/ui/Collection.tsx`,
   the Recent Work cards, controls and progress line) with this section's
   own cards, footage first: the black SF90 firing flames in the workshop
-  (moved from Recent Work), the pink SF90 firing flames on the dyno, the
-  green Huracán on the dyno (both 576×960 3:5 loops cut from the client
+  (moved from Recent Work), the green Huracán on the dyno, the pink SF90
+  firing flames on the dyno (both 576×960 3:5 loops cut from the client
   clips) and the SF90 Stradale (engine bay
   with the cats and downpipes, then the car; moved from Recent Work). Lamborghini uses the tracked wordmark until
   official marks arrive. Playback is livelier than Recent Work's: a loop is

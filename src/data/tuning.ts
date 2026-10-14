@@ -24,9 +24,10 @@ const set = (pairs: [string, number][]) => pairs.map(([url, w]) => ({ url, w }))
  * Tuning / performance, after Recent Work (creative director, 2026-10-14).
  * The gallery reuses the Recent Work collection cards (3:5) with Mansor's
  * own performance media, moving footage first: the black SF90 firing flames
- * in the workshop (moved here from Recent Work, 2026-10-14), the pink SF90 on the dyno
- * (client-photos/tuning/sf90-pink-dyno-flames.mp4, 2.5–16.5s) and the green
- * Huracán on the dyno (huracan-green-dyno-flames.mp4, 2–10s), then the
+ * in the workshop (moved here from Recent Work, 2026-10-14), the green
+ * Huracán on the dyno (client-photos/tuning/huracan-green-dyno-flames.mp4,
+ * 2–10s) and the pink SF90 on the dyno (sf90-pink-dyno-flames.mp4,
+ * 2.5–16.5s), then the
  * SF90 Stradale (engine bay with the cats and
  * downpipes, then the car; moved here from Recent Work, 2026-10-14). No SVJ
  * footage has been supplied yet. The CTA opens the Build Brief with
@@ -51,18 +52,6 @@ export const tuning = {
       },
     },
     {
-      id: 'tuning-sf90-dyno',
-      make: 'Ferrari',
-      model: 'SF90',
-      logo: ferrariLogo,
-      video: sf90Video,
-      image: {
-        alt: 'Pink Ferrari SF90 Stradale on a dyno, firing long flames from its exhaust',
-        webp: set([[sf90PosterWebp, 576]]),
-        jpg: set([[sf90PosterJpg, 576]]),
-      },
-    },
-    {
       id: 'tuning-huracan-dyno',
       make: 'Lamborghini',
       model: 'Huracán',
@@ -73,6 +62,18 @@ export const tuning = {
         alt: 'Green Lamborghini Huracán on a dyno, flames streaming from its exhaust',
         webp: set([[huracanPosterWebp, 576]]),
         jpg: set([[huracanPosterJpg, 576]]),
+      },
+    },
+    {
+      id: 'tuning-sf90-dyno',
+      make: 'Ferrari',
+      model: 'SF90',
+      logo: ferrariLogo,
+      video: sf90Video,
+      image: {
+        alt: 'Pink Ferrari SF90 Stradale on a dyno, firing long flames from its exhaust',
+        webp: set([[sf90PosterWebp, 576]]),
+        jpg: set([[sf90PosterJpg, 576]]),
       },
     },
     {
