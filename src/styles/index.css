@@ -1915,7 +1915,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       'engine engine'
-      'clip porsche';
+      'clip clip2';
     gap: 0.5rem;
     /* Below lg the stills join the video as one media block */
     margin-top: 0.5rem;
@@ -1937,8 +1937,8 @@
     aspect-ratio: 3 / 4;
   }
 
-  .tuning__still--porsche-flame {
-    grid-area: porsche;
+  .tuning__still--clip2 {
+    grid-area: clip2;
     aspect-ratio: 3 / 4;
   }
 
@@ -1947,13 +1947,8 @@
   @media (min-width: 640px) {
     .tuning__stills {
       grid-template-columns: minmax(0, 16fr) minmax(0, 9fr) minmax(0, 9fr);
-      grid-template-areas: 'engine clip porsche';
+      grid-template-areas: 'engine clip clip2';
     }
-  }
-
-  /* Keep the flame (bottom right of the photo) in the narrow crop */
-  .tuning__still--porsche-flame img {
-    object-position: 85% 50%;
   }
 
   .tuning__still img {

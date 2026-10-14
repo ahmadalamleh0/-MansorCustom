@@ -388,7 +388,8 @@ Outfit body copy are unchanged.
   Build", which opens the Build Brief with Tuning preselected
   (`lib/buildBrief.ts` event + scroll). A supporting row: SF90 engine bay
   (4:3, cats and downpipes), the black SF90 flame clip (3:4 video tile; it is
-  also a Recent Work card) and the Porsche exhaust flame (3:4), one row at
+  also a Recent Work card) and the green Huracán firing flames on the dyno
+  (3:4 video tile, 2-10s of the client clip, 480×640), one row at
   one height from 640px (16:9:9 columns); on phones the engine bay full width
   with the two flame tiles under it. lg: video left spanning the column,
   text right, the row on the video's baseline. Below lg: heading, line, then

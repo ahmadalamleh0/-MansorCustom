@@ -7,10 +7,8 @@ import dynoMobileVideo from '@/assets/images/tuning/sf90-dyno-mobile.mp4'
 import dynoPoster from '@/assets/images/tuning/sf90-dyno-poster.jpg'
 import flamesMobileVideo from '@/assets/images/tuning/sf90-flames-mobile.mp4'
 import flamesPoster from '@/assets/images/tuning/sf90-flames-poster.jpg'
-import porsche560Jpg from '@/assets/images/tuning/porsche-flame-560.jpg'
-import porsche560Webp from '@/assets/images/tuning/porsche-flame-560.webp'
-import porsche960Jpg from '@/assets/images/tuning/porsche-flame-960.jpg'
-import porsche960Webp from '@/assets/images/tuning/porsche-flame-960.webp'
+import huracanVideo from '@/assets/images/tuning/huracan-dyno.mp4'
+import huracanPoster from '@/assets/images/tuning/huracan-dyno-poster.jpg'
 import type { MediaAsset } from './media'
 
 export type TuningStill = {
@@ -29,8 +27,9 @@ export type TuningStill = {
  * leads (client-photos/tuning/sf90-pink-dyno-flames.mp4, 2.5–16.5s, cropped
  * 4:5); below it the SF90 engine bay (cats and downpipes), the black SF90
  * flame clip (Mansor Reels; also a Recent Work card, so here it is a small
- * tile) and the Porsche exhaust flame. The CTA opens the Build Brief with
- * `service` preselected (it must match a service title).
+ * tile) and the green Huracán on the dyno (client-photos/tuning/
+ * huracan-green-dyno-flames.mp4, 2–10s, 3:4). The CTA opens the Build Brief
+ * with `service` preselected (it must match a service title).
  */
 export const tuning = {
   headline: ['Tuned to', 'be heard.'],
@@ -47,6 +46,10 @@ export const tuning = {
     media: { type: 'video', src: flamesMobileVideo, poster: flamesPoster } satisfies MediaAsset,
     alt: 'Black Ferrari SF90 Stradale firing flames from its exhaust inside a workshop',
   },
+  clip2: {
+    media: { type: 'video', src: huracanVideo, poster: huracanPoster } satisfies MediaAsset,
+    alt: 'Green Lamborghini Huracán on a dyno, flames streaming from its exhaust',
+  },
   stills: [
     {
       id: 'sf90-engine',
@@ -56,15 +59,6 @@ export const tuning = {
       jpg: `${engine560Jpg} 560w, ${engine960Jpg} 960w`,
       webp: `${engine560Webp} 560w, ${engine960Webp} 960w`,
       src: engine960Jpg,
-    },
-    {
-      id: 'porsche-flame',
-      alt: 'Matte grey Porsche from behind, a flame leaving the exhaust under its rear wing',
-      width: 960,
-      height: 1280,
-      jpg: `${porsche560Jpg} 560w, ${porsche960Jpg} 960w`,
-      webp: `${porsche560Webp} 560w, ${porsche960Webp} 960w`,
-      src: porsche960Jpg,
     },
   ] as TuningStill[],
 }
