@@ -63,8 +63,8 @@ export default function App() {
             <Showcase />
             <Editorial />
             <BuildDesk />
-            <Tuning />
             <Projects />
+            <Tuning />
             <Reviews />
             <Philosophy />
             <InstagramShowcase />

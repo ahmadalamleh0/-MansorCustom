@@ -348,26 +348,27 @@ Outfit body copy are unchanged.
   the row; static and wrapped with reduced motion. The reference shop's
   logos were removed (2026-10-11).
 - **The Build Brief** (`components/sections/BuildDesk.tsx`,
-  `lib/buildRequest.ts`, `data/makes.ts`): "Let's talk builds." between the
-  service tiles and Recent Work. Black editorial order sheet, no container:
-  a kicker, the brand headline and lede (sticky column on lg), the sheet
-  beside. **Three steps, one visible at a time**: 01 / Your Vehicle
-  (searchable Make combobox with "Other" → free text; Model; a custom Year
-  list), 02 / Your Build (eight indexed service rows, Wraps preselected,
-  two columns on phones; optional notes), 03 / Your Details (name, email,
-  phone; preferred contact as three underlined words). A 01 — 02 — 03
-  indicator (done segments fill in paper). Underlined fields, labels in
-  tracked 10px caps, placeholders at 38%. The primary action is a
-  full-width editorial line ("Continue" / "Submit Your Build"): label
-  left, arrow right, a hairline above that draws in paper on hover while
-  the arrow steps forward; 3.5rem tall, directly under the fields. Compact
-  rhythm (2026-10-13): 16px indicator gap, 18px rule-to-heading, 20px
-  heading-to-fields, about 32px fields-to-action. Back sits on the same line. Steps validate before advancing, keep
-  every value, move focus to the step heading and fade in (0.32s). The
-  Year list is a select-only combobox: compact (about six rows, scrolls),
-  newest first, fades and drops in, arrows / Page / Home / End / typed
-  digits, Enter or a tap selects. Posts to **Netlify Forms**
-  (`build-request`, static copy in index.html, honeypot `bot-field`).
+  `lib/buildRequest.ts`, `data/makes.ts`; compact card redesign, creative
+  director 2026-10-14, which supersedes the flat/no-glass rules for this
+  section only): after the service tiles. One centred graphite glass card
+  (44rem max; charcoal fill with a soft top-left highlight, 9% hairline,
+  inner top edge, 20px radius, a deep soft drop and a faint white halo).
+  Inside: a status pill (green dot with a slow ping, "Ready to
+  collaborate"), "Let's Talk Builds." in the brand headline at 1.5-2.1rem,
+  the lede, a hairline, then the sheet. **Three steps, one visible at a
+  time**: three slim 3px progress bars with "Step n of 3", the step title
+  (Outfit 500), then the fields. Fields are filled, rounded (10px) boxes,
+  46px tall, 16px text, sentence-case labels above; focus brightens the
+  border with a soft 3px ring. Make (searchable combobox, "Other" → free
+  text), Model, Year (custom select-only combobox); services as eight
+  two-column chips with a radio dot (Wraps preselected, or the service sent
+  by `lib/buildBrief.ts`); preferred contact as a three-way segmented
+  control. Dropdowns are rounded glass lists. Actions: quiet "Back" left, a
+  compact paper button ("Continue" / "Submit Your Build", arrow) right,
+  full width on phones. Steps validate before advancing, keep every value,
+  move focus to the step heading and fade in (0.32s). Posts to **Netlify
+  Forms** (`build-request`, static copy in index.html, honeypot
+  `bot-field`).
 - **Tuning / performance** (`components/sections/Tuning.tsx`,
   `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
   2026-10-14), between the Build Brief and Recent Work. Left-aligned, unlike

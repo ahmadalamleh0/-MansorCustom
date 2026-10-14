@@ -1,7 +1,7 @@
 import { gsap, mq } from '@/lib/gsap'
 
 /**
- * Build Brief entrance (once, as the section enters): kicker, heading, lede
+ * Build Brief entrance (once, as the section enters): status pill, heading, lede
  * and the sheet rise in a short stagger. Reduced motion: final state.
  */
 export function buildDeskReveal() {
@@ -13,7 +13,7 @@ export function buildDeskReveal() {
       duration: 1.1,
       ease: 'expo.out',
       stagger: 0.07,
-      scrollTrigger: { trigger: '.build-brief__grid', start: 'top 80%', once: true },
+      scrollTrigger: { trigger: '.build-brief__panel', start: 'top 80%', once: true },
     })
   })
   return mm

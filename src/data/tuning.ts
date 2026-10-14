@@ -22,8 +22,8 @@ export type TuningStill = {
 }
 
 /**
- * Tuning / performance feature, between the Build Brief and Recent Work
- * (creative director, 2026-10-14). Mansor's own media: the SF90 flame clip
+ * Tuning / performance feature, after Recent Work (creative director,
+ * 2026-10-14). Mansor's own media: the SF90 flame clip
  * (Mansor Reels, cropped 4:5), the SF90 engine bay (cats and downpipes) and
  * the Porsche exhaust flame. The CTA opens the Build Brief with `service`
  * preselected (it must match a service title).

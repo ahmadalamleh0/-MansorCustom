@@ -158,181 +158,188 @@ export function BuildDesk() {
 
   return (
     <section ref={scope} id="build" aria-labelledby="build-title" className="build-brief">
-      <div className="container-site build-brief__grid">
-        <header className="build-brief__intro">
-          <p data-bd-reveal className="bd-kicker">
-            The Build Brief
-          </p>
-          <h2 id="build-title" data-bd-reveal className="brand-headline build-brief__title">
-            Let’s talk builds.
-          </h2>
-          <p data-bd-reveal className="build-brief__lede">
-            Tell us what you drive and what you have in mind.
-          </p>
-        </header>
+      <div className="container-site">
+        <div className="build-brief__panel">
+          <header className="build-brief__intro">
+            <p data-bd-reveal className="bd-status">
+              <span aria-hidden="true" className="bd-status__dot" />
+              Ready to collaborate
+            </p>
+            <h2 id="build-title" data-bd-reveal className="brand-headline build-brief__title">
+              Let’s Talk Builds.
+            </h2>
+            <p data-bd-reveal className="build-brief__lede">
+              Tell us what you drive and what you have in mind.
+            </p>
+          </header>
 
-        <div data-bd-reveal ref={sheet} className="build-brief__sheet">
-          {status === 'sent' ? (
-            <div className="bd-done" role="status">
-              <p className="bd-part__num">Brief received</p>
-              <p className="bd-done__title">Thank you, {data.name.trim().split(/\s+/)[0]}.</p>
-              <p className="bd-done__text">
-                We have your {vehicle} and will be in touch by {data.contact.toLowerCase()}.
-              </p>
-            </div>
-          ) : (
-            <form name={FORM_NAME} noValidate onSubmit={submit} aria-label="Request a quote">
-              {/* Honeypot (Netlify): hidden from people and assistive tech */}
-              <p className="sr-only" aria-hidden="true">
-                <label>
-                  Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" value={data['bot-field']} onChange={(e) => set('bot-field', e.target.value)} />
-                </label>
-              </p>
-
-              <ol className="bd-steps" aria-label="Progress">
-                {STEPS.map((_, i) => (
-                  <li key={i} className={`bd-steps__item${i === step ? ' is-on' : i < step ? ' is-done' : ''}`} aria-current={i === step ? 'step' : undefined}>
-                    <span className="bd-steps__num">0{i + 1}</span>
-                  </li>
-                ))}
-              </ol>
-
-              <div data-bd-step className="bd-step">
-                {step === 0 && (
-                  <StepHead num="01" title={STEPS[0]}>
-                    <div className="bd-row bd-row--vehicle">
-                      <MakeCombobox
-                        state={make}
-                        error={errors.make}
-                        onChange={(m) => {
-                          setMake(m)
-                          if (errors.make || errors.makeOther) setErrors((e) => ({ ...e, make: undefined, makeOther: undefined }))
-                        }}
-                      />
-                      {make.picked === OTHER_MAKE && (
-                        <div className="bd-line">
-                          <label htmlFor="bd-makeOther">Your make</label>
-                          <input
-                            id="bd-makeOther"
-                            data-field="makeOther"
-                            autoComplete="off"
-                            aria-invalid={errors.makeOther ? true : undefined}
-                            aria-describedby={errors.makeOther ? 'bd-makeOther-error' : undefined}
-                            value={make.other}
-                            onChange={(e) => {
-                              setMake((m) => ({ ...m, other: e.target.value }))
-                              if (errors.makeOther) setErrors((x) => ({ ...x, makeOther: undefined }))
-                            }}
-                          />
-                          {err('makeOther')}
-                        </div>
-                      )}
-                      <div className="bd-line">
-                        <label htmlFor="bd-model">Model</label>
-                        <input {...field('model')} autoComplete="off" placeholder="Aventador S" value={data.model} onChange={(e) => set('model', e.target.value)} />
-                        {err('model')}
-                      </div>
-                      <YearSelect value={data.year} error={errors.year} onChange={(y) => set('year', y)} />
-                    </div>
-                  </StepHead>
-                )}
-
-                {step === 1 && (
-                  <StepHead num="02" title={STEPS[1]}>
-                    <fieldset className="bd-services">
-                      <legend className="bd-sublabel">Services · {vehicle}</legend>
-                      <ul className="bd-service-list" role="radiogroup" aria-label="Service">
-                        {services.map((s, i) => (
-                          <li key={s.slug}>
-                            <label className="bd-service">
-                              <input type="radio" name="service" value={s.title} data-field={i === 0 ? 'service' : undefined} checked={data.service === s.title} onChange={() => set('service', s.title)} />
-                              <span className="bd-service__index">{String(i + 1).padStart(2, '0')}</span>
-                              <span className="bd-service__name">{s.title}</span>
-                              <span aria-hidden="true" className="bd-service__mark" />
-                            </label>
-                          </li>
-                        ))}
-                      </ul>
-                      {err('service')}
-                    </fieldset>
-                    <div className="bd-line bd-line--area">
-                      <label htmlFor="bd-details">
-                        Notes <span className="bd-optional">Optional</span>
-                      </label>
-                      <textarea {...field('details')} rows={2} placeholder="Colours, finishes, references, timing" value={data.details} onChange={(e) => set('details', e.target.value)} />
-                    </div>
-                  </StepHead>
-                )}
-
-                {step === 2 && (
-                  <StepHead num="03" title={STEPS[2]}>
-                    <div className="bd-row bd-row--contact">
-                      <div className="bd-line">
-                        <label htmlFor="bd-name">Name</label>
-                        <input {...field('name')} autoComplete="name" value={data.name} onChange={(e) => set('name', e.target.value)} />
-                        {err('name')}
-                      </div>
-                      <div className="bd-line">
-                        <label htmlFor="bd-email">Email</label>
-                        <input {...field('email')} type="email" autoComplete="email" inputMode="email" value={data.email} onChange={(e) => set('email', e.target.value)} />
-                        {err('email')}
-                      </div>
-                      <div className="bd-line">
-                        <label htmlFor="bd-phone">
-                          Phone {data.contact === 'Email' && <span className="bd-optional">Optional</span>}
-                        </label>
-                        <input {...field('phone')} type="tel" autoComplete="tel" inputMode="tel" value={data.phone} onChange={(e) => set('phone', e.target.value)} />
-                        {err('phone')}
-                      </div>
-                    </div>
-                    <div className="bd-contact">
-                      <span className="bd-sublabel" id="bd-contact-label">
-                        Preferred contact
-                      </span>
-                      <div className="bd-contact__options" role="radiogroup" aria-labelledby="bd-contact-label">
-                        {CONTACT.map((c) => (
-                          <label key={c} className="bd-contact__option">
-                            <input type="radio" name="contact" value={c} checked={data.contact === c} onChange={() => set('contact', c)} />
-                            <span>{c}</span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                  </StepHead>
-                )}
-              </div>
-
-              {status === 'error' && (
-                <p className="bd-alert" role="alert">
-                  Your brief didn’t send. Please try again, or message us on Instagram.
+          <div data-bd-reveal ref={sheet} className="build-brief__sheet">
+            {status === 'sent' ? (
+              <div className="bd-done" role="status">
+                <p className="bd-done__kicker">Brief received</p>
+                <p className="bd-done__title">Thank you, {data.name.trim().split(/\s+/)[0]}.</p>
+                <p className="bd-done__text">
+                  We have your {vehicle} and will be in touch by {data.contact.toLowerCase()}.
                 </p>
-              )}
-
-              <div className="bd-submit-row">
-                {step > 0 && (
-                  <button type="button" className="bd-back" onClick={() => goTo((step - 1) as Step)} disabled={status === 'sending'}>
-                    <ArrowIcon className="bd-back__icon" />
-                    Back
-                  </button>
-                )}
-                <button type="submit" className="bd-submit" disabled={status === 'sending'} aria-busy={status === 'sending' || undefined}>
-                  <span>{step < 2 ? 'Continue' : status === 'sending' ? 'Sending…' : 'Submit Your Build'}</span>
-                  {status !== 'sending' && <ArrowIcon className="bd-submit__icon" />}
-                </button>
               </div>
-            </form>
-          )}
+            ) : (
+              <form name={FORM_NAME} noValidate onSubmit={submit} aria-label="Request a quote">
+                {/* Honeypot (Netlify): hidden from people and assistive tech */}
+                <p className="sr-only" aria-hidden="true">
+                  <label>
+                    Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" value={data['bot-field']} onChange={(e) => set('bot-field', e.target.value)} />
+                  </label>
+                </p>
+
+                <div className="bd-progress">
+                  <ol className="bd-steps" aria-label="Progress">
+                    {STEPS.map((title, i) => (
+                      <li key={title} className={`bd-steps__item${i === step ? ' is-on' : i < step ? ' is-done' : ''}`} aria-current={i === step ? 'step' : undefined}>
+                        <span className="sr-only">{title}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  <span aria-hidden="true" className="bd-progress__count">
+                    Step {step + 1} of {STEPS.length}
+                  </span>
+                </div>
+
+                <div data-bd-step className="bd-step">
+                  {step === 0 && (
+                    <StepHead title={STEPS[0]}>
+                      <div className="bd-row bd-row--vehicle">
+                        <MakeCombobox
+                          state={make}
+                          error={errors.make}
+                          onChange={(m) => {
+                            setMake(m)
+                            if (errors.make || errors.makeOther) setErrors((e) => ({ ...e, make: undefined, makeOther: undefined }))
+                          }}
+                        />
+                        {make.picked === OTHER_MAKE && (
+                          <div className="bd-line">
+                            <label htmlFor="bd-makeOther">Your make</label>
+                            <input
+                              id="bd-makeOther"
+                              data-field="makeOther"
+                              autoComplete="off"
+                              aria-invalid={errors.makeOther ? true : undefined}
+                              aria-describedby={errors.makeOther ? 'bd-makeOther-error' : undefined}
+                              value={make.other}
+                              onChange={(e) => {
+                                setMake((m) => ({ ...m, other: e.target.value }))
+                                if (errors.makeOther) setErrors((x) => ({ ...x, makeOther: undefined }))
+                              }}
+                            />
+                            {err('makeOther')}
+                          </div>
+                        )}
+                        <div className="bd-line">
+                          <label htmlFor="bd-model">Model</label>
+                          <input {...field('model')} autoComplete="off" placeholder="Aventador S" value={data.model} onChange={(e) => set('model', e.target.value)} />
+                          {err('model')}
+                        </div>
+                        <YearSelect value={data.year} error={errors.year} onChange={(y) => set('year', y)} />
+                      </div>
+                    </StepHead>
+                  )}
+
+                  {step === 1 && (
+                    <StepHead title={STEPS[1]}>
+                      <fieldset className="bd-services">
+                        <legend className="bd-sublabel">Services · {vehicle}</legend>
+                        <ul className="bd-service-list" role="radiogroup" aria-label="Service">
+                          {services.map((s, i) => (
+                            <li key={s.slug}>
+                              <label className="bd-service">
+                                <input type="radio" name="service" value={s.title} data-field={i === 0 ? 'service' : undefined} checked={data.service === s.title} onChange={() => set('service', s.title)} />
+                                <span className="bd-service__name">{s.title}</span>
+                                <span aria-hidden="true" className="bd-service__mark" />
+                              </label>
+                            </li>
+                          ))}
+                        </ul>
+                        {err('service')}
+                      </fieldset>
+                      <div className="bd-line bd-line--area">
+                        <label htmlFor="bd-details">
+                          Notes <span className="bd-optional">Optional</span>
+                        </label>
+                        <textarea {...field('details')} rows={2} placeholder="Colours, finishes, references, timing" value={data.details} onChange={(e) => set('details', e.target.value)} />
+                      </div>
+                    </StepHead>
+                  )}
+
+                  {step === 2 && (
+                    <StepHead title={STEPS[2]}>
+                      <div className="bd-row bd-row--contact">
+                        <div className="bd-line">
+                          <label htmlFor="bd-name">Name</label>
+                          <input {...field('name')} autoComplete="name" value={data.name} onChange={(e) => set('name', e.target.value)} />
+                          {err('name')}
+                        </div>
+                        <div className="bd-line">
+                          <label htmlFor="bd-email">Email</label>
+                          <input {...field('email')} type="email" autoComplete="email" inputMode="email" value={data.email} onChange={(e) => set('email', e.target.value)} />
+                          {err('email')}
+                        </div>
+                        <div className="bd-line">
+                          <label htmlFor="bd-phone">
+                            Phone {data.contact === 'Email' && <span className="bd-optional">Optional</span>}
+                          </label>
+                          <input {...field('phone')} type="tel" autoComplete="tel" inputMode="tel" value={data.phone} onChange={(e) => set('phone', e.target.value)} />
+                          {err('phone')}
+                        </div>
+                      </div>
+                      <div className="bd-contact">
+                        <span className="bd-sublabel" id="bd-contact-label">
+                          Preferred contact
+                        </span>
+                        <div className="bd-contact__options" role="radiogroup" aria-labelledby="bd-contact-label">
+                          {CONTACT.map((c) => (
+                            <label key={c} className="bd-contact__option">
+                              <input type="radio" name="contact" value={c} checked={data.contact === c} onChange={() => set('contact', c)} />
+                              <span>{c}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </StepHead>
+                  )}
+                </div>
+
+                {status === 'error' && (
+                  <p className="bd-alert" role="alert">
+                    Your brief didn’t send. Please try again, or message us on Instagram.
+                  </p>
+                )}
+
+                <div className="bd-submit-row">
+                  {step > 0 && (
+                    <button type="button" className="bd-back" onClick={() => goTo((step - 1) as Step)} disabled={status === 'sending'}>
+                      <ArrowIcon className="bd-back__icon" />
+                      Back
+                    </button>
+                  )}
+                  <button type="submit" className="bd-submit" disabled={status === 'sending'} aria-busy={status === 'sending' || undefined}>
+                    <span>{step < 2 ? 'Continue' : status === 'sending' ? 'Sending…' : 'Submit Your Build'}</span>
+                    {status !== 'sending' && <ArrowIcon className="bd-submit__icon" />}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-function StepHead({ num, title, children }: { num: string; title: string; children: ReactNode }) {
+function StepHead({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="bd-part">
       <h3 className="bd-part__head" tabIndex={-1} data-step-focus>
-        <span className="bd-part__num">{num}</span> <span className="bd-part__slash">/</span> <span className="bd-part__title">{title}</span>
+        {title}
       </h3>
       <div className="bd-part__body">{children}</div>
     </div>
