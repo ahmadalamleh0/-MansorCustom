@@ -3,6 +3,7 @@ import { buildDeskReveal, stepIn } from '@/animations/buildDeskReveal'
 import { ArrowIcon } from '@/components/ui/icons'
 import { MAKES, OTHER_MAKE } from '@/data/makes'
 import { services } from '@/data/services'
+import { PRESELECT_EVENT } from '@/lib/buildBrief'
 import { submitBuildRequest, FORM_NAME, type BuildRequest } from '@/lib/buildRequest'
 import { useGSAP } from '@/lib/gsap'
 
@@ -74,6 +75,16 @@ export function BuildDesk() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   useGSAP(() => buildDeskReveal(), { scope })
+
+  // Other sections can open the brief with a service chosen (lib/buildBrief.ts)
+  useEffect(() => {
+    const onPreselect = (e: Event) => {
+      const service = (e as CustomEvent<string>).detail
+      if (services.some((s) => s.title === service)) setData((d) => ({ ...d, service }))
+    }
+    window.addEventListener(PRESELECT_EVENT, onPreselect)
+    return () => window.removeEventListener(PRESELECT_EVENT, onPreselect)
+  }, [])
 
   const set = <K extends keyof BuildRequest>(k: K, v: BuildRequest[K]) => {
     setData((d) => ({ ...d, [k]: v }))

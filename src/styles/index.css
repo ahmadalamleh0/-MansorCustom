@@ -1734,6 +1734,176 @@
   }
 
   /*
+   * Tuning / performance. The flame video leads (4:5, left column on lg; a
+   * wide 3:2 crop on tablets), with a tachometer scale, the geometric caps
+   * heading, one line and the CTA beside it, and two stills sharing one
+   * height (engine bay 4:3 + exhaust flame 3:4) closing the column. Left
+   * aligned, unlike the centred sections around it.
+   */
+  .tuning {
+    padding-top: clamp(4.5rem, 3rem + 5vw, 8rem);
+  }
+
+  .tuning__grid {
+    display: grid;
+    grid-template-areas:
+      'tach'
+      'title'
+      'copy'
+      'feature'
+      'stills'
+      'actions';
+  }
+
+  .tuning__feature {
+    grid-area: feature;
+    position: relative;
+    aspect-ratio: 4 / 5;
+    margin-top: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .tuning__feature video {
+    object-position: 50% 45%;
+  }
+
+  /* Tach scale: thin ticks on a baseline; majors taller, redline tallest */
+  .tuning__tach {
+    grid-area: tach;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: min(100%, 22rem);
+    height: 0.875rem;
+    margin-bottom: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+  }
+
+  .tuning__tick {
+    --rest: 0.28;
+    width: 1px;
+    height: 45%;
+    background: var(--color-paper);
+    opacity: var(--rest);
+  }
+
+  .tuning__tick--major {
+    --rest: 0.55;
+    height: 75%;
+  }
+
+  .tuning__tick--red {
+    --rest: 0.92;
+    width: 2px;
+    height: 100%;
+  }
+
+  .tuning__title {
+    grid-area: title;
+    font-family: var(--font-geo);
+    font-size: clamp(1.75rem, 1rem + 3vw, 3.25rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-paper);
+  }
+
+  .tuning__line {
+    display: block;
+  }
+
+  .tuning__copy {
+    grid-area: copy;
+    max-width: 34ch;
+    margin-top: clamp(1rem, 0.85rem + 0.6vw, 1.375rem);
+    font-family: var(--font-editorial);
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1875rem);
+    font-weight: 300;
+    line-height: 1.6;
+    text-wrap: pretty;
+    color: rgb(242 241 238 / 0.62);
+  }
+
+  .tuning__actions {
+    grid-area: actions;
+    margin-top: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
+  }
+
+  /* Same height for both: column widths in the ratio of their aspect ratios */
+  .tuning__stills {
+    grid-area: stills;
+    display: grid;
+    grid-template-columns: minmax(0, 16fr) minmax(0, 9fr);
+    gap: 0.5rem;
+    /* Below lg the stills join the video as one media block */
+    margin-top: 0.5rem;
+  }
+
+  .tuning__still {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .tuning__still--sf90-engine {
+    aspect-ratio: 4 / 3;
+  }
+
+  .tuning__still--porsche-flame {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Keep the flame (bottom right of the photo) in the narrow crop */
+  .tuning__still--porsche-flame img {
+    object-position: 85% 50%;
+  }
+
+  .tuning__still img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Tablets: the video as a wide 3:2 crop (car, flames and floor reflection) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .tuning__feature {
+      aspect-ratio: 3 / 2;
+    }
+
+    .tuning__feature video {
+      object-position: 50% 50%;
+    }
+  }
+
+  /* lg: video left (spanning the column), everything else right */
+  @media (min-width: 1024px) {
+    .tuning__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      grid-template-rows: auto auto auto auto 1fr;
+      grid-template-areas:
+        'feature tach'
+        'feature title'
+        'feature copy'
+        'feature actions'
+        'feature stills';
+      column-gap: clamp(2.5rem, 1rem + 4vw, 6rem);
+    }
+
+    .tuning__feature {
+      margin-top: 0;
+    }
+
+    .tuning__stills {
+      align-self: end;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+  }
+
+  /*
    * Selected Projects (VOIR PPF reference). A horizontal strip of tall 3:5
    * build cards, square-cornered and full-bleed, separated by narrow black
    * gutters with a 1px rule (Mansor's signature line). Each card: a small

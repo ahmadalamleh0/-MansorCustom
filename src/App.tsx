@@ -13,6 +13,7 @@ import { Philosophy } from '@/components/sections/Philosophy'
 import { Projects } from '@/components/sections/Projects'
 import { Reviews } from '@/components/sections/Reviews'
 import { Showcase } from '@/components/sections/Showcase'
+import { Tuning } from '@/components/sections/Tuning'
 import { findService } from '@/data/services'
 import { ScrollTrigger } from '@/lib/gsap'
 import { matchRoute, usePathname } from '@/lib/router'
@@ -62,6 +63,7 @@ export default function App() {
             <Showcase />
             <Editorial />
             <BuildDesk />
+            <Tuning />
             <Projects />
             <Reviews />
             <Philosophy />

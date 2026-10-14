@@ -368,6 +368,22 @@ Outfit body copy are unchanged.
   newest first, fades and drops in, arrows / Page / Home / End / typed
   digits, Enter or a tap selects. Posts to **Netlify Forms**
   (`build-request`, static copy in index.html, honeypot `bot-field`).
+- **Tuning / performance** (`components/sections/Tuning.tsx`,
+  `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
+  2026-10-14), between the Build Brief and Recent Work. Left-aligned, unlike
+  the centred sections around it. One lead video (the SF90 flame clip from
+  Mansor Reels, 4:5; a 3:2 crop on tablets; 480px mobile source), a
+  tachometer scale (41 1px ticks, majors every fifth, the last eight a 2px
+  redline), "Tuned to / be heard." in the geometric caps face, one line
+  ("Exhausts, downpipes and tuning…") and the editorial CTA "Plan a Tuning
+  Build", which opens the Build Brief with Tuning preselected
+  (`lib/buildBrief.ts` event + scroll). Two stills share one height (SF90
+  engine bay 4:3 with the cats and downpipes; Porsche exhaust flame 3:4). lg:
+  video left spanning the column, text right, stills on the video's
+  baseline. Below lg: heading, line, then video + stills as one media block
+  (8px gaps), CTA last. Motion, once: media and text rise in, and the tach
+  revs: ticks light left to right into the redline, then fall back to their
+  resting levels. Reduced motion: resting state.
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference), between the service tiles and
   Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of
@@ -404,11 +420,10 @@ Outfit body copy are unchanged.
   the headline and whose edges mask into the page black (desktop sides
   extended and blended; the photo's own baked-in halo ring retouched out so
   the animated arc replaces it at the same geometry). A thin 42% white arc with three ticks (top,
-  left, right) frames the car and fades out below its midline. Then the line
-  "Every car leaves the factory a certain way. / At Mansor, we work on what
-  comes after — from a new wrap or body kit to the wheels, interior, and
-  performance." as two balanced sentences (36ch phones, 46ch md+) (the first
-  at 62% paper, the second full paper) and the shared editorial CTA "Start Your Build" (Coming Soon
+  left, right) frames the car and fades out below its midline. Then the client's line
+  "Our goal is not just to create a car that looks great, but also one that
+  performs at the highest level and provides our clients with an
+  unparalleled driving experience." (2026-10-14; 36ch phones, 46ch md+) and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale

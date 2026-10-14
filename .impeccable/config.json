@@ -1,5 +1,26 @@
 {
   "hook": {
     "quiet": true
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "bruno ace sc",
+        "createdAt": "2026-10-14T15:58:05.235Z",
+        "reason": "DESIGN.md 'Geometric display face (RYFT reference, 2026-10-13)': creative director's approved display face"
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/styles/index.css"
+        ],
+        "createdAt": "2026-10-14T15:58:06.064Z",
+        "reason": "DESIGN.md: brand headlines use an approved paper-to-graphite gradient fill (Beyond Factory, service pages; creative director)"
+      }
+    ]
   }
 }
