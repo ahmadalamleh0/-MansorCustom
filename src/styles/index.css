@@ -1908,11 +1908,14 @@
     margin-top: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
   }
 
-  /* Same height for both: column widths in the ratio of their aspect ratios */
+  /* Phones: the engine bay full width, the two flame tiles (3:4) under it */
   .tuning__stills {
     grid-area: stills;
     display: grid;
-    grid-template-columns: minmax(0, 16fr) minmax(0, 9fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'engine engine'
+      'clip porsche';
     gap: 0.5rem;
     /* Below lg the stills join the video as one media block */
     margin-top: 0.5rem;
@@ -1925,11 +1928,27 @@
   }
 
   .tuning__still--sf90-engine {
+    grid-area: engine;
     aspect-ratio: 4 / 3;
   }
 
-  .tuning__still--porsche-flame {
+  .tuning__still--clip {
+    grid-area: clip;
     aspect-ratio: 3 / 4;
+  }
+
+  .tuning__still--porsche-flame {
+    grid-area: porsche;
+    aspect-ratio: 3 / 4;
+  }
+
+  /* From 640px one row at one height: widths in the ratio of the aspect
+     ratios (4:3 = 16 units, 3:4 = 9) */
+  @media (min-width: 640px) {
+    .tuning__stills {
+      grid-template-columns: minmax(0, 16fr) minmax(0, 9fr) minmax(0, 9fr);
+      grid-template-areas: 'engine clip porsche';
+    }
   }
 
   /* Keep the flame (bottom right of the photo) in the narrow crop */

@@ -2,7 +2,9 @@ import engine560Jpg from '@/assets/images/tuning/sf90-engine-560.jpg'
 import engine560Webp from '@/assets/images/tuning/sf90-engine-560.webp'
 import engine960Jpg from '@/assets/images/tuning/sf90-engine-960.jpg'
 import engine960Webp from '@/assets/images/tuning/sf90-engine-960.webp'
-import flamesVideo from '@/assets/images/tuning/sf90-flames.mp4'
+import dynoVideo from '@/assets/images/tuning/sf90-dyno.mp4'
+import dynoMobileVideo from '@/assets/images/tuning/sf90-dyno-mobile.mp4'
+import dynoPoster from '@/assets/images/tuning/sf90-dyno-poster.jpg'
 import flamesMobileVideo from '@/assets/images/tuning/sf90-flames-mobile.mp4'
 import flamesPoster from '@/assets/images/tuning/sf90-flames-poster.jpg'
 import porsche560Jpg from '@/assets/images/tuning/porsche-flame-560.jpg'
@@ -23,10 +25,12 @@ export type TuningStill = {
 
 /**
  * Tuning / performance feature, after Recent Work (creative director,
- * 2026-10-14). Mansor's own media: the SF90 flame clip
- * (Mansor Reels, cropped 4:5), the SF90 engine bay (cats and downpipes) and
- * the Porsche exhaust flame. The CTA opens the Build Brief with `service`
- * preselected (it must match a service title).
+ * 2026-10-14). Mansor's own media: the pink SF90 on the dyno firing flames
+ * leads (client-photos/tuning/sf90-pink-dyno-flames.mp4, 2.5–16.5s, cropped
+ * 4:5); below it the SF90 engine bay (cats and downpipes), the black SF90
+ * flame clip (Mansor Reels; also a Recent Work card, so here it is a small
+ * tile) and the Porsche exhaust flame. The CTA opens the Build Brief with
+ * `service` preselected (it must match a service title).
  */
 export const tuning = {
   headline: ['Tuned to', 'be heard.'],
@@ -34,11 +38,15 @@ export const tuning = {
   cta: { label: 'Plan a Tuning Build', service: 'Tuning' },
   feature: {
     type: 'video',
-    src: flamesVideo,
-    mobileSrc: flamesMobileVideo,
-    poster: flamesPoster,
+    src: dynoVideo,
+    mobileSrc: dynoMobileVideo,
+    poster: dynoPoster,
   } satisfies MediaAsset,
-  featureAlt: 'Black Ferrari SF90 Stradale firing flames from its exhaust inside a workshop',
+  featureAlt: 'Pink Ferrari SF90 Stradale on a dyno, firing long flames from its exhaust',
+  clip: {
+    media: { type: 'video', src: flamesMobileVideo, poster: flamesPoster } satisfies MediaAsset,
+    alt: 'Black Ferrari SF90 Stradale firing flames from its exhaust inside a workshop',
+  },
   stills: [
     {
       id: 'sf90-engine',

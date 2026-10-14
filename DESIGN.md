@@ -373,8 +373,9 @@ Outfit body copy are unchanged.
 - **Tuning / performance** (`components/sections/Tuning.tsx`,
   `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
   2026-10-14), directly after Recent Work. Left-aligned, unlike
-  the centred sections around it. One lead video (the SF90 flame clip from
-  Mansor Reels, 4:5; a 3:2 crop on tablets; 480px mobile source), a
+  the centred sections around it. One lead video (the pink SF90 firing
+  flames on the dyno, 2.5-16.5s of the client clip, 4:5; a 3:2 crop on
+  tablets; 480px mobile source), a
   **rev gauge** (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`; refined
   2026-10-14: 0-8 ×1000 rpm over a 240° arc, crisp white quarter ticks and
   Outfit 500 numerals, red ticks and numerals at 7-8, an amber-to-red band
@@ -385,11 +386,13 @@ Outfit body copy are unchanged.
   "Tuned to / be heard." in the geometric caps face, one line
   ("Exhausts, downpipes and tuning…") and the editorial CTA "Plan a Tuning
   Build", which opens the Build Brief with Tuning preselected
-  (`lib/buildBrief.ts` event + scroll). Two stills share one height (SF90
-  engine bay 4:3 with the cats and downpipes; Porsche exhaust flame 3:4). lg:
-  video left spanning the column, text right, stills on the video's
-  baseline. Below lg: heading, line, then video + stills as one media block
-  (8px gaps), CTA last. Motion: media and text rise in once. The gauge plays
+  (`lib/buildBrief.ts` event + scroll). A supporting row: SF90 engine bay
+  (4:3, cats and downpipes), the black SF90 flame clip (3:4 video tile; it is
+  also a Recent Work card) and the Porsche exhaust flame (3:4), one row at
+  one height from 640px (16:9:9 columns); on phones the engine bay full width
+  with the two flame tiles under it. lg: video left spanning the column,
+  text right, the row on the video's baseline. Below lg: heading, line, then
+  video + row as one media block (8px gaps), CTA last. Motion: media and text rise in once. The gauge plays
   each time the section enters view: idle at 900, a quick rev to 7,600 just
   inside the redline, a settle at 6,400, then a soft live idle that runs
   only while it is in view (slow sweeps between ~6.1k and 6.9k, an

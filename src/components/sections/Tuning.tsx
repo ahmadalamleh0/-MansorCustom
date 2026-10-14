@@ -7,9 +7,9 @@ import { openBuildBrief } from '@/lib/buildBrief'
 import { useGSAP } from '@/lib/gsap'
 
 /**
- * Tuning / performance: one flame video leads (4:5, left on lg), the heading,
- * line and CTA beside it, and two stills (engine bay, exhaust flame) under
- * them. The rev gauge sits to the right of the heading and line (top right,
+ * Tuning / performance: the dyno flame video leads (4:5, left on lg), the
+ * heading, line and CTA beside it, and a row under them: engine bay, a
+ * small flame clip and the exhaust-flame still. The rev gauge sits to the right of the heading and line (top right,
  * beside the heading, on phones); it revs from idle to the redline as the
  * section enters, then keeps blipping softly while in view. The CTA opens
  * the Build Brief with Tuning chosen.
@@ -17,7 +17,7 @@ import { useGSAP } from '@/lib/gsap'
  */
 export function Tuning() {
   const scope = useRef<HTMLElement>(null)
-  const { headline, copy, cta, feature, featureAlt, stills } = tuning
+  const { headline, copy, cta, feature, featureAlt, clip, stills } = tuning
 
   useGSAP(() => tuningReveal(), { scope })
 
@@ -67,6 +67,10 @@ export function Tuning() {
               </picture>
             </figure>
           ))}
+          <figure data-tn-reveal className="tuning__still tuning__still--clip">
+            <Media media={clip.media} />
+            <figcaption className="sr-only">{clip.alt}</figcaption>
+          </figure>
         </div>
       </div>
     </section>
