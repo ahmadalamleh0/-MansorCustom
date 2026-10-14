@@ -100,10 +100,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: bodyKits,
-        alt: 'Black BMW XM with red-accented wheels and aero outside the Mansor Customs shop, rear three-quarter',
-        width: 1440,
+        alt: 'Yellow widebody Jeep Grand Cherokee Trackhawk with a carbon bonnet and black wheels at a gas station at night',
+        width: 1152,
         height: 1440,
-        position: '60% 62%', // the car, with the shop sign behind
+        position: '50% 70%', // whole car, title on the forecourt below the splitter
       },
     },
     {
