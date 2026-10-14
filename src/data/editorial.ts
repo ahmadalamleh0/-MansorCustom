@@ -30,10 +30,10 @@ export const editorial = {
       media: {
         type: 'image',
         src: wraps,
-        alt: 'Rear of a BMW M3 in an icy blue satin wrap, with a swan-neck wing and BBS mesh wheels, by an old garage',
-        width: 1086,
-        height: 1448,
-        position: '55% 62%', // wing, tail-light and wheel; pavement below for the title
+        alt: 'McLaren from above in a colour-shift wrap, purple to blue across the bonnet',
+        width: 1600,
+        height: 1800,
+        position: '50% 50%', // zoomed out (concrete extended) so the title sits below the splitter
       },
     },
     {
