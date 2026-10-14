@@ -120,9 +120,11 @@ export const site = {
   // same geometry. Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
   philosophy: {
     headline: ['Beyond', 'Factory.'],
-    // Client copy (2026-10-14). No dash (creative director, 2026-10-12).
+    // Creative director, 2026-10-14 (final): the premise quieter, the promise
+    // at full strength. The no-break space keeps the dash off a line start.
     copy: [
-      'Our goal is not just to create a car that looks great, but also one that performs at the highest level and provides our clients with an unparalleled driving experience.',
+      'Every car leaves the factory a certain way.',
+      'At Mansor, we work on what comes after — from a new wrap or body kit to the wheels, interior, and performance.',
     ],
     cta: {
       label: 'Start Your Build',

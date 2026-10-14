@@ -13,10 +13,10 @@ import { useGSAP } from '@/lib/gsap'
 const PLAYBACK: VideoPlayback = { nearMargin: '200px', playThreshold: 0.25 }
 
 /**
- * Tuning / performance: the heading and line on the left, the rev gauge on
- * the right (top right beside the heading on phones), the CTA under them,
- * then the gallery in the shared collection strip (as Recent Work, with
- * this section's own cards and video playback). The gauge revs from idle to
+ * Tuning / performance ("Redline."): the heading and line on the left, the
+ * rev gauge on the right, then the gallery in the shared collection strip
+ * (as Recent Work, with this section's own cards and video playback) and
+ * the CTA under the cards. The gauge revs from idle to
  * the redline as the section enters, then keeps blipping softly while in
  * view. The CTA opens the Build Brief with Tuning chosen.
  * Animation hooks: [data-tn-reveal], [data-project], [data-rg-*].
@@ -44,16 +44,16 @@ export function Tuning() {
           </p>
           <RevGauge className="tuning__gauge" />
         </div>
-
-        <div data-tn-reveal className="tuning__actions">
-          <button type="button" className="cta-line" onClick={() => openBuildBrief(cta.service)}>
-            {cta.label}
-          </button>
-        </div>
       </div>
 
       <div className="tuning__gallery">
         <CollectionStrip id="tuning-track" label="Tuning work, scroll horizontally" noun="build" items={gallery} playback={PLAYBACK} />
+      </div>
+
+      <div className="container-site tuning__actions">
+        <button type="button" className="cta-line" onClick={() => openBuildBrief(cta.service)}>
+          {cta.label}
+        </button>
       </div>
     </section>
   )

@@ -35,7 +35,7 @@ const set = (pairs: [string, number][]) => pairs.map(([url, w]) => ({ url, w }))
  */
 export const tuning = {
   // Creative director, 2026-10-14
-  headline: ['Beyond', 'Stock'],
+  headline: ['Redline.'],
   copy: 'Exhausts, downpipes, and performance tuning.',
   cta: { label: 'Plan a Tuning Build', service: 'Tuning' },
   gallery: [

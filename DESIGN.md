@@ -295,6 +295,10 @@ Outfit body copy are unchanged.
 
 ## Components
 
+**Homepage order** (creative director, 2026-10-14): intro → hero → brand
+banner → service tiles → Build Brief → Recent Work → Tuning ("Redline.") →
+Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
+
 - **Official logo** (`components/brand/BrandLogo.tsx`): MANSOR over tracked
   CUSTOMS, white on transparent, extracted from the client's logo
   (`client-photos/brand/mansor-logo-official.jpg`; the starfield dropped).
@@ -373,17 +377,19 @@ Outfit body copy are unchanged.
 - **Tuning / performance** (`components/sections/Tuning.tsx`,
   `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
   2026-10-14), directly after Recent Work. Left-aligned, unlike the centred
-  sections around it. "Beyond / Stock" (2026-10-14) in the geometric caps
-  face, 2.25-5rem at 1.04 leading so the two lines run about the gauge's
-  height, and one line ("Exhausts, downpipes, and performance tuning.")
-  under both, on the left; the **rev
+  sections around it. "Redline." (final, 2026-10-14) in the geometric caps
+  face on one line (about 6em wide): on phones its size follows the room
+  beside the gauge (max(1.75rem, 14.6vw - 1.375rem)), from 640px
+  min(9.5vw, 7rem). One line ("Exhausts, downpipes, and performance
+  tuning.") under the word; the **rev
   gauge** on the right (`components/ui/RevGauge.tsx`, `lib/revGauge.ts`:
   0-8 ×1000 rpm over a 240° arc, crisp white quarter ticks and Outfit 500
   numerals, red ticks and numerals at 7-8, an amber-to-red band outside the
   scale from 6k, a 2.25px lit arc, a white needle with a red tip and a
   tabular rpm readout; 7.25-13.5rem wide, aligned to the container's right
-  edge and centred on the heading at every width),
-  then the editorial CTA "Plan a Tuning Build", which opens the Build Brief
+  edge; phones: centred on the word, the line full width below; from 640px
+  it spans the word and the line and centres on both). The editorial CTA
+  "Plan a Tuning Build" sits under the gallery cards and opens the Build Brief
   with Tuning preselected (`lib/buildBrief.ts` event + scroll). **Gallery**
   (2026-10-14): the shared collection strip (`components/ui/Collection.tsx`,
   the Recent Work cards, controls and progress line) with this section's
@@ -406,8 +412,8 @@ Outfit body copy are unchanged.
   reading, static.
 - **Selected Projects** (`components/sections/Projects.tsx`,
   `data/projects.ts`, VOIR PPF reference; the strip itself is the shared
-  `components/ui/Collection.tsx`, also used by the Tuning gallery), between the service tiles and
-  Beyond Factory. No visible heading (an sr-only h2). A horizontal strip of
+  `components/ui/Collection.tsx`, also used by the Tuning gallery), after
+  the Build Brief and before the Tuning section. No visible heading (an sr-only h2). A horizontal strip of
   square-cornered 3:5 build cards, full-bleed photos, with narrow black
   gutters (12–14px) and a 1px 22% rule. Each card has a small monochrome
   maker mark top-left (a CSS mask of a Simple Icons SVG with its viewBox
@@ -429,7 +435,8 @@ Outfit body copy are unchanged.
   bottom-left, opposite the model name; the active dot is full paper.
   Tap-based so it never fights the strip's swipe (McLaren, 4 photos).
 - **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
-  Alain Class reference), after the service tiles and before the Instagram showcase (the six-card
+  Alain Class reference), after the Tuning section and before the client
+  reviews (the six-card
   Services grid was removed at the creative director's request, 2026-10-10;
   the nav "Services" link now targets the tiles):
   brand storytelling, not services. Centred: no eyebrow (removed by the
@@ -441,10 +448,13 @@ Outfit body copy are unchanged.
   the headline and whose edges mask into the page black (desktop sides
   extended and blended; the photo's own baked-in halo ring retouched out so
   the animated arc replaces it at the same geometry). A thin 42% white arc with three ticks (top,
-  left, right) frames the car and fades out below its midline. Then the client's line
-  "Our goal is not just to create a car that looks great, but also one that
-  performs at the highest level and provides our clients with an
-  unparalleled driving experience." (2026-10-14; 36ch phones, 46ch md+) and the shared editorial CTA "Start Your Build" (Coming Soon
+  left, right) frames the car and fades out below its midline. Then two
+  sentences (final copy, 2026-10-14): "Every car leaves the factory a
+  certain way." at 62% paper, then "At Mansor, we work on what comes
+  after — from a new wrap or body kit to the wheels, interior, and
+  performance." at full paper (a no-break space keeps the dash off a line
+  start), in the geometric caps face at 14-16px with 1.85 leading and a
+  0.8em pause between them (30ch phones, 44ch md+), and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale
@@ -462,8 +472,8 @@ Outfit body copy are unchanged.
   transparent tracked capitals over a 1px rule at 32%, with a full-strength
   rule drawing in on hover. 48px tap target.
 - **Client reviews** (`components/sections/Reviews.tsx`, `data/reviews.ts`,
-  Wraptors Dubai quote-form reference for the material), between Recent
-  Work and Beyond Factory. Heading "Testimonials" in the brand
+  Wraptors Dubai quote-form reference for the material), after Beyond
+  Factory and before the Instagram showcase. Heading "Testimonials" in the brand
   headline style at a smaller scale (1.75–3.5rem; one line).
   Glassy charcoal cards: a charcoal fill with a soft top-left radial
   highlight, an inner 1px top edge, a 9% white hairline border, 20px

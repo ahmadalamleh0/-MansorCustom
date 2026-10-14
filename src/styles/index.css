@@ -1690,9 +1690,7 @@
 
   .tuning__grid {
     display: grid;
-    grid-template-areas:
-      'title'
-      'actions';
+    grid-template-areas: 'title';
   }
 
   .tuning__gallery {
@@ -1700,9 +1698,10 @@
   }
 
   /*
-   * Head: "Beyond / Stock" on the left, the rev gauge on the right, centred
-   * on each other; the line runs under both. The two caps lines are sized
-   * to about the gauge's height at every width, so they read as one pair.
+   * Head: "Redline." on the left, the rev gauge on the right; the line runs
+   * under the word (under both on phones, where they centre on each other). The word is about 6em wide, so
+   * its size follows the room left beside the gauge (phones), capped at
+   * 7rem, where its weight matches the gauge's.
    */
   .tuning__head {
     grid-area: title;
@@ -1725,9 +1724,18 @@
     width: clamp(7.25rem, 4.75rem + 9vw, 13.5rem);
   }
 
+  /* From 640px the gauge spans the word and the line, so the line tucks
+     under the word instead of under the gauge's taller row */
   @media (min-width: 640px) {
     .tuning__head {
+      grid-template-areas:
+        'heading gauge'
+        'copy gauge';
       column-gap: clamp(1.5rem, 0.5rem + 3vw, 3.5rem);
+    }
+
+    .tuning__title {
+      align-self: end;
     }
   }
 
@@ -1857,12 +1865,12 @@
     text-anchor: middle;
   }
 
-  /* Two short caps lines: set larger and tighter, about the gauge's height */
+  /* One word, set large: phones fill the room beside the gauge */
   .tuning__title {
     font-family: var(--font-geo);
-    font-size: clamp(2.25rem, 1.1rem + 5.2vw, 5rem);
+    font-size: max(1.75rem, 14.6vw - 1.375rem);
     font-weight: 400;
-    line-height: 1.04;
+    line-height: 1;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: var(--color-paper);
@@ -1870,6 +1878,13 @@
 
   .tuning__line {
     display: block;
+  }
+
+  /* From 640px the gauge has room: scale with the viewport, up to 7rem */
+  @media (min-width: 640px) {
+    .tuning__title {
+      font-size: min(9.5vw, 7rem);
+    }
   }
 
   .tuning__copy {
@@ -1885,9 +1900,9 @@
     color: rgb(242 241 238 / 0.62);
   }
 
+  /* Under the cards (and their controls on md+) */
   .tuning__actions {
-    grid-area: actions;
-    margin-top: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
+    margin-top: clamp(1.25rem, 1rem + 1vw, 2rem);
   }
 
   /*
@@ -2388,7 +2403,7 @@
     max-width: 30ch;
     margin-top: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
     font-family: var(--font-geo);
-    font-size: clamp(0.8125rem, 0.76rem + 0.28vw, 1rem);
+    font-size: clamp(0.875rem, 0.82rem + 0.22vw, 1rem); /* 14px floor: caps stay readable on phones */
     font-weight: 400;
     line-height: 1.85;
     letter-spacing: 0.05em;
@@ -2401,8 +2416,9 @@
     text-wrap: balance;
   }
 
+  /* A clear pause between the premise and the promise */
   .philosophy__line + .philosophy__line {
-    margin-top: 0.35em;
+    margin-top: 0.8em;
   }
 
   @media (min-width: 768px) {

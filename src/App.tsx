@@ -65,8 +65,8 @@ export default function App() {
             <BuildDesk />
             <Projects />
             <Tuning />
-            <Reviews />
             <Philosophy />
+            <Reviews />
             <InstagramShowcase />
             <LocationMap />
             <Faq />
