@@ -207,6 +207,29 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 'bmw-xm',
+    make: 'BMW',
+    model: 'XM', // XM badge on the tailgate
+    logo: bmwLogo,
+    image: {
+      alt: 'Black BMW XM from behind under the Mansor Customs sign: carbon diffuser with red lights, roof spoiler and red-accented wheels',
+      webp: set([[xm2560Webp, 560], [xm2960Webp, 960]]),
+      jpg: set([[xm2560Jpg, 560], [xm2960Jpg, 960]]),
+    },
+    gallery: [
+      {
+        alt: 'The black BMW XM from the front outside the Mansor Customs shop: red-accented wheels and a carbon front splitter',
+        webp: set([[xm1560Webp, 560], [xm1960Webp, 960]]),
+        jpg: set([[xm1560Jpg, 560], [xm1960Jpg, 960]]),
+      },
+      {
+        alt: 'The black BMW XM rear three-quarter in front of the Mansor Customs shop, carbon aero and red diffuser lights',
+        webp: set([[xm3560Webp, 560], [xm3960Webp, 960]]),
+        jpg: set([[xm3560Jpg, 560], [xm3960Jpg, 960]]),
+      },
+    ],
+  },
+  {
     id: 'mercedes-g-class-pink',
     make: 'Mercedes-Benz',
     model: 'G 63',
@@ -227,29 +250,6 @@ export const projects: Project[] = [
         alt: 'The pink G-Class from the rear doors: pink leather seat backs and headrests under the suede headliner',
         webp: set([[gp3560Webp, 560], [gp3960Webp, 960]]),
         jpg: set([[gp3560Jpg, 560], [gp3960Jpg, 960]]),
-      },
-    ],
-  },
-  {
-    id: 'bmw-xm',
-    make: 'BMW',
-    model: 'XM', // XM badge on the tailgate
-    logo: bmwLogo,
-    image: {
-      alt: 'Black BMW XM from behind under the Mansor Customs sign: carbon diffuser with red lights, roof spoiler and red-accented wheels',
-      webp: set([[xm2560Webp, 560], [xm2960Webp, 960]]),
-      jpg: set([[xm2560Jpg, 560], [xm2960Jpg, 960]]),
-    },
-    gallery: [
-      {
-        alt: 'The black BMW XM from the front outside the Mansor Customs shop: red-accented wheels and a carbon front splitter',
-        webp: set([[xm1560Webp, 560], [xm1960Webp, 960]]),
-        jpg: set([[xm1560Jpg, 560], [xm1960Jpg, 960]]),
-      },
-      {
-        alt: 'The black BMW XM rear three-quarter in front of the Mansor Customs shop, carbon aero and red diffuser lights',
-        webp: set([[xm3560Webp, 560], [xm3960Webp, 960]]),
-        jpg: set([[xm3560Jpg, 560], [xm3960Jpg, 960]]),
       },
     ],
   },
