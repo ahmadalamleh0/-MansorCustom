@@ -23,8 +23,8 @@ import lamboMobileOn1072Webp from '@/assets/images/philosophy/lambo-mobile-on-10
 import heroShopfront from '@/assets/images/hero/shopfront-dusk.jpg'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
-import heroR8Mobile from '@/assets/videos/hero-r8-mobile.mp4'
-import heroR8 from '@/assets/videos/hero-r8.mp4'
+import heroStudioMobile from '@/assets/videos/hero-studio-mobile.mp4'
+import heroStudio from '@/assets/videos/hero-studio.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
 import type { MediaAsset } from './media'
 import type { Reel } from './reels'
@@ -75,12 +75,14 @@ export const site = {
     // a portrait screen anyway), CRF 19. Poster: the red SF90 profile at 7.4s,
     // lossless from the master. It shows under the intro curtain (so the
     // switch to playback is never seen) and permanently with reduced motion.
-    // The hero film (creative director, 2026-10-15): the main hero media.
-    // A night film of an Audi R8 (client-photos/hero/audi-r8-night-film.mp4,
-    // 14.8s; desktop 1080p CRF 24, phones the centre 608×1080 strip CRF 25, no
-    // audio), muted and looping from page load. `media` (the photo) is only
-    // its fallback: autoplay blocked or reduced motion.
-    video: { src: heroR8, mobileSrc: heroR8Mobile },
+    // The hero film (creative director, 2026-10-15): the main hero media,
+    // muted and looping from page load; `media` (the photo) is seen first and
+    // is its fallback. Trial: the Mansor studio film (portrait,
+    // client-photos/hero/mansor-studio-film.mp4, 8.9s): phones the full frame
+    // at 720×1280, desktop the middle 1080×720 band (CRF 24/25, no audio).
+    // The Audi R8 film is still in assets/videos (hero-r8.mp4 /
+    // hero-r8-mobile.mp4): import those here to switch back.
+    video: { src: heroStudio, mobileSrc: heroStudioMobile },
     film: {
       type: 'video',
       src: heroVideo,
