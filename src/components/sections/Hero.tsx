@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ComingSoonModal } from '@/components/ui/ComingSoonModal'
 import { Media } from '@/components/ui/Media'
 import { site } from '@/data/site'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 const BOOKING_PENDING = {
   label: 'Book Appointment',
@@ -26,6 +27,7 @@ export function Hero() {
     <section id="top" aria-labelledby="hero-title" className="hero">
       <div data-hero-media className="hero__media absolute inset-0 -z-20">
         <Media media={hero.media} priority />
+        {hero.afterPhoto && <HeroFilm {...hero.afterPhoto} />}
       </div>
       <div data-hero-overlay aria-hidden="true" className="hero__scrim" />
 
@@ -75,5 +77,65 @@ export function Hero() {
 
       <ComingSoonModal content={bookingOpen ? BOOKING_PENDING : null} onClose={() => setBookingOpen(false)} />
     </section>
+  )
+}
+
+/**
+ * A muted loop that fades in over the hero photo `delay` ms after the intro
+ * has finished (html.intro-active removed), once it can play. Pauses while
+ * the hero is off screen. Reduced motion: never shown; the photo stays.
+ */
+function HeroFilm({ src, mobileSrc, delay }: { src: string; mobileSrc?: string; delay: number }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  const reduceMotion = usePrefersReducedMotion()
+  const [due, setDue] = useState(false)
+  const [ready, setReady] = useState(false)
+  const shown = due && ready
+
+  // Start the clock only once the intro curtain is gone
+  useEffect(() => {
+    if (reduceMotion) return
+    const root = document.documentElement
+    let timer = 0
+    const start = () => {
+      if (root.classList.contains('intro-active') || timer) return
+      timer = window.setTimeout(() => setDue(true), delay)
+    }
+    const mo = new MutationObserver(start)
+    mo.observe(root, { attributes: true, attributeFilter: ['class'] })
+    start()
+    return () => {
+      mo.disconnect()
+      window.clearTimeout(timer)
+    }
+  }, [delay, reduceMotion])
+
+  // Play from the start when it's revealed; pause while the hero is off screen
+  useEffect(() => {
+    const v = ref.current
+    if (!v || !shown) return
+    v.currentTime = 0
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { threshold: 0.1 })
+    io.observe(v)
+    return () => io.disconnect()
+  }, [shown])
+
+  if (reduceMotion) return null
+  return (
+    <video
+      ref={ref}
+      className="hero__film absolute inset-0 h-full w-full object-cover"
+      data-shown={shown || undefined}
+      muted
+      loop
+      playsInline
+      preload="auto"
+      aria-hidden="true"
+      tabIndex={-1}
+      onCanPlay={() => setReady(true)}
+    >
+      {mobileSrc && <source src={mobileSrc} media="(max-width: 767px)" />}
+      <source src={src} />
+    </video>
   )
 }

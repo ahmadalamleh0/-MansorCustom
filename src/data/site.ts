@@ -23,6 +23,8 @@ import lamboMobileOn1072Webp from '@/assets/images/philosophy/lambo-mobile-on-10
 import heroShopfront from '@/assets/images/hero/shopfront-dusk.jpg'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
+import heroR8Mobile from '@/assets/videos/hero-r8-mobile.mp4'
+import heroR8 from '@/assets/videos/hero-r8.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
 import type { MediaAsset } from './media'
 import type { Reel } from './reels'
@@ -73,6 +75,12 @@ export const site = {
     // a portrait screen anyway), CRF 19. Poster: the red SF90 profile at 7.4s,
     // lossless from the master. It shows under the intro curtain (so the
     // switch to playback is never seen) and permanently with reduced motion.
+    // Trial (creative director, 2026-10-15): the photo holds for `delay` ms
+    // after the intro, then this night film of an Audi R8 fades in over it
+    // and loops (client-photos/hero/audi-r8-night-film.mp4, 14.8s; desktop
+    // 1080p CRF 24, phones the centre 608×1080 strip CRF 25, no audio).
+    // Remove `afterPhoto` to keep the photo alone.
+    afterPhoto: { src: heroR8, mobileSrc: heroR8Mobile, delay: 3000 },
     film: {
       type: 'video',
       src: heroVideo,

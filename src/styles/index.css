@@ -314,6 +314,16 @@
     }
   }
 
+  /* The film fades in over the photo once it's due and can play */
+  .hero__film {
+    opacity: 0;
+    transition: opacity 1.4s var(--ease-out-expo);
+  }
+
+  .hero__film[data-shown] {
+    opacity: 1;
+  }
+
   /* Two zones: the headline up top (below the nav, with room to breathe),
      the services and CTA anchored low (margin-top: auto on the services) */
   .hero__content {

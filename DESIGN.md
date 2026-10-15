@@ -328,7 +328,11 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   shopfront at dusk (lit sign, Ferrari, Rolls-Royce and G-Class out front;
   `assets/images/hero/shopfront-dusk.jpg`; framing in CSS, `.hero__media
   img`: 50% 64% on portrait screens, 50% 54% on landscape so the sign sits
-  below the headline). The
+  below the headline). Trial (2026-10-15): the photo holds for 3s after the
+  intro, then a night film of an Audi R8 (`site.hero.afterPhoto`;
+  `assets/videos/hero-r8.mp4` 1080p, `hero-r8-mobile.mp4` the centre
+  608×1080 strip) crossfades in over it (1.4s) and loops; it pauses off
+  screen, and reduced motion keeps the photo. The
   brand film stays configured as `site.hero.film`; set `media: film` to
   bring it back. A centred headline in the geometric caps face, two lines
   at every width ("Experience Your Car's" / "Full Potential", 2026-10-15),
