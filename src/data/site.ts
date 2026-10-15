@@ -62,7 +62,7 @@ export const site = {
       alt: 'The Mansor Customs shop at dusk, its sign lit, with a Ferrari, a Rolls-Royce and a Mercedes G-Class parked out front',
       width: 1110,
       height: 2008,
-      position: '50% 64%', // sign and cars; asphalt below for the headline
+      // Framing lives in CSS (.hero__media img): it changes with the screen's shape
     } as MediaAsset,
     // Client brand film, HQ master (client-photos/banner1-hq.mp4, 2026-10-13),
     // trimmed to its first 29.33s (704 frames: street open → white SF90 on the

@@ -11,8 +11,8 @@ const BOOKING_PENDING = {
 
 /**
  * Full-viewport hero (DAS Tuning-inspired composition): vehicle media fills
- * the frame, and a centred headline, service categories and a single CTA
- * sit low in it.
+ * the frame; the centred headline sits in its upper part, below the nav,
+ * and the service categories and a single CTA stay low in it.
  *   [data-hero-media]    media layer (image / video)
  *   [data-hero-overlay]  legibility scrim; fades into the page background
  *   [data-hero-line]     masked headline parts, revealed by the intro timeline
@@ -24,7 +24,7 @@ export function Hero() {
 
   return (
     <section id="top" aria-labelledby="hero-title" className="hero">
-      <div data-hero-media className="absolute inset-0 -z-20">
+      <div data-hero-media className="hero__media absolute inset-0 -z-20">
         <Media media={hero.media} priority />
       </div>
       <div data-hero-overlay aria-hidden="true" className="hero__scrim" />

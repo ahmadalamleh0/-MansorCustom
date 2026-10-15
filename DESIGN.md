@@ -326,7 +326,9 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
 - **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition, set
   low in the frame so the vehicle leads. Media for now (2026-10-15): the Mansor
   shopfront at dusk (lit sign, Ferrari, Rolls-Royce and G-Class out front;
-  `assets/images/hero/shopfront-dusk.jpg`, object-position 50% 64%). The
+  `assets/images/hero/shopfront-dusk.jpg`; framing in CSS, `.hero__media
+  img`: 50% 64% on portrait screens, 50% 54% on landscape so the sign sits
+  below the headline). The
   brand film stays configured as `site.hero.film`; set `media: film` to
   bring it back. A centred headline in the geometric caps face, two lines
   at every width ("Experience Your Car's" / "Full Potential", 2026-10-15),
@@ -340,10 +342,13 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   retracts to the right (expo.out, hover-capable devices only). 48px tap
   target.
   With no booking method confirmed, the CTA opens the Coming Soon dialog
-  (`site.hero.cta.bookingUrl` switches it to a link). A compact stack
-  (0.875-1.25rem to the services, 1-1.5rem to the CTA). Phones keep the
-  block low, on the asphalt below the cars (the whole portrait photo shows);
-  from 768px it is raised off the bottom (2rem + 9vh, 4.5-8.5rem). A
+  (`site.hero.cta.bookingUrl` switches it to a link). Two zones
+  (2026-10-15): the headline in the upper part of the frame, header height
+  + 2-4.5rem below the nav (in the sky on portrait screens, on the dark
+  facade above the sign on landscape), and the services and CTA anchored low
+  (services `margin-top: auto`; 1-1.5rem to the CTA). Phones keep that
+  lower group on the asphalt below the cars; from 768px it is raised off the
+  bottom (2rem + 9vh, 4.5-8.5rem). A
   functional scrim, light at the top and deepening from mid-frame behind
   the copy, fades the hero into `ink`.
 - **Brand banner** (`components/sections/Showcase.tsx`, `data/banner.ts`):
