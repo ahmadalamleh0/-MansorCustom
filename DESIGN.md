@@ -328,8 +328,10 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   film is the main media: a night film of an Audi R8 (`site.hero.video`;
   `assets/videos/hero-r8.mp4` 1080p, `hero-r8-mobile.mp4` the centre
   608×1080 strip for phones, chosen in code by width), muted, inline and
-  looping from page load (behind the intro), fading in (0.8s) the moment it
-  is actually playing. The `muted` attribute is set explicitly before play
+  looping from page load (behind the intro) so it is ready. The photo is
+  always seen first: the film fades in (0.8s) from its first frame 1s after
+  the hero is revealed (intro gone), or the moment it is actually playing if
+  that is later. The `muted` attribute is set explicitly before play
   (iOS requires it; React sets only the property) and a failed autoplay
   retries on the first touch. It pauses off screen. The fallback underneath
   is the Mansor shopfront at dusk (`site.hero.media`,

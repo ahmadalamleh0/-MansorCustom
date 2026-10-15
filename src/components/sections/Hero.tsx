@@ -80,17 +80,47 @@ export function Hero() {
   )
 }
 
+/** How long the photo holds once the hero is revealed, before the film takes over */
+const PHOTO_BEAT_MS = 1000
+
 /**
- * The hero film: the main hero media. It starts muted and inline as soon as
- * the page loads (behind the intro), and fades in the moment it is actually
- * playing; the photo underneath is only the fallback (autoplay blocked, e.g.
- * iOS Low Power Mode, or reduced motion). Phones get the lighter portrait
- * cut, chosen in code. Pauses while the hero is off screen.
+ * The hero film: the main hero media. The photo is always the first thing
+ * seen; the film loads and starts muted and inline from page load (behind the
+ * intro) so it is ready, then fades in from its first frame PHOTO_BEAT_MS
+ * after the hero is revealed (intro gone), or the moment it is actually
+ * playing if that is later. The photo stays when the film can't play
+ * (autoplay blocked, e.g. iOS Low Power Mode, or reduced motion). Phones get
+ * the lighter portrait cut, chosen in code. Pauses while the hero is off screen.
  */
 function HeroFilm({ src, mobileSrc }: { src: string; mobileSrc?: string }) {
   const ref = useRef<HTMLVideoElement>(null)
   const reduceMotion = usePrefersReducedMotion()
   const [playing, setPlaying] = useState(false)
+  const [due, setDue] = useState(false)
+  const shown = playing && due
+
+  // The photo's beat starts when the hero is revealed (the intro curtain gone)
+  useEffect(() => {
+    if (reduceMotion) return
+    const root = document.documentElement
+    let timer = 0
+    const start = () => {
+      if (root.classList.contains('intro-active') || timer) return
+      timer = window.setTimeout(() => setDue(true), PHOTO_BEAT_MS)
+    }
+    const mo = new MutationObserver(start)
+    mo.observe(root, { attributes: true, attributeFilter: ['class'] })
+    start()
+    return () => {
+      mo.disconnect()
+      window.clearTimeout(timer)
+    }
+  }, [reduceMotion])
+
+  // Take over from the film's first frame
+  useEffect(() => {
+    if (shown && ref.current) ref.current.currentTime = 0
+  }, [shown])
 
   useEffect(() => {
     const v = ref.current
@@ -120,7 +150,7 @@ function HeroFilm({ src, mobileSrc }: { src: string; mobileSrc?: string }) {
     <video
       ref={ref}
       className="hero__film absolute inset-0 h-full w-full object-cover"
-      data-shown={playing || undefined}
+      data-shown={shown || undefined}
       muted
       autoPlay
       loop
