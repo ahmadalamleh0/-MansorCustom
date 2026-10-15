@@ -49,18 +49,6 @@ export const editorial = {
       },
     },
     {
-      id: 'tuning',
-      title: 'Tuning',
-      media: {
-        type: 'image',
-        src: tuning,
-        alt: 'Matte grey Porsche from behind: large rear wing, glowing light bar and an exhaust flame',
-        width: 1000,
-        height: 1502,
-        position: '50% 40%', // wing, light bar and flame all in the square crop
-      },
-    },
-    {
       id: 'starlight',
       title: 'Starlight',
       media: {
@@ -70,6 +58,18 @@ export const editorial = {
         width: 640,
         height: 853,
         position: '50% 30%',
+      },
+    },
+    {
+      id: 'tuning',
+      title: 'Tuning',
+      media: {
+        type: 'image',
+        src: tuning,
+        alt: 'Matte grey Porsche from behind: large rear wing, glowing light bar and an exhaust flame',
+        width: 1000,
+        height: 1502,
+        position: '50% 40%', // wing, light bar and flame all in the square crop
       },
     },
   ] satisfies EditorialGroup,
