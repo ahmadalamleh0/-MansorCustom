@@ -303,18 +303,20 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   CUSTOMS, white on transparent, extracted from the client's logo
   (`client-photos/brand/mansor-logo-official.jpg`; the starfield dropped).
   Header (147px phones / 156px md+) and footer (176 / 205px). The intro
-  shows the same logo file too, via LogoWordmark (2026-10-15). Favicons (16/32/48 + .ico) and
+  sets a lighter typeset match of it (IntroWordmark). Favicons (16/32/48 + .ico) and
   apple-touch / manifest icons: the official starfield disc itself, cut on
   its edge (2026-10-13). Social preview `public/og-image.jpg` (1200×630,
   the official disc on black); OG/Twitter tags use an absolute URL filled at build time
   (`SITE_URL`, else Netlify's `URL`).
-- **Intro wordmark** (`components/brand/LogoWordmark.tsx`, 2026-10-15): the
-  header's official logo image (`mansor-logo-white.webp`, the file
-  BrandLogo loads) cut into one window per letter, measured from its alpha
-  (MANSOR's six, CUSTOMS' seven, 1px padding), each `[data-wm-letter]`, so
-  the existing letter-by-letter reveal runs unchanged on the real logo.
-  MANSOR spans 9.78em (the width the typeset MANSOR had), so the lockup
-  keeps its scale; the intro waits briefly for the image to decode.
+- **Intro wordmark** (`components/brand/IntroWordmark.tsx`, 2026-10-15):
+  typeset after the official logo, a little lighter for the cinematic
+  opening (the logo file has no lighter weight, and it is never thinned or
+  distorted). Archivo (SIL OFL, self-hosted variable woff2, intro only) at
+  125% width: MANSOR weight 500 (the logo reads like 600), tracked 0.035em,
+  ~9.1em wide (7% under the previous 9.78em); CUSTOMS 40% of MANSOR's size,
+  weight 400, 0.48em tracking so it spans ~63% of MANSOR, as in the logo,
+  centred a quarter of MANSOR's size beneath. Each glyph is a
+  `[data-wm-letter]`, so the letter-by-letter reveal is unchanged.
 - **Wordmark** (`components/brand/Wordmark.tsx`): the typeset Michroma
   lockup, letters as separate spans. Now used only in the Instagram avatar.
 - **Logo lockup:** MANSOR over CUSTOMS (the client's logo structure; the
@@ -324,7 +326,7 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   The same proportions everywhere (intro, nav, footer): CUSTOMS 0.42em with
   1.08em tracking, line gap 0.38em. Nav 15/16px and footer 18/21px, so the
   subtitle stays legible.
-  Nav: 12/13px (the intro now uses the logo itself, above).
+  Nav: 12/13px (the intro uses IntroWordmark, above).
 - **Signature rules** (intro only): a 1px `signature` rule (55% white) 2.2em
   long, 1.5em above and below the lockup, drawn outward from the centre
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
