@@ -24,6 +24,15 @@
 }
 
 /* Editorial display face — Outfit variable (SIL OFL 1.1), self-hosted */
+/* Rajdhani 500 (SIL OFL), capitals only: the "Powered by" credit label */
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/rajdhani-500-caps.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Outfit';
   src: url('/fonts/outfit-latin-wght.woff2') format('woff2');
@@ -811,6 +820,63 @@
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     color: var(--color-faint);
+  }
+
+  /*
+   * Studio credit (as on Wraptors): a full-width black band at the very end.
+   * "POWERED BY" in Rajdhani 500, 11px, 0.3em tracking; DIABLO in Ethnocentric,
+   * drawn from outlines (assets/brand/diablo-wordmark.svg, a CSS mask in
+   * currentColor) at the cap height of a clamp(1.7rem, 4.6vw, 2.8rem) setting.
+   */
+  .footer-credit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 44px 20px;
+    background: #000;
+  }
+
+  @media (min-width: 768px) {
+    .footer-credit {
+      padding: 64px 24px;
+    }
+  }
+
+  .footer-credit__label {
+    font-family: 'Rajdhani', var(--font-editorial);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    margin-right: -0.3em; /* trailing tracking: keep it optically centred */
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .footer-credit__brand {
+    display: block;
+    color: #fff;
+    transition: opacity 250ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .footer-credit__brand:hover {
+      opacity: 0.75;
+    }
+  }
+
+  .footer-credit__brand:focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 6px;
+  }
+
+  .footer-credit__mark {
+    display: block;
+    height: clamp(1.156rem, 3.13vw, 1.904rem); /* Ethnocentric caps are 0.68em */
+    aspect-ratio: 7.726;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
   }
 
   @media (min-width: 768px) {

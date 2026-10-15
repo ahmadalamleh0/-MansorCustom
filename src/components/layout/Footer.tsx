@@ -1,3 +1,4 @@
+import diabloMark from '@/assets/brand/diablo-wordmark.svg'
 import { BrandLogo } from '@/components/brand/BrandLogo'
 import { servicePath } from '@/data/services'
 import { site } from '@/data/site'
@@ -47,6 +48,14 @@ export function Footer() {
 
         <hr className="footer__rule footer__rule--short" />
         <p className="footer__copyright">{site.copyright}</p>
+      </div>
+
+      {/* Studio credit: its own full-width black band at the very end */}
+      <div className="footer-credit">
+        <span className="footer-credit__label">{site.credit.label}</span>
+        <a href={site.credit.url} target="_blank" rel="noopener noreferrer" className="footer-credit__brand" aria-label={`${site.credit.brand} (opens in a new tab)`}>
+          <span aria-hidden="true" className="footer-credit__mark" style={{ maskImage: `url("${diabloMark}")`, WebkitMaskImage: `url("${diabloMark}")` }} />
+        </a>
       </div>
     </footer>
   )

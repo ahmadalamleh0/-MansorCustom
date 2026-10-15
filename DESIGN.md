@@ -591,6 +591,15 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   two symmetric columns of services (`footer-link`, 68% white, hover to
   paper) that open the Coming Soon dialog, socials only when a verified URL
   exists, a 10rem hairline and "© Mansor Customs".
+  Then the studio credit (2026-10-15, as on the Wraptors site): its own
+  full-width #000 band at the very end (44px / 64px md+ padding), "POWERED
+  BY" in Rajdhani 500 (SIL OFL, self-hosted, capitals-only subset), 11px,
+  0.3em tracking, over the DIABLO wordmark in Ethnocentric, linking to
+  thediablo.co (new tab). Ethnocentric is under Typodermic's desktop
+  licence, which covers static graphics but not serving the font, so DIABLO
+  ships as outlines (`assets/brand/diablo-wordmark.svg`, drawn as a CSS mask
+  in currentColor at the cap height of clamp(1.7rem, 4.6vw, 2.8rem)), never as
+  a font file.
 - **Media** (`components/ui/Media.tsx`): every image or video slot. Lazy by
   default; videos are muted and inline, play only on screen, and never
   autoplay with reduced motion. An empty slot renders an honest neutral

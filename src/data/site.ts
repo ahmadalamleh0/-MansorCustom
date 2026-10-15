@@ -188,6 +188,12 @@ export const site = {
 
   copyright: '© Mansor Customs',
 
+  // Studio credit at the very end of the page (as on Wraptors): Rajdhani
+
+  // label, DIABLO as Ethnocentric outlines (assets/brand/diablo-wordmark.svg)
+
+  credit: { label: 'Powered by', brand: 'Diablo', url: 'https://thediablo.co/' },
+
   // Shop location (address supplied by the creative director, 2026-10-09).
   // Coordinates verified 2026-10-09 with two independent geocoders:
   //   US Census Bureau: 19 SADDLE RIVER AVE, SOUTH HACKENSACK, NJ 07606
