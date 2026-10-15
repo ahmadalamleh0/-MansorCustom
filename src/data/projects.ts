@@ -12,6 +12,10 @@ import icy2560Jpg from '@/assets/images/projects/icy-m3-2-560.jpg'
 import icy2560Webp from '@/assets/images/projects/icy-m3-2-560.webp'
 import icy2960Jpg from '@/assets/images/projects/icy-m3-2-960.jpg'
 import icy2960Webp from '@/assets/images/projects/icy-m3-2-960.webp'
+import icy3560Jpg from '@/assets/images/projects/icy-m3-3-560.jpg'
+import icy3560Webp from '@/assets/images/projects/icy-m3-3-560.webp'
+import icy3960Jpg from '@/assets/images/projects/icy-m3-3-960.jpg'
+import icy3960Webp from '@/assets/images/projects/icy-m3-3-960.webp'
 import gi1560Jpg from '@/assets/images/projects/g-class-interior-1-560.jpg'
 import gi1560Webp from '@/assets/images/projects/g-class-interior-1-560.webp'
 import gi1960Jpg from '@/assets/images/projects/g-class-interior-1-960.jpg'
@@ -180,6 +184,11 @@ export const projects: Project[] = [
         alt: 'The icy blue BMW M3 in the garage alley, front three-quarter',
         webp: set([[icy2560Webp, 560], [icy2960Webp, 869]]),
         jpg: set([[icy2560Jpg, 560], [icy2960Jpg, 869]]),
+      },
+      {
+        alt: 'The icy blue BMW M3 bonnet up close: carbon-fibre vents and the 50 Jahre M roundel above the grille',
+        webp: set([[icy3560Webp, 560], [icy3960Webp, 960]]),
+        jpg: set([[icy3560Jpg, 560], [icy3960Jpg, 960]]),
       },
     ],
   },
