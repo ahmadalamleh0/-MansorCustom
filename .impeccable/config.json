@@ -20,6 +20,12 @@
         ],
         "createdAt": "2026-10-14T15:58:06.064Z",
         "reason": "DESIGN.md: brand headlines use an approved paper-to-graphite gradient fill (Beyond Factory, service pages; creative director)"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "archivo",
+        "createdAt": "2026-10-15T14:44:27.100Z",
+        "reason": "Creative director 2026-10-15: intro wordmark typeset after the official logo; documented in DESIGN.md (Intro wordmark)"
       }
     ]
   }
