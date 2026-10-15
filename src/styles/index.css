@@ -24,17 +24,6 @@
 }
 
 /* Editorial display face — Outfit variable (SIL OFL 1.1), self-hosted */
-/* Archivo (SIL OFL), variable width and weight: the intro wordmark only,
-   typeset after the official logo's wide letterforms */
-@font-face {
-  font-family: 'Archivo';
-  src: url('/fonts/archivo-latin-wdth-wght.woff2') format('woff2');
-  font-weight: 400 600;
-  font-stretch: 100% 125%;
-  font-style: normal;
-  font-display: block;
-}
-
 @font-face {
   font-family: 'Outfit';
   src: url('/fonts/outfit-latin-wght.woff2') format('woff2');
@@ -239,43 +228,23 @@
   }
 
   /*
-   * Intro wordmark, typeset after the official logo (IntroWordmark): Archivo
-   * at 125% width. MANSOR weight 500 (the logo reads like 600), tracked
-   * 0.035em, sized so it spans ~9.1em of the lockup (7% under the 9.78em
-   * before). CUSTOMS 40% of MANSOR's size, weight 400, widely tracked,
-   * centred beneath at a third of MANSOR's cap height, as in the logo.
+   * Intro wordmark: the header's official logo, one window per letter
+   * (LogoWordmark). MANSOR spans 9.78em, the width the typeset MANSOR had,
+   * so the lockup keeps its scale and the em-sized rules their proportions.
    */
-  .intro-wordmark {
-    --iw-size: 1.53em; /* MANSOR, in the lockup's em */
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: calc(var(--iw-size) * 0.25);
-    font-family: 'Archivo', var(--font-brand);
-    font-stretch: 125%;
-    line-height: 0.72; /* the line box hugs the caps */
-    color: #fff;
-    white-space: nowrap;
-  }
-
-  .intro-wordmark__line {
-    display: flex;
-  }
-
-  .intro-wordmark__line--primary {
-    gap: 0.035em;
-    font-size: var(--iw-size);
-    font-weight: 500;
-  }
-
-  .intro-wordmark__line--secondary {
-    gap: 0.48em; /* CUSTOMS spans ~63% of MANSOR, as in the logo */
-    font-size: calc(var(--iw-size) * 0.4);
-    font-weight: 400;
-  }
-
-  .intro-wordmark__letter {
+  .logo-wordmark {
+    position: relative;
     display: block;
+  }
+
+  .logo-wordmark--intro {
+    width: 9.78em;
+  }
+
+  .logo-wordmark__letter {
+    position: absolute;
+    display: block;
+    background-repeat: no-repeat;
   }
 
   /*

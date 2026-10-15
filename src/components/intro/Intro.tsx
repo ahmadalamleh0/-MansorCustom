@@ -1,14 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 import { introTimeline, introTimelineReduced } from '@/animations/intro'
-import { IntroWordmark } from '@/components/brand/IntroWordmark'
+import logoWebp from '@/assets/brand/mansor-logo-white.webp'
+import { LogoWordmark } from '@/components/brand/LogoWordmark'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { gsap, mq, useGSAP } from '@/lib/gsap'
 
 const FONT_WAIT_MS = 1200
 
+function decodeImage(src: string) {
+  const img = new Image()
+  img.src = src
+  return img.decode().catch(() => {})
+}
+
 /**
- * Opening intro: black screen → signature rules → the wordmark revealed
- * letter by letter (IntroWordmark, typeset after the official logo) → a brief hold → black curtain lifts to reveal the hero,
+ * Opening intro: black screen → signature rules → the header's official
+ * logo revealed letter by letter (LogoWordmark) → a brief hold → black curtain lifts to reveal the hero,
  * which is already rendered underneath. One GSAP timeline drives the whole sequence, including the hero
  * copy and header entrance. It never waits on hero media. The overlay unmounts
  * when the timeline completes, and a CSS failsafe clears it if script stalls.
@@ -18,21 +25,17 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
   const [fontReady, setFontReady] = useState(false)
   useScrollLock(true)
 
-  // Start at the top of the page and wait (briefly) for the wordmark and hero
-  // fonts so glyphs never swap mid-reveal. The timeline hold covers
+  // Start at the top of the page and wait (briefly) for the logo image and
+  // the hero font so nothing pops in mid-reveal. The timeline hold covers
   // this wait.
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
     window.scrollTo(0, 0)
     let alive = true
     Promise.race([
-      // The wordmark's face (both weights), plus the hero headline face the
-      // intro reveals into
-      Promise.all([
-        document.fonts.load('500 1em Archivo'),
-        document.fonts.load('400 1em Archivo'),
-        document.fonts.load('1em "Bruno Ace SC"'),
-      ]),
+      // The logo image the wordmark is cut from, plus the hero headline face
+      // the intro reveals into
+      Promise.all([decodeImage(logoWebp), document.fonts.load('1em "Bruno Ace SC"')]),
       new Promise((resolve) => setTimeout(resolve, FONT_WAIT_MS)),
     ]).finally(() => alive && setFontReady(true))
     return () => {
@@ -85,7 +88,7 @@ export function Intro({ onComplete }: { onComplete: () => void }) {
         {/* The rules' em sizing tracks the lockup's font-size */}
         <div className="intro__lockup wordmark--intro">
           <span data-intro-rule className="intro__rule intro__rule--top" />
-          <IntroWordmark />
+          <LogoWordmark className="logo-wordmark--intro" />
           <span data-intro-rule className="intro__rule intro__rule--bottom" />
         </div>
       </div>
