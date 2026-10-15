@@ -13,7 +13,7 @@ import { useGSAP } from '@/lib/gsap'
 const PLAYBACK: VideoPlayback = { nearMargin: '200px', playThreshold: 0.25 }
 
 /**
- * Tuning / performance ("Redline."): the heading and line on the left, the
+ * Tuning / performance ("Tuned."): the heading and line on the left, the
  * rev gauge on the right, then the gallery in the shared collection strip
  * (as Recent Work, with this section's own cards and video playback) and
  * the CTA under the cards. The gauge revs from idle to

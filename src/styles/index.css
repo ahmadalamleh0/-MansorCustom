@@ -1698,8 +1698,9 @@
   }
 
   /*
-   * Head: "Redline." on the left, the rev gauge on the right; the line runs
-   * under the word (under both on phones, where they centre on each other). The word is about 6em wide, so
+   * Head: "Tuned." on the left, the rev gauge on the right; the line runs
+   * under the word (under both on phones, where they centre on each other).
+   * "Tuned." is about 4.9em wide, so
    * its size follows the room left beside the gauge (phones), capped at
    * 7rem, where its weight matches the gauge's.
    */
@@ -1868,7 +1869,7 @@
   /* One word, set large: phones fill the room beside the gauge */
   .tuning__title {
     font-family: var(--font-geo);
-    font-size: max(1.75rem, 14.6vw - 1.375rem);
+    font-size: max(1.75rem, 18vw - 1.75rem);
     font-weight: 400;
     line-height: 1;
     letter-spacing: 0.02em;

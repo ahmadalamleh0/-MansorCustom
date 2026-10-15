@@ -296,7 +296,7 @@ Outfit body copy are unchanged.
 ## Components
 
 **Homepage order** (creative director, 2026-10-14): intro → hero → brand
-banner → service tiles → Build Brief → Recent Work → Tuning ("Redline.") →
+banner → service tiles → Build Brief → Recent Work → Tuning ("Tuned.") →
 Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
 
 - **Official logo** (`components/brand/BrandLogo.tsx`): MANSOR over tracked
@@ -381,7 +381,7 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
 - **Tuning / performance** (`components/sections/Tuning.tsx`,
   `data/tuning.ts`, `animations/tuningReveal.ts`; creative director,
   2026-10-14), directly after Recent Work. Left-aligned, unlike the centred
-  sections around it. "Redline." (final, 2026-10-14) in the geometric caps
+  sections around it. "Tuned." (2026-10-15; was "Redline.") in the geometric caps
   face on one line (about 6em wide): on phones its size follows the room
   beside the gauge (max(1.75rem, 14.6vw - 1.375rem)), from 640px
   min(9.5vw, 7rem). One line ("Exhausts, downpipes, and performance
