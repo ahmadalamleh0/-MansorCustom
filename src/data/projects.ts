@@ -23,6 +23,18 @@ import gi3560Jpg from '@/assets/images/projects/g-class-interior-3-560.jpg'
 import gi3560Webp from '@/assets/images/projects/g-class-interior-3-560.webp'
 import gi3960Jpg from '@/assets/images/projects/g-class-interior-3-960.jpg'
 import gi3960Webp from '@/assets/images/projects/g-class-interior-3-960.webp'
+import gp1560Jpg from '@/assets/images/projects/g-class-pink-1-560.jpg'
+import gp1560Webp from '@/assets/images/projects/g-class-pink-1-560.webp'
+import gp1960Jpg from '@/assets/images/projects/g-class-pink-1-960.jpg'
+import gp1960Webp from '@/assets/images/projects/g-class-pink-1-960.webp'
+import gp2560Jpg from '@/assets/images/projects/g-class-pink-2-560.jpg'
+import gp2560Webp from '@/assets/images/projects/g-class-pink-2-560.webp'
+import gp2960Jpg from '@/assets/images/projects/g-class-pink-2-960.jpg'
+import gp2960Webp from '@/assets/images/projects/g-class-pink-2-960.webp'
+import gp3560Jpg from '@/assets/images/projects/g-class-pink-3-560.jpg'
+import gp3560Webp from '@/assets/images/projects/g-class-pink-3-560.webp'
+import gp3960Jpg from '@/assets/images/projects/g-class-pink-3-960.jpg'
+import gp3960Webp from '@/assets/images/projects/g-class-pink-3-960.webp'
 import mc1560Jpg from '@/assets/images/projects/mclaren-1-560.jpg'
 import mc1560Webp from '@/assets/images/projects/mclaren-1-560.webp'
 import mc1960Jpg from '@/assets/images/projects/mclaren-1-960.jpg'
@@ -166,6 +178,30 @@ export const projects: Project[] = [
         alt: 'The G-Class back row in diamond-quilted orange leather',
         webp: set([[gi3560Webp, 560], [gi3960Webp, 960]]),
         jpg: set([[gi3560Jpg, 560], [gi3960Jpg, 960]]),
+      },
+    ],
+  },
+  {
+    id: 'mercedes-g-class-pink',
+    make: 'Mercedes-Benz',
+    model: 'G 63',
+    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
+    confirm: 'G 63 read from the AMG steering wheel; confirm the model with Mansor',
+    image: {
+      alt: 'Mercedes-Benz G-Class cabin trimmed in pink: leather dash, seats and door cards, pink suede headliner and an AMG steering wheel',
+      webp: set([[gp1560Webp, 560], [gp1960Webp, 960]]),
+      jpg: set([[gp1560Jpg, 560], [gp1960Jpg, 960]]),
+    },
+    gallery: [
+      {
+        alt: 'The pink G-Class dashboard from the passenger side: pink leather, suede headliner and the Mansor Customs air freshener',
+        webp: set([[gp2560Webp, 560], [gp2960Webp, 960]]),
+        jpg: set([[gp2560Jpg, 560], [gp2960Jpg, 960]]),
+      },
+      {
+        alt: 'The pink G-Class from the rear doors: pink leather seat backs and headrests under the suede headliner',
+        webp: set([[gp3560Webp, 560], [gp3960Webp, 960]]),
+        jpg: set([[gp3560Jpg, 560], [gp3960Jpg, 960]]),
       },
     ],
   },

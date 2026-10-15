@@ -460,7 +460,8 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   M3). **Multi-photo cards** (`gallery`): photos crossfade (450ms); tap or
   click the card for the next photo, or a dot to jump. Small 6px dots sit
   bottom-left, opposite the model name; the active dot is full paper.
-  Tap-based so it never fights the strip's swipe (McLaren, 4 photos).
+  Tap-based so it never fights the strip's swipe (McLaren, 4 photos; the
+  pink G 63 interior, 3 photos, added last 2026-10-15).
 - **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
   Alain Class reference), after the Tuning section and before the client
   reviews (the six-card
