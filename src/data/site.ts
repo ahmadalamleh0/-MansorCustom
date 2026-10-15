@@ -20,6 +20,7 @@ import lamboMobileOn800 from '@/assets/images/philosophy/lambo-mobile-on-800.jpg
 import lamboMobileOn800Webp from '@/assets/images/philosophy/lambo-mobile-on-800.webp'
 import lamboMobileOn1072 from '@/assets/images/philosophy/lambo-mobile-on-1072.jpg'
 import lamboMobileOn1072Webp from '@/assets/images/philosophy/lambo-mobile-on-1072.webp'
+import heroShopfront from '@/assets/images/hero/shopfront-dusk.jpg'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroVideo from '@/assets/videos/hero.mp4'
@@ -52,6 +53,18 @@ export const site = {
   //   phones: "Experience Your" / "Car's" / "Full Potential"
   //   md+:    "Experience Your" / "Car's Full Potential"
   hero: {
+    // For now (creative director, 2026-10-15): the Mansor shopfront at dusk,
+    // lit sign with the Ferrari, Rolls-Royce and G-Wagon out front
+    // (client-photos/hero/shopfront-dusk-original.jpeg, phone-screenshot
+    // border trimmed). To bring the brand film back, set `media: film`.
+    media: {
+      type: 'image',
+      src: heroShopfront,
+      alt: 'The Mansor Customs shop at dusk, its sign lit, with a Ferrari, a Rolls-Royce and a Mercedes G-Class parked out front',
+      width: 1110,
+      height: 2008,
+      position: '50% 64%', // sign and cars; asphalt below for the headline
+    } as MediaAsset,
     // Client brand film, HQ master (client-photos/banner1-hq.mp4, 2026-10-13),
     // trimmed to its first 29.33s (704 frames: street open → white SF90 on the
     // street, which cuts back to the opening street shot on loop; drops the
@@ -61,7 +74,7 @@ export const site = {
     // a portrait screen anyway), CRF 19. Poster: the red SF90 profile at 7.4s,
     // lossless from the master. It shows under the intro curtain (so the
     // switch to playback is never seen) and permanently with reduced motion.
-    media: {
+    film: {
       type: 'video',
       src: heroVideo,
       mobileSrc: heroMobile,

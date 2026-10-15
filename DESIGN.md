@@ -324,7 +324,11 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
   they support the type, never compete with it.
 - **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition, set
-  low in the frame so the vehicle leads. A centred `hero-headline` (Outfit
+  low in the frame so the vehicle leads. Media for now (2026-10-15): the Mansor
+  shopfront at dusk (lit sign, Ferrari, Rolls-Royce and G-Class out front;
+  `assets/images/hero/shopfront-dusk.jpg`, object-position 50% 64%). The
+  brand film stays configured as `site.hero.film`; set `media: film` to
+  bring it back. A centred `hero-headline` (Outfit
   500; 3 rows on phones, 2 on md+), the service categories in tracked
   uppercase with round 3px dot separators (two fixed rows on phones, one
   line on md+, never breaking inside a category), and one editorial CTA,
