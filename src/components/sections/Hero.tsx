@@ -11,8 +11,8 @@ const BOOKING_PENDING = {
 }
 
 /**
- * Full-viewport hero (DAS Tuning-inspired composition): vehicle media fills
- * the frame; the centred headline sits in its upper part, below the nav,
+ * Full-viewport hero (DAS Tuning-inspired composition): the film fills the
+ * frame (the shopfront photo underneath is its fallback); the centred headline sits in its upper part, below the nav,
  * and the service categories and a single CTA stay low in it.
  *   [data-hero-media]    media layer (image / video)
  *   [data-hero-overlay]  legibility scrim; fades into the page background
@@ -27,7 +27,7 @@ export function Hero() {
     <section id="top" aria-labelledby="hero-title" className="hero">
       <div data-hero-media className="hero__media absolute inset-0 -z-20">
         <Media media={hero.media} priority />
-        {hero.afterPhoto && <HeroFilm {...hero.afterPhoto} />}
+        {hero.video && <HeroFilm {...hero.video} />}
       </div>
       <div data-hero-overlay aria-hidden="true" className="hero__scrim" />
 
@@ -81,61 +81,54 @@ export function Hero() {
 }
 
 /**
- * A muted loop that fades in over the hero photo `delay` ms after the intro
- * has finished (html.intro-active removed), once it can play. Pauses while
- * the hero is off screen. Reduced motion: never shown; the photo stays.
+ * The hero film: the main hero media. It starts muted and inline as soon as
+ * the page loads (behind the intro), and fades in the moment it is actually
+ * playing; the photo underneath is only the fallback (autoplay blocked, e.g.
+ * iOS Low Power Mode, or reduced motion). Phones get the lighter portrait
+ * cut, chosen in code. Pauses while the hero is off screen.
  */
-function HeroFilm({ src, mobileSrc, delay }: { src: string; mobileSrc?: string; delay: number }) {
+function HeroFilm({ src, mobileSrc }: { src: string; mobileSrc?: string }) {
   const ref = useRef<HTMLVideoElement>(null)
   const reduceMotion = usePrefersReducedMotion()
-  const [due, setDue] = useState(false)
-  const [ready, setReady] = useState(false)
-  const shown = due && ready
+  const [playing, setPlaying] = useState(false)
 
-  // Start the clock only once the intro curtain is gone
-  useEffect(() => {
-    if (reduceMotion) return
-    const root = document.documentElement
-    let timer = 0
-    const start = () => {
-      if (root.classList.contains('intro-active') || timer) return
-      timer = window.setTimeout(() => setDue(true), delay)
-    }
-    const mo = new MutationObserver(start)
-    mo.observe(root, { attributes: true, attributeFilter: ['class'] })
-    start()
-    return () => {
-      mo.disconnect()
-      window.clearTimeout(timer)
-    }
-  }, [delay, reduceMotion])
-
-  // Play from the start when it's revealed; pause while the hero is off screen
   useEffect(() => {
     const v = ref.current
-    if (!v || !shown) return
-    v.currentTime = 0
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? v.play().catch(() => {}) : v.pause()), { threshold: 0.1 })
+    if (!v || reduceMotion) return
+    // iOS only autoplays inline video that is muted as an attribute, not just
+    // a property (React sets only the property), so set both before playing
+    v.muted = true
+    v.setAttribute('muted', '')
+    v.src = mobileSrc && window.matchMedia('(max-width: 767px)').matches ? mobileSrc : src
+    const play = () => v.play().catch(() => {})
+    play()
+    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? play() : v.pause()), { threshold: 0.1 })
     io.observe(v)
-    return () => io.disconnect()
-  }, [shown])
+    // Some browsers refuse autoplay until the first interaction: try again then
+    const retry = () => v.paused && play()
+    window.addEventListener('touchstart', retry, { once: true, passive: true })
+    window.addEventListener('pointerdown', retry, { once: true })
+    return () => {
+      io.disconnect()
+      window.removeEventListener('touchstart', retry)
+      window.removeEventListener('pointerdown', retry)
+    }
+  }, [src, mobileSrc, reduceMotion])
 
   if (reduceMotion) return null
   return (
     <video
       ref={ref}
       className="hero__film absolute inset-0 h-full w-full object-cover"
-      data-shown={shown || undefined}
+      data-shown={playing || undefined}
       muted
+      autoPlay
       loop
       playsInline
       preload="auto"
       aria-hidden="true"
       tabIndex={-1}
-      onCanPlay={() => setReady(true)}
-    >
-      {mobileSrc && <source src={mobileSrc} media="(max-width: 767px)" />}
-      <source src={src} />
-    </video>
+      onPlaying={() => setPlaying(true)}
+    />
   )
 }

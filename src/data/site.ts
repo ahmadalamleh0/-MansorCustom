@@ -54,10 +54,10 @@ export const site = {
   // copy, two lines at every width (creative director, 2026-10-15):
   //   "Experience Your Car's" / "Full Potential"
   hero: {
-    // For now (creative director, 2026-10-15): the Mansor shopfront at dusk,
-    // lit sign with the Ferrari, Rolls-Royce and G-Wagon out front
-    // (client-photos/hero/shopfront-dusk-original.jpeg, phone-screenshot
-    // border trimmed). To bring the brand film back, set `media: film`.
+    // Fallback under the hero film (creative director, 2026-10-15): the
+    // Mansor shopfront at dusk, lit sign with the Ferrari, Rolls-Royce and
+    // G-Wagon out front (client-photos/hero/shopfront-dusk-original.jpeg,
+    // phone-screenshot border trimmed).
     media: {
       type: 'image',
       src: heroShopfront,
@@ -75,12 +75,12 @@ export const site = {
     // a portrait screen anyway), CRF 19. Poster: the red SF90 profile at 7.4s,
     // lossless from the master. It shows under the intro curtain (so the
     // switch to playback is never seen) and permanently with reduced motion.
-    // Trial (creative director, 2026-10-15): the photo holds for `delay` ms
-    // after the intro, then this night film of an Audi R8 fades in over it
-    // and loops (client-photos/hero/audi-r8-night-film.mp4, 14.8s; desktop
-    // 1080p CRF 24, phones the centre 608×1080 strip CRF 25, no audio).
-    // Remove `afterPhoto` to keep the photo alone.
-    afterPhoto: { src: heroR8, mobileSrc: heroR8Mobile, delay: 3000 },
+    // The hero film (creative director, 2026-10-15): the main hero media.
+    // A night film of an Audi R8 (client-photos/hero/audi-r8-night-film.mp4,
+    // 14.8s; desktop 1080p CRF 24, phones the centre 608×1080 strip CRF 25, no
+    // audio), muted and looping from page load. `media` (the photo) is only
+    // its fallback: autoplay blocked or reduced motion.
+    video: { src: heroR8, mobileSrc: heroR8Mobile },
     film: {
       type: 'video',
       src: heroVideo,

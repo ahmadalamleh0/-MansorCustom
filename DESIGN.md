@@ -330,15 +330,18 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;
   they support the type, never compete with it.
 - **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition, set
-  low in the frame so the vehicle leads. Media for now (2026-10-15): the Mansor
-  shopfront at dusk (lit sign, Ferrari, Rolls-Royce and G-Class out front;
-  `assets/images/hero/shopfront-dusk.jpg`; framing in CSS, `.hero__media
-  img`: 50% 64% on portrait screens, 50% 54% on landscape so the sign sits
-  below the headline). Trial (2026-10-15): the photo holds for 3s after the
-  intro, then a night film of an Audi R8 (`site.hero.afterPhoto`;
+  low in the frame so the vehicle leads. **Media** (2026-10-15): the hero
+  film is the main media: a night film of an Audi R8 (`site.hero.video`;
   `assets/videos/hero-r8.mp4` 1080p, `hero-r8-mobile.mp4` the centre
-  608×1080 strip) crossfades in over it (1.4s) and loops; it pauses off
-  screen, and reduced motion keeps the photo. The
+  608×1080 strip for phones, chosen in code by width), muted, inline and
+  looping from page load (behind the intro), fading in (0.8s) the moment it
+  is actually playing. The `muted` attribute is set explicitly before play
+  (iOS requires it; React sets only the property) and a failed autoplay
+  retries on the first touch. It pauses off screen. The fallback underneath
+  is the Mansor shopfront at dusk (`site.hero.media`,
+  `assets/images/hero/shopfront-dusk.jpg`; framing in CSS, `.hero__media
+  img`: 50% 64% portrait, 50% 54% landscape), shown when autoplay is
+  blocked (e.g. iOS Low Power Mode), the file fails, or reduced motion. The
   brand film stays configured as `site.hero.film`; set `media: film` to
   bring it back. A centred headline in the geometric caps face, two lines
   at every width ("Experience Your Car's" / "Full Potential", 2026-10-15),

@@ -334,10 +334,10 @@
     }
   }
 
-  /* The film fades in over the photo once it's due and can play */
+  /* The film fades in over the fallback photo the moment it is playing */
   .hero__film {
     opacity: 0;
-    transition: opacity 1.4s var(--ease-out-expo);
+    transition: opacity 0.8s ease;
   }
 
   .hero__film[data-shown] {
