@@ -2506,15 +2506,15 @@
   /* Two set lines: the premise quieter, the promise at full strength */
   /* RYFT reference face at paragraph size: small caps-height, open tracking
      and leading so the wide letterforms stay comfortable to read */
+  /* Body face, sentence case (2026-10-15): calm next to the caps headline */
   .philosophy__copy {
-    max-width: 30ch;
+    max-width: 32ch;
     margin-top: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
-    font-family: var(--font-geo);
-    font-size: clamp(0.875rem, 0.82rem + 0.22vw, 1rem); /* 14px floor: caps stay readable on phones */
-    font-weight: 400;
-    line-height: 1.85;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    font-family: var(--font-editorial);
+    font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
     color: var(--color-paper);
   }
 
@@ -2523,19 +2523,19 @@
     text-wrap: balance;
   }
 
-  /* A clear pause between the premise and the promise */
+  /* A short pause before the closing line */
   .philosophy__line + .philosophy__line {
-    margin-top: 0.8em;
+    margin-top: 0.6em;
   }
 
   @media (min-width: 768px) {
     .philosophy__copy {
-      max-width: 44ch;
+      max-width: 40ch;
     }
   }
 
   .philosophy__line:first-child {
-    color: rgb(242 241 238 / 0.62);
+    color: rgb(242 241 238 / 0.66);
   }
 
   .philosophy__actions {

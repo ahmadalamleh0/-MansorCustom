@@ -142,11 +142,11 @@ export const site = {
   // same geometry. Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
   philosophy: {
     headline: ['Beyond', 'Factory.'],
-    // Creative director, 2026-10-14 (final): the premise quieter, the promise
-    // at full strength. The no-break space keeps the dash off a line start.
+    // Creative director, 2026-10-15: three short beats, quieter, then the
+    // closing line at full strength
     copy: [
-      'Every car leaves the factory a certain way.',
-      'At Mansor, we work on what comes after — from a new wrap or body kit to the wheels, interior, and performance.',
+      'A different finish. A sharper stance. An interior that’s entirely your own.',
+      'Every build starts with a different vision.',
     ],
     cta: {
       label: 'Start Your Build',

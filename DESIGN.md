@@ -480,12 +480,10 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   extended and blended; the photo's own baked-in halo ring retouched out so
   the animated arc replaces it at the same geometry). A thin 42% white arc with three ticks (top,
   left, right) frames the car and fades out below its midline. Then two
-  sentences (final copy, 2026-10-14): "Every car leaves the factory a
-  certain way." at 62% paper, then "At Mansor, we work on what comes
-  after — from a new wrap or body kit to the wheels, interior, and
-  performance." at full paper (a no-break space keeps the dash off a line
-  start), in the geometric caps face at 14-16px with 1.85 leading and a
-  0.8em pause between them (30ch phones, 44ch md+), and the shared editorial CTA "Start Your Build" (Coming Soon
+  lines (2026-10-15): "A different finish. A sharper stance. An interior
+  that's entirely your own." at 66% paper, then "Every build starts with a
+  different vision." at full paper, in the body face (Outfit 300, sentence
+  case, 15-17px, 1.7 leading, 0.6em between; 32ch phones, 40ch md+), and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale
