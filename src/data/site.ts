@@ -49,9 +49,8 @@ export const site = {
   wordmark: ['Mansor', 'Customs'],
 
   // Hero copy (DAS Tuning-inspired composition). The headline is approved
-  // copy. Rows break on desktop; parts within a row stack on phones:
-  //   phones: "Experience Your" / "Car's" / "Full Potential"
-  //   md+:    "Experience Your" / "Car's Full Potential"
+  // copy, two lines at every width (creative director, 2026-10-15):
+  //   "Experience Your Car's" / "Full Potential"
   hero: {
     // For now (creative director, 2026-10-15): the Mansor shopfront at dusk,
     // lit sign with the Ferrari, Rolls-Royce and G-Wagon out front
@@ -80,7 +79,7 @@ export const site = {
       mobileSrc: heroMobile,
       poster: heroPoster,
     } as MediaAsset,
-    headline: [['Experience Your'], ['Car’s', 'Full Potential']],
+    headline: [['Experience Your Car’s'], ['Full Potential']],
     // Service categories supplied by the creative director (2026-10-09).
     // Two rows so phones wrap into two balanced lines; one line on md+.
     services: [

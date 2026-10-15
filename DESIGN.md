@@ -328,8 +328,11 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   shopfront at dusk (lit sign, Ferrari, Rolls-Royce and G-Class out front;
   `assets/images/hero/shopfront-dusk.jpg`, object-position 50% 64%). The
   brand film stays configured as `site.hero.film`; set `media: film` to
-  bring it back. A centred `hero-headline` (Outfit
-  500; 3 rows on phones, 2 on md+), the service categories in tracked
+  bring it back. A centred headline in the geometric caps face, two lines
+  at every width ("Experience Your Car's" / "Full Potential", 2026-10-15),
+  sized ~17% smaller than before and fitted to the phone width
+  (max(1.0625rem, min(5.9vw - 0.15rem, 0.45rem + 3.4vw, 3.3rem))), then the
+  service categories in tracked
   uppercase with round 3px dot separators (two fixed rows on phones, one
   line on md+, never breaking inside a category), and one editorial CTA,
   "Book Appointment": transparent, tracked off-white capitals over a 1px
@@ -337,8 +340,12 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   retracts to the right (expo.out, hover-capable devices only). 48px tap
   target.
   With no booking method confirmed, the CTA opens the Coming Soon dialog
-  (`site.hero.cta.bookingUrl` switches it to a link). A functional scrim
-  fades the hero into `ink`.
+  (`site.hero.cta.bookingUrl` switches it to a link). A compact stack
+  (0.875-1.25rem to the services, 1-1.5rem to the CTA). Phones keep the
+  block low, on the asphalt below the cars (the whole portrait photo shows);
+  from 768px it is raised off the bottom (2rem + 9vh, 4.5-8.5rem). A
+  functional scrim, light at the top and deepening from mid-frame behind
+  the copy, fades the hero into `ink`.
 - **Brand banner** (`components/sections/Showcase.tsx`, `data/banner.ts`):
   directly after the hero, a slow monochrome marquee with faded edges of
   brands genuinely associated with Mansor. Only `confirmed` brands show:
