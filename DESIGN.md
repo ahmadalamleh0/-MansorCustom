@@ -303,20 +303,13 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   CUSTOMS, white on transparent, extracted from the client's logo
   (`client-photos/brand/mansor-logo-official.jpg`; the starfield dropped).
   Header (147px phones / 156px md+) and footer (176 / 205px). The intro
-  shows the same logo file too, via LogoWordmark (2026-10-15). Favicons (16/32/48 + .ico) and
+  keeps the typeset Wordmark below. Favicons (16/32/48 + .ico) and
   apple-touch / manifest icons: the official starfield disc itself, cut on
   its edge (2026-10-13). Social preview `public/og-image.jpg` (1200×630,
   the official disc on black); OG/Twitter tags use an absolute URL filled at build time
   (`SITE_URL`, else Netlify's `URL`).
-- **Intro wordmark** (`components/brand/LogoWordmark.tsx`, 2026-10-15): the
-  header's official logo image (`mansor-logo-white.webp`, the file
-  BrandLogo loads) cut into one window per letter, measured from its alpha
-  (MANSOR's six, CUSTOMS' seven, 1px padding), each `[data-wm-letter]`, so
-  the existing letter-by-letter reveal runs unchanged on the real logo.
-  MANSOR spans 9.78em (the width the typeset MANSOR had), so the lockup
-  keeps its scale; the intro waits briefly for the image to decode.
-- **Wordmark** (`components/brand/Wordmark.tsx`): the typeset Michroma
-  lockup, letters as separate spans. Now used only in the Instagram avatar.
+- **Wordmark** (`components/brand/Wordmark.tsx`): letters as separate spans
+  for the letter-by-letter reveal. Type only, with no frame.
 - **Logo lockup:** MANSOR over CUSTOMS (the client's logo structure; the
   spelling "Mansor" was confirmed 2026-10-09). MANSOR is primary; CUSTOMS is
   a small tracked subtitle (42% of MANSOR's size, about 60% of its width),
@@ -324,7 +317,8 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   The same proportions everywhere (intro, nav, footer): CUSTOMS 0.42em with
   1.08em tracking, line gap 0.38em. Nav 15/16px and footer 18/21px, so the
   subtitle stays legible.
-  Nav: 12/13px (the intro now uses the logo itself, above).
+  Intro: MANSOR tracking 0.62em, leading 0.55em, about 11.7em wide. Nav:
+  12/13px.
 - **Signature rules** (intro only): a 1px `signature` rule (55% white) 2.2em
   long, 1.5em above and below the lockup, drawn outward from the centre
   (expo.out) before the letters reveal. Pixel-snapped. Keep them minimal;

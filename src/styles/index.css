@@ -228,26 +228,6 @@
   }
 
   /*
-   * Intro wordmark: the header's official logo, one window per letter
-   * (LogoWordmark). MANSOR spans 9.78em, the width the typeset MANSOR had,
-   * so the lockup keeps its scale and the em-sized rules their proportions.
-   */
-  .logo-wordmark {
-    position: relative;
-    display: block;
-  }
-
-  .logo-wordmark--intro {
-    width: 9.78em;
-  }
-
-  .logo-wordmark__letter {
-    position: absolute;
-    display: block;
-    background-repeat: no-repeat;
-  }
-
-  /*
    * Service card grid: two columns of identical portrait cards (Motorcarlease
    * reference). Cards are ~18% taller than the original square tiles (~20% on
    * phones) so the photographs have room to breathe. Container query units
