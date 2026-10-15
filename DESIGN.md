@@ -460,8 +460,11 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   M3). **Multi-photo cards** (`gallery`): photos crossfade (450ms); tap or
   click the card for the next photo, or a dot to jump. Small 6px dots sit
   bottom-left, opposite the model name; the active dot is full paper.
-  Tap-based so it never fights the strip's swipe (McLaren, 4 photos; the
-  pink G 63 interior, 3 photos, added last 2026-10-15).
+  Tap-based so it never fights the strip's swipe (McLaren, 4 photos; added
+  2026-10-15, 3 photos each: the pink G 63 interior, the black BMW XM and the
+  lime 911 Turbo S, whose shots are zoomed out to fit, extending the sky /
+  ceiling above the car). Mercedes cards carry the supplied AMG mark
+  (`logos/makes/amg.svg`, viewBox tightened to the artwork).
 - **"Beyond Factory." brand section** (`components/sections/Philosophy.tsx`,
   Alain Class reference), after the Tuning section and before the client
   reviews (the six-card

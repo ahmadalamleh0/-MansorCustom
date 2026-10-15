@@ -1,3 +1,4 @@
+import amgLogo from '@/assets/logos/makes/amg.svg'
 import bmwLogo from '@/assets/logos/makes/bmw.svg'
 import mclarenLogo from '@/assets/logos/makes/mclaren.svg'
 import m3PosterJpg from '@/assets/images/projects/bmw-m3-poster.jpg'
@@ -47,6 +48,18 @@ import xm3560Jpg from '@/assets/images/projects/bmw-xm-3-560.jpg'
 import xm3560Webp from '@/assets/images/projects/bmw-xm-3-560.webp'
 import xm3960Jpg from '@/assets/images/projects/bmw-xm-3-960.jpg'
 import xm3960Webp from '@/assets/images/projects/bmw-xm-3-960.webp'
+import pt1560Jpg from '@/assets/images/projects/porsche-911-ts-1-560.jpg'
+import pt1560Webp from '@/assets/images/projects/porsche-911-ts-1-560.webp'
+import pt1960Jpg from '@/assets/images/projects/porsche-911-ts-1-960.jpg'
+import pt1960Webp from '@/assets/images/projects/porsche-911-ts-1-960.webp'
+import pt2560Jpg from '@/assets/images/projects/porsche-911-ts-2-560.jpg'
+import pt2560Webp from '@/assets/images/projects/porsche-911-ts-2-560.webp'
+import pt2960Jpg from '@/assets/images/projects/porsche-911-ts-2-960.jpg'
+import pt2960Webp from '@/assets/images/projects/porsche-911-ts-2-960.webp'
+import pt3560Jpg from '@/assets/images/projects/porsche-911-ts-3-560.jpg'
+import pt3560Webp from '@/assets/images/projects/porsche-911-ts-3-560.webp'
+import pt3960Jpg from '@/assets/images/projects/porsche-911-ts-3-960.jpg'
+import pt3960Webp from '@/assets/images/projects/porsche-911-ts-3-960.webp'
 import mc1560Jpg from '@/assets/images/projects/mclaren-1-560.jpg'
 import mc1560Webp from '@/assets/images/projects/mclaren-1-560.webp'
 import mc1960Jpg from '@/assets/images/projects/mclaren-1-960.jpg'
@@ -144,7 +157,7 @@ export const projects: Project[] = [
     id: 'mercedes-s-class',
     make: 'Mercedes-Benz',
     model: 'S-Class',
-    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
+    logo: amgLogo, // Mercedes-AMG mark (supplied amg.svg)
     video: sClassVideo,
     image: {
       alt: 'Silver Mercedes-Benz S-Class at night, doors open, turquoise interior with ambient lighting',
@@ -174,7 +187,7 @@ export const projects: Project[] = [
     id: 'mercedes-g-class',
     make: 'Mercedes-Benz',
     model: 'G-Class',
-    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
+    logo: amgLogo, // Mercedes-AMG mark (supplied amg.svg)
     image: {
       alt: 'Mercedes-Benz G-Class interior in orange quilted leather, AMG steering wheel',
       webp: set([[gi1560Webp, 560], [gi1960Webp, 960]]),
@@ -197,7 +210,7 @@ export const projects: Project[] = [
     id: 'mercedes-g-class-pink',
     make: 'Mercedes-Benz',
     model: 'G 63',
-    logo: null, // no open-licence mark available; supply the official monochrome logo to swap in
+    logo: amgLogo, // Mercedes-AMG mark (supplied amg.svg)
     confirm: 'G 63 read from the AMG steering wheel; confirm the model with Mansor',
     image: {
       alt: 'Mercedes-Benz G-Class cabin trimmed in pink: leather dash, seats and door cards, pink suede headliner and an AMG steering wheel',
@@ -237,6 +250,29 @@ export const projects: Project[] = [
         alt: 'The black BMW XM rear three-quarter in front of the Mansor Customs shop, carbon aero and red diffuser lights',
         webp: set([[xm3560Webp, 560], [xm3960Webp, 960]]),
         jpg: set([[xm3560Jpg, 560], [xm3960Jpg, 960]]),
+      },
+    ],
+  },
+  {
+    id: 'porsche-911-turbo-s',
+    make: 'Porsche',
+    model: '911 Turbo S', // '911 Turbo S' side decal
+    logo: null, // no open-licence mark available; tracked wordmark until the official logo is supplied
+    image: {
+      alt: 'Lime green Porsche 911 Turbo S from behind on a brick driveway: black roof, rear wing and light bar',
+      webp: set([[pt1560Webp, 560], [pt1960Webp, 960]]),
+      jpg: set([[pt1560Jpg, 560], [pt1960Jpg, 960]]),
+    },
+    gallery: [
+      {
+        alt: 'The lime green 911 Turbo S under the hex lights in the Mansor Customs studio, black hood stripe and Turbo S side decal',
+        webp: set([[pt2560Webp, 560], [pt2960Webp, 960]]),
+        jpg: set([[pt2560Jpg, 560], [pt2960Jpg, 960]]),
+      },
+      {
+        alt: 'The lime green 911 Turbo S from the front: black Porsche hood stripe',
+        webp: set([[pt3560Webp, 560], [pt3960Webp, 960]]),
+        jpg: set([[pt3560Jpg, 560], [pt3960Jpg, 960]]),
       },
     ],
   },
