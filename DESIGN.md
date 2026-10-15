@@ -325,10 +325,10 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   they support the type, never compete with it.
 - **Hero** (`components/sections/Hero.tsx`): DAS Tuning composition, set
   low in the frame so the vehicle leads. **Media** (2026-10-15): the hero
-  film is the main media (`site.hero.video`; trial 2026-10-15: the portrait
-  Mansor studio film, `assets/videos/hero-studio-mobile.mp4` full frame for
-  phones, `hero-studio.mp4` its middle 1080×720 band for wider screens,
-  chosen in code by width; the Audi R8 film, `hero-r8*.mp4`, is kept to
+  film is the main media (`site.hero.video`; trial 2026-10-15: the Audi R8
+  night film, recut to 11.5s, `assets/videos/hero-r8.mp4` 1080p and
+  `hero-r8-mobile.mp4` its centre 608×1080 strip for phones, chosen in code
+  by width; the portrait Mansor studio film, `hero-studio*.mp4`, is kept to
   switch back), muted, inline and
   looping from page load (behind the intro) so it is ready. The photo is
   always seen first: the film fades in (0.8s) from its first frame 1s after
