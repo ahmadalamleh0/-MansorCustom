@@ -95,7 +95,8 @@ import sClassVideo from '@/assets/images/projects/mercedes-s-class.mp4'
  */
 
 type Source = { url: string; w: number }
-export type Photo = { alt: string; webp: Source[]; jpg: Source[]; position?: string }
+/** `video`: a muted 3:5 loop shown over this photo (its poster) while it is the active slide */
+export type Photo = { alt: string; webp: Source[]; jpg: Source[]; position?: string; video?: string }
 export type Project = {
   id: string
   make: string

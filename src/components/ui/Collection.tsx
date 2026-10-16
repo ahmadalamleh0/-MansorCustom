@@ -95,7 +95,7 @@ function CollectionCard({ project, priority, playback }: { project: Project; pri
   return (
     <figure className="project__card" data-placeholder={image ? undefined : ''}>
       {image && gallery?.length ? (
-        <CollectionGallery photos={[image, ...gallery]} priority={priority} label={`${make} ${model}`} />
+        <CollectionGallery photos={[image, ...gallery]} priority={priority} label={`${make} ${model}`} playback={playback} />
       ) : image ? (
         <CollectionPicture photo={image} priority={priority} />
       ) : (
@@ -126,9 +126,10 @@ function CollectionCard({ project, priority, playback }: { project: Project; pri
  * Several photos of one build. Tap or click the card for the next photo
  * (wraps), or a dot to jump; photos crossfade. Small dots at the bottom-left
  * show there's more than one. Tap-based, not swipe, so it never competes
- * with the strip's horizontal scroll.
+ * with the strip's horizontal scroll. A photo with `video` plays that loop
+ * over itself (the poster) while it is the active slide.
  */
-function CollectionGallery({ photos, priority, label }: { photos: Photo[]; priority: boolean; label: string }) {
+function CollectionGallery({ photos, priority, label, playback }: { photos: Photo[]; priority: boolean; label: string; playback: VideoPlayback }) {
   const [active, setActive] = useState(0)
   const total = photos.length
 
@@ -137,6 +138,7 @@ function CollectionGallery({ photos, priority, label }: { photos: Photo[]; prior
       {photos.map((photo, i) => (
         <CollectionPicture key={photo.alt} photo={photo} priority={priority && i === 0} className={`project__slide${i === active ? ' is-active' : ''}`} />
       ))}
+      {photos[active].video && <CollectionVideo key={active} src={photos[active].video} playback={playback} />}
 
       <button type="button" className="project__next" onClick={() => setActive((active + 1) % total)}>
         <span className="sr-only">{`Next photo of the ${label} (${active + 1} of ${total})`}</span>

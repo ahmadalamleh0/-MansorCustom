@@ -2,6 +2,9 @@ import blackSf90PosterJpg from '@/assets/images/projects/ferrari-sf90-poster.jpg
 import blackSf90PosterWebp from '@/assets/images/projects/ferrari-sf90-poster.webp'
 import blackSf90Video from '@/assets/images/projects/ferrari-sf90.mp4'
 import ferrariLogo from '@/assets/logos/makes/ferrari.svg'
+import sfsExhaustPosterJpg from '@/assets/images/tuning/card-sf90-stradale-exhaust-poster.jpg'
+import sfsExhaustPosterWebp from '@/assets/images/tuning/card-sf90-stradale-exhaust-poster.webp'
+import sfsExhaustVideo from '@/assets/images/tuning/card-sf90-stradale-exhaust.mp4'
 import sfs1560Jpg from '@/assets/images/projects/sf90-stradale-1-560.jpg'
 import sfs1560Webp from '@/assets/images/projects/sf90-stradale-1-560.webp'
 import sfs1960Jpg from '@/assets/images/projects/sf90-stradale-1-960.jpg'
@@ -81,12 +84,20 @@ export const tuning = {
       make: 'Ferrari',
       model: 'SF90 Stradale',
       logo: ferrariLogo,
+      // Video first (2026-10-15: the blued titanium exhaust going on,
+      // client-photos/tuning/sf90-stradale-exhaust-fit.mp4), then the photos
       image: {
-        alt: 'Grey Ferrari SF90 Stradale engine bay in the Mansor Customs workshop: twin-turbo V8 and hybrid battery pack',
-        webp: set([[sfs1560Webp, 560], [sfs1960Webp, 841]]),
-        jpg: set([[sfs1560Jpg, 560], [sfs1960Jpg, 841]]),
+        alt: 'Ferrari SF90 Stradale engine bay in the Mansor Customs workshop, a blued titanium exhaust being fitted',
+        webp: set([[sfsExhaustPosterWebp, 576]]),
+        jpg: set([[sfsExhaustPosterJpg, 576]]),
+        video: sfsExhaustVideo,
       },
       gallery: [
+        {
+          alt: 'Grey Ferrari SF90 Stradale engine bay in the Mansor Customs workshop: twin-turbo V8 and hybrid battery pack',
+          webp: set([[sfs1560Webp, 560], [sfs1960Webp, 841]]),
+          jpg: set([[sfs1560Jpg, 560], [sfs1960Jpg, 841]]),
+        },
         {
           alt: 'The grey Ferrari SF90 Stradale outside the shop, front three-quarter',
           webp: set([[sfs2560Webp, 560], [sfs2960Webp, 960]]),
