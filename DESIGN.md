@@ -478,10 +478,12 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   brand storytelling, not services. Centred: no eyebrow (removed by the
   creative director, 2026-10-10), the `philosophy-headline` in Michroma caps with a
   paper-to-graphite gradient fill (stacked on two lines below 1280px, one
-  line above), then the ORIGINAL aggressive burgundy widebody supercar
-  (restored 2026-10-15 at the creative director's request: the 10-11 render,
-  large wing, bonnet scoop, bracket headlights; source
-  `client-photos/philosophy/burgundy-supercar.png`, crops from commit 79b7bcf),
+  line above), then the aggressive burgundy widebody supercar, "Beneath a
+  Halo" render (2026-10-15: the same render as the original 10-11 car, with
+  its own halo ring kept; `client-photos/philosophy/burgundy-lamborghini-beneath-halo.png`,
+  cut exactly as the original: mobile x 8 / y 40 / 1008×1260, desktop that
+  cut centred in the original's extended 2016×1260 frame; the drawn arc sits
+  on the photo's ring),
   1.6:1 frame on md+, 4:5 on phones, full size (no shrink), whose edges and lit
   floor melt into the page black through a CSS mask (radial 62% / 48% md+ plus
   a bottom fade).

@@ -134,10 +134,12 @@ export const site = {
   },
 
   // Brand storytelling section (creative director, 2026-10-10; Alain Class
-  // reference). Vehicle: the ORIGINAL aggressive burgundy widebody supercar
-  // (restored 2026-10-15 at the creative director's request; source
-  // client-photos/philosophy/burgundy-supercar.png, crops from commit
-  // 79b7bcf). Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
+  // reference). Vehicle: the burgundy widebody supercar, "Beneath a Halo"
+  // render (creative director, 2026-10-15; client-photos/philosophy/
+  // burgundy-lamborghini-beneath-halo.png, the same render as the original
+  // with its halo ring kept), cut exactly as the original: mobile = x 8, y 40,
+  // 1008×1260; desktop = that cut centred in the original's extended 2016×1260
+  // frame. The section's drawn arc sits on the photo's own ring.
   philosophy: {
     headline: ['Beyond', 'Factory.'],
     // Creative director, 2026-10-15: three short beats, quieter, then the
