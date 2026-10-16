@@ -288,7 +288,7 @@ RYFT's heading face (RyftSansHeading) is proprietary, so **Bruno Ace SC**
 (SIL OFL, self-hosted, `--font-geo`) is the closest licensed match: wide
 geometric caps, pointed A, M with the V on the baseline, rounded-square O/G.
 Used in capitals only for: the hero headline (1.5-4rem, +0.02em), "The
-Mansor Standard." (1.75-4rem, one line on lg, two below) and the Beyond
+Whole Build." (was "The Mansor Standard.", 2026-10-15; 1.75-4rem, one line on lg, two below) and the Beyond
 Factory description (0.81-1rem, +0.05em, leading 1.85). The logo, Michroma
 headings (Beyond Factory, Recent Work, Testimonials, Build Brief, FAQ) and
 Outfit body copy are unchanged.
