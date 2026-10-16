@@ -2764,8 +2764,10 @@
   }
 
   /* Frequently Asked Questions */
+  /* Pure black, continuous with the footer below (2026-10-15) */
   .faq {
     padding-block: clamp(4.5rem, 3rem + 5vw, 8rem) clamp(2rem, 1.5rem + 2vw, 3rem);
+    background: #000;
   }
 
   .faq__grid {
