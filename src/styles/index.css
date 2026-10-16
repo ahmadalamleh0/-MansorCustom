@@ -757,8 +757,9 @@
    * Footer (MANSORY reference): one centred column. Wordmark, hairline, two
    * balanced columns of services, short hairline, copyright.
    */
+  /* Pure black, the same as the studio credit band below it (2026-10-15) */
   .footer {
-    background: var(--color-ink);
+    background: #000;
   }
 
   .footer__inner {
