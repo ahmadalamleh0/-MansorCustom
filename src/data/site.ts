@@ -20,7 +20,7 @@ import lamboMobileOn800 from '@/assets/images/philosophy/lambo-mobile-on-800.jpg
 import lamboMobileOn800Webp from '@/assets/images/philosophy/lambo-mobile-on-800.webp'
 import lamboMobileOn1072 from '@/assets/images/philosophy/lambo-mobile-on-1072.jpg'
 import lamboMobileOn1072Webp from '@/assets/images/philosophy/lambo-mobile-on-1072.webp'
-import heroShopfront from '@/assets/images/hero/shopfront-dusk.jpg'
+import heroShopfront from '@/assets/images/hero/shopfront-twilight.jpg'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
 import heroR8Mobile from '@/assets/videos/hero-r8-mobile.mp4'
@@ -55,15 +55,14 @@ export const site = {
   // 2026-10-15): "Experience your car's" / "full potential."
   hero: {
     // Fallback under the hero film (creative director, 2026-10-15): the
-    // Mansor shopfront at dusk, lit sign with the Ferrari, Rolls-Royce and
-    // G-Wagon out front (client-photos/hero/shopfront-dusk-original.jpeg,
-    // phone-screenshot border trimmed).
+    // Mansor shopfront at twilight, lit sign with the Ferrari, Rolls-Royce and
+    // G-Wagon out front (client-photos/hero/twilight-showcase.png).
     media: {
       type: 'image',
       src: heroShopfront,
-      alt: 'The Mansor Customs shop at dusk, its sign lit, with a Ferrari, a Rolls-Royce and a Mercedes G-Class parked out front',
-      width: 1110,
-      height: 2008,
+      alt: 'The Mansor Customs shop at twilight, its sign lit, with a Ferrari, a Rolls-Royce and a Mercedes G-Class parked out front',
+      width: 941,
+      height: 1672,
       // Framing lives in CSS (.hero__media img): it changes with the screen's shape
     } as MediaAsset,
     // Client brand film, HQ master (client-photos/banner1-hq.mp4, 2026-10-13),

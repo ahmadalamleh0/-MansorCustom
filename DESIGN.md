@@ -336,8 +336,8 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   that is later. The `muted` attribute is set explicitly before play
   (iOS requires it; React sets only the property) and a failed autoplay
   retries on the first touch. It pauses off screen. The fallback underneath
-  is the Mansor shopfront at dusk (`site.hero.media`,
-  `assets/images/hero/shopfront-dusk.jpg`; framing in CSS, `.hero__media
+  is the Mansor shopfront at twilight (`site.hero.media`,
+  `assets/images/hero/shopfront-twilight.jpg`, supplied 2026-10-15; framing in CSS, `.hero__media
   img`: 50% 64% portrait, 50% 54% landscape), shown when autoplay is
   blocked (e.g. iOS Low Power Mode), the file fails, or reduced motion. The
   brand film stays configured as `site.hero.film`; set `media: film` to
@@ -347,9 +347,7 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   ("Experience your car's" / "full potential."), -0.025em, 1.08 leading,
   sized to fit a phone's width up to 3.75rem (max(1.5rem, min(9vw - 0.25rem,
   1rem + 3.4vw, 3.75rem))); on phones it sits a little closer to the nav so
-  it stays in the sky, clear of the roofline. The shopfront photo has a
-  gentle shadow lift (cars and garage up, blacks and highlights held), and
-  the scrim is lighter through the cars (0.16 at 52%, 0.42 at 74%) and still
+  it stays in the sky, clear of the roofline. The scrim is lighter through the cars (0.16 at 52%, 0.42 at 74%) and still
   deep behind the services (0.8 at 90%). then the
   service categories in tracked
   uppercase with round 3px dot separators (two fixed rows on phones, one
