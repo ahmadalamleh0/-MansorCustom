@@ -47,6 +47,7 @@ export function Philosophy() {
               <span data-ph-halo className="philosophy__halo philosophy__halo--r" />
               <span data-ph-bloom className="philosophy__bloom philosophy__bloom--l" />
               <span data-ph-bloom className="philosophy__bloom philosophy__bloom--r" />
+              <span data-ph-flash className="philosophy__flash" />
             </div>
           </div>
 

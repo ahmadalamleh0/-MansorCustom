@@ -2474,6 +2474,28 @@
     opacity: 0.55;
   }
 
+  /* The ignition's wash: a wide, soft light across the car's nose that
+     peaks with the burst and fades (rest state hidden) */
+  .philosophy__flash {
+    position: absolute;
+    left: 50%;
+    top: 74%;
+    width: 120%;
+    aspect-ratio: 2.4;
+    translate: -50% -50%;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    background: radial-gradient(closest-side, rgb(236 243 255 / 0.32), rgb(225 235 255 / 0.1) 45%, transparent);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (min-width: 768px) {
+    .philosophy__flash {
+      width: 62%;
+    }
+  }
+
   /* Lamp centres of the original photo (1024×1536: lamps x 138–334 /
      682–880, y 856–1050), in % of each crop */
   .philosophy__bloom--l, .philosophy__halo--l { left: 22.62%; top: 72.46%; }

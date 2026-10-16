@@ -503,10 +503,13 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   lights-off lamp patches (supercar-led-off-l/r from commit 79b7bcf) baked
   in, so the pair is made only from original assets. The car is stationary
   from the start (no zoom or fade entrance). Ignition at 0.9s after the
-  section enters: a 50ms pulse of the lit photo, a drop, then a sharp reveal
-  to full (power4.out) so the real light on the bodywork and floor arrives
-  with it; a white bloom and halo flare at the original lamp centres (22.62% /
-  76.69%, 72.46% on phones; 36.31% / 63.34% md+) and settle. Reduced motion: lights on, no movement.
+  section enters (2026-10-15, more aggressive): one hard strike with no
+  flicker, the lit photo snapping to full in ~0.16s (expo.out) so the real
+  light on the bodywork and floor arrives with it; at the same moment the
+  lamp bloom overshoots white-hot (scale 1.4), the halo throws wide (1.3) and
+  a soft wash of light (`.philosophy__flash`, screen blend) crosses the nose;
+  then all of it settles to the resting glow over ~1.5s (power3.out), bloom
+  and halo at the original lamp centres. Reduced motion: lights on, no movement.
 - **Editorial CTA** (`.cta-line`, shared by the hero and the brand section):
   transparent tracked capitals over a 1px rule at 32%, with a full-strength
   rule drawing in on hover. 48px tap target.
