@@ -2406,16 +2406,11 @@
 
   @media (min-width: 768px) {
     .philosophy__stage {
+      --mask-x: 48%; /* the widened desktop frame: fade the added sides sooner */
       width: 100%;
       aspect-ratio: 1.6 / 1;
       margin-top: clamp(-2.5rem, 1rem - 3vw, -1rem);
     }
-  }
-
-  /* The car sits ~6% smaller inside the arc and never moves: only its
-     headlights animate. */
-  .philosophy__visual {
-    scale: 0.94;
   }
 
   .philosophy__visual,
@@ -2427,10 +2422,14 @@
     height: 100%;
   }
 
-  /* The photos carry their own falloff to the page black (baked in), so no
-     edge of the frame can show; no CSS mask needed */
+  /* The original photo, full size and never moving (only its headlights
+     animate); its edges and lit floor melt into the page black */
   .philosophy__photo img {
     object-fit: cover;
+    mask-image:
+      radial-gradient(ellipse var(--mask-x, 62%) 78% at 50% 46%, #000 52%, transparent 100%),
+      linear-gradient(to bottom, #000 84%, transparent 100%);
+    mask-composite: intersect;
   }
 
   /*
@@ -2454,7 +2453,7 @@
   }
 
   .philosophy__bloom {
-    --bloom-w: 16%;
+    --bloom-w: 18%;
     width: var(--bloom-w);
     aspect-ratio: 1.5;
     background: radial-gradient(closest-side, rgb(255 255 255 / 0.85), rgb(238 245 255 / 0.4) 30%, rgb(220 232 255 / 0.1) 65%, transparent);
@@ -2462,21 +2461,23 @@
   }
 
   .philosophy__halo {
-    --halo-w: 30%;
+    --halo-w: 34%;
     width: var(--halo-w);
     aspect-ratio: 1.6;
     background: radial-gradient(closest-side, rgb(228 237 255 / 0.32), rgb(225 235 255 / 0.08) 50%, transparent);
     opacity: 0.55;
   }
 
-  .philosophy__bloom--l, .philosophy__halo--l { left: 21.74%; top: 63.36%; }
-  .philosophy__bloom--r, .philosophy__halo--r { left: 78.45%; top: 63.51%; }
+  /* Lamp centres of the original photo (1024×1536: lamps x 138–334 /
+     682–880, y 856–1050), in % of each crop */
+  .philosophy__bloom--l, .philosophy__halo--l { left: 22.62%; top: 72.46%; }
+  .philosophy__bloom--r, .philosophy__halo--r { left: 76.69%; top: 72.46%; }
 
   @media (min-width: 768px) {
-    .philosophy__bloom { --bloom-w: 8%; }
-    .philosophy__halo { --halo-w: 15%; }
-    .philosophy__bloom--l, .philosophy__halo--l { left: 35.87%; top: 63.36%; }
-    .philosophy__bloom--r, .philosophy__halo--r { left: 64.23%; top: 63.51%; }
+    .philosophy__bloom { --bloom-w: 9%; }
+    .philosophy__halo { --halo-w: 17%; }
+    .philosophy__bloom--l, .philosophy__halo--l { left: 36.31%; top: 72.46%; }
+    .philosophy__bloom--r, .philosophy__halo--r { left: 63.34%; top: 72.46%; }
   }
 
   /* Body face, sentence case (2026-10-15): calm next to the caps headline */

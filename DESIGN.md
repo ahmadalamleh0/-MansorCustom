@@ -478,11 +478,13 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   brand storytelling, not services. Centred: no eyebrow (removed by the
   creative director, 2026-10-10), the `philosophy-headline` in Michroma caps with a
   paper-to-graphite gradient fill (stacked on two lines below 1280px, one
-  line above), then the burgundy widebody supercar (1.6:1 frame on md+,
-  4:5 on phones; the whole car from wing to splitter, shown at 0.94 scale
-  so it breathes) whose top tucks under
-  the headline and whose edges mask into the page black (desktop sides
-  extended and blended; the photo's own baked-in halo ring retouched out).
+  line above), then the ORIGINAL aggressive burgundy widebody supercar
+  (restored 2026-10-15 at the creative director's request: the 10-11 render,
+  large wing, bonnet scoop, bracket headlights; source
+  `client-photos/philosophy/burgundy-supercar.png`, crops from commit 79b7bcf),
+  1.6:1 frame on md+, 4:5 on phones, full size (no shrink), whose edges and lit
+  floor melt into the page black through a CSS mask (radial 62% / 48% md+ plus
+  a bottom fade).
   No framing arc (the thin arc and ticks were removed, 2026-10-15). Then two
   lines (2026-10-15): "A different finish. A sharper stance." at 66% paper, then "Every build starts with a
   different vision." at full paper, in the body face (Outfit 300, sentence
@@ -490,15 +492,15 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale
-  1.05 → 1), then the copy and CTA follow. **Car and headlights**: a lights-off / lights-on pair of the same
-  render, processed identically (ring removed; neutral environment graded
-  darker with the red paint protected; deepest black mapped to the page
-  black; edge falloff baked in, so no frame edge can show). The car is
-  stationary from the start (no zoom or fade entrance), shown at 0.94
-  scale. Ignition at 0.9s after the section enters: a 50ms pulse of the lit
-  photo, a drop, then a sharp reveal to full (power4.out) so the real light
-  on the bodywork and floor arrives with it; a white bloom and halo flare
-  and settle. Reduced motion: lights on, no movement.
+  1.05 → 1), then the copy and CTA follow. **Car and headlights**: a lights-off / lights-on pair. "On" is the
+  original photo itself; "off" is the same photo with the original's own
+  lights-off lamp patches (supercar-led-off-l/r from commit 79b7bcf) baked
+  in, so the pair is made only from original assets. The car is stationary
+  from the start (no zoom or fade entrance). Ignition at 0.9s after the
+  section enters: a 50ms pulse of the lit photo, a drop, then a sharp reveal
+  to full (power4.out) so the real light on the bodywork and floor arrives
+  with it; a white bloom and halo flare at the original lamp centres (22.62% /
+  76.69%, 72.46% on phones; 36.31% / 63.34% md+) and settle. Reduced motion: lights on, no movement.
 - **Editorial CTA** (`.cta-line`, shared by the hero and the brand section):
   transparent tracked capitals over a 1px rule at 32%, with a full-strength
   rule drawing in on hover. 48px tap target.

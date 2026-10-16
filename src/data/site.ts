@@ -2,24 +2,24 @@ import reelBmwPoster from '@/assets/reels/bmw-owners.jpg'
 import reelBmw from '@/assets/reels/bmw-owners.mp4'
 import reelLamboPoster from '@/assets/reels/camo-lamborghini.jpg'
 import reelLambo from '@/assets/reels/camo-lamborghini.mp4'
+import carDesktopOn1600 from '@/assets/images/philosophy/supercar-desktop-on-1600.jpg'
+import carDesktopOn1600Webp from '@/assets/images/philosophy/supercar-desktop-on-1600.webp'
+import carDesktopOn2016 from '@/assets/images/philosophy/supercar-desktop-on-2016.jpg'
+import carDesktopOn2016Webp from '@/assets/images/philosophy/supercar-desktop-on-2016.webp'
+import carDesktopOff1600 from '@/assets/images/philosophy/supercar-desktop-off-1600.jpg'
+import carDesktopOff1600Webp from '@/assets/images/philosophy/supercar-desktop-off-1600.webp'
+import carDesktopOff2016 from '@/assets/images/philosophy/supercar-desktop-off-2016.jpg'
+import carDesktopOff2016Webp from '@/assets/images/philosophy/supercar-desktop-off-2016.webp'
+import carMobileOn800 from '@/assets/images/philosophy/supercar-mobile-on-800.jpg'
+import carMobileOn800Webp from '@/assets/images/philosophy/supercar-mobile-on-800.webp'
+import carMobileOn1008 from '@/assets/images/philosophy/supercar-mobile-on-1008.jpg'
+import carMobileOn1008Webp from '@/assets/images/philosophy/supercar-mobile-on-1008.webp'
+import carMobileOff800 from '@/assets/images/philosophy/supercar-mobile-off-800.jpg'
+import carMobileOff800Webp from '@/assets/images/philosophy/supercar-mobile-off-800.webp'
+import carMobileOff1008 from '@/assets/images/philosophy/supercar-mobile-off-1008.jpg'
+import carMobileOff1008Webp from '@/assets/images/philosophy/supercar-mobile-off-1008.webp'
 import reelMercedesPoster from '@/assets/reels/red-mercedes.jpg'
 import reelMercedes from '@/assets/reels/red-mercedes.mp4'
-import lamboDesktopOff1600 from '@/assets/images/philosophy/lambo-desktop-off-1600.jpg'
-import lamboDesktopOff1600Webp from '@/assets/images/philosophy/lambo-desktop-off-1600.webp'
-import lamboDesktopOff2112 from '@/assets/images/philosophy/lambo-desktop-off-2112.jpg'
-import lamboDesktopOff2112Webp from '@/assets/images/philosophy/lambo-desktop-off-2112.webp'
-import lamboDesktopOn1600 from '@/assets/images/philosophy/lambo-desktop-on-1600.jpg'
-import lamboDesktopOn1600Webp from '@/assets/images/philosophy/lambo-desktop-on-1600.webp'
-import lamboDesktopOn2112 from '@/assets/images/philosophy/lambo-desktop-on-2112.jpg'
-import lamboDesktopOn2112Webp from '@/assets/images/philosophy/lambo-desktop-on-2112.webp'
-import lamboMobileOff800 from '@/assets/images/philosophy/lambo-mobile-off-800.jpg'
-import lamboMobileOff800Webp from '@/assets/images/philosophy/lambo-mobile-off-800.webp'
-import lamboMobileOff1072 from '@/assets/images/philosophy/lambo-mobile-off-1072.jpg'
-import lamboMobileOff1072Webp from '@/assets/images/philosophy/lambo-mobile-off-1072.webp'
-import lamboMobileOn800 from '@/assets/images/philosophy/lambo-mobile-on-800.jpg'
-import lamboMobileOn800Webp from '@/assets/images/philosophy/lambo-mobile-on-800.webp'
-import lamboMobileOn1072 from '@/assets/images/philosophy/lambo-mobile-on-1072.jpg'
-import lamboMobileOn1072Webp from '@/assets/images/philosophy/lambo-mobile-on-1072.webp'
 import heroShopfront from '@/assets/images/hero/shopfront-twilight.jpg'
 import heroPoster from '@/assets/videos/hero-poster.jpg'
 import heroMobile from '@/assets/videos/hero-mobile.mp4'
@@ -134,11 +134,10 @@ export const site = {
   },
 
   // Brand storytelling section (creative director, 2026-10-10; Alain Class
-  // reference). Vehicle: the burgundy widebody supercar (creative director,
-  // 2026-10-12 neon-halo render; original in
-  // client-photos/philosophy/burgundy-lamborghini-neon-halo.png). Its own baked-in halo
-  // ring was retouched out so the section's animated arc replaces it at the
-  // same geometry. Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
+  // reference). Vehicle: the ORIGINAL aggressive burgundy widebody supercar
+  // (restored 2026-10-15 at the creative director's request; source
+  // client-photos/philosophy/burgundy-supercar.png, crops from commit
+  // 79b7bcf). Crops: desktop 1.6:1, mobile 4:5, whole car wing-to-splitter.
   philosophy: {
     headline: ['Beyond', 'Factory.'],
     // Creative director, 2026-10-15: three short beats, quieter, then the
@@ -152,15 +151,16 @@ export const site = {
       // UNCONFIRMED: no enquiry/booking flow yet, so it opens the Coming Soon dialog
       url: null as string | null,
     },
-    // Lights-off / lights-on pair of the same render (creative director,
-    // 2026-10-12). The "on" photo powers on over the "off" one; both share one
-    // processing pass (ring removed, edges baked to the page black).
+    // Lights-off / lights-on pair. "On" is the original photo itself; "off" is
+    // the same photo with the original's own lights-off lamp patches
+    // (supercar-led-off-l/r, commit 79b7bcf) baked in. The "on" photo powers
+    // on over the "off" one. Edges melt into the page black via a CSS mask.
     image: {
-      alt: 'Burgundy Lamborghini with a carbon rear wing, seen from above and in front in a dark studio',
+      alt: 'Burgundy widebody Lamborghini with a large carbon rear wing and bonnet scoop, seen from above and in front in a dark studio',
       width: { desktop: 1600, mobile: 800 },
       height: { desktop: 1000, mobile: 1000 },
-      off: { desktop: { jpg: `${lamboDesktopOff1600} 1600w, ${lamboDesktopOff2112} 2112w`, webp: `${lamboDesktopOff1600Webp} 1600w, ${lamboDesktopOff2112Webp} 2112w`, src: lamboDesktopOff1600 }, mobile: { jpg: `${lamboMobileOff800} 800w, ${lamboMobileOff1072} 1072w`, webp: `${lamboMobileOff800Webp} 800w, ${lamboMobileOff1072Webp} 1072w`, src: lamboMobileOff800 } },
-      on: { desktop: { jpg: `${lamboDesktopOn1600} 1600w, ${lamboDesktopOn2112} 2112w`, webp: `${lamboDesktopOn1600Webp} 1600w, ${lamboDesktopOn2112Webp} 2112w`, src: lamboDesktopOn1600 }, mobile: { jpg: `${lamboMobileOn800} 800w, ${lamboMobileOn1072} 1072w`, webp: `${lamboMobileOn800Webp} 800w, ${lamboMobileOn1072Webp} 1072w`, src: lamboMobileOn800 } },
+      off: { desktop: { jpg: `${carDesktopOff1600} 1600w, ${carDesktopOff2016} 2016w`, webp: `${carDesktopOff1600Webp} 1600w, ${carDesktopOff2016Webp} 2016w`, src: carDesktopOff1600 }, mobile: { jpg: `${carMobileOff800} 800w, ${carMobileOff1008} 1008w`, webp: `${carMobileOff800Webp} 800w, ${carMobileOff1008Webp} 1008w`, src: carMobileOff800 } },
+      on: { desktop: { jpg: `${carDesktopOn1600} 1600w, ${carDesktopOn2016} 2016w`, webp: `${carDesktopOn1600Webp} 1600w, ${carDesktopOn2016Webp} 2016w`, src: carDesktopOn1600 }, mobile: { jpg: `${carMobileOn800} 800w, ${carMobileOn1008} 1008w`, webp: `${carMobileOn800Webp} 800w, ${carMobileOn1008Webp} 1008w`, src: carMobileOn800 } },
     },
   },
 
