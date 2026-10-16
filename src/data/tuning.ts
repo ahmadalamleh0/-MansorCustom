@@ -2,6 +2,7 @@ import blackSf90PosterJpg from '@/assets/images/projects/ferrari-sf90-poster.jpg
 import blackSf90PosterWebp from '@/assets/images/projects/ferrari-sf90-poster.webp'
 import blackSf90Video from '@/assets/images/projects/ferrari-sf90.mp4'
 import ferrariLogo from '@/assets/logos/makes/ferrari.svg'
+import lamborghiniLogo from '@/assets/logos/makes/lamborghini.svg'
 import sfsExhaustPosterJpg from '@/assets/images/tuning/card-sf90-stradale-exhaust-poster.jpg'
 import sfsExhaustPosterWebp from '@/assets/images/tuning/card-sf90-stradale-exhaust-poster.webp'
 import sfsExhaustVideo from '@/assets/images/tuning/card-sf90-stradale-exhaust.mp4'
@@ -58,7 +59,7 @@ export const tuning = {
       id: 'tuning-huracan-dyno',
       make: 'Lamborghini',
       model: 'Huracán',
-      logo: null,
+      logo: lamborghiniLogo, // supplied mark (client-photos/brand/lamborghini-supplied.svg)
       confirm: 'Huracán variant (Tecnica / EVO): confirm with Mansor',
       video: huracanVideo,
       image: {
