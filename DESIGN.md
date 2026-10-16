@@ -583,16 +583,17 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   several at once; closed panels are inert. Copy: four questions supplied
   by the creative director (proposed, pending Mansor's approval; no visible
   labels). (The Journal section was deleted 2026-10-13.)
-- **Location** (`components/sections/LocationMap.tsx`): the "Visit Us"
-  heading, then the address and "Get Directions" (Google Maps directions to
-  the exact address) on the black page, then a compact full-bleed band
-  (`clamp(18.75rem, 15rem + 10vw, 26rem)`, about 300px on phones and 384px
-  on desktop) directly before the footer. It is the "Contact" nav target.
-  **Preview → live:** the creative director's aerial image
-  (`assets/images/location-aerial.jpg`, pin at the centre, so the cover crop
-  keeps it in view) with an "Explore Location" control. Activating it loads
-  the live **Google Maps satellite** embed (zoom 17, top-down) and fades it
-  in over the preview. Google is contacted only on demand.
+- **Location** (`components/sections/LocationMap.tsx`; editorial rework
+  2026-10-16, deliberately unlike the Wraptors map): before the FAQ. A head
+  row in the container: "Visit Us" left, the address and "Get Directions"
+  right on md+ (stacked, left-aligned on phones), then the aerial preview
+  inset in the container (`assets/images/location-aerial.jpg`, pin at the
+  centre, 17.5-26rem tall). It is the "Contact" nav target.
+  **Preview → live:** a small dark floating chip bottom-left on the image
+  (near-black pill, hairline border, a white dot, "View Location" and an
+  up-right arrow) loads the live **Google Maps satellite** embed (zoom 17,
+  top-down) and fades it in over the preview. Google is contacted only on
+  demand.
   **Embed:** with `VITE_GOOGLE_MAPS_EMBED_KEY` (in `.env.local`, never
   committed; see `.env.example`) it uses the official Maps Embed API (place
   mode, satellite); otherwise Google's keyless "Share → Embed" iframe.

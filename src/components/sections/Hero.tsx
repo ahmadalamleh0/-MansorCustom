@@ -75,6 +75,12 @@ export function Hero() {
         </div>
       </div>
 
+      {/* Scroll cue: small vertical label and a hairline, far right */}
+      <div data-hero-fade aria-hidden="true" className="hero__scroll">
+        <span className="hero__scroll-label">Scroll</span>
+        <span className="hero__scroll-line" />
+      </div>
+
       <ComingSoonModal content={bookingOpen ? BOOKING_PENDING : null} onClose={() => setBookingOpen(false)} />
     </section>
   )

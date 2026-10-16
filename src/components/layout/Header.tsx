@@ -124,17 +124,17 @@ export function Header() {
             : 'invisible opacity-0 [transition:opacity_0.5s,visibility_0s_0.5s]'
         }`}
       >
-        <ul className="container-site flex flex-col pt-10">
+        {/* Tighter rows (2026-10-16): ~27% shorter, slightly smaller type, no numbers */}
+        <ul className="container-site flex flex-col pt-6">
           {site.nav.map((item, i) => (
             <li key={item.href} className="border-b border-line">
               <a
                 ref={i === 0 ? firstLinkRef : undefined}
                 href={item.href}
                 onClick={onNavClick}
-                className="flex items-baseline justify-between py-6 text-4xl font-medium tracking-tight text-paper"
+                className="flex items-baseline py-4 text-3xl font-medium tracking-tight text-paper"
               >
                 {item.label}
-                <span className="font-mono text-xs text-faint">{String(i + 1).padStart(2, '0')}</span>
               </a>
             </li>
           ))}

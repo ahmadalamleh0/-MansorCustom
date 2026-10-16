@@ -457,6 +457,63 @@
     margin-top: clamp(1rem, 0.85rem + 0.8vw, 1.5rem);
   }
 
+  /* Scroll cue: a vertical label over a short hairline, bottom-right */
+  .hero__scroll {
+    position: absolute;
+    right: var(--gutter);
+    bottom: clamp(1.5rem, 1rem + 2vh, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: none;
+  }
+
+  .hero__scroll-label {
+    writing-mode: vertical-rl;
+    font-family: var(--font-editorial);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgb(242 241 238 / 0.6);
+  }
+
+  .hero__scroll-line {
+    position: relative;
+    width: 1px;
+    height: 2.75rem;
+    overflow: hidden;
+    background: rgb(242 241 238 / 0.18);
+  }
+
+  .hero__scroll-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-paper);
+    transform: translateY(-100%);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__scroll-line::after {
+      animation: hero-scroll 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+  }
+
+  @keyframes hero-scroll {
+    0% {
+      transform: translateY(-100%);
+    }
+    55% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+
   /*
    * Editorial CTA: transparent, small tracked off-white capitals over a
    * hairline rule. On hover a brighter line draws across from the left and
@@ -622,40 +679,53 @@
    * edge-to-edge Google Maps satellite view. Nothing sits over the map: no
    * filters, fades or overlays (creative director).
    */
+  /*
+   * Visit Us (2026-10-16): an editorial head row (heading left; address and
+   * directions right on md+, stacked left on phones), then the satellite
+   * preview inset in the container with a small dark floating chip.
+   */
   .location {
-    padding-top: clamp(1.5rem, 1rem + 2vw, 3rem);
+    padding-top: clamp(2.5rem, 1.75rem + 2.5vw, 4rem);
+  }
+
+  .location__head {
+    display: grid;
+    gap: 0.5rem;
+    align-items: end;
+  }
+
+  @media (min-width: 768px) {
+    .location__head {
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+    }
   }
 
   .location__title {
-    padding-inline: var(--gutter);
     font-family: var(--font-editorial);
     font-size: clamp(1.125rem, 0.95rem + 0.8vw, 1.625rem);
     font-weight: 500;
     letter-spacing: 0.24em;
-    text-align: center;
     text-transform: uppercase;
     color: var(--color-paper);
   }
 
   .location__info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    margin-top: clamp(0.75rem, 0.6rem + 0.6vw, 1.125rem);
-    padding-inline: var(--gutter);
-    text-align: center;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 1.25rem;
   }
 
   .location__address {
     font-family: var(--font-editorial);
     font-size: 0.875rem;
-    color: rgb(242 241 238 / 0.68);
+    color: rgb(242 241 238 / 0.62);
   }
 
   .location__directions {
     position: relative;
-    padding: 0.625rem 0.25rem;
+    padding: 0.625rem 0;
     font-family: var(--font-editorial);
     font-size: 0.71875rem;
     font-weight: 500;
@@ -668,8 +738,8 @@
   .location__directions::after {
     content: '';
     position: absolute;
-    left: 0.25rem;
-    right: calc(0.25rem + 0.2em);
+    left: 0;
+    right: 0.2em;
     bottom: 0.45rem;
     height: 1px;
     background: currentColor;
@@ -689,8 +759,8 @@
 
   .location-map {
     position: relative;
-    height: clamp(18.75rem, 15rem + 10vw, 26rem); /* ~300px phones, ~384px desktop */
-    margin-top: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+    height: clamp(17.5rem, 14rem + 10vw, 26rem);
+    margin-top: clamp(0.75rem, 0.6rem + 0.6vw, 1.125rem);
     overflow: hidden;
     background: #1a1a1a; /* while the imagery loads */
   }
@@ -722,35 +792,61 @@
     opacity: 1;
   }
 
-  /* Editorial "Explore Location" control, same language as Book Appointment,
-     on a soft dark plate so it stays legible over bright imagery */
-  .location-map__explore {
+  /* Floating chip, bottom-left: small, near-black, a live dot and an arrow */
+  .location-map__open {
     position: absolute;
-    left: 50%;
-    bottom: clamp(1.25rem, 1rem + 1.5vw, 2rem);
-    translate: -50% 0;
-    min-height: 3rem;
-    padding: 0.875rem 1.5rem;
-    border: 1px solid rgb(242 241 238 / 0.35);
-    background: rgb(11 11 12 / 0.62);
-    backdrop-filter: blur(6px);
+    left: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+    bottom: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-height: 2.5rem;
+    padding: 0 0.875rem 0 0.75rem;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 999px;
+    background: rgb(6 6 6 / 0.84);
     font-family: var(--font-editorial);
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     font-weight: 500;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     white-space: nowrap;
     color: var(--color-paper);
+    box-shadow: 0 8px 24px -12px rgb(0 0 0 / 0.8);
     transition:
       background-color 240ms ease,
       border-color 240ms ease;
   }
 
+  .location-map__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-paper);
+    box-shadow: 0 0 0 3px rgb(242 241 238 / 0.14);
+  }
+
+  .location-map__arrow {
+    width: 0.8125rem;
+    height: 0.8125rem;
+    rotate: -45deg;
+    transition: translate 320ms var(--ease-out-expo);
+  }
+
   @media (hover: hover) and (pointer: fine) {
-    .location-map__explore:hover {
-      background: rgb(11 11 12 / 0.82);
-      border-color: rgb(242 241 238 / 0.7);
+    .location-map__open:hover {
+      background: rgb(0 0 0 / 0.94);
+      border-color: rgb(255 255 255 / 0.28);
     }
+
+    .location-map__open:hover .location-map__arrow {
+      translate: 2px -2px;
+    }
+  }
+
+  .location-map__open:focus-visible {
+    outline: 2px solid var(--color-paper);
+    outline-offset: 3px;
   }
 
   /*

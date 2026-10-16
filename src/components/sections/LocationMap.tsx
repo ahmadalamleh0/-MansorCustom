@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import aerial from '@/assets/images/location-aerial.jpg'
+import { ArrowIcon } from '@/components/ui/icons'
 import { site } from '@/data/site'
 
 /** Satellite zoom: matches the aerial preview's wide composition */
@@ -22,9 +23,10 @@ function embedUrl(query: string) {
 }
 
 /**
- * "Visit Us": heading, address and directions on the black page, then a
- * compact, full-bleed aerial preview (the creative director's supplied
- * image, pin at the shop) with an "Explore Location" control. Activating it
+ * "Visit Us" (editorial, 2026-10-16): heading left, address and directions
+ * right on md+ (stacked, left-aligned on phones), then the aerial preview
+ * inset in the container (the creative director's supplied image, pin at
+ * the shop) with a small dark floating "View Location" chip bottom-left. Activating it
  * loads the live, interactive Google Maps satellite view in its place.
  * Google's iframe is only fetched on demand, which keeps the page light.
  * It is the "Contact" nav target.
@@ -39,49 +41,54 @@ export function LocationMap() {
 
   return (
     <section id="contact" aria-labelledby="location-title" className="location">
-      <h2 id="location-title" className="location__title">
-        Visit Us
-      </h2>
-
-      <div className="location__info">
-        <p className="location__address">{location.address}</p>
-        <a href={directions} target="_blank" rel="noopener noreferrer" className="location__directions">
-          Get Directions
-          <span className="sr-only"> to {location.name} (opens Google Maps)</span>
-        </a>
+      <div className="container-site location__head">
+        <h2 id="location-title" className="location__title">
+          Visit Us
+        </h2>
+        <div className="location__info">
+          <p className="location__address">{location.address}</p>
+          <a href={directions} target="_blank" rel="noopener noreferrer" className="location__directions">
+            Get Directions
+            <span className="sr-only"> to {location.name} (opens Google Maps)</span>
+          </a>
+        </div>
       </div>
 
-      <div className="location-map" data-live={live || undefined} data-loaded={loaded || undefined}>
-        <img
-          src={aerial}
-          alt={`Aerial view of the area around ${location.name}`}
-          width={1536}
-          height={1024}
-          loading="lazy"
-          decoding="async"
-          className="location-map__preview"
-        />
-
-        {!live && (
-          <button type="button" onClick={() => setLive(true)} className="location-map__explore">
-            Explore Location
-            <span className="sr-only"> on an interactive Google map</span>
-          </button>
-        )}
-
-        {live && (
-          <iframe
-            title={`Satellite map: ${location.name}, ${location.address}`}
-            // Query the exact address only: adding the business name made Google
-            // fuzzy-match a different "Customs" shop nearby. The address alone
-            // resolves to the Mansor Customs listing (verified 2026-10-09).
-            src={embedUrl(location.address)}
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-            onLoad={() => setLoaded(true)}
-            className="location-map__frame"
+      <div className="container-site">
+        <div className="location-map" data-live={live || undefined} data-loaded={loaded || undefined}>
+          <img
+            src={aerial}
+            alt={`Aerial view of the area around ${location.name}`}
+            width={1536}
+            height={1024}
+            loading="lazy"
+            decoding="async"
+            className="location-map__preview"
           />
-        )}
+
+          {!live && (
+            <button type="button" onClick={() => setLive(true)} className="location-map__open">
+              <span className="location-map__dot" aria-hidden="true" />
+              View Location
+              <ArrowIcon className="location-map__arrow" />
+              <span className="sr-only"> on an interactive Google map</span>
+            </button>
+          )}
+
+          {live && (
+            <iframe
+              title={`Satellite map: ${location.name}, ${location.address}`}
+              // Query the exact address only: adding the business name made Google
+              // fuzzy-match a different "Customs" shop nearby. The address alone
+              // resolves to the Mansor Customs listing (verified 2026-10-09).
+              src={embedUrl(location.address)}
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              onLoad={() => setLoaded(true)}
+              className="location-map__frame"
+            />
+          )}
+        </div>
       </div>
     </section>
   )
