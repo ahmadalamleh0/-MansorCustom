@@ -351,9 +351,9 @@
     flex: 1;
     flex-direction: column;
     align-items: center;
-    /* Phones: a little closer to the nav, so the headline sits in the sky,
-       clear of the roofline */
-    padding-top: calc(var(--header-h) + clamp(1.25rem, 0.25rem + 3vh, 3rem));
+    /* Close under the Mansor logo (2026-10-16), in the sky, clear of the
+       roofline */
+    padding-top: calc(var(--header-h) + clamp(0.5rem, 0rem + 1.5vh, 1.5rem));
     /* Phones show the whole portrait photo: the copy sits on the asphalt,
        below the cars */
     padding-bottom: clamp(3.5rem, 1rem + 5.5vh, 4.5rem);
@@ -363,7 +363,7 @@
   /* Wider screens: the block is raised off the bottom edge */
   @media (min-width: 768px) {
     .hero__content {
-      padding-top: calc(var(--header-h) + clamp(2rem, 0.75rem + 4vh, 4.5rem));
+      padding-top: calc(var(--header-h) + clamp(0.75rem, 0rem + 2vh, 2rem));
       padding-bottom: clamp(4.5rem, 2rem + 9vh, 8.5rem);
     }
   }

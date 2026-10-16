@@ -359,7 +359,7 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   With no booking method confirmed, the CTA opens the Coming Soon dialog
   (`site.hero.cta.bookingUrl` switches it to a link). Two zones
   (2026-10-15): the headline in the upper part of the frame, header height
-  + 2-4.5rem below the nav (in the sky on portrait screens, on the dark
+  + 0.5-2rem below the nav (2026-10-16: close under the logo; in the sky on portrait screens, on the dark
   facade above the sign on landscape), and the services and CTA anchored low
   (services `margin-top: auto`; 1-1.5rem to the CTA). Phones keep that
   lower group on the asphalt below the cars; from 768px it is raised off the
