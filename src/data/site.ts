@@ -145,7 +145,7 @@ export const site = {
     // Creative director, 2026-10-15: three short beats, quieter, then the
     // closing line at full strength
     copy: [
-      'A different finish. A sharper stance. An interior that’s entirely your own.',
+      'A different finish. A sharper stance.',
       'Every build starts with a different vision.',
     ],
     cta: {

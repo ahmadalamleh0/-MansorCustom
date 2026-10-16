@@ -6,8 +6,8 @@ const IGNITION = 0.9
 /**
  * "Beyond Factory." entrance. Call inside useGSAP scoped to the section.
  * The car is stationary at its final size and position from the start: no
- * zoom, no translate. The headline rises in, the arc draws outward from its
- * top tick, the copy and CTA follow, and the headlights power on:
+ * zoom, no translate. The headline rises in, the copy and CTA follow, and
+ * the headlights power on:
  *   1. power pulse: the lit photo flashes in at half strength and drops back
  *   2. ignition: it snaps to full (power4.out), so the real light on the
  *      bodywork and floor arrives with it
@@ -32,8 +32,6 @@ export function philosophyReveal() {
         scrollTrigger: { trigger: '.philosophy__inner', start: 'top 78%', once: true },
       })
       .from(headline, { autoAlpha: 0, y: 22, duration: 1.1 })
-      .from('[data-ph-tick]', { autoAlpha: 0, duration: 0.6, stagger: 0.06 }, 0.35)
-      .fromTo('[data-ph-arc]', { strokeDashoffset: 1000 }, { strokeDashoffset: 0, duration: 1.8, ease: 'power2.inOut' }, 0.3)
       .from(rest, { autoAlpha: 0, y: 16, duration: 1, stagger: 0.08 }, 0.7)
 
       // 1. Power pulse

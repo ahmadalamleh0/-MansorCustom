@@ -197,7 +197,7 @@ not shipped):
 | Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
 | Selected Projects gallery | VOIR PPF archived screenshot (`references/voir-collection.png`) | Implemented (Michroma vertical models, 1px gutters, maker marks) |
-| "Beyond Factory." brand section | Alain Class Aftersales mobile screenshot (`references/alainclass-aftersales.jpeg`) | Implemented (monochrome; no red glow, arc + ticks kept) |
+| "Beyond Factory." brand section | Alain Class Aftersales mobile screenshot (`references/alainclass-aftersales.jpeg`) | Implemented (monochrome; no red glow; arc + ticks removed 2026-10-15) |
 | Instagram showcase | Venuum mobile screenshot (`references/venuum-instagram.jpeg`) | Implemented; Reels via official API (awaiting Mansor's authorisation); follower count and badge pending confirmation |
 | Location map | Creative director's aerial reference image | Implemented: aerial preview → live Google Maps satellite |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
@@ -366,8 +366,9 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   directly after the hero, a slow monochrome marquee with faded edges of
   brands genuinely associated with Mansor. Only `confirmed` brands show:
   Stage 4 Tuning (its official S4T logo, cut white on transparency, set a
-  little taller as a two-line lockup) and Brillsteel Motorsport (removed from
-  the strip 2026-10-12; entry kept hidden with its logo for easy return). Both logos are supplied files, cut
+  little taller as a two-line lockup) and Brillsteel Motorsport (back in the strip
+  2026-10-15 with a newly supplied official logo, cut off its black square
+  onto transparency, red and white kept). Both logos are supplied files, cut
   onto transparency, never redrawn. Also confirmed and shown (logos supplied
   2026-10-12): Akrapovič (red emblem kept, black lettering reversed to white),
   XPEL (reversed to white) and 3M (the official mark as a clean Simple Icons
@@ -475,20 +476,17 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   paper-to-graphite gradient fill (stacked on two lines below 1280px, one
   line above), then the burgundy widebody supercar (1.6:1 frame on md+,
   4:5 on phones; the whole car from wing to splitter, shown at 0.94 scale
-  so it breathes inside the arc) whose top tucks under
+  so it breathes) whose top tucks under
   the headline and whose edges mask into the page black (desktop sides
-  extended and blended; the photo's own baked-in halo ring retouched out so
-  the animated arc replaces it at the same geometry). A thin 42% white arc with three ticks (top,
-  left, right) frames the car and fades out below its midline. Then two
-  lines (2026-10-15): "A different finish. A sharper stance. An interior
-  that's entirely your own." at 66% paper, then "Every build starts with a
+  extended and blended; the photo's own baked-in halo ring retouched out).
+  No framing arc (the thin arc and ticks were removed, 2026-10-15). Then two
+  lines (2026-10-15): "A different finish. A sharper stance." at 66% paper, then "Every build starts with a
   different vision." at full paper, in the body face (Outfit 300, sentence
   case, 15-17px, 1.7 leading, 0.6em between; 32ch phones, 40ch md+), and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale
-  1.05 → 1), the arc draws outward from its top tick, then the copy and CTA
-  follow. **Car and headlights**: a lights-off / lights-on pair of the same
+  1.05 → 1), then the copy and CTA follow. **Car and headlights**: a lights-off / lights-on pair of the same
   render, processed identically (ring removed; neutral environment graded
   darker with the red paint protected; deepest black mapped to the page
   black; edge falloff baked in, so no frame edge can show). The car is

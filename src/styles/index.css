@@ -2334,10 +2334,8 @@
 
   /*
    * "Beyond Factory." brand section (Alain Class reference). Centred: a wide
-   * Michroma headline, one front-on car in a black stage framed by a
-   * thin arc with three ticks, then a short line and the editorial CTA.
-   * The arc geometry is set per crop (--arc-w / --arc-top, as fractions of
-   * the stage) so it clears the car's flanks on both crops.
+   * Michroma headline, one front-on car in a black stage, then a short line
+   * and the editorial CTA (the framing arc was removed, 2026-10-15).
    */
   .philosophy {
     padding-block: clamp(4rem, 2.5rem + 4vw, 6.5rem);
@@ -2386,11 +2384,8 @@
     }
   }
 
-  /* Frames sized for the supercar: the whole car, wing to splitter.
-     Arc geometry = the photo's own (retouched-out) halo ring. */
+  /* Frames sized for the supercar: the whole car, wing to splitter */
   .philosophy__stage {
-    --arc-w: 0.8685;
-    --arc-top: 0.0252;
     position: relative;
     width: calc(100% + 2 * var(--gutter));
     max-width: 72rem;
@@ -2400,8 +2395,6 @@
 
   @media (min-width: 768px) {
     .philosophy__stage {
-      --arc-w: 0.4342;
-      --arc-top: 0.0252;
       width: 100%;
       aspect-ratio: 1.6 / 1;
       margin-top: clamp(-2.5rem, 1rem - 3vw, -1rem);
@@ -2475,37 +2468,6 @@
     .philosophy__bloom--r, .philosophy__halo--r { left: 64.23%; top: 63.51%; }
   }
 
-  .philosophy__arc {
-    position: absolute;
-    left: 50%;
-    top: calc(var(--arc-top) * 100%);
-    width: calc(var(--arc-w) * 100%);
-    aspect-ratio: 1;
-    overflow: visible;
-    translate: -50% 0;
-    fill: none;
-    stroke: rgb(242 241 238 / 0.42);
-    stroke-width: 1;
-    pointer-events: none;
-    /* Arc fades out as it comes down past the car */
-    mask-image: linear-gradient(to bottom, #000 40%, transparent 70%);
-  }
-
-  .philosophy__arc path {
-    vector-effect: non-scaling-stroke;
-  }
-
-  .philosophy__arc [data-ph-arc] {
-    stroke-dasharray: 1000;
-  }
-
-  .philosophy__arc [data-ph-tick] {
-    stroke: rgb(242 241 238 / 0.6);
-  }
-
-  /* Two set lines: the premise quieter, the promise at full strength */
-  /* RYFT reference face at paragraph size: small caps-height, open tracking
-     and leading so the wide letterforms stay comfortable to read */
   /* Body face, sentence case (2026-10-15): calm next to the caps headline */
   .philosophy__copy {
     max-width: 32ch;
