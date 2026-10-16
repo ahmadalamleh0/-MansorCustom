@@ -24,6 +24,16 @@
 }
 
 /* Editorial display face — Outfit variable (SIL OFL 1.1), self-hosted */
+/* Geist (SIL OFL), variable weight: the hero headline, a refined Swiss
+   grotesk in the spirit of Neue Montreal / Helvetica Now */
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/geist-latin-wght.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Rajdhani 500 (SIL OFL), capitals only: the "Powered by" credit label */
 @font-face {
   font-family: 'Rajdhani';
@@ -303,9 +313,10 @@
     background: linear-gradient(
       to bottom,
       rgb(11 11 12 / 0.5) 0%, /* keeps the header legible over bright media */
-      rgb(11 11 12 / 0.1) 28%,
-      rgb(11 11 12 / 0.38) 50%,
-      rgb(11 11 12 / 0.72) 72%,
+      rgb(11 11 12 / 0.08) 28%,
+      rgb(11 11 12 / 0.16) 52%, /* lighter through the cars (2026-10-15) */
+      rgb(11 11 12 / 0.42) 74%,
+      rgb(11 11 12 / 0.8) 90%, /* still deep behind the services and CTA */
       var(--color-ink) 100%
     );
   }
@@ -340,7 +351,9 @@
     flex: 1;
     flex-direction: column;
     align-items: center;
-    padding-top: calc(var(--header-h) + clamp(2rem, 0.75rem + 4vh, 4.5rem));
+    /* Phones: a little closer to the nav, so the headline sits in the sky,
+       clear of the roofline */
+    padding-top: calc(var(--header-h) + clamp(1.25rem, 0.25rem + 3vh, 3rem));
     /* Phones show the whole portrait photo: the copy sits on the asphalt,
        below the cars */
     padding-bottom: clamp(3.5rem, 1rem + 5.5vh, 4.5rem);
@@ -350,21 +363,19 @@
   /* Wider screens: the block is raised off the bottom edge */
   @media (min-width: 768px) {
     .hero__content {
+      padding-top: calc(var(--header-h) + clamp(2rem, 0.75rem + 4vh, 4.5rem));
       padding-bottom: clamp(4.5rem, 2rem + 9vh, 8.5rem);
     }
   }
 
-  /* RYFT reference: wide geometric caps, generous tracking, even weight.
-     Two lines; the first ("Experience Your Car's") is ~16.6em wide, so the
-     size is the smallest of: what fits a phone's width, the old scale less
-     ~17%, and a 3.3rem cap (was 4rem) */
+  /* Refined grotesk (Geist 500, 2026-10-15), sentence case, two balanced
+     lines; sized to fit a phone's width, up to 3.75rem */
   .hero__headline {
-    font-family: var(--font-geo);
-    font-size: max(1.0625rem, min(5.9vw - 0.15rem, 0.45rem + 3.4vw, 3.3rem));
-    font-weight: 400;
-    line-height: 1.16;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
+    font-family: 'Geist', var(--font-editorial);
+    font-size: max(1.5rem, min(9vw - 0.25rem, 1rem + 3.4vw, 3.75rem));
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
     color: var(--color-paper);
   }
 

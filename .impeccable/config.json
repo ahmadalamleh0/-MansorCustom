@@ -26,6 +26,12 @@
         "value": "rajdhani",
         "createdAt": "2026-10-15T15:44:43.748Z",
         "reason": "User request 2026-10-15: 'Powered by Diablo' credit label in the Wraptors credit font; documented in DESIGN.md (Footer)"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "geist",
+        "createdAt": "2026-10-16T02:23:24.657Z",
+        "reason": "Creative director 2026-10-15: hero headline in a refined grotesk; documented in DESIGN.md (Hero)"
       }
     ]
   }
