@@ -269,9 +269,9 @@ export const projects: Project[] = [
     model: '911 Turbo S', // '911 Turbo S' side decal
     logo: null, // no open-licence mark available; tracked wordmark until the official logo is supplied
     image: {
-      alt: 'Lime green Porsche 911 Turbo S from behind on a brick driveway: black roof, rear wing and light bar',
-      webp: set([[pt1560Webp, 560], [pt1960Webp, 960]]),
-      jpg: set([[pt1560Jpg, 560], [pt1960Jpg, 960]]),
+      alt: 'Lime green Porsche 911 Turbo S from the front: black Porsche hood stripe, on a brick driveway',
+      webp: set([[pt3560Webp, 560], [pt3960Webp, 960]]),
+      jpg: set([[pt3560Jpg, 560], [pt3960Jpg, 960]]),
     },
     gallery: [
       {
@@ -280,9 +280,9 @@ export const projects: Project[] = [
         jpg: set([[pt2560Jpg, 560], [pt2960Jpg, 960]]),
       },
       {
-        alt: 'The lime green 911 Turbo S from the front: black Porsche hood stripe',
-        webp: set([[pt3560Webp, 560], [pt3960Webp, 960]]),
-        jpg: set([[pt3560Jpg, 560], [pt3960Jpg, 960]]),
+        alt: 'The lime green 911 Turbo S from behind on a brick driveway: black roof, rear wing and light bar',
+        webp: set([[pt1560Webp, 560], [pt1960Webp, 960]]),
+        jpg: set([[pt1560Jpg, 560], [pt1960Jpg, 960]]),
       },
     ],
   },
