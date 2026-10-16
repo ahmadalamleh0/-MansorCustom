@@ -2345,8 +2345,8 @@
 
   /*
    * "Beyond Factory." brand section (Alain Class reference). Centred: a wide
-   * Michroma headline, one front-on car in a black stage, then a short line
-   * and the editorial CTA (the framing arc was removed, 2026-10-15).
+   * Michroma headline, one front-on car in a black stage framed by a thin
+   * arc with three ticks, then a short line and the editorial CTA.
    */
   .philosophy {
     padding-block: clamp(4rem, 2.5rem + 4vw, 6.5rem);
@@ -2395,8 +2395,11 @@
     }
   }
 
-  /* Frames sized for the supercar: the whole car, wing to splitter */
+  /* Frames sized for the supercar: the whole car, wing to splitter. Arc
+     geometry (fractions of the stage) from the original car's layout */
   .philosophy__stage {
+    --arc-w: 0.936;
+    --arc-top: 0.053;
     position: relative;
     width: calc(100% + 2 * var(--gutter));
     max-width: 72rem;
@@ -2406,6 +2409,8 @@
 
   @media (min-width: 768px) {
     .philosophy__stage {
+      --arc-w: 0.468;
+      --arc-top: 0.053;
       --mask-x: 48%; /* the widened desktop frame: fade the added sides sooner */
       width: 100%;
       aspect-ratio: 1.6 / 1;
@@ -2478,6 +2483,34 @@
     .philosophy__halo { --halo-w: 17%; }
     .philosophy__bloom--l, .philosophy__halo--l { left: 36.31%; top: 72.46%; }
     .philosophy__bloom--r, .philosophy__halo--r { left: 63.34%; top: 72.46%; }
+  }
+
+  .philosophy__arc {
+    position: absolute;
+    left: 50%;
+    top: calc(var(--arc-top) * 100%);
+    width: calc(var(--arc-w) * 100%);
+    aspect-ratio: 1;
+    overflow: visible;
+    translate: -50% 0;
+    fill: none;
+    stroke: rgb(242 241 238 / 0.42);
+    stroke-width: 1;
+    pointer-events: none;
+    /* Arc fades out as it comes down past the car */
+    mask-image: linear-gradient(to bottom, #000 40%, transparent 70%);
+  }
+
+  .philosophy__arc path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .philosophy__arc [data-ph-arc] {
+    stroke-dasharray: 1000;
+  }
+
+  .philosophy__arc [data-ph-tick] {
+    stroke: rgb(242 241 238 / 0.6);
   }
 
   /* Body face, sentence case (2026-10-15): calm next to the caps headline */

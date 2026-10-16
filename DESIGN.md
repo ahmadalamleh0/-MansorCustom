@@ -197,7 +197,7 @@ not shipped):
 | Brand-logo banner after the hero | IR Customs mobile banner screenshot | Implemented (logo row only; angled panels removed) |
 | Footer | MANSORY mobile footer screenshot | Implemented; socials hidden until verified |
 | Selected Projects gallery | VOIR PPF archived screenshot (`references/voir-collection.png`) | Implemented (Michroma vertical models, 1px gutters, maker marks) |
-| "Beyond Factory." brand section | Alain Class Aftersales mobile screenshot (`references/alainclass-aftersales.jpeg`) | Implemented (monochrome; no red glow; arc + ticks removed 2026-10-15) |
+| "Beyond Factory." brand section | Alain Class Aftersales mobile screenshot (`references/alainclass-aftersales.jpeg`) | Implemented (monochrome; no red glow, arc + ticks kept) |
 | Instagram showcase | Venuum mobile screenshot (`references/venuum-instagram.jpeg`) | Implemented; Reels via official API (awaiting Mansor's authorisation); follower count and badge pending confirmation |
 | Location map | Creative director's aerial reference image | Implemented: aerial preview → live Google Maps satellite |
 | Product-brand logos | `Banner/` (XPEL, STEK, SunTek, HEXIS, Gtechniq, Ceramic Pro) | In the showcase, monochrome; no partnership claimed |
@@ -485,14 +485,18 @@ Beyond Factory → client reviews → Instagram → Visit Us → FAQ → footer.
   1.6:1 frame on md+, 4:5 on phones, full size (no shrink), whose edges and lit
   floor melt into the page black through a CSS mask (radial 62% / 48% md+ plus
   a bottom fade).
-  No framing arc (the thin arc and ticks were removed, 2026-10-15). Then two
+  A thin 42% white arc with three ticks (top, left, right) frames the car
+  and fades out below its midline (removed and restored 2026-10-15; arc
+  geometry from the original car's layout: --arc-w 0.936 / 0.468 md+,
+  --arc-top 0.053). Then two
   lines (2026-10-15): "A different finish. A sharper stance." at 66% paper, then "Every build starts with a
   different vision." at full paper, in the body face (Outfit 300, sentence
   case, 15-17px, 1.7 leading, 0.6em between; 32ch phones, 40ch md+), and the shared editorial CTA "Start Your Build" (Coming Soon
   dialog until a build-enquiry flow exists). The vehicle swaps via the
   three crops in `assets/images/philosophy/` (`site.philosophy`). Motion,
   once only: the headline rises in, the car emerges from the dark (fade, scale
-  1.05 → 1), then the copy and CTA follow. **Car and headlights**: a lights-off / lights-on pair. "On" is the
+  1.05 → 1), the arc draws outward from its top tick, then the copy and CTA
+  follow. **Car and headlights**: a lights-off / lights-on pair. "On" is the
   original photo itself; "off" is the same photo with the original's own
   lights-off lamp patches (supercar-led-off-l/r from commit 79b7bcf) baked
   in, so the pair is made only from original assets. The car is stationary

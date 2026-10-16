@@ -12,9 +12,9 @@ const BUILD_PENDING = {
 
 /**
  * "Beyond Factory." brand storytelling (Alain Class reference): a wide
- * Michroma headline over one dramatic vehicle, then a short line and one
- * editorial CTA.
- * Animation hooks: [data-ph-text], [data-ph-on],
+ * Michroma headline over one dramatic vehicle, framed by a thin arc with
+ * three ticks, then a short line and one editorial CTA.
+ * Animation hooks: [data-ph-text], [data-ph-arc], [data-ph-tick], [data-ph-on],
  * [data-ph-bloom], [data-ph-halo]. The car itself never moves.
  */
 export function Philosophy() {
@@ -49,6 +49,15 @@ export function Philosophy() {
               <span data-ph-bloom className="philosophy__bloom philosophy__bloom--r" />
             </div>
           </div>
+
+          {/* Arc drawn outward from the top, like the intro's signature rules */}
+          <svg viewBox="0 0 100 100" aria-hidden="true" className="philosophy__arc">
+            <path data-ph-arc d="M50 .5A49.5 49.5 0 0 0 15 85" pathLength={1000} />
+            <path data-ph-arc d="M50 .5A49.5 49.5 0 0 1 85 85" pathLength={1000} />
+            <path data-ph-tick d="M50 2.5V8" />
+            <path data-ph-tick d="M2 50h5.5" />
+            <path data-ph-tick d="M98 50h-5.5" />
+          </svg>
         </div>
 
         <p data-ph-text className="philosophy__copy">
